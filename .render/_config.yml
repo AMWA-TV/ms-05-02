@@ -5,7 +5,7 @@ plugins:
 spec_server: specs.amwa.tv
 
 # AMWA ID
-amwa_id: MS-06-02
+amwa_id: MS-05-02
 
 # Base name for site (typically lower case version of AMWA ID, or the repo name)
 baseurl: /ms-05-02
