@@ -11,6 +11,7 @@ Gemfile.lock
 /assets/
 /_data/
 _site/
+*.json
 branches/
 index.md
 node_modules/
