@@ -1,7 +1,7 @@
 ### General
 
 - [Introduction](Introduction.md)
-- [Concepts](General%20concepts.md)
+- [Concepts](Concepts.md)
 
 ### Models
 
