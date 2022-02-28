@@ -4,24 +4,22 @@ NcaObject is the base abstract class from which all other NCA classes must inher
 
 The properties of NcaObject are listed in the following table.
 
-TODO: Add column for readonly (true/false)
-
-| **Property Name** | **Datatype**                   | **Description**                                                       |
-| ----------------- | ------------------------------ | ----------------------------------------------------------------------|
-| classId           | ncaClassID                     | sequence of numeric class identifiers or authority keys               |
-| classVersion      | ncaVersionCode                 | class version represented according to Semantic versioning guidelines |
-| oid               | ncaOid                         | unique object id                                                      |
-| constantOid       | ncaBoolean                     | flag to indicate if the oid is constant or not                        |
-| owner             | ncaOid                         | unique object id of the parent                                        |
-| role              | ncaRole                        | unique role of the object within the containing block                 |
-| userLabel         | ncaString                      | user definable label                                                  |
-| lockable          | ncaBoolean                     | flag to indicate if the object can be locked                          |
-| lockState         | ncaLockState                   | current lock state of the object                                      |
-| touchpoints       | sequence<ncaTouchpoint>        | sequence of touchpoint (see Touchpoints section for details)          |
+| **Property Name** | **Datatype**                   | **Readonly** | **Description**                                                       |
+| ----------------- | ------------------------------ | ------------ | ----------------------------------------------------------------------|
+| classId           | ncaClassID                     | Yes          | sequence of numeric class identifiers or authority keys               |
+| classVersion      | ncaVersionCode                 | Yes          | class version represented according to Semantic versioning guidelines |
+| oid               | ncaOid                         | Yes          | unique object id                                                      |
+| constantOid       | ncaBoolean                     | Yes          | flag to indicate if the oid is constant or not                        |
+| owner             | ncaOid                         | Yes          | unique object id of the parent                                        |
+| role              | ncaRole                        | Yes          | unique role of the object within the containing block                 |
+| userLabel         | ncaString                      | No           | user definable label                                                  |
+| lockable          | ncaBoolean                     | Yes          | flag to indicate if the object can be locked                          |
+| lockState         | ncaLockState                   | Yes          | current lock state of the object                                      |
+| touchpoints       | sequence<ncaTouchpoint>        | Yes          | sequence of touchpoint (see Touchpoints section for details)          |
 
 The `role` is a structural identifier which MUST be persisted across restarts. The role path of an element can be constructed of its role and the roles of all its parents. The role path can then be used to target a particular section of the control model tree or to retrieve the object ids again after a restart.
 
-TODO: Add further comment about oids possibly being constant across restarts which will be signaled using constantOid.
+Object ids (`oid` property) may be constant across system restarts in which case they MUST be signaled using the `constandOid` property by settings its value to `true`.
 
 ## Generic getter and setter
 
@@ -40,6 +38,12 @@ typedef ncaElementID ncaPropertyID;
 ```
 
 `ncaMethodResultPropertyValue` inherits from `ncaMethodResult` but can return any value type depending on the underlying property type.
+
+```typescript
+interface ncaMethodResultPropertyValue : ncaMethodResult { // property-value result
+    attribute any value;
+}
+```
 
 The set method (`[element("1m2")]`) accepts `ncaPropertyId` and any value (type depends on the underlying property type) as arguments. The return type is the base `ncaMethodResult`.
 
@@ -69,11 +73,26 @@ Events can only be consumed as notifications when subscribed to in the Subscript
 
 ## Working with collections inside an ncaObject
 
-TODO: Mention that they are defined using webIDL sequences and then explain methods defined in ncaObject.
+Collection types are defined as webIDL sequences of a specific type.
+There are generic methods for getting, setting, adding and deleting items inside a collection property as part of `ncaObject`.
+
+Getting a collection item is done through the `getCollectionItem` method ([element("1m4")]) by specifying the property identifier (`ncaPropertyId`) and the index as arguments.
+The result is of type `ncaMethodResultPropertyValue`.
+
+Setting a collection item is done through the `setCollectionItem` method ([element("1m5")]) by specifying the property identifier (`ncaPropertyId`), the index and the value as arguments.
+The result is of type `ncaMethodResult`.
+
+Adding an item to a collection is done through the `addCollectionItem` method ([element("1m6")]) by specifying the property identifier (`ncaPropertyId`) and the value as arguments.
+The result is of type `ncaMethodResultId32` which contains the index where the value was added.
+
+Removing an item from a collection is done through the `removeCollectionItem` method ([element("1m7")]) by specifying the property identifier (`ncaPropertyId`) and the index as arguments.
+The result is of type `ncaMethodResult`.
 
 ## Touchpoints
 
 Touchpoints represent the way in which a control model object may expose identity mappings across other contexts.
+All `ncaObject` may have touchpoints.
+
 The `ncaTouchpoint` class specifies a namespace and resources.
 
 ```typescript
