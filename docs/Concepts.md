@@ -74,9 +74,7 @@ Example:
 
 ```typescript
 [control-class("1.99",1)] interface someClass {
-
     [element("2p55")]  attribute someType? someProperty;
-    
     [element("2m20")]  someReturnType someMethod(someArgType? argument);
 };
 ```
@@ -101,4 +99,10 @@ enum ncaMethodStatus {// Method result status values
 };
 ```
 
-TODO: Mention the derived ncaMethodResult classes would return a value and possibly further custom statuses.
+Derived `ncaMethodResult` types may also return values or possibly further custom statuses.
+
+```typescript
+interface ncaMethodResultOID : ncaMethodResult { // object ID result
+    attribute ncaOid value;
+};
+```
