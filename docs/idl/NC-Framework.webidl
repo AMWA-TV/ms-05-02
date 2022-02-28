@@ -1,4 +1,4 @@
-//	NC-Framework version 2022.02.16
+//	NC-Framework
 
 $macro(HeaderComments)
 	//  ----------------------------------------------------------------------------------
@@ -25,35 +25,7 @@ $macro(HeaderComments)
 	//
 	//	A pyexpand comment - i.e. a string that is not copied to the output - begins
 	//	with dollar-hash.  All characters from a dollar-hash symbol through the end of
-	//	the line are ignored.  
-	//
-	//	A notepad++ language definition file that recognizes these macro constructs
-	//	is available.
-	//	
-	//	This document refers to other documents in the NCA document set as follows:
-	//
-	//		NCA doc name		AMWA ID		Description
-	//		____________________________________________________________________________________________
-	//		NC-Architecture		ms-05-01	NCA architectural concepts and specifications		
-	//							URL: https://github.com/AMWA-TV/ms-05-01/blob/v1.0-dev/docs/README.md
-	//
-	//		NC-Framework		tbd			This document. Formal specification of the NCA Control Model
-	//							URL: TbD
-	//
-	//		NC-Protocol			tbd			Specification of NCA control protocol using JSON & WebSocket
-	//							URL: TbD
-	//
-	//		NC-BlockSpecs		tbd			Specifications and guidelines for NCA NCA BlockSpec writing
-	//							URL: TbD
-	//		____________________________________________________________________________________________
-	//
-	//	At the end of this file, there is an experimental macro named RevisionHistory.
-	//	It contains comments documenting successive revisions.
-	//	It isn't invoked in the mainline code, so it will not be reproduced in the
-	//	generated definition file.  
-	//
-	//	This file should be viewed and edited with a tab stop size of 4.
-	//
+	//	the line are ignored.
 	//  ----------------------------------------------------------------------------------
 $endmacro
 $macro(PrimitiveDatatypes)
@@ -290,7 +262,7 @@ $macro(EventAndSubscriptionDatatypes)
 		attribute any					propertyValue;		// 	Property-type specific 
 	 };
 	
-	interface ncaSynchronizeStateEventData {				// For OcaSubscriptionManager.SynchronizeState event
+	interface ncaSynchronizeStateEventData {				// For NcaSubscriptionManager.SynchronizeState event
 		attribute  sequence<ncaOid> changedObjectsIds;		// OIDs of objects changed while subscriptions were disabled.
 	};	
 	
@@ -347,8 +319,7 @@ $macro(ModelDatatypes)
 	interface ncaDatatypeDescriptor {
 		ncaName								name;			// datatype name
 		ncaDatatypeType						type;			// primitive, typedef, struct, enum, or null
-		(ncaString  or ncaName or sequence<ncaFieldDescriptor> or sequence<ncaEnumItemDescriptor> or null)				
-											content;		// dataype content, see below
+		(ncaString  or ncaName or sequence<ncaFieldDescriptor> or sequence<ncaEnumItemDescriptor> or null) content; // dataype content, see below
 		
 		//  Contents of property 'content':
 		//
@@ -530,7 +501,7 @@ $macro(ManagementDatatypes)
 		"powerOn",					// 0 Last reset was caused by device power-on.
 		"internalError",			// 1 Last reset was caused by an internal error.
 		"upgrade",					// 2 Last reset was caused by a software or firmware upgrade.
-		"controllerRequest"	        // 3 Last reset was caused by a controller request.
+		"controllerRequest"			// 3 Last reset was caused by a controller request.
 	};
 	
 	enum  ncaDeviceGenericState {
@@ -540,7 +511,7 @@ $macro(ManagementDatatypes)
 	};
 
 	interface ncaDeviceOperationalState {
-		attribute ncaDeviceGenericState	generic;
+		attribute ncaDeviceGenericState generic;
 		attribute ncaBlob detail;
 	};
 $endmacro
@@ -613,10 +584,10 @@ $macro(MethodResultDatatypes)
 		attribute ncaBoolean value;	
 	};
 	interface ncaMethodResultClassDescriptors : 	ncaMethodResult {	// class descriptors result
-		attribute sequence<ncaClassDescriptor>;
+		attribute sequence<ncaClassDescriptor> descriptor;
 	};
 	interface ncaMethodResultClassId : 				ncaMethodResult {	// classId result
-		attribute	ncaClassID ; id	
+		attribute	ncaClassID id;
 	};
 	interface ncaMethodResultClassIdentity : 		ncaMethodResult {	// classIdentity result
 		attribute	ncaClassIdentity identity;	
@@ -634,7 +605,7 @@ $macro(MethodResultDatatypes)
 		attribute ncafirmwareComponent component;
 	};
 	interface ncaMethodResultId32 : 				ncaMethodResult {	// Id32 result
-		attribute ncaId32 value;	
+		attribute ncaId32 index;	
 	};	
 	interface ncaMethodResultObjectIdPath :			ncaMethodResult {	// object path result
 		attribute ncaObjectIDPath value;	
@@ -768,11 +739,10 @@ $macro(BaseClasses)
 		[element("1m1")]  ncaMethodResultPropertyValue	get(ncaPropertyId Id);											// Get property value
 		[element("1m2")]  ncaMethodResult				set(ncaPropertyID id, any Value);								// Set property value
 		[element("1m3")]  ncaMethodResult				clear(ncaPropertyID id);										// Sets property to initial value
-		[element("1m4")]  ncaMethodResultPropertyValue	getCollectionItem(ncaPropertyId Id, any Index);					// Get collection item
+		[element("1m4")]  ncaMethodResultPropertyValue	getCollectionItem(ncaPropertyId Id, ncaId32 Index);					// Get collection item
 		[element("1m5")]  ncaMethodResult				setCollectionItem(ncaPropertyId Id, ncaId32 Index, any Value);	// Set collection item
-		[element("1m6")]  ncaMethodResult			    clearCollectionItem(ncaPropertyId Id);							// Sets item to initial value
-		[element("1m7")]  ncaMethodResultID32			addCollectionItem(ncaPropertyId Id, any Value);					// Add item to collection
-		[element("1m8")]  ncaMethodResult				deleteCollectionItem(ncaPropertiID, ncaId32 Index);				// Delete collection item
+		[element("1m6")]  ncaMethodResultId32			addCollectionItem(ncaPropertyId Id, any Value);					// Add item to collection
+		[element("1m7")]  ncaMethodResult				removeCollectionItem(ncaPropertyId, ncaId32 Index);				// Delete collection item
 	
 		[element("1e1")] 	[event] void PropertyChanged(ncaPropertyChangedEventData eventData);
 	};
@@ -919,15 +889,14 @@ $macro(Managers)
 		
 		//	Device manager class
 		//	Contains basic device information and status.
-		//	Readonly elements are flagged with "<RO">.
 		
-		[element("3p1")]  readonly attribute 	ncaVersionCode		thisNcaVersion			// Version of NCA this dev uses						<Mandatory>
-		[element("3p2")]  readonly attribute	ncaManufacturer		manufacturer			// Manufacturer descriptor							<Mandatory>
-		[element("3p3")]  readonly attribute	ncaProduct			product					// Product descriptor								<Mandatory>
+		[element("3p1")]  readonly attribute 	ncaVersionCode		ncaVersion				// Version of NCA this dev uses						<Mandatory>
+		[element("3p2")]  readonly attribute	ncaString		manufacturer				// Manufacturer descriptor							<Mandatory>
+		[element("3p3")]  readonly attribute	ncaString			product					// Product descriptor								<Mandatory>
 		[element("3p4")]  readonly attribute 	ncaString			serialNumber			// Mfr's serial number of dev						<Mandatory>
-		[element("3p5")]  attribute				ncaString			userInventoryCode		// For asset tracking (user-specified)
-		[element("3p6")]  attribute				ncaString			deviceName				// Name of this dev in application. Instance name, not product name. 
-		[element("3p7")]  attribute				ncaString			deviceRole				// Role of this dev in application.
+		[element("3p5")]  attribute				ncaString			userInventoryCode		// Asset tracking identifier (user specified)
+		[element("3p6")]  attribute				ncaString			deviceName				// Name of this device in the application. Instance name, not product name. 
+		[element("3p7")]  attribute				ncaString			deviceRole				// Role of this device in the application.
 		[element("3p8")]  attribute				ncaBoolean			controlEnabled			// TRUE iff this dev is responsive to NCA commands
 		[element("3p9")]  readonly attribute	ncaDeviceOperationalState	operationalState	// Device operational state						<Mandatory>
 		[element("3p10")] readonly attribute 	ncaResetCause		resetCause				// Reason for most recent reset						<Mandatory>
@@ -937,11 +906,10 @@ $macro(Managers)
 	[control-class("1.7.2",1)]  interface ncaSecurityManager : ncaManager {
 		
 		//	Security manager class
-		
 		TBD
 	};
 	
-	[control-class("1.7.3",1)]  interface ncaClassManager {
+	[control-class("1.7.3",1)]  interface ncaClassManager : ncaManager {
 	
 		//	Class manager class
 		//  Returns definitions of control classes and datatypes
@@ -1036,8 +1004,8 @@ $#		[element("3m1")]  attribute	ncaMethodResultFirmwareComponent 	GetComponent()
 		//	controls device's internal clock(s) and its reference.
 		//
 		[element("3p1")]  readonly attribute ncaTimePtp			deviceTimePtp;				// Current device time
-		[element("3p2")]  readonly attribute sequence<ncaOid>	timeSources;				// OIDs of available OcaTimeSource objects
-		[element("3p3")]  attribute	ncaOid						currentDeviceTimeSource;	// OID of current OcaTimeSource object
+		[element("3p2")]  readonly attribute sequence<ncaOid>	timeSources;				// OIDs of available NcaTimeSource objects
+		[element("3p3")]  attribute	ncaOid						currentDeviceTimeSource;	// OID of current NcaTimeSource object
 		[element("3p4")]  attribute	ncaTimeNtp					deviceTimeNtp;				// Legacy, might not be needed
 	};
 	
@@ -1321,232 +1289,3 @@ $#	 Other feature sets should be included here as they get designed.
 // ============================================================================
 // END OF NC-Framework	
 // ============================================================================
-
-$macro(RevisionHistory)
-
-// ============================================================================
-//
-// REVISION HISTORY
-//
-// 	Text describing successive revisions
-// 	Text only, not webIDL code.
-// 	This macro is NOT invoked in the mainline code above.
-//
-//	Format of a revision history block:
-//	<date in yyyy.mm.dd> <maker's initials>{
-//		entries
-//		...
-//	}
-//
-//	Reverse chronological order, i.e. newest entry first
-//
-//	Coding convention:  a name prefixed by # is a macro name.
-//		e.g. #Identifiers refers to the macro 'Identifiers'.
-//		We avoid the dollar-sign prefix to prevent invoking the macro.
-//
-// ============================================================================
-	
-	
-	2022.02.16 JB {
-		Deleted unneeded manager classes:
-			ncaNetworkManager
-			ncaProcessingManager
-			ncaTaskManager
-			ncaCommandSetManager
-			ncaStoredParametersManager
-			ncaLoggingManager
-			
-		in #ModelDatatypes:
-			Added field 'ncaBoolean persistent' to ncaPropertyDescriptor
-			Added field 'ncaBoolean required' to ncaPropertyDescriptor
-			Added option "null" to enum ncaDatatypeType
-			Updated ncaDatatypeDescriptor comments to include null types
-			
-		in #MethodResultDatatypes
-			Added item "omittedProperty" to enum ncaMethodStatus.
-	}
-	2022.02.08 JB {
-		Redefined class ID per agreement on 02.08 telecon.
-		Created #PropertyValueConstraints.
-		Renamed configuration object to 'constraints and updated definition per 02.08 telecon.
-		Added notes in the ncaBlockMember definition to explain how constraints work.
-	}
-	2022.02.07 JB {
-		Renamed fields of ncaElementID to be {level,index}.
-		Added ncaMethodResultPropertyValue.
-	}
-	2022.02.01 JB {
-		A few tweaks to support the blockspec work.
-	}
-	2022.01.24 JB {
-		In #ModelDatatypes:
-			changed ncaDatatypeDescriptor to include enum index values.
-			generally cleaned things up.
-		Went through file, added READONLY descriptors where applicable.
-		Cleaned up a few IDL syntax errors.
-		Added module #VersionCode with semantic version code definition.
-			This module defines 'ncaVersionCode.
-			Changed all version references in the file to use it.
-	}
-	2022.01.17 JB {
-		Added property 'readonly' to property descriptor
-		Added value 'readonly' to method result enum
-	}
-	2022.01.17 JB {	
-		As agreed, deleted implementation-specific label from ncaPort - the 'role' property is enough.
-		Added ncaSignalPath to #PortDatatypes - we missed it.
-	}
-	2022.01.11 JB {
-		Added generic Get() & Set() to ncaObject.
-		Deleted bespoke gets & sets from all classes.
-		Created #ManagementDatatypes and moved management datatype defs into it.
-		Created #AgentDatatypes & moved receiver monitoring datatype defs into it.
-	}
-	2022.01.07 JB {
-		Added ncaMethodResultSessionID to #MethodResultDatatypes .
-		Arranged #MethodResultDatatypes in alphabeical order of datatype name.
-	}
-	2022.01.06 JB {
-		Fixed ncaTouchpoint definition errors.
-		Fixed all enum options to have comments that include equivalent numeric values.
-		Changed ncaConnectionStatus enum options to parallel those of ncaPayloadStatus.
-	}
-	2022.01.04 JB {
-		Changed references to 'schema' to refer to 'BlockSpec'.
-			ncaBlock.SchemaID 		=>> .BlockSpecId
-			ncaBlock.getSchemaID	=>>	.getBlockSpecId
-			ncaMethodResultSchemaID	=>>	ncaMethodResultBlockSpecId
-			ncaSchemaId				=>>	ncaBlockSpecId
-			
-		Replaced ncaBlock.specId with five properties:
-			ncaString 		specId
-			ncaVersionCode	specVersion
-			ncaString		parentSpecId
-			ncaVersionCode	parentSpecVersion
-			ncaString		specDescription
-			
-		Changed ncaBlock.getSpecID to .getSpecInfo, and
-			changed datatype ncaMethodResultBlockSpecId to ncaMethodResultBlockSpecInfo.
-			
-	}
-	2022.01.03 JB {
-		Fixed missing semicolons and various other syntax errors.
-		
-		Updated comments.  
-		
-		Changed term 'framework' to 'core' in contexts where 'framework' was meant
-		to denote basic control model definitions used by the feature sets.  Reason:
-		in the new document naming scheme, the term 'framework' refers to the whole 
-		control model, including not only basic elements but feature sets as well.  
-		So we now use 'core' to denote basic elements.
-
-		Deleted delivery mode (reliable/fast) option for notifications.
-		
-		In #Managers, added ncaClassManager.
-		Added #ModelDatatypes, containing datatypes for ncaClassManager.
-		
-		In #MethodResultDatatypes, added:
-			ncaMethodResultClassDescriptors
-			ncaMethodResultDatatypeDescriptors
-			
-		In #CoreDatatypes, added ncaFirmwareComponent.  It was previously omitted.
-			
-		Merged NCC-O files into this one:
-			NCC-O-FS001 General Control & Monitoring .webidl 
-			- now #FS001
-			NCC-O-FS002 Endpoint Monitoring .webidl	
-			- now #FS002
-		
-		Moved matrixing features out of the core spec into FS006.
-			
-		Added placeholders for the future feature sets identified in the NCA OPL.
-		
-		Deleted ncaSearchResultFlags.  ncaBlock's FindMember<...> methods now just return everything, always.
-	}
-	2021.12.03 JB {
-		Added ncaMethodResultDatatype to #MethodResultDatatypes.
-	}
-	2021.12.02 JB {
-		In ncaSubscriptionManager:
-			Fixed incorrect method IDs in ncaSubscriptionManager.
-			In methods addSubscription(), removeSubscription(), 
-			addPropertyChangeSubscription(), and removePropertyChangeSubscription() -
-			changed 'destination' parameter to
-				ncaBlob deliveryParameters;   // delivery-mode-specific parameters
-			... which is something like what it should have been all along.
-
-	}
-	2020.12.01 JB {
-		Added ncaMethodResult.ErrorMessage.
-		ncaIdentifier:  changed comment on character set.
-		Changed event data structures so that event data defs do not inherit from ncaEventData.
-		Deleted ncaEventData.
-		In #Identifiers, added typedef for ncaSessionID.
-		Changed case of all identifiers to dromedaryCase.
-		Renamed ncaBlock.findMembersByName(...) to .findMembersByRole(...).
-		Moved userLabel and associated get|set methods into ncaObject and out of ncaWorker and ncaAgent.
-		Changed all enum definitions to use standard WebIDL enum statements instead of NCA's idiosyncratic pattern.
-			WebIDL only allows definition of string enums, but we can still use indexes in the protocol - we
-			just have to define the appropriate marshaling / unmarshaling rule.
-		Renamed #BaseDatatypes to #PrimitiveDatatypes to match usage in the Class Discovery feature set.
-		Added extended attribute [primitive] to typedefs of primitive datatypes to help Class Discovery.
-		Fixed bug in ncaClassId definition - filler was Uint16, sb Uint8.
-		Renamed #IdentifiersClassID to #IdentifiersClass - it's not just about ncaClassId.
-		Cleaned up the IdentifiersClass section and made sure the rest of the file uses class IDs and
-			class Identities correctly.
-		Add explanatory comments to the member-finding methods in ncaBlock.
-	}	
-	2021.11.30 JB {
-		In #Identifiers, added typedef for ncaName, a generic programmatic string identifier
-	}
-	2021.11.16 JB {
-		Renamed identifier datatype 'ncaName' to 'ncaRole' and adjusted
-		references to it accordingly.
-				
-		Changed IDs of signal paths and ports to be properties named 'role'
-		of type 'ncaRole'.
-			
-		Deleted datatype 'ncaPortID'.  Reason: It was unnecessary -
-		we can just use 'ncaRole' directly.
-				
-		Renamed ncaBlock.SignalFlow to ncaBlock.SignalPaths.
-		Generally replace references to 'SignalFlow' by references
-		to 'SignalPaths'.
-				
-		Added declaration of 'ncaVersionCode' to 'FrameworkDatatypes'.
-		It had been erroneously omitted.
-				
-		Added 'version' property (datatype ncaVersionCode) to ncaSchemaID.
-	}
-	2021.11.15 JB {
-		Added #ApplicationDatatypes and an invocation of it
-		in #FrameworkDatatypes.  This macro will contain declarations
-		of datatypes that are commonly used by the feature sets.
-				
-		Initial contents are definitions of decibel-related values:
-		ncaDB, ncaDBFS, ncaDBz, ncaDBu, ncaDBV, and ncaDBr.  See
-		the declarations for explanation.
-	}		
-	2021.10.25 JB {
-		Moved path & owner methods from workers & agents into OcaObject.
-		Reason: Now that managers belong to blocks, every
-		object needs path and owner methods.  Previously, 
-		we had excluded managers.
-					
-		Renamed ncaNamePath to ncaRolePath and added ncaObjectIDPath.
-		
-		Defined #HeaderComments so that the header comments
-		can be collapsed and you don't have to look at them
-		all the time.
-					
-		Reordered datatype definitions to eliminate forward references.
-			Made method result datatypes LAST.
-			Moved #BlockDatatypes up into the datatypes cluster.
-	}
-	2021.10.21 JB {
-		Added #RevisionHistory.
-		Finished cleaning up Port IDs per discussion of 2021.10.19.
-		Deleted unnecessary port datatypes.
-		Reformatted most of the text for tabwidth = 4.			
-	}
-$endmacro
