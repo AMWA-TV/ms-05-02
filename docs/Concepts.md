@@ -9,15 +9,15 @@ Here are some examples:
 Object id datatype
 
 ```typescript
-typedef ncaUint32 ncaOid;
+typedef ncUint32 ncOid;
 ```
 
 Element id datatype
 
 ```typescript
-interface ncaElementID {
-    attribute ncaUint16 level;
-    attribute ncaUint16 index;
+interface ncElementID {
+    attribute ncUint16 level;
+    attribute ncUint16 index;
 };
 ```
 
@@ -27,30 +27,39 @@ Properties, methods and events inside a class are uniquely identified using the 
 * methods - `[element("_m_")]`
 * events - `[element("_e_")]`
 
-Here are some examples from the `ncaObject` class:
+Here are some examples from the `ncObject` class:
 
 ```typescript
-[control-class("1",1)] interface ncaObject {
+[control-class("1",1)] interface ncObject {
 
     // PROPERTIES
 
-    [element("1p1")]  static attribute ncaClassID classId;
-    [element("1p2")]  static attribute ncaVersionCode classVersion;
-    [element("1p3")]  attribute ncaOid oid;
-    [element("1p4")]  attribute ncaBoolean constantOid;
-    [element("1p5")]  attribute ncaOid owner;
-    [element("1p6")]  readonly attribute ncaRole role;
-    [element("1p7")]  attribute ncaString userLabel;
+    [element("1p1")]  static attribute ncClassID classId;
+    [element("1p2")]  static attribute ncVersionCode classVersion;
+    [element("1p3")]  attribute ncOid oid;
+    [element("1p4")]  attribute ncBoolean constantOid;
+    [element("1p5")]  attribute ncOid owner;
+    [element("1p6")]  readonly attribute ncRole role;
+    [element("1p7")]  attribute ncString userLabel;
     ...
     
     // GENERIC GET/SET METHODS
 
-    [element("1m1")]  ncaMethodResultPropertyValue get(ncaPropertyId Id);
-    [element("1m2")]  ncaMethodResult set(ncaPropertyID id, any Value);
+    [element("1m1")]  ncMethodResultPropertyValue get(ncPropertyId Id);
+    [element("1m2")]  ncMethodResult set(ncPropertyID id, any Value);
     ...
 
+    // Optional lock methods
+    [element("1m8")]  ncMethodResult lockWait(
+        ncOid target,
+        ncLockStatus requestedLockStatus,
+        ncTimeInterval timeout
+    );
+
+    [element("1m9")]  ncMethodResult abortWaits(ncOid target);
+
     // EVENTS
-    [element("1e1")] [event] void PropertyChanged(ncaPropertyChangedEventData eventData);
+    [element("1e1")] [event] void PropertyChanged(ncPropertyChangedEventData eventData);
 };
 ```
 
@@ -63,7 +72,7 @@ Examples:
 ```
 
 ```typescript
-[element("9m9")]  ncaMethodResult someMethod(ncaPropertyID id, optional any Value);
+[element("9m9")]  ncMethodResult someMethod(ncPropertyID id, optional any Value);
 ```
 
 Readonly properties are signaled using the `readonly` token as specified in the webIDL standard.
@@ -79,19 +88,19 @@ Example:
 };
 ```
 
-All methods must return a class which inherits from `ncaMethodResult` and provide a status and an optional errorMessage.
+All methods must return a class which inherits from `ncMethodResult` and provide a status and an optional errorMessage.
 
 ```typescript
-interface ncaMethodResult {// Base datatype
-    attribute ncaMethodStatus status;
-    attribute ncaString errorMessage;
+interface ncMethodResult {// Base datatype
+    attribute ncMethodStatus status;
+    attribute ncString errorMessage;
 };
 ```
 
-`ncaMethodStatus` is an enumeration:
+`ncMethodStatus` is an enumeration:
 
 ```typescript
-enum ncaMethodStatus {// Method result status values
+enum ncMethodStatus {// Method result status values
     "ok", // 0  It worked. 
     "protocolVersionError", // 1  Control PDU had incompatible protocol version code 
     "deviceError", // 2  Something went wrong
@@ -99,10 +108,10 @@ enum ncaMethodStatus {// Method result status values
 };
 ```
 
-Derived `ncaMethodResult` types may also return values or possibly further custom statuses.
+Derived `ncMethodResult` types may also return values or possibly further custom statuses.
 
 ```typescript
-interface ncaMethodResultOID : ncaMethodResult { // object ID result
-    attribute ncaOid value;
+interface ncMethodResultOID : ncMethodResult { // object ID result
+    attribute ncOid value;
 };
 ```
