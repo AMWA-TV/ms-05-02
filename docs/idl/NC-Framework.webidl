@@ -1,12 +1,12 @@
-//	NC-Framework version 2022.02.16
+//	NC-Framework
 
 $macro(HeaderComments)
 	//  ----------------------------------------------------------------------------------
 	//	NC-Framework classes and datatypes
 	//
 	//	Contains definitions of:
-	//		-	core classes and datatypes needed throughout NCA
-	//		- 	specific classes and datatypes needed by particular NCA feature sets.
+	//		-	core classes and datatypes needed throughout nc
+	//		- 	specific classes and datatypes needed by particular nc feature sets.
 	//
 	//	This file must be preprocessed with the 'pyexpand' macro processor to yield a complete
 	//	WebIDL file.  
@@ -21,39 +21,11 @@ $macro(HeaderComments)
 	//
 	//	pyexpand is a single-pass processor, so forward references are not allowed.
 	//	Thus, this file defines all the elemental submodules first.  The code
-	//	that generates the fully expanded NCCF definition is at the end of the file.
+	//	that generates the fully expanded NC-Framework definition is at the end of the file.
 	//
 	//	A pyexpand comment - i.e. a string that is not copied to the output - begins
 	//	with dollar-hash.  All characters from a dollar-hash symbol through the end of
-	//	the line are ignored.  
-	//
-	//	A notepad++ language definition file that recognizes these macro constructs
-	//	is available.
-	//	
-	//	This document refers to other documents in the NCA document set as follows:
-	//
-	//		NCA doc name		AMWA ID		Description
-	//		____________________________________________________________________________________________
-	//		NC-Architecture		ms-05-01	NCA architectural concepts and specifications		
-	//							URL: https://github.com/AMWA-TV/ms-05-01/blob/v1.0-dev/docs/README.md
-	//
-	//		NC-Framework		tbd			This document. Formal specification of the NCA Control Model
-	//							URL: TbD
-	//
-	//		NC-Protocol			tbd			Specification of NCA control protocol using JSON & WebSocket
-	//							URL: TbD
-	//
-	//		NC-BlockSpecs		tbd			Specifications and guidelines for NCA NCA BlockSpec writing
-	//							URL: TbD
-	//		____________________________________________________________________________________________
-	//
-	//	At the end of this file, there is an experimental macro named RevisionHistory.
-	//	It contains comments documenting successive revisions.
-	//	It isn't invoked in the mainline code, so it will not be reproduced in the
-	//	generated definition file.  
-	//
-	//	This file should be viewed and edited with a tab stop size of 4.
-	//
+	//	the line are ignored.
 	//  ----------------------------------------------------------------------------------
 $endmacro
 $macro(PrimitiveDatatypes)
@@ -61,36 +33,36 @@ $macro(PrimitiveDatatypes)
 		// 	P r i m i t i v e   D a t a t y p e s
 		//  ----------------------------------------------------------------------------------
 
-		[primitive] typedef boolean				ncaBoolean;
-		[primitive] typedef byte				ncaInt8;
-		[primitive] typedef short				ncaInt16;
-		[primitive] typedef long				ncaInt32;
-		[primitive] typedef longlong			ncaInt64;
-		[primitive] typedef octet				ncaUint8;
-		[primitive] typedef unsignedshort		ncaUint16;
-		[primitive] typedef unsignedlong		ncaUint32;
-		[primitive] typedef unsignedlonglong	ncaUint64;
-		[primitive] typedef unrestrictedfloat	ncaFloat32;
-		[primitive] typedef unrestricteddouble	ncaFloat64;
-		[primitive] typedef bytestring			ncaString;		// UTF-8 
-		[primitive] typedef any					ncaBlob;
-		[primitive] typedef any					ncaBlobFixedLen;
+		[primitive] typedef boolean				 ncBoolean;
+		[primitive] typedef byte				 ncInt8;
+		[primitive] typedef short				 ncInt16;
+		[primitive] typedef long				 ncInt32;
+		[primitive] typedef longlong			 ncInt64;
+		[primitive] typedef octet				 ncUint8;
+		[primitive] typedef unsignedshort		 ncUint16;
+		[primitive] typedef unsignedlong		 ncUint32;
+		[primitive] typedef unsignedlonglong	 ncUint64;
+		[primitive] typedef unrestrictedfloat	 ncFloat32;
+		[primitive] typedef unrestricteddouble	 ncFloat64;
+		[primitive] typedef bytestring			 ncString;		// UTF-8 
+		[primitive] typedef any					 ncBlob;
+		[primitive] typedef any					 ncBlobFixedLen;
 $endmacro
 $macro(IdentifiersClass)
 	//  ----------------------------------------------------------------------------------
 	//	I d e n t i f i e r s C l a s s
 	//	
-	//  An NCA control class is uniquely identified by the concatenation of its definition 
+	//  An nc control class is uniquely identified by the concatenation of its definition 
 	//	indices, in combination with a revision number.  A definition index is basically
 	//	an index of a class within its inheritance level of the class tree.  
 	//
 	//	For further explanation, please refer to NC-Architecture.
 	//
 	//	In the control model, the concatenated set of definition indices is called a Class ID; 
-	//	the corresponding NCC datatype is 'ncaClassId'.
+	//	the corresponding NCC datatype is 'ncClassId'.
 	//
 	// 	The combination of a Class ID and a revision number <v> is called a Class Identifier;
-	//	the corresponding NCC datatype is 'ncaClassIdentifier'.
+	//	the corresponding NCC datatype is 'ncClassIdentifier'.
 	//
 	//	In this specification, a class identifier will be coded as 'i1.i2. ...,v'\'
 	//
@@ -98,12 +70,12 @@ $macro(IdentifiersClass)
 	//		'i1', 'i2', etc. are the definition index values, i.e. the Class ID.
 	//		'v' is the class revision number
 	//	e.g.
-	//		- class ID of rev 1 of ncaObject 	= '1,1'
-	//		- class ID of rev 1 of ncaBlock 	= '1.3,1'
-	//		- class ID of rev 2 of ncaWorker 	= '1.1,2'
-	//		- class ID of rev 1 of ncaGain 		= '1.1.3,1'	
+	//		- class ID of rev 1 of ncObject 	= '1,1'
+	//		- class ID of rev 1 of ncBlock 	= '1.3,1'
+	//		- class ID of rev 2 of ncWorker 	= '1.1,2'
+	//		- class ID of rev 1 of ncGain 		= '1.1.3,1'	
 	//
-	//	NCA allows the definition of proprietary classes that inherit from standard classes.
+	//	 nc allows the definition of proprietary classes that inherit from standard classes.
 	//	Proprietary Class IDs embed an IEEE OUI or CID to avoid value clashes among
 	//	multiple organizations. 
 	//
@@ -113,15 +85,15 @@ $macro(IdentifiersClass)
 	//	IEEE public Company ID (public CID) or
 	//	IEEE Organizational Unique Identifier (OUI).
 	//
-	typedef [length(3)] ncaBlobFixedLen			ncaOrganizationId;
+	typedef [length(3)] ncBlobFixedLen			 ncOrganizationId;
 	
 	// Authority key.  Used to identify proprietary classes. 
 	// Negative 32-bit integer, constructed by prepending FFh
 	// onto the 24-bit organization ID. 
 	
-	interface ncaClassAuthorityKey {
-		attribute ncaInt8	 					sentinel;		// Always -1 = FFh
-		attribute ncaOrganizationId 			organizationId; // Three bytes
+	interface ncClassAuthorityKey {
+		attribute ncInt8	 					sentinel;		// Always -1 = FFh
+		attribute ncOrganizationId 			organizationId; // Three bytes
 	 };
 	 
 	// Class ID field.  Either a definition index or an authority key.
@@ -134,11 +106,11 @@ $macro(IdentifiersClass)
 	// Negative values are reserved for authority keys and possible other constructs
 	// in the future.  A zero value is never valid.
 	
-		typedef (ncaInt32 or ncaClassAuthorityKey) 	ncaClassIdField;
+	typedef (ncInt32 or ncClassAuthorityKey) 	 ncClassIdField;
 		
 	// Class ID
 	
-	typedef sequence<ncaClassIdField>			ncaClassId;
+	typedef sequence<ncClassIdField>			 ncClassId;
 	
 $endmacro
 $macro(VersionCode)
@@ -149,22 +121,13 @@ $macro(VersionCode)
 	//
 	//  ----------------------------------------------------------------------------------
 	
-	// Part of.preRelease and .build fields of version code.
-	typedef ncaString							ncaVcPart		// only ASCII alphanumerics and hyphens [0-9A-Za-z-]; must be nonempty.
-	
 	// The actual version code
-	interface ncaVersionCode { 			
-		attribute ncaUint16 					major;			// Major version not necessarily backwards compatible
-		attribute ncaUint16 					minor;			// New functionality, backwards compatible
-		attribute ncaUint16						patch;			// Correction to faulty behavior
-		[optional] attribute ncaVcPart			preRelease;		// "-" followed by dot-separated ncaVcParts
-		[optional] attribute ncaVcPart			build;			// "+" followed by dot-separated ncaVcParts
-	};
+	typedef ncString							 ncVersionCode //Version code in semantic versioning format
 	
 	// Class Identity
-	interface ncaClassIdentity {
-		attribute ncaClassId					id;
-		attribute ncaVersionCode				version;
+	interface ncClassIdentity {
+		attribute ncClassId					id;
+		attribute ncVersionCode				version;
 	};
 $endmacro
 $macro(Identifiers)
@@ -173,65 +136,65 @@ $macro(Identifiers)
 		//  ----------------------------------------------------------------------------------
 		
 		// Programmatically significant name
-		typedef ncaString			ncaName;		// alphanumerics + underscore, no spaces
+		typedef ncString			 ncName;		// alphanumerics + underscore, no spaces
 		
 		// Control session ID 
-		typedef ncaSessionID		ncaUint32;
+		typedef ncSessionID		 ncUint32;
 		
 		// Role of an element in context 
-		typedef ncaName				ncaRole;				
+		typedef ncName				 ncRole;				
 		
 		// CLASS ID 
 		$IdentifiersClass()
 
 		// OBJECT ID 
-		typedef ncaUint32			ncaOid;
+		typedef ncUint32			 ncOid;
 				
 		// OBJECT ROLE PATH
-		//		Array of roles, starting from the role of ncaRoot,
+		//		Array of roles, starting from the role of ncRoot,
 		//		ending with role of object in question.
 		
-		 typedef sequence(ncaName)	ncaRolePath; 
+		 typedef sequence(ncName)	 ncRolePath; 
 			
 		// CLASS ELEMENT ID  
-		interface ncaElementID {
-			attribute ncaUint16		level;			
-			attribute ncaUint16		index;	
+		interface ncElementID {
+			attribute ncUint16		level;			
+			attribute ncUint16		index;	
 		};
 		 
-		typedef ncaElementID		ncaPropertyID;	
-		typedef ncaElementID		ncaMethodID;			
-		typedef ncaElementID		ncaEventID;			
+		typedef ncElementID		 ncPropertyID;	
+		typedef ncElementID		 ncMethodID;			
+		typedef ncElementID		 ncEventID;			
 						
 		// MULTIPURPOSE INTERNAL HANDLES 
-		typedef Uint16				ncaId32;				
-		typedef Uint32				ncaID32;			
+		typedef Uint16				 ncId32;				
+		typedef Uint32				 ncID32;			
 		
 		// OTHER 
-		typedef ncaString			ncaUri;	
-		typedef ncaUint16			ncaVersionCode;
+		typedef ncString			 ncUri;	
+		typedef ncUint16			 ncVersionCode;
 $endmacro
 $macro(PortDatatypes)
 		//  ----------------------------------------------------------------------------------
 		//	P o r t D a t a t y p e s
 		//  ----------------------------------------------------------------------------------
 								
-		interface ncaPortReference {					// Device-unique port identifier
-			attribute ncaRolePath		owner;			// Rolepath of owning object
-			attribute ncaRole			role;			// Unique within owning object
+		interface ncPortReference {					// Device-unique port identifier
+			attribute ncRolePath		owner;			// Rolepath of owning object
+			attribute ncRole			role;			// Unique within owning object
 		};
 		
-		interface ncaPort { 						
-			attribute ncaRole			role;			// Unique within owning object
-			attribute ncaIoDirection	direction;		// Input (sink) or output (source) port
-			attribute ncaRolePath		clockPath;		// Rolepath of this port's sample clock or empty if none
+		interface ncPort { 						
+			attribute ncRole			role;			// Unique within owning object
+			attribute ncIoDirection	direction;		// Input (sink) or output (source) port
+			attribute ncRolePath		clockPath;		// Rolepath of this port's sample clock or empty if none
 		};
 		
-		interface ncaSignalPath {
-			attribute ncaName			role;			// Unique within owning object
-			attribute ncaRole			source;			// path origin
-			attribute ncaRole			sink;			// path terminus
-		)
+		interface ncSignalPath {
+			attribute ncName			role;			// Unique within owning object
+			attribute ncRole			source;			// path origin
+			attribute ncRole			sink;			// path terminus
+		);
 $endmacro
 $macro(TouchpointDatatypes)
 		//  ----------------------------------------------------------------------------------
@@ -243,34 +206,34 @@ $macro(TouchpointDatatypes)
 		
 		// Abstract base classes  
 	 
-		interface ncaTouchpoint{			
-			attribute ncaString				contextNamespace;
-			attribute ncaTouchpointResource	resources;
+		interface ncTouchpoint{			
+			attribute ncString				contextNamespace;
+			attribute ncTouchpointResource	resources;
 		};
 		
-		interface ncaTouchpointResource{	
-			attribute ncaString			resourceType;   
+		interface ncTouchpointResource{	
+			attribute ncString			resourceType;   
 			attribute any				id; 									// Subclasses will override 
 		};
 	 
 		// NMOS-specific subclasses 
 		
 		// IS-04 registrable entities
-		interface ncaTouchpointNmos : ncaTouchpoint{		
-			// ContextNamespace is inherited from ncaTouchpoint.
-			attribute ncaTouchpointResourceNmos		resources;
+		interface ncTouchpointNmos : ncTouchpoint{		
+			// ContextNamespace is inherited from ncTouchpoint.
+			attribute ncTouchpointResourceNmos		resources;
 		};
 		
-		interface ncaTouchpointResourceNmos : ncaTouchpointResource{
-			// ResourceType is inherited from ncaTouchpoint. 
-			attribute ncaString			id; 									// override 
+		interface ncTouchpointResourceNmos : ncTouchpointResource{
+			// ResourceType is inherited from ncTouchpoint. 
+			attribute ncString			id; 									// override 
 		};
 		
 		// IS-08 inputs or outputs
-		interface ncaTouchpointResourceNmos_is_08 : ncaTouchpointResourceNmos{
-			// resourceType is inherited from ncaTouchpointResource
-			// id is inherited from ncaTouchpointResourceNmos
-			attribute ncaString			ioId;								// IS-08 input or output ID
+		interface ncTouchpointResourceNmos_is_08 : ncTouchpointResourceNmos{
+			// resourceType is inherited from ncTouchpointResource
+			// id is inherited from ncTouchpointResourceNmos
+			attribute ncString			ioId;								// IS-08 input or output ID
 		};
 $endmacro
 $macro(EventAndSubscriptionDatatypes)
@@ -279,22 +242,22 @@ $macro(EventAndSubscriptionDatatypes)
 	//	E v e n t A n d S u b s c r i p t i o n D a t a t y p e s
 	//  ----------------------------------------------------------------------------------
 	
-	interface ncaEvent{										//	NCA event - unique combination of emitter OID and Event ID
-		attribute ncaOid				emitterOid; 
-		attribute ncaEventID			eventId; 
+	interface ncEvent{										//	 nc event - unique combination of emitter OID and Event ID
+		attribute ncOid				emitterOid; 
+		attribute ncEventID			eventId; 
 	 };
 	 	 
-	interface ncaPropertyChangedEventData {					//	Payload of property-changed event		 
-		attribute ncaPropertyID			propertyId;			// 	ID of changed property
-		attribute ncaPropertyChangeType	changeType;			// 	Mainly for maps & sets
+	interface ncPropertyChangedEventData {					//	Payload of property-changed event		 
+		attribute ncPropertyID			propertyId;			// 	ID of changed property
+		attribute ncPropertyChangeType	changeType;			// 	Mainly for maps & sets
 		attribute any					propertyValue;		// 	Property-type specific 
 	 };
 	
-	interface ncaSynchronizeStateEventData {				// For OcaSubscriptionManager.SynchronizeState event
-		attribute  sequence<ncaOid> changedObjectsIds;		// OIDs of objects changed while subscriptions were disabled.
+	interface ncSynchronizeStateEventData {				// For ncSubscriptionManager.SynchronizeState event
+		attribute  sequence<ncOid> changedObjectsIds;		// OIDs of objects changed while subscriptions were disabled.
 	};	
 	
-	enum ncaPropertyChangeType {							// Type of property change
+	enum ncPropertyChangeType {							// Type of property change
 		"currentChanged",										// 0 Scalar property - current value changed
 		"minChanged",											// 1 Scalar property - min allowed value changed
 		"maxChanged",											// 2 Scalar property - max allowed value change
@@ -309,7 +272,7 @@ $macro(TimeDatatypes)
 	//	T i m e   D a t a t y p e s
 	//  ----------------------------------------------------------------------------------
 	
-	TBD
+	typedef ncFloat64	ncTimeInterval // Floating point seconds
 $endmacro
 $macro(ApplicationDatatypes)
 
@@ -319,14 +282,14 @@ $macro(ApplicationDatatypes)
 	
 	// Decibel-related datatypes
 	
-	typedef ncaFloat32 		ncaDb			// A ratio expressed in dB.
-	typedef	ncaDB			ncaDbv			// dB ref 1 Volt - used only for analogue signals
-	typedef ncaDB			ncaDbu			// dB ref 0.774 Volt - used only for analogue signals
-	typedef	ncaDB			ncaDbfs			// dB ref device maximum internal digital sample value
-	typedef ncaDB			ncaDbz			// dB ref nominal device operating level
-	struct ncaDBr {							// dB relative to given reference
-		attribute ncaDB 	value;			// the dBr value
-		attribute ncaDBz	ref;			// the reference level
+	typedef ncFloat32 		 ncDb			// A ratio expressed in dB.
+	typedef	 ncDB			 ncDbv			// dB ref 1 Volt - used only for analogue signals
+	typedef ncDB			 ncDbu			// dB ref 0.774 Volt - used only for analogue signals
+	typedef	 ncDB			 ncDbfs			// dB ref device maximum internal digital sample value
+	typedef ncDB			 ncDbz			// dB ref nominal device operating level
+	struct ncDBr {							// dB relative to given reference
+		attribute ncDB 	value;			// the dBr value
+		attribute ncDBz	ref;			// the reference level
 	};
 $endmacro
 $macro(ModelDatatypes)
@@ -336,19 +299,18 @@ $macro(ModelDatatypes)
 	//	Datatypes that describe the elements of control classes and datatypes
 	//  ----------------------------------------------------------------------------------
 	
-	enum ncaDatatypeType {		// what sort of datatype this is
-		"primitive",				// 0	primitive, e.g. ncaUint16
+	enum ncDatatypeType {		// what sort of datatype this is
+		"primitive",				// 0	primitive, e.g. ncUint16
 		"typedef",					// 1	typedef, i,e. simple alias of another datatype				
 		"struct",					// 2	data structure	
 		"enum",						// 3	enumeration
 		"null"						// 4	null
 	};
 	
-	interface ncaDatatypeDescriptor {
-		ncaName								name;			// datatype name
-		ncaDatatypeType						type;			// primitive, typedef, struct, enum, or null
-		(ncaString  or ncaName or sequence<ncaFieldDescriptor> or sequence<ncaEnumItemDescriptor> or null)				
-											content;		// dataype content, see below
+	interface ncDatatypeDescriptor {
+		 ncName								name;			// datatype name
+		 ncDatatypeType						type;			// primitive, typedef, struct, enum, or null
+		(ncString  or ncName or sequence<ncFieldDescriptor> or sequence<ncEnumItemDescriptor> or null) content; // dataype content, see below
 		
 		//  Contents of property 'content':
 		//
@@ -356,55 +318,55 @@ $macro(ModelDatatypes)
 		//	-----------------------------------------------------------------------------------------
 		//		primitive	empty string
 		//		typedef		name of referenced type
-		//		struct		sequence<ncaFieldDescriptor>, one item per field of the struct	
-		// 	 	enum		sequence<ncaEnumItemDescriptor>, one item per enum option
+		//		struct		sequence<ncFieldDescriptor>, one item per field of the struct	
+		// 	 	enum		sequence<ncEnumItemDescriptor>, one item per enum option
 		//		null		null
 		//	-----------------------------------------------------------------------------------------	
 	};
 	
-	interface ncaPropertyDescriptor {					// Descriptor of a class property
-		ncaPropertyId						id;				// element ID of property
-		ncaName								name;			// name of property
-		ncaName								typeName;		// name of property's datatype
-		ncaBoolean							readOnly;		// TRUE iff property is read-only
-		ncaBoolean							persistent;		// TRUE iff property value survives power-on reset
-		ncaBoolean							required;		// TRUE iff property must be implemented
+	interface ncPropertyDescriptor {					// Descriptor of a class property
+		 ncPropertyId						id;				// element ID of property
+		 ncName								name;			// name of property
+		 ncName								typeName;		// name of property's datatype
+		 ncBoolean							readOnly;		// TRUE iff property is read-only
+		 ncBoolean							persistent;		// TRUE iff property value survives power-on reset
+		 ncBoolean							required;		// TRUE iff property must be implemented
 	};
 	
-	interface ncaFieldDescriptor {						// Descriptor of a field of a struct
-		ncaName								name;			// name of field
-		ncaName								typeName;		// name of field's datatype
+	interface ncFieldDescriptor {						// Descriptor of a field of a struct
+		 ncName								name;			// name of field
+		 ncName								typeName;		// name of field's datatype
 	};
 	
-	interface ncaEnumItemDescriptor {					// Descriptor of an enum option
-		ncaName								name;			// name of option
-		ncaUint16							index;			// index value of option (starts at zero)
+	interface ncEnumItemDescriptor {					// Descriptor of an enum option
+		 ncName								name;			// name of option
+		 ncUint16							index;			// index value of option (starts at zero)
 	};
 
-	interface ncaParameterDescriptor {					// Descriptor of a method parameter
-		ncaName								name;			// name of parameter
-		ncaName								typeName;		// name of parameter's datatype
-		ncaBoolean							required;		// TRUE iff parameter is required
+	interface ncParameterDescriptor {					// Descriptor of a method parameter
+		 ncName								name;			// name of parameter
+		 ncName								typeName;		// name of parameter's datatype
+		 ncBoolean							required;		// TRUE iff parameter is required
 	};
 	
-	interface ncaMethodDescriptor {						// Descriptor of a method's API
-		ncaMethodId							id;				// element ID of method
-		ncaName								name;			// name of method
-		ncaName								resultDatatype;	// name of method result's datatype
-		sequence<ncaParameterDescriptor>	parameters;		// 0-n parameter descriptors
+	interface ncMethodDescriptor {						// Descriptor of a method's API
+		 ncMethodId							id;				// element ID of method
+		 ncName								name;			// name of method
+		 ncName								resultDatatype;	// name of method result's datatype
+		sequence<ncParameterDescriptor>	parameters;		// 0-n parameter descriptors
 	};
 	
-	interface ncaEventDescriptor {						// Descriptor of an event
-		ncaEventId							id;				// element ID of event
-		ncaName								name;			// event's name
-		ncaName								eventDatatype;	// name of event data's datatype
+	interface ncEventDescriptor {						// Descriptor of an event
+		 ncEventId							id;				// element ID of event
+		 ncName								name;			// event's name
+		 ncName								eventDatatype;	// name of event data's datatype
 	};
 	
-	interface ncaClassDescriptor {						// Descriptor of a class
-		ncaString							description;	// non-programmatic description - may be empty
-		sequence<ncaPropertyDescriptor> 	properties;		// 0-n property descriptors
-		sequence<ncaMethodDescriptor>		methods;		// 0-n method descriptors
-		sequence<ncaEventDescriptor>		events;			// 0-n event descriptors
+	interface ncClassDescriptor {						// Descriptor of a class
+		 ncString							description;	// non-programmatic description - may be empty
+		sequence<ncPropertyDescriptor> 	properties;		// 0-n property descriptors
+		sequence<ncMethodDescriptor>		methods;		// 0-n method descriptors
+		sequence<ncEventDescriptor>		events;			// 0-n event descriptors
 	};
 $endmacro
 $macro(PropertyConstraintDatatypes)
@@ -414,39 +376,39 @@ $macro(PropertyConstraintDatatypes)
 	//	Used in block membmer descriptors - see #BlockDatatypes 
 	//  ----------------------------------------------------------------------------------
 
-	interface ncaPropertyConstraintBase {
-		[optional] 	attribute 		ncaRolePath	path;	// relative path to member (null or omitted => current member)
-		attribute	ncaPropertyId	propertyId;			// ID  of property being constrained
+	interface ncPropertyConstraintBase {
+		[optional] 	attribute 		 ncRolePath	path;	// relative path to member (null or omitted => current member)
+		attribute	 ncPropertyId	propertyId;			// ID  of property being constrained
 		[optional]	attribute 	any	value;				// Set property to this value
 	}
 
-	interface ncaPropertyConstraintNumber 	: ncaPropertyConstraintBase{
+	interface ncPropertyConstraintNumber 	: ncPropertyConstraintBase{
 		[optional]	attribute 	any		maximum;		// not less than this
 		[optional]	attribute 	any		minimum;		// not more than this
 		[optional]	attribute 	any		step;			// stepsize
 	}	
 	
-	interface ncaPropertyConstraintString 	: ncaPropertyConstraintBase {
+	interface ncPropertyConstraintString 	: ncPropertyConstraintBase {
 	}
 	
-	interface ncaPropertyConstraintBoolean 	: ncaPropertyConstraintBase {
+	interface ncPropertyConstraintBoolean 	: ncPropertyConstraintBase {
 	}
 	
-	interface ncaPropertyConstraintOther	: ncaPropertyConstraintBase {
+	interface ncPropertyConstraintOther	: ncPropertyConstraintBase {
 	}
 	
 	typedef 
-		(ncaPropertyConstraintNumber or
-		ncaPropertyConstraintString	or
-		ncaPropertyConstraintBoolean or
-		ncaPropertyConstraintOther)			ncaPropertyConstraint;
+		(ncPropertyConstraintNumber or
+		 ncPropertyConstraintString	or
+		 ncPropertyConstraintBoolean or
+		 ncPropertyConstraintOther)			 ncPropertyConstraint;
 
 $endmacro
 $macro(BlockDatatypes)
 	//  ----------------------------------------------------------------------------------
 	//	B l o c k D a t a t y p e s
 	//
-	//	Datatypes for ncaBlock
+	//	Datatypes for ncBlock
 	//  ----------------------------------------------------------------------------------
 	
 	// Object name path
@@ -457,28 +419,28 @@ $macro(BlockDatatypes)
 		
 	// Signal path descriptor 
 	
-	interface ncaSignalPath { 
-		attribute	ncaRole				role;			// Role of this signal path in this block
-		attribute	ncaLabel			Label;			// Implementation-defined
-		attribute	ncaPortReference	source;	
-		attribute	ncaPortReference	sink;		
+	interface ncSignalPath { 
+		attribute	 ncRole				role;			// Role of this signal path in this block
+		attribute	 ncLabel			Label;			// Implementation-defined
+		attribute	 ncPortReference	source;	
+		attribute	 ncPortReference	sink;		
 	};
 		
 	// Block member descriptor
 	
-	interface ncaBlockMemberDescriptor{ 
-		attribute 	ncaRole				role;			// Role of member in its containing block
-		attribute	ncaOid				oid;			// OID of member
-		attribute	ncaBoolean			constantOid;	// TRUE iff member's OID is hardwired into device 
-		attribute	ncaClassIdentity	identity;		// Class ID & version of member
-		attribute	ncaLabel			userLabel;		// User label
-		attribute 	ncaOid				owner;			// Containing block's OID
+	interface ncBlockMemberDescriptor{ 
+		attribute 	 ncRole				role;			// Role of member in its containing block
+		attribute	 ncOid				oid;			// OID of member
+		attribute	 ncBoolean			constantOid;	// TRUE iff member's OID is hardwired into device 
+		attribute	 ncClassIdentity	identity;		// Class ID & version of member
+		attribute	 ncLabel			userLabel;		// User label
+		attribute 	 ncOid				owner;			// Containing block's OID
 		
 		// Constraints:
 		// A constraint is applied to this member using a constraints object with constraints.path empty or omitted.
 		// If this member is a block, a constraint may be applied to one of its members by setting constraints.path
 		// to the path of the target member relative to this member.  For example, if this member is a block that 
-		// contains an ncaGain object whose role property is "gainTrim", then the constraint.path value in this
+		// contains an ncGain object whose role property is "gainTrim", then the constraint.path value in this
 		// context would be simply "gainTrim".  More complex path values will arise only when applying constraints to
 		// elements in multiply nested blocks.
 		//
@@ -488,16 +450,16 @@ $macro(BlockDatatypes)
 		// multiple constraints into a single constraint that represents the intersection of all of them.  When the
 		// given constraint values do not allow such resolution, it is a blockspec coding error.
 	
-		attribute	sequence<ncaPropertyConstraint> constraints	// Constraints on this member or, for a block, its members.
+		attribute	sequence<ncPropertyConstraint> constraints	// Constraints on this member or, for a block, its members.
 	};
 		
 	// Block descriptor
 	
-	interface ncaBlockDescriptor{
-		attribute   ncaRole			role;			// Role of block in its containing block
-		attribute	ncaOid			oid;			// OID of block 
-		attribute 	ncaBlockSpecID	BlockSpecID;	// ID of BlockSpec this block implements
-		attribute 	ncaOid			owner;			// Containing block's OID
+	interface ncBlockDescriptor{
+		attribute   ncRole			role;			// Role of block in its containing block
+		attribute	 ncOid			oid;			// OID of block 
+		attribute 	 ncBlockSpecID	BlockSpecID;	// ID of BlockSpec this block implements
+		attribute 	 ncOid			owner;			// Containing block's OID
 	};
 	
 	// Block search result flags.  This bitset defines which attributes
@@ -510,38 +472,38 @@ $macro(ManagementDatatypes)
 	//  ----------------------------------------------------------------------------------
 
 	interface Manufacturer {		//	Manufacturer desciptor
-		attribute ncaString			name 					// Manufacturer's name
-		attribute ncaOrganizationID	organizationID			// IEEE OUI or CID of manufacturer
-		attribute ncaURI			website					// URL of the manufacturer's website
-		attribute ncaString			businessContact			// Contact information for business issues
-		attribute ncaString			technicalContact		// Contact information for technical issues
+		attribute ncString			name 					// Manufacturer's name
+		attribute ncOrganizationID	organizationID			// IEEE OUI or CID of manufacturer
+		attribute ncURI			website					// URL of the manufacturer's website
+		attribute ncString			businessContact			// Contact information for business issues
+		attribute ncString			technicalContact		// Contact information for technical issues
 	};
 	
 	interface Product {				// Product descriptor
-		attribute ncaString			name					// Product name
-		attribute ncaString			key						// Manufacturer's unique key to product - model number, SKU, etc
-		attribute ncaString			revisionLevel			// Manufacturer's product revision level code
-		attribute ncaString			brandName				// Brand name under which product is sold
-		attribute ncaUuid			uuid					// Unique UUID of product (not product instance)
-		attribute ncaString			description				// Text description of product
+		attribute ncString			name					// Product name
+		attribute ncString			key						// Manufacturer's unique key to product - model number, SKU, etc
+		attribute ncString			revisionLevel			// Manufacturer's product revision level code
+		attribute ncString			brandName				// Brand name under which product is sold
+		attribute ncUuid			uuid					// Unique UUID of product (not product instance)
+		attribute ncString			description				// Text description of product
 	};
 	
-	enum ncaResetCause {
+	enum ncResetCause {
 		"powerOn",					// 0 Last reset was caused by device power-on.
 		"internalError",			// 1 Last reset was caused by an internal error.
 		"upgrade",					// 2 Last reset was caused by a software or firmware upgrade.
-		"controllerRequest"	        // 3 Last reset was caused by a controller request.
+		"controllerRequest"			// 3 Last reset was caused by a controller request.
 	};
 	
-	enum  ncaDeviceGenericState {
+	enum  ncDeviceGenericState {
 		"normalOperation",			// 0 Device is operating normally.
 		"initializing",				// 1 Device is starting  or restarting.
 		"updating",					// 2 Device is performing a software or firmware update.
 	};
 
-	interface ncaDeviceOperationalState {
-		attribute ncaDeviceGenericState	generic;
-		attribute ncaBlob detail;
+	interface ncDeviceOperationalState {
+		attribute ncDeviceGenericState generic;
+		attribute ncBlob deviceSpecificDetails; //Device implementation specific details
 	};
 $endmacro
 $macro(AgentDatatypes)
@@ -549,14 +511,14 @@ $macro(AgentDatatypes)
 	//	A g e n t D a t a t y p e s
 	//  ----------------------------------------------------------------------------------
 	
-	enum ncaConnectionStatus {					// Connection status	
-		"Undefined",								// 0	This is the value when there is no receiver.	
+	enum ncConnectionStatus {					// Connection status	
+		"Undefined",								// 0	This is the value when there is no receiver
 		"Connected",								// 1	Connected to a stream
 		"Disconnected",								// 2	Not connected to a stream
 		"ConnectionError"							// 3	Connected but broken
 	};
 	
-	interface ncaPayloadStatus {				// Received payload status
+	interface ncPayloadStatus {				// Received payload status
 		"Undefined",								// 0	This is the value when there's no connection.
 		"PayloadOK",								// 1	Payload type is one we know about and the PDU is well-formed
 		"PayloadFormatUnsupported",					// 2	Payload is not one we know about
@@ -572,7 +534,7 @@ $macro(MethodResultDatatypes)
 	//	in alphabetical order by datatype name
 	//  ----------------------------------------------------------------------------------
 
-	enum ncaMethodStatus {					// Method result status values 			
+	enum ncMethodStatus {					// Method result status values 			
 		"ok",									// 0  It worked. 
 		"protocolVersionError",					// 1  Control PDU had incompatible protocol version code 
 		"deviceError",							// 2  Something went wrong
@@ -592,101 +554,101 @@ $macro(MethodResultDatatypes)
 		"omittedProperty"						// 16 Command referenced an optional property that is not instantiated in the referenced object.
 	};	
 	
-	interface ncaMethodResult {				// Base datatype
-		attribute ncaMethodStatus status;
-		attribute ncaString errorMessage;
+	interface ncMethodResult {				// Base datatype
+		attribute ncMethodStatus status;
+		attribute ncString errorMessage;
 	};
-	interface ncaMethodResultBlockDescriptors : 	ncaMethodResult {	// block descriptors result
-		attribute sequence<ncaBlockrDescriptor> value;
+	interface ncMethodResultBlockDescriptors : 	 ncMethodResult {	// block descriptors result
+		attribute sequence<ncBlockrDescriptor> value;
 	};
-	interface ncaMethodResultBlockMemberDescriptors : ncaMethodResult {	// block member descriptors result
-		attribute sequence<ncaBlockMemberDescriptor> value;
+	interface ncMethodResultBlockMemberDescriptors : ncMethodResult {	// block member descriptors result
+		attribute sequence<ncBlockMemberDescriptor> value;
 	};
-	interface ncaMethodResultBlockSpecInfo		 : 	ncaMethodResult {	// BlockSpec info result
-		attribute ncaString 		id;										// BlockSpec's global ID
-		attribute ncaVersionCode	versionCode;							// Blockspec's version code
-		attribute ncaString 		parentId;								// Parent blockSpec's global  ID
-		attribute ncaVersionCode	parentVersionCode;						// Parent blockspec's version code
-		attribute ncaString			description;							// Simple description of blockSpec
+	interface ncMethodResultBlockSpecInfo		 : 	 ncMethodResult {	// BlockSpec info result
+		attribute ncString 		id;										// BlockSpec's global ID
+		attribute ncVersionCode	versionCode;							// Blockspec's version code
+		attribute ncString 		parentId;								// Parent blockSpec's global  ID
+		attribute ncVersionCode	parentVersionCode;						// Parent blockspec's version code
+		attribute ncString			description;							// Simple description of blockSpec
 	};
-	interface ncaMethodResultBoolean : 				ncaMethodResult {	// single boolean result
-		attribute ncaBoolean value;	
+	interface ncMethodResultBoolean : 				 ncMethodResult {	// single boolean result
+		attribute ncBoolean value;	
 	};
-	interface ncaMethodResultClassDescriptors : 	ncaMethodResult {	// class descriptors result
-		attribute sequence<ncaClassDescriptor>;
+	interface ncMethodResultClassDescriptors : 	 ncMethodResult {	// class descriptors result
+		attribute sequence<ncClassDescriptor> descriptor;
 	};
-	interface ncaMethodResultClassId : 				ncaMethodResult {	// classId result
-		attribute	ncaClassID ; id	
+	interface ncMethodResultClassId : 				 ncMethodResult {	// classId result
+		attribute	 ncClassID id;
 	};
-	interface ncaMethodResultClassIdentity : 		ncaMethodResult {	// classIdentity result
-		attribute	ncaClassIdentity identity;	
+	interface ncMethodResultClassIdentity : 		 ncMethodResult {	// classIdentity result
+		attribute	 ncClassIdentity identity;	
 	};
-	interface ncaMethodResultClassVersion : 		ncaMethodResult {	// classVersion result
-		attribute	ncaVersionCode version;	
+	interface ncMethodResultClassVersion : 		 ncMethodResult {	// classVersion result
+		attribute	 ncVersionCode version;	
 	};
-	interface ncaMethodResultDatatype : 			ncaMethodResult {	// NTP time result
-		attribute ncaDatatype datatype;
+	interface ncMethodResultDatatype : 			 ncMethodResult {	// NTP time result
+		attribute ncDatatype datatype;
 	};
-	interface ncaMethodResultDatatypeDescriptors : 	ncaMethodResult {	// dataype descriptors result
-		attribute sequence<ncaDatatypeDescriptor> value;
+	interface ncMethodResultDatatypeDescriptors : 	 ncMethodResult {	// dataype descriptors result
+		attribute sequence<ncDatatypeDescriptor> value;
 	};
-	interface ncaMethodResultFirmwareComponent : 	ncaMethodResult {	// component descriptor result
-		attribute ncafirmwareComponent component;
+	interface ncMethodResultFirmwareComponent : 	 ncMethodResult {	// component descriptor result
+		attribute ncfirmwareComponent component;
 	};
-	interface ncaMethodResultId32 : 				ncaMethodResult {	// Id32 result
-		attribute ncaId32 value;	
+	interface ncMethodResultId32 : 				 ncMethodResult {	// Id32 result
+		attribute ncId32 index;	
 	};	
-	interface ncaMethodResultObjectIdPath :			ncaMethodResult {	// object path result
-		attribute ncaObjectIDPath value;	
+	interface ncMethodResultObjectIdPath :			 ncMethodResult {	// object path result
+		attribute ncObjectIDPath value;	
 	};
-	interface ncaMethodResultObjectNamePath :		ncaMethodResult {	// object path result
-		attribute ncaRolePath value;	
+	interface ncMethodResultObjectNamePath :		 ncMethodResult {	// object path result
+		attribute ncRolePath value;	
 	};
-	interface ncaMethodResultObjectSequence : 		ncaMethodResult {	// object-sequence result
+	interface ncMethodResultObjectSequence : 		 ncMethodResult {	// object-sequence result
 		attribute sequence<ObjectSequenceItem> items;
 	};
-	interface ncaMethodResultObjectSequenceItem : 	ncaMethodResult {	// object-sequence item result
+	interface ncMethodResultObjectSequenceItem : 	 ncMethodResult {	// object-sequence item result
 		attribute sequence<ObjectSequenceItem> items;
 	};
-	interface ncaMethodResultOID : 					ncaMethodResult {	// object ID result
-		attribute ncaOid value;	
+	interface ncMethodResultOID : 					 ncMethodResult {	// object ID result
+		attribute ncOid value;	
 	};
-	interface ncaMethodResultOIDs : 				ncaMethodResult {	// OIDs result
-		attribute sequence<ncaOid> value	
+	interface ncMethodResultOIDs : 				 ncMethodResult {	// OIDs result
+		attribute sequence<ncOid> value	
 	};	
-	interface ncaMethodResultPorts : 				ncaMethodResult {	// ports result
-		attribute sequence<ncaPort> value;
+	interface ncMethodResultPorts : 				 ncMethodResult {	// ports result
+		attribute sequence<ncPort> value;
 	};
-	interface ncaMethodResultPropertyValue :		ncaMethodResult {	// property-value result
+	interface ncMethodResultPropertyValue :		 ncMethodResult {	// property-value result
 		attribute any value;
 	}
-	interface ncaMethodResultReceiverStatus : ncaMethodResult {	
-		attribute ncaConnectionStatus 		connectionStatus;
-		attribute ncaPayloadStatus			payloadStatus;
+	interface ncMethodResultReceiverStatus : ncMethodResult {	
+		attribute ncConnectionStatus 		connectionStatus;
+		attribute ncPayloadStatus			payloadStatus;
 	};
-	interface ncaMethodResultSessionID :			ncaMethodResult {	// session ID result
-		attribute ncaSessionID SessionID;
+	interface ncMethodResultSessionID :			 ncMethodResult {	// session ID result
+		attribute ncSessionID SessionID;
 	};
-	interface ncaMethodResultSignalPath : 			ncaMethodResult {	// signal path result
-		attribute ncaSignalPath value;
+	interface ncMethodResultSignalPath : 			 ncMethodResult {	// signal path result
+		attribute ncSignalPath value;
 	};	
-	interface ncaMethodResultSignalPaths : 			ncaMethodResult {	// signal paths result
-		attribute sequence<ncaSignalPath> value;
+	interface ncMethodResultSignalPaths : 			 ncMethodResult {	// signal paths result
+		attribute sequence<ncSignalPath> value;
 	};
-	interface ncaMethodResultString : 				ncaMethodResult {	// single string result
-		attribute ncaString value;	
+	interface ncMethodResultString : 				 ncMethodResult {	// single string result
+		attribute ncString value;	
 	};	
-	interface ncaMethodResultTimeInterval : 		ncaMethodResult {	// time interval result
-		attribute ncaTimeInterval value;	
+	interface ncMethodResultTimeInterval : 		 ncMethodResult {	// time interval result
+		attribute ncTimeInterval value;	
 	};
-	interface ncaMethodResultTimeNtp : 				ncaMethodResult {	// NTP time result
-		attribute ncaTimeNtp time;
+	interface ncMethodResultTimeNtp : 				 ncMethodResult {	// NTP time result
+		attribute ncTimeNtp time;
 	};
-	interface ncaMethodResultTimePtp : 				ncaMethodResult {	// PTP time result
-		attribute ncaTimePtp time;
+	interface ncMethodResultTimePtp : 				 ncMethodResult {	// PTP time result
+		attribute ncTimePtp time;
 	};
-	interface ncaMethodResultTouchpoints : 			ncaMethodResult {	// touchpoints result
-		attribute sequence<ncaTouchpoint> value;
+	interface ncMethodResultTouchpoints : 			 ncMethodResult {	// touchpoints result
+		attribute sequence<ncTouchpoint> value;
 	};
 $endmacro
 $macro(CoreDatatypes)
@@ -709,20 +671,20 @@ $macro(CoreDatatypes)
 	$AgentDatatypes()
 	$MethodResultDatatypes()
 	
-	enum ncaLockState {						// Concurrency lock states. 
+	enum ncLockState {						// Concurrency lock states. 
 		"noLock",								// 0 object is not locked 
 		"lockNoWrite",							// 1 object may be queried but not modified 
 		"lockNoReadWrite",						// 2 object may neither be queried nor modified
 	};
 	
-	enum ncaIoDirection {					// Input and/or output
+	enum ncIoDirection {					// Input and/or output
 		"undefined",							// 0 Flow direction is not defined
 		"input",								// 1 Samples flow into owning object
 		"output",								// 2 Samples flow out of owning object
 		"bidirectional"							// 3 For possible future use
 	};
 	
-	enum ncaStringComparisonType {			// String comparison options
+	enum ncStringComparisonType {			// String comparison options
 		"exact",					 			// 0 exact case-sensitive compare
 		"substring",							// 1 "starts with" - case-sensitive
 		"contains",								// 2 search string anywhere in target - case-sensitive
@@ -731,12 +693,12 @@ $macro(CoreDatatypes)
 		"containsCaseInsensitive" 				// 5 search string anywhere in target - case-insensitive
 	};	
 
-	typedef ncaString		ncaLabel;		// Non-programmatic label
+	typedef ncString		 ncLabel;		// Non-programmatic label
 	
-	interface ncaFirmwareComponent {		// Firmware component descripor
-		attribute	ncaName				name;				// Concise name
-		attribute	ncaVersionCode		version;			// Version code
-		attribute	ncastring			description;		// non-programmatic description 
+	interface ncFirmwareComponent {		// Firmware component descripor
+		attribute	 ncName				name;				// Concise name
+		attribute	 ncVersionCode		version;			// Version code
+		attribute	 ncstring			description;		// non-programmatic description 
 	};
 		
 $endmacro
@@ -745,57 +707,66 @@ $macro(BaseClasses)
 	//  ----------------------------------------------------------------------------------
 	//	B a s e C l a s s e s
 	//
-	//	Class ncaObject, base classes for major class categories, and associated datatypes
+	//	Class ncObject, base classes for major class categories, and associated datatypes
 	//  ----------------------------------------------------------------------------------
 	
-	[control-class("1",1)] interface ncaObject{	
+	[control-class("1",1)] interface ncObject{	
 
 		//	Abstract base class for entire NCC class structure
 	
-		[element("1p1")]  static attribute ncaClassID 		classId;
-		[element("1p2")]  static attribute ncaVersionCode	classVersion;
-		[element("1p3")]  attribute ncaOid				oid;
-		[element("1p4")]  attribute ncaBoolean			constantOid;		// TRUE iff OID is hardwired into device 
-		[element("1p5")]  attribute ncaOid				owner;				// OID of containing block
-		[element("1p6")]  readonly attribute ncaRole	role;				// role of obj in containing block
-		[element("1p7")]  attribute	ncaString			userLabel;			// Scribble strip 		
-		[element("1p8")]  readonly attribute ncaBoolean	lockable;
-		[element("1p9")]  attribute ncaLockState		lockState;
-		[element("1p10")] attribute sequence<ncaTouchpoint> touchpoints;
+		[element("1p1")]  static readonly attribute ncClassID 		classId;
+		[element("1p2")]  static readonly attribute ncVersionCode	classVersion;
+		[element("1p3")]  readonly attribute ncOid				oid;
+		[element("1p4")]  readonly attribute ncBoolean			constantOid;		// TRUE iff OID is hardwired into device 
+		[element("1p5")]  readonly attribute ncOid				owner;				// OID of containing block
+		[element("1p6")]  readonly readonly attribute ncRole	role;				// role of obj in containing block
+		[element("1p7")]  attribute	 ncString			userLabel;			// Scribble strip 		
+		[element("1p8")]  readonly attribute ncBoolean	lockable;
+		[element("1p9")]  attribute ncLockState		lockState;
+		[element("1p10")] readonly attribute sequence<ncTouchpoint> touchpoints;
 		
-		// GENERIC GET/SET METHODS
+		// Generic GET/SET methods
 	
-		[element("1m1")]  ncaMethodResultPropertyValue	get(ncaPropertyId Id);											// Get property value
-		[element("1m2")]  ncaMethodResult				set(ncaPropertyID id, any Value);								// Set property value
-		[element("1m3")]  ncaMethodResult				clear(ncaPropertyID id);										// Sets property to initial value
-		[element("1m4")]  ncaMethodResultPropertyValue	getCollectionItem(ncaPropertyId Id, any Index);					// Get collection item
-		[element("1m5")]  ncaMethodResult				setCollectionItem(ncaPropertyId Id, ncaId32 Index, any Value);	// Set collection item
-		[element("1m6")]  ncaMethodResult			    clearCollectionItem(ncaPropertyId Id);							// Sets item to initial value
-		[element("1m7")]  ncaMethodResultID32			addCollectionItem(ncaPropertyId Id, any Value);					// Add item to collection
-		[element("1m8")]  ncaMethodResult				deleteCollectionItem(ncaPropertiID, ncaId32 Index);				// Delete collection item
+		[element("1m1")]  ncMethodResultPropertyValue	get(ncPropertyId Id);											// Get property value
+		[element("1m2")]  ncMethodResult				set(ncPropertyID id, any Value);								// Set property value
+		[element("1m3")]  ncMethodResult				clear(ncPropertyID id);										// Sets property to initial value
+		[element("1m4")]  ncMethodResultPropertyValue	getCollectionItem(ncPropertyId Id, ncId32 Index);					// Get collection item
+		[element("1m5")]  ncMethodResult				setCollectionItem(ncPropertyId Id, ncId32 Index, any Value);	// Set collection item
+		[element("1m6")]  ncMethodResultId32			addCollectionItem(ncPropertyId Id, any Value);					// Add item to collection
+		[element("1m7")]  ncMethodResult				removeCollectionItem(ncPropertyId, ncId32 Index);				// Delete collection item
+
+		// Optional lock methods
+		[element("1m8")]  ncMethodResult lockWait(
+			 ncOid target, 												// OID of object to be (un)locked
+			 ncLockStatus requestedLockStatus, 							// Type of lock requested, or unlock
+			 ncTimeInterval timeout												// Method fails if wait exceeds this.  0=forever
+		);
+
+		[element("1m9")]  ncMethodResult	abortWaits(ncOid target);	// Abort all this session's waits on given target
 	
-		[element("1e1")] 	[event] void PropertyChanged(ncaPropertyChangedEventData eventData);
+		// Events
+		[element("1e1")] 	[event] void PropertyChanged(ncPropertyChangedEventData eventData);
 	};
-	[control-class("1.2",1)] interface ncaWorker : ncaObject{
+	[control-class("1.2",1)] interface ncWorker : ncObject{
 
 		// Worker base class
 
-		[element("2p1")]  attribute ncaBoolean			enabled;			// TRUE iff worker is enabled
-		[element("2p2")]  attribute sequence<ncaPort>	ports;				// The worker's signal ports
-		[element("2p3")]  readonly attribute ncaTimeInterval latency;		// Processing latency of this object (optional)
+		[element("2p1")]  attribute ncBoolean			enabled;			// TRUE iff worker is enabled
+		[element("2p2")]  attribute sequence<ncPort>	ports;				// The worker's signal ports
+		[element("2p3")]  readonly attribute ncTimeInterval latency;		// Processing latency of this object (optional)
 		
 	};
-	[control-class("1.2.1",1)] interface ncaActuator : ncaWorker {
+	[control-class("1.2.1",1)] interface ncActuator : ncWorker {
 	
 		// Actuator base class
 		
 	};
-	[control-class("1.2.2",1)] interface ncaSensor : ncaWorker {
+	[control-class("1.2.2",1)] interface ncSensor : ncWorker {
 
 		// Sensor base class
 
 	};
-	[control-class("1.4",1)] interface ncaAgent : ncaObject {
+	[control-class("1.4",1)] interface ncAgent : ncObject {
 	
 		// Agent base class
 		
@@ -805,55 +776,49 @@ $macro(Block)
 	//  ----------------------------------------------------------------------------------
 	//	B l o c k
 	//
-	//	Container for NCA objects
-	//  ------------------------------------------------------------------
-	//	Notes:	Leaving out dynamic object configuration features for now.
-	//					Leaving out parameter storage ("preset") features for now.
-	//					Leaving out dataset features for now.
-	//	- jb
+	//	Container for nc objects
 	//  ----------------------------------------------------------------------------------
 	
-	[control-class("1.1",1)] interface ncaBlock : ncaObject {
-		[element("2p1")]  attribute	ncaBoolean					enabled;			// TRUE iff block is functional
-		[element("2p2")]  attribute	ncaString 					userLabel;			// user-settable label 			
-		[element("2p3")]  readonly attribute	ncaString		specId;				// Global ID of blockSpec that defines this block
-		[element("2p4")]  readonly attribute	ncaVersionCode	specVersion;		// Version code of blockSpec that defines this block
-		[element("2p3")]  readonly attribute	ncaString		parentSpecId;		// Global ID of parent of blockSpec that defines this block
-		[element("2p4")]  readonly attribute	ncaVersionCode	parentSpecVersion;	// Version code of parent of blockSpec that defines this block
-		[element("2p5")]  readonly attribute	ncaString		specDescription;	// Description of blockSpec that defines this block
-		[element("2p6")]  readonly attribute	ncaBoolean		isDynamic;			// TRUE iff dynamic block
-		[element("2p7")]  readonly attribute	ncaBoolean		isModified;			// TRUE iff block contents modified since last reset
-		[element("2p8")]  attribute	sequence<ncaOid> 			members; 			// OIDs of this block's members 
-		[element("2p9")]  attribute	sequence<ncaPort>			ports;				// this block's ports
-		[element("2p10")] attribute	sequence<ncaSignalPath>		signalPaths; 		// this block's signal paths  
+	[control-class("1.1",1)] interface ncBlock : ncObject {
+		[element("2p1")]  readonly attribute	ncBoolean				enabled;			// TRUE if block is functional
+		[element("2p2")]  readonly attribute	ncString				specId;				// Global ID of blockSpec that defines this block
+		[element("2p3")]  readonly attribute	ncVersionCode			specVersion;		// Version code of blockSpec that defines this block
+		[element("2p4")]  readonly attribute	ncString				parentSpecId;		// Global ID of parent of blockSpec that defines this block
+		[element("2p5")]  readonly attribute	ncVersionCode			parentSpecVersion;	// Version code of parent of blockSpec that defines this block
+		[element("2p6")]  readonly attribute	ncString				specDescription;	// Description of blockSpec that defines this block
+		[element("2p7")]  readonly attribute	ncBoolean				isDynamic;			// TRUE if dynamic block
+		[element("2p8")]  readonly attribute	ncBoolean				isModified;			// TRUE if block contents modified since last reset
+		[element("2p9")]  readonly attribute	sequence<ncOid> 		members; 			// OIDs of this block's members 
+		[element("2p10")] readonly attribute	sequence<ncPort>		ports;				// this block's ports
+		[element("2p11")] readonly attribute	sequence<ncSignalPath>	signalPaths; 		// this block's signal paths
  
 		// BLOCK ENUMERATION METHODS 
 		
-		[element("2m1")]  ncaMethodResultBlockMemberDescriptors	getMemberDescriptors(ncaBoolean recurse);	// gets descriptors of members of the block
-		[element("2m2")]  ncaMethodResultBlockDescriptors		getNestedBlocks();					// like GetMembers but returns only nested blocks
+		[element("2m1")]  ncMethodResultBlockMemberDescriptors	getMemberDescriptors(ncBoolean recurse);	// gets descriptors of members of the block
+		[element("2m2")]  ncMethodResultBlockDescriptors		getNestedBlocks();					// like GetMembers but returns only nested blocks
 		
 		// BLOCK SEARCH METHODS 
 		
 		[element("2m3")] 
-			ncaMethodResultBlockMemberDescriptors		
+			 ncMethodResultBlockMemberDescriptors		
 			findMembersByRole(									// finds members with given role name or fragment
-				ncaRole role, 									// role text to search for
-				ncaStringComparisonType nameComparisonType,		// type of string comparison to use
-				ncaClassId classId,								// if nonnull, finds only members with this class ID
-				ncaBoolean recurse,								// TRUE to search nested blocks
+				 ncRole role, 									// role text to search for
+				 ncStringComparisonType nameComparisonType,		// type of string comparison to use
+				 ncClassId classId,								// if nonnull, finds only members with this class ID
+				 ncBoolean recurse,								// TRUE to search nested blocks
 			);
 		[element("2m4")] 
-			ncaMethodResultBlockMemberDescriptors		
+			 ncMethodResultBlockMemberDescriptors		
 			findMembersByUserLabel(								// finds members with given user label or fragment
-				ncaString userLabel, 							// label text to search for
-				ncaStringComparisonType nameComparisonType,		// type of string comparison to use	
-				ncaClassId classId,								// if nonnull, finds only members with this class ID
-				ncaBoolean recurse,								// TRUE to search nested blocks
+				 ncString userLabel, 							// label text to search for
+				 ncStringComparisonType nameComparisonType,		// type of string comparison to use	
+				 ncClassId classId,								// if nonnull, finds only members with this class ID
+				 ncBoolean recurse,								// TRUE to search nested blocks
 																);
 		[element("2m5")]
-			ncaMethodResultBlockMemberDescriptors
+			 ncMethodResultBlockMemberDescriptors
 			findMembersByPath(									// finds member(s) by path
-				ncaRolePath path, 								// path to search for
+				 ncRolePath path, 								// path to search for
 			);
 		};
 $endmacro
@@ -861,11 +826,11 @@ $macro(CoreAgents)
 	//  ----------------------------------------------------------------------------------
 	//	C o r e A g e n t s
 	//  ----------------------------------------------------------------------------------
-	[control-class("1.4.1",1)] interface ncaObjectSequence : ncaAgent { 	
+	[control-class("1.4.1",1)] interface ncObjectSequence : ncAgent {
 	
 		//	Object sequence agent
 	
-		[element("3p1")]	sequence<ncaObjectSequenceItem>		items 								// The sequence, ordered by 'index' property
+		[element("3p1")]	sequence<ncObjectSequenceItem>		items 								// The sequence, ordered by 'index' property
 	};
 	
 	interface ObjectSequenceItem {						// Object-sequence list item
@@ -873,9 +838,9 @@ $macro(CoreAgents)
 	// 	Object sequence item.  
 	//	Sequences are ordered by value of 'index' property.
 	
-		attribute ncaUint16 	index;					// ordinal
-		attribute ncaOid		oid;					// object ID
-		attribute ncaRolePath	path;					// object path
+		attribute ncUint16 	index;					// ordinal
+		attribute ncOid		oid;					// object ID
+		attribute ncRolePath	path;					// object path
 	};
 $endmacro
 
@@ -885,19 +850,17 @@ $macro(WorkflowDataCore)
 	//	W o r k f l o w D a t a C o r e
 	//  ----------------------------------------------------------------------------------
 	
-	TBD - JB has made recommendations for changing this feature 2021.10.01
-	
-	[control-class("1.6",1)] interface WorkflowDataRecord : ncaAgent {
+	[control-class("1.6",1)] interface ncWorkflowDataRecord : ncAgent {
 	
 	//	Workflow data record base class
 	
-		[element("2p1"]	 attribute ncaProductionDataRecordType	type;
-		[element("2p2"]	 attribute ncaProductionDataRecordID	id;
+		[element("2p1"]	 attribute ncProductionDataRecordType	type;
+		[element("2p2"]	 attribute ncProductionDataRecordID	id;
 		
 		// Additional properties and methods will be defined by subclasses.
 	};
 	
-	enum ncaWorkflowDataRecordType {
+	enum ncWorkflowDataRecordType {
 		"blob",						// 0 binary large object, format undefined
 		"as10Header",	   			// 1 AMWA AS-10	header
 		"as10Shim"					// 2 AMWA AS-10 shim
@@ -910,151 +873,137 @@ $macro(Managers)
 	//
 	// -----------------------------------------------------------------------------
 
-	[control-class("1.7",1)]    interface Manager : ncaObject {
+	[control-class("1.7",1)] interface Manager : ncObject {
 	
 		// Manager base class
     };
 	
-	[control-class("1.7.1",1)]  interface ncaDeviceManager : ncaManager {
+	[control-class("1.7.1",1)]  interface ncDeviceManager : ncManager {
 		
 		//	Device manager class
 		//	Contains basic device information and status.
-		//	Readonly elements are flagged with "<RO">.
 		
-		[element("3p1")]  readonly attribute 	ncaVersionCode		thisNcaVersion			// Version of NCA this dev uses						<Mandatory>
-		[element("3p2")]  readonly attribute	ncaManufacturer		manufacturer			// Manufacturer descriptor							<Mandatory>
-		[element("3p3")]  readonly attribute	ncaProduct			product					// Product descriptor								<Mandatory>
-		[element("3p4")]  readonly attribute 	ncaString			serialNumber			// Mfr's serial number of dev						<Mandatory>
-		[element("3p5")]  attribute				ncaString			userInventoryCode		// For asset tracking (user-specified)
-		[element("3p6")]  attribute				ncaString			deviceName				// Name of this dev in application. Instance name, not product name. 
-		[element("3p7")]  attribute				ncaString			deviceRole				// Role of this dev in application.
-		[element("3p8")]  attribute				ncaBoolean			controlEnabled			// TRUE iff this dev is responsive to NCA commands
-		[element("3p9")]  readonly attribute	ncaDeviceOperationalState	operationalState	// Device operational state						<Mandatory>
-		[element("3p10")] readonly attribute 	ncaResetCause		resetCause				// Reason for most recent reset						<Mandatory>
-		[element("3p11")] readonly attribute 	ncaString			message					// Arbitrary message from dev to controller			<Mandatory>
+		[element("3p1")]  readonly attribute 	 ncVersionCode		 ncVersion				// Version of nc this dev uses						<Mandatory>
+		[element("3p2")]  readonly attribute	 ncString		manufacturer				// Manufacturer descriptor							<Mandatory>
+		[element("3p3")]  readonly attribute	 ncString			product					// Product descriptor								<Mandatory>
+		[element("3p4")]  readonly attribute 	 ncString			serialNumber			// Mfr's serial number of dev						<Mandatory>
+		[element("3p5")]  attribute				 ncString			userInventoryCode		// Asset tracking identifier (user specified)
+		[element("3p6")]  attribute				 ncString			deviceName				// Name of this device in the application. Instance name, not product name. 
+		[element("3p7")]  attribute				 ncString			deviceRole				// Role of this device in the application.
+		[element("3p8")]  attribute				 ncBoolean			controlEnabled			// TRUE iff this dev is responsive to nc commands
+		[element("3p9")]  readonly attribute	 ncDeviceOperationalState	operationalState	// Device operational state						<Mandatory>
+		[element("3p10")] readonly attribute 	 ncResetCause		resetCause				// Reason for most recent reset						<Mandatory>
+		[element("3p11")] readonly attribute 	 ncString			message					// Arbitrary message from dev to controller			<Mandatory>
 	};
 	
-	[control-class("1.7.2",1)]  interface ncaSecurityManager : ncaManager {
+	[control-class("1.7.2",1)]  interface ncSecurityManager : ncManager {
 		
 		//	Security manager class
-		
 		TBD
 	};
 	
-	[control-class("1.7.3",1)]  interface ncaClassManager {
+	[control-class("1.7.3",1)]  interface ncClassManager : ncManager {
 	
 		//	Class manager class
 		//  Returns definitions of control classes and datatypes
 		//	that are used in the device.
 		
-		[element("3p1")]  readonly attribute 	sequence<ncaClassDescriptor>	controlClasses;
-		[element("3p2")]  readonly attribute 	sequence<ncaDatatypeDescriptor>	datatypes;
+		[element("3p1")]  readonly attribute 	sequence<ncClassDescriptor>	controlClasses;
+		[element("3p2")]  readonly attribute 	sequence<ncDatatypeDescriptor>	datatypes;
 		
 		// Methods to retrieve a single class or type descriptor
 		
 		[element("3m1")]  
-		ncaMethodResultClassDescriptors GetControlClass(	// Get a single class descriptor
-			ncaClassIdentity identity, 							// class ID & version
-			ncaBoolean allElements								// TRUE to include inherited class elements
+		 ncMethodResultClassDescriptors GetControlClass(	// Get a single class descriptor
+			 ncClassIdentity identity, 							// class ID & version
+			 ncBoolean allElements								// TRUE to include inherited class elements
 		);
 			
 		[element("3m2")]  
-		ncaMethodResultDatatypeDescriptors GetDatatype(		// Get descriptor of datatype and maybe its component datatypes
-			ncaName name, 										// name of datatype
-			ncaBoolean allDefs									// TRUE to include descriptors of component datatypes
+		 ncMethodResultDatatypeDescriptors GetDatatype(		// Get descriptor of datatype and maybe its component datatypes
+			 ncName name, 										// name of datatype
+			 ncBoolean allDefs									// TRUE to include descriptors of component datatypes
 		);
 		
 		// Methods to retrieve all the class and type descriptors used by a given block or nest of blocks
 		
 		[element("3m3")]  
-		ncaMethodResultClassDescriptors GetControlClasses(	// Get descriptors of classes used by block(s)
-			ncaRolePath blockPath, 									// path to block 
-			ncaBoolean recurseBlocks, 							// TRUE to recurse contained blocks
-			ncaBoolean allElements								// TRUE to include inherited class elements
+		 ncMethodResultClassDescriptors GetControlClasses(	// Get descriptors of classes used by block(s)
+			 ncRolePath blockPath, 									// path to block 
+			 ncBoolean recurseBlocks, 							// TRUE to recurse contained blocks
+			 ncBoolean allElements								// TRUE to include inherited class elements
 		);	
 				
 		[element("3m4")] 
-		ncaMethodResultDataTypes GetDataTypes(				// Get descriptors of datatypes used by blocks(s)
-			ncaRolePath blockPath, 									// path to block 
-			ncaBoolean recurseBlocks, 							// TRUE to recurse contained blocks
-			ncaBoolean allDefs									// TRUE to include descriptors of referenced datatypes
+		 ncMethodResultDataTypes GetDataTypes(				// Get descriptors of datatypes used by blocks(s)
+			 ncRolePath blockPath, 									// path to block 
+			 ncBoolean recurseBlocks, 							// TRUE to recurse contained blocks
+			 ncBoolean allDefs									// TRUE to include descriptors of referenced datatypes
 		);
 	};
 	
-	[control-class("1.7.4",1)]  interface ncaFirmwareManager : ncaManager {
+	[control-class("1.7.4",1)]  interface ncFirmwareManager : ncManager {
 		
-		//	Firmware / software manager ::: Reports versions of components
+		//	Firmware / software manager : Reports versions of components
 		
-		[element("3p1")]  readonly attribute	sequence<ncafirmwareComponent> 		Components;			// List of firmware component descriptors
+		[element("3p1")]  readonly attribute	sequence<ncFirmwareComponent> 		Components;			// List of firmware component descriptors
 		
-$#		[element("3m1")]  attribute	ncaMethodResultFirmwareComponent 	GetComponent();
+		[element("3m1")]  attribute	 ncMethodResultFirmwareComponent 	GetComponent();
 	};
 	
-	[control-class("1.7.5",1)]  interface ncaSubscriptionManager : ncaManager {
+	[control-class("1.7.5",1)]  interface ncSubscriptionManager : ncManager {
 	
 		// Subscription manager
 		
-		[element("3m1")]  ncaMethodResult 		
+		[element("3m1")]  ncMethodResult 		
 			AddSubscription(
-				ncaEvent event											// the event to which the controller is subscribing
+				 ncEvent event											// the event to which the controller is subscribing
 		);
 		[element("3m2")]
-			ncaMethodResult	
+			 ncMethodResult	
 			RemoveSubscription(
-				ncaEvent 					event
+				 ncEvent 					event
 		);
 		[element("3m3")]
-			ncaMethodResult		
+			 ncMethodResult		
 			addPropertyChangeSubscription(
-				ncaOid						emitter,					// ID of object where property is
-				ncaPropertyID 				property					// ID of the property
+				 ncOid						emitter,					// ID of object where property is
+				 ncPropertyID 				property					// ID of the property
 		);
 		[element("3m4")]
-			ncaMethodResult
+			 ncMethodResult
 			removePropertyChangeSubscription(
-				ncaOid			emitter,								// ID of object where property is
-				ncaPropertyID 	property								// ID of the property
+				 ncOid			emitter,								// ID of object where property is
+				 ncPropertyID 	property								// ID of the property
 		);
 	};
 
-	[control-class("1.7.6",1)]  interface ncaPowerManager : ncaManager {
-		[element("3p1")]  readonly attribute ncaPowerState 		state;
-		[element("3p2")]  readonly attribute sequence<ncaOid>	powerSupplyOids;			// OIDs of available ncaPowerSupply objects
-		[element("3p3")]  attribute sequence<ncaOid>			activePowerSupplyOids;		// OIDs of active ncaPowerSupply objects
-		[element("3p4")]  attribute ncaBoolean					autoState;					// TRUE if current state was invoked automatically
-		[element("3p5")]  readonly attribute ncaPowerState		targetState					// Power state to which the device is transitioning, or None.
+	[control-class("1.7.6",1)]  interface ncPowerManager : ncManager {
+		[element("3p1")]  readonly attribute ncPowerState 		state;
+		[element("3p2")]  readonly attribute sequence<ncOid>	powerSupplyOids;			// OIDs of available ncPowerSupply objects
+		[element("3p3")]  attribute sequence<ncOid>			activePowerSupplyOids;		// OIDs of active ncPowerSupply objects
+		[element("3p4")]  attribute ncBoolean					autoState;					// TRUE if current state was invoked automatically
+		[element("3p5")]  readonly attribute ncPowerState		targetState					// Power state to which the device is transitioning, or None.
 	
-		[element("3m1")]  ncaMethodResult			exchangePowerSupplies(
-			ncaOid 			oldPsu,
-			ncaOid 			newPsu,
-			ncaBoolean		powerOffOld
+		[element("3m1")]  ncMethodResult			exchangePowerSupplies(
+			 ncOid 			oldPsu,
+			 ncOid 			newPsu,
+			 ncBoolean		powerOffOld
 		);
 	};
 	
-	[control-class("1.7.8",1)]  interface ncaDeviceTimeManager :	ncaManager {	
+	[control-class("1.7.8",1)]  interface ncDeviceTimeManager :	 ncManager {	
 		//
 		//	controls device's internal clock(s) and its reference.
 		//
-		[element("3p1")]  readonly attribute ncaTimePtp			deviceTimePtp;				// Current device time
-		[element("3p2")]  readonly attribute sequence<ncaOid>	timeSources;				// OIDs of available OcaTimeSource objects
-		[element("3p3")]  attribute	ncaOid						currentDeviceTimeSource;	// OID of current OcaTimeSource object
-		[element("3p4")]  attribute	ncaTimeNtp					deviceTimeNtp;				// Legacy, might not be needed
-	};
-	
-	[control-class("1.7.10",1)] interface ncaLockManager : ncaManager {
-		
-		// Lock manager.  Implements lockWait.
-		
-		[element("3m1")]  ncaMethodResult lockWait(
-			ncaOid target, 												// OID of object to be (un)locked
-			ncaLockStatus requestedLockStatus, 							// Type of lock requested, or unlock
-			ncaTimeInterval												// Method fails if wait exceeds this.  0=forever
-		);
-		[element("3m2")]  ncaMethodResult	abortWaits(ncaOid target);	// Abort all this session's waits on given target
+		[element("3p1")]  readonly attribute ncTimePtp			deviceTimePtp;				// Current device time
+		[element("3p2")]  readonly attribute sequence<ncOid>	timeSources;				// OIDs of available ncTimeSource objects
+		[element("3p3")]  attribute	 ncOid						currentDeviceTimeSource;	// OID of current ncTimeSource object
+		[element("3p4")]  attribute	 ncTimeNtp					deviceTimeNtp;				// Legacy, might not be needed
 	};	
 $endmacro
 
-$macro(FeatureSet001)	$#	 General control & monitoring
+$macro(FeatureSet001)
 
 	// -----------------------------------------------------------------------------
 	//
@@ -1062,54 +1011,55 @@ $macro(FeatureSet001)	$#	 General control & monitoring
 	//
 	// -----------------------------------------------------------------------------
 	
-	[control-class("1.2.1.1",1)]  interface ncaGain : ncaActuator {
+	[control-class("1.2.1.1",1)]  interface ncGain : ncActuator {
 	
 		//	Simple gain control
 		
-		[element("4p1")]  attribute ncaDB 			setPoint;
+		[element("4p1")]  attribute ncDB 			setPoint;
 	};
 	
-	[control-class("1.2.1.2",1)]  interface ncaSwitch : ncaWorker {
+	[control-class("1.2.1.2",1)]  interface ncSwitch : ncWorker {
 	
 		// n-position switch with a name for each position
 		
-		[element("4p1")]  attribute ncaUint16		setpoint;		// current switch position
-		[element("4p2")]  attribute ncaBitset		pointEnabled;	// map of which positions are enabled
-		[element("4p3")]  attribute sequence(ncaString) labels;		// list of position labels
+		[element("4p1")]  attribute ncUint16		setpoint;		// current switch position
+		[element("4p2")]  attribute ncBitset		pointEnabled;	// map of which positions are enabled
+		[element("4p3")]  attribute sequence(ncString) labels;		// list of position labels
 	};
 		
-	[control-class("1.2.1.3",1)]  interface ncaIdentificationActuator {
+	[control-class("1.2.1.3",1)]  interface ncIdentificationActuator {
 	
 		// Identification actuator - sets some kind of physical indicator on the device
 		
-		[element("4p1")]  attribute ncaBoolean		active;			// TRUE iff indicator is active
+		[element("4p1")]  attribute ncBoolean		active;			// TRUE iff indicator is active
 	};
 		
-	[control-class("1.2.2.1",1)]  interface ncaLevelSensor {
+	[control-class("1.2.2.1",1)]  interface ncLevelSensor {
 		
 		// Simple level sensor that reads in DB
 		
-		[element("4p1")]	ncaDB					reading;
+		[element("4p1")]	 ncDB					reading;
 	};
 	
-	[control-class("1.2.1.2",1)]  interface ncaStateSensor {
+	[control-class("1.2.1.2",1)]  interface ncStateSensor {
 	
 		// State sensor - returns an index into an array of state names.
 		
-		[element("4p1")]  attribute ncaUint16 			reading;
-		[element("4p2")]  attribute sequence(ncaString)	stateNames;
+		[element("4p1")]  attribute ncUint16 			reading;
+		[element("4p2")]  attribute sequence(ncString)	stateNames;
 	};
 	
-	[control-class("1.2.2.3",1)]  interface ncaIdentificationSensor {
+	[control-class("1.2.2.3",1)]  interface ncIdentificationSensor {
 		
 		// 	Identification sensor - raises an event when the user activates some kind of
 		//	this-is-me control on the device.
 		
-		[element("4e1")] [event] void Identify(ncaEventData);
+		[element("4e1")] [event] void Identify(ncEventData);
 	};
 
 $endmacro
-$macro(FeatureSet002)	$#	 NMOS receiver Monitoring
+
+$macro(FeatureSet002)
 
 	// -----------------------------------------------------------------------------
 	//
@@ -1119,36 +1069,36 @@ $macro(FeatureSet002)	$#	 NMOS receiver Monitoring
 	//
 	// -----------------------------------------------------------------------------
 	
-	[control-class("1.4.1",1)] interface ncaReceiverMonitor : ncaAgent {
+	[control-class("1.4.1",1)] interface ncReceiverMonitor : ncAgent {
 	
 		// Receiver monitoring agent.
-		// For attaching to specific receivers, uses the Touchpoint mechanism inherited from ncaObject.
+		// For attaching to specific receivers, uses the Touchpoint mechanism inherited from ncObject.
 		
-		[element("3p1")]  readonly attribute ncaConnectionStatus	connectionStatus
-		[element("3p2")]  readonly attribute ncaString				connectionStatusMessage;		// Arbitrary text message
-		[element("3p3")]  readonly attribute ncaPayloadStatus		payloadStatus;
-		[element("3p4")]  readonly attribute ncaString				payloadStatusMessage;			// Arbitrary text message
+		[element("3p1")]  readonly attribute ncConnectionStatus	connectionStatus
+		[element("3p2")]  readonly attribute ncString				connectionStatusMessage;		// Arbitrary text message
+		[element("3p3")]  readonly attribute ncPayloadStatus		payloadStatus;
+		[element("3p4")]  readonly attribute ncString				payloadStatusMessage;			// Arbitrary text message
 	
-		[element("3m1")]  ncaMethodResultReceiverStatus				GetStatus();					// connection status + payload status in one call
+		[element("3m1")]  ncMethodResultReceiverStatus				GetStatus();					// connection status + payload status in one call
 		
 		//	NOTIFICATIONS:
 		//
-		// 	This class inherits the property-changed event from ncaObject.
+		// 	This class inherits the property-changed event from ncObject.
 		//	That event is the primary means by which controllers will learn
 		//	of receiver status changes.  The Get(...) methods listed above
 		//	should not be used for polling receiver status. Instead, controllers
 		//	should subscribe to the appropriate property-changed event(s).
 	};
 
-	[control-class("1.4.1.1",1)] interface ncaReceiverMonitorProtected :: ncaReceiverMonitor {
+	[control-class("1.4.1.1",1)] interface ncReceiverMonitorProtected : ncReceiverMonitor {
 	
 		// Derived receiver monitoring agent class for SMPTE ST 2022-7-type receivers.
 		
-		[element("4p1")]  readonly attribute ncaBoolean				signalProtectionStatus;
+		[element("4p1")]  readonly attribute ncBoolean				signalProtectionStatus;
 	};
 $endmacro
 
-$macro(FeatureSet003)	$#	 Audio control & monitoring
+$macro(FeatureSet003)
 
 	//  ----------------------------------------------------------------------------------
 	//	
@@ -1158,7 +1108,7 @@ $macro(FeatureSet003)	$#	 Audio control & monitoring
 	//  ----------------------------------------------------------------------------------
 	
 $endmacro
-$macro(FeatureSet004)	$#	 Video control & monitoring
+$macro(FeatureSet004)
 
 	//  ----------------------------------------------------------------------------------
 	//	
@@ -1168,7 +1118,7 @@ $macro(FeatureSet004)	$#	 Video control & monitoring
 	//  ----------------------------------------------------------------------------------
 	
 $endmacro
-$macro(FeatureSet005)	$#	 Control aggregation
+$macro(FeatureSet005)
 
 	//  ----------------------------------------------------------------------------------
 	//	
@@ -1178,7 +1128,7 @@ $macro(FeatureSet005)	$#	 Control aggregation
 	//  ----------------------------------------------------------------------------------
 	
 $endmacro
-$macro(FeatureSet006)	$#	 Matrixing
+$macro(FeatureSet006)
 
 	//  ----------------------------------------------------------------------------------
 	//
@@ -1187,11 +1137,11 @@ $macro(FeatureSet006)	$#	 Matrixing
 	//
 	//  ----------------------------------------------------------------------------------
 	
-		[control-class("1.3",1)] interface ncaMatrix {
+		[control-class("1.3",1)] interface ncMatrix {
 			TBD
 		};
 $endmacro
-$macro(FeatureSet007)	$#	 Datasets
+$macro(FeatureSet007)
 
 	//  ----------------------------------------------------------------------------------
 	//	
@@ -1201,7 +1151,7 @@ $macro(FeatureSet007)	$#	 Datasets
 	//  ----------------------------------------------------------------------------------
 	
 $endmacro
-$macro(FeatureSet008)	$#	 Logging
+$macro(FeatureSet008)
 
 	//  ----------------------------------------------------------------------------------
 	//	
@@ -1211,7 +1161,7 @@ $macro(FeatureSet008)	$#	 Logging
 	//  ----------------------------------------------------------------------------------
 	
 $endmacro
-$macro(FeatureSet009)	$#	 Media file storage & playout
+$macro(FeatureSet009)
 
 	//  ----------------------------------------------------------------------------------
 	//	
@@ -1221,7 +1171,7 @@ $macro(FeatureSet009)	$#	 Media file storage & playout
 	//  ----------------------------------------------------------------------------------
 	
 $endmacro
-$macro(FeatureSet010)	$#	 Command sets & prestored programs
+$macro(FeatureSet010)
 
 	//  ----------------------------------------------------------------------------------
 	//	
@@ -1231,7 +1181,7 @@ $macro(FeatureSet010)	$#	 Command sets & prestored programs
 	//  ----------------------------------------------------------------------------------
 	
 $endmacro
-$macro(FeatureSet011)	$#	 Prestored control parameters
+$macro(FeatureSet011)
 
 	//  ----------------------------------------------------------------------------------
 	//	
@@ -1242,7 +1192,7 @@ $macro(FeatureSet011)	$#	 Prestored control parameters
 	
 $endmacro
 
-$macro(FeatureSet012)	$#	 Connection management
+$macro(FeatureSet012)
 
 	//  ----------------------------------------------------------------------------------
 	//	
@@ -1252,7 +1202,7 @@ $macro(FeatureSet012)	$#	 Connection management
 	//  ----------------------------------------------------------------------------------
 	
 $endmacro
-$macro(FeatureSet013)	$#	 Dynamic device configuration
+$macro(FeatureSet013)
 
 	//  ----------------------------------------------------------------------------------
 	//	
@@ -1262,7 +1212,7 @@ $macro(FeatureSet013)	$#	 Dynamic device configuration
 	//  ----------------------------------------------------------------------------------
 	
 $endmacro
-$macro(FeatureSet014)	$#	 Access control
+$macro(FeatureSet014)
 
 	//  ----------------------------------------------------------------------------------
 	//	
@@ -1272,7 +1222,7 @@ $macro(FeatureSet014)	$#	 Access control
 	//  ----------------------------------------------------------------------------------
 	
 $endmacro
-$macro(FeatureSet015)	$#	 Spatial media control
+$macro(FeatureSet015)
 
 	//  ----------------------------------------------------------------------------------
 	//	
@@ -1282,7 +1232,7 @@ $macro(FeatureSet015)	$#	 Spatial media control
 	//  ----------------------------------------------------------------------------------
 	
 $endmacro
-$macro(FeatureSet016)	$#	 Power supply management
+$macro(FeatureSet016)
 
 	//  ----------------------------------------------------------------------------------
 	//	
@@ -1321,232 +1271,3 @@ $#	 Other feature sets should be included here as they get designed.
 // ============================================================================
 // END OF NC-Framework	
 // ============================================================================
-
-$macro(RevisionHistory)
-
-// ============================================================================
-//
-// REVISION HISTORY
-//
-// 	Text describing successive revisions
-// 	Text only, not webIDL code.
-// 	This macro is NOT invoked in the mainline code above.
-//
-//	Format of a revision history block:
-//	<date in yyyy.mm.dd> <maker's initials>{
-//		entries
-//		...
-//	}
-//
-//	Reverse chronological order, i.e. newest entry first
-//
-//	Coding convention:  a name prefixed by # is a macro name.
-//		e.g. #Identifiers refers to the macro 'Identifiers'.
-//		We avoid the dollar-sign prefix to prevent invoking the macro.
-//
-// ============================================================================
-	
-	
-	2022.02.16 JB {
-		Deleted unneeded manager classes:
-			ncaNetworkManager
-			ncaProcessingManager
-			ncaTaskManager
-			ncaCommandSetManager
-			ncaStoredParametersManager
-			ncaLoggingManager
-			
-		in #ModelDatatypes:
-			Added field 'ncaBoolean persistent' to ncaPropertyDescriptor
-			Added field 'ncaBoolean required' to ncaPropertyDescriptor
-			Added option "null" to enum ncaDatatypeType
-			Updated ncaDatatypeDescriptor comments to include null types
-			
-		in #MethodResultDatatypes
-			Added item "omittedProperty" to enum ncaMethodStatus.
-	}
-	2022.02.08 JB {
-		Redefined class ID per agreement on 02.08 telecon.
-		Created #PropertyValueConstraints.
-		Renamed configuration object to 'constraints and updated definition per 02.08 telecon.
-		Added notes in the ncaBlockMember definition to explain how constraints work.
-	}
-	2022.02.07 JB {
-		Renamed fields of ncaElementID to be {level,index}.
-		Added ncaMethodResultPropertyValue.
-	}
-	2022.02.01 JB {
-		A few tweaks to support the blockspec work.
-	}
-	2022.01.24 JB {
-		In #ModelDatatypes:
-			changed ncaDatatypeDescriptor to include enum index values.
-			generally cleaned things up.
-		Went through file, added READONLY descriptors where applicable.
-		Cleaned up a few IDL syntax errors.
-		Added module #VersionCode with semantic version code definition.
-			This module defines 'ncaVersionCode.
-			Changed all version references in the file to use it.
-	}
-	2022.01.17 JB {
-		Added property 'readonly' to property descriptor
-		Added value 'readonly' to method result enum
-	}
-	2022.01.17 JB {	
-		As agreed, deleted implementation-specific label from ncaPort - the 'role' property is enough.
-		Added ncaSignalPath to #PortDatatypes - we missed it.
-	}
-	2022.01.11 JB {
-		Added generic Get() & Set() to ncaObject.
-		Deleted bespoke gets & sets from all classes.
-		Created #ManagementDatatypes and moved management datatype defs into it.
-		Created #AgentDatatypes & moved receiver monitoring datatype defs into it.
-	}
-	2022.01.07 JB {
-		Added ncaMethodResultSessionID to #MethodResultDatatypes .
-		Arranged #MethodResultDatatypes in alphabeical order of datatype name.
-	}
-	2022.01.06 JB {
-		Fixed ncaTouchpoint definition errors.
-		Fixed all enum options to have comments that include equivalent numeric values.
-		Changed ncaConnectionStatus enum options to parallel those of ncaPayloadStatus.
-	}
-	2022.01.04 JB {
-		Changed references to 'schema' to refer to 'BlockSpec'.
-			ncaBlock.SchemaID 		=>> .BlockSpecId
-			ncaBlock.getSchemaID	=>>	.getBlockSpecId
-			ncaMethodResultSchemaID	=>>	ncaMethodResultBlockSpecId
-			ncaSchemaId				=>>	ncaBlockSpecId
-			
-		Replaced ncaBlock.specId with five properties:
-			ncaString 		specId
-			ncaVersionCode	specVersion
-			ncaString		parentSpecId
-			ncaVersionCode	parentSpecVersion
-			ncaString		specDescription
-			
-		Changed ncaBlock.getSpecID to .getSpecInfo, and
-			changed datatype ncaMethodResultBlockSpecId to ncaMethodResultBlockSpecInfo.
-			
-	}
-	2022.01.03 JB {
-		Fixed missing semicolons and various other syntax errors.
-		
-		Updated comments.  
-		
-		Changed term 'framework' to 'core' in contexts where 'framework' was meant
-		to denote basic control model definitions used by the feature sets.  Reason:
-		in the new document naming scheme, the term 'framework' refers to the whole 
-		control model, including not only basic elements but feature sets as well.  
-		So we now use 'core' to denote basic elements.
-
-		Deleted delivery mode (reliable/fast) option for notifications.
-		
-		In #Managers, added ncaClassManager.
-		Added #ModelDatatypes, containing datatypes for ncaClassManager.
-		
-		In #MethodResultDatatypes, added:
-			ncaMethodResultClassDescriptors
-			ncaMethodResultDatatypeDescriptors
-			
-		In #CoreDatatypes, added ncaFirmwareComponent.  It was previously omitted.
-			
-		Merged NCC-O files into this one:
-			NCC-O-FS001 General Control & Monitoring .webidl 
-			- now #FS001
-			NCC-O-FS002 Endpoint Monitoring .webidl	
-			- now #FS002
-		
-		Moved matrixing features out of the core spec into FS006.
-			
-		Added placeholders for the future feature sets identified in the NCA OPL.
-		
-		Deleted ncaSearchResultFlags.  ncaBlock's FindMember<...> methods now just return everything, always.
-	}
-	2021.12.03 JB {
-		Added ncaMethodResultDatatype to #MethodResultDatatypes.
-	}
-	2021.12.02 JB {
-		In ncaSubscriptionManager:
-			Fixed incorrect method IDs in ncaSubscriptionManager.
-			In methods addSubscription(), removeSubscription(), 
-			addPropertyChangeSubscription(), and removePropertyChangeSubscription() -
-			changed 'destination' parameter to
-				ncaBlob deliveryParameters;   // delivery-mode-specific parameters
-			... which is something like what it should have been all along.
-
-	}
-	2020.12.01 JB {
-		Added ncaMethodResult.ErrorMessage.
-		ncaIdentifier:  changed comment on character set.
-		Changed event data structures so that event data defs do not inherit from ncaEventData.
-		Deleted ncaEventData.
-		In #Identifiers, added typedef for ncaSessionID.
-		Changed case of all identifiers to dromedaryCase.
-		Renamed ncaBlock.findMembersByName(...) to .findMembersByRole(...).
-		Moved userLabel and associated get|set methods into ncaObject and out of ncaWorker and ncaAgent.
-		Changed all enum definitions to use standard WebIDL enum statements instead of NCA's idiosyncratic pattern.
-			WebIDL only allows definition of string enums, but we can still use indexes in the protocol - we
-			just have to define the appropriate marshaling / unmarshaling rule.
-		Renamed #BaseDatatypes to #PrimitiveDatatypes to match usage in the Class Discovery feature set.
-		Added extended attribute [primitive] to typedefs of primitive datatypes to help Class Discovery.
-		Fixed bug in ncaClassId definition - filler was Uint16, sb Uint8.
-		Renamed #IdentifiersClassID to #IdentifiersClass - it's not just about ncaClassId.
-		Cleaned up the IdentifiersClass section and made sure the rest of the file uses class IDs and
-			class Identities correctly.
-		Add explanatory comments to the member-finding methods in ncaBlock.
-	}	
-	2021.11.30 JB {
-		In #Identifiers, added typedef for ncaName, a generic programmatic string identifier
-	}
-	2021.11.16 JB {
-		Renamed identifier datatype 'ncaName' to 'ncaRole' and adjusted
-		references to it accordingly.
-				
-		Changed IDs of signal paths and ports to be properties named 'role'
-		of type 'ncaRole'.
-			
-		Deleted datatype 'ncaPortID'.  Reason: It was unnecessary -
-		we can just use 'ncaRole' directly.
-				
-		Renamed ncaBlock.SignalFlow to ncaBlock.SignalPaths.
-		Generally replace references to 'SignalFlow' by references
-		to 'SignalPaths'.
-				
-		Added declaration of 'ncaVersionCode' to 'FrameworkDatatypes'.
-		It had been erroneously omitted.
-				
-		Added 'version' property (datatype ncaVersionCode) to ncaSchemaID.
-	}
-	2021.11.15 JB {
-		Added #ApplicationDatatypes and an invocation of it
-		in #FrameworkDatatypes.  This macro will contain declarations
-		of datatypes that are commonly used by the feature sets.
-				
-		Initial contents are definitions of decibel-related values:
-		ncaDB, ncaDBFS, ncaDBz, ncaDBu, ncaDBV, and ncaDBr.  See
-		the declarations for explanation.
-	}		
-	2021.10.25 JB {
-		Moved path & owner methods from workers & agents into OcaObject.
-		Reason: Now that managers belong to blocks, every
-		object needs path and owner methods.  Previously, 
-		we had excluded managers.
-					
-		Renamed ncaNamePath to ncaRolePath and added ncaObjectIDPath.
-		
-		Defined #HeaderComments so that the header comments
-		can be collapsed and you don't have to look at them
-		all the time.
-					
-		Reordered datatype definitions to eliminate forward references.
-			Made method result datatypes LAST.
-			Moved #BlockDatatypes up into the datatypes cluster.
-	}
-	2021.10.21 JB {
-		Added #RevisionHistory.
-		Finished cleaning up Port IDs per discussion of 2021.10.19.
-		Deleted unnecessary port datatypes.
-		Reformatted most of the text for tabwidth = 4.			
-	}
-$endmacro

@@ -9,15 +9,15 @@ This repository holds the source for this Specification, part of the family of [
 
 ### What does it do?
 
-tbc
+Describes the specification for using NMOS Control models
 
 ### Why does it matter?
 
-tbc
+Sets out the rules and framework for building control models in NMOS devices.
 
 ### How does it work?
 
-tbc
+WebIDL definitions and supporting documentation describe the way control models may be created.
 
 <!-- INTRO-END -->
 

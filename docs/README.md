@@ -5,7 +5,7 @@
 
 ### Models
 
-- [NcaObject](NcaObject.md)
+- [NcObject](NcObject.md)
 - [Blocks](Blocks.md)
 - [Managers](Managers.md)
 - [Agents](Agents.md)
