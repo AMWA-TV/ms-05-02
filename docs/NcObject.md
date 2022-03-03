@@ -76,16 +76,16 @@ Events can only be consumed as notifications when subscribed to in the Subscript
 Collection types are defined as webIDL sequences of a specific type.
 There are generic methods for getting, setting, adding and deleting items inside a collection property as part of `ncObject`.
 
-Getting a collection item is done through the `getCollectionItem` method ([element("1m4")]) by specifying the property identifier (`ncPropertyId`) and the index as arguments.
+Getting a collection item is done through the `getCollectionItem` method (\[element("1m4")\]) by specifying the property identifier (`ncPropertyId`) and the index as arguments.
 The result is of type `ncMethodResultPropertyValue`.
 
-Setting a collection item is done through the `setCollectionItem` method ([element("1m5")]) by specifying the property identifier (`ncPropertyId`), the index and the value as arguments.
+Setting a collection item is done through the `setCollectionItem` method (\[element("1m5")\]) by specifying the property identifier (`ncPropertyId`), the index and the value as arguments.
 The result is of type `ncMethodResult`.
 
-Adding an item to a collection is done through the `addCollectionItem` method ([element("1m6")]) by specifying the property identifier (`ncPropertyId`) and the value as arguments.
+Adding an item to a collection is done through the `addCollectionItem` method (\[element("1m6")\]) by specifying the property identifier (`ncPropertyId`) and the value as arguments.
 The result is of type `ncMethodResultId32` which contains the index where the value was added.
 
-Removing an item from a collection is done through the `removeCollectionItem` method ([element("1m7")]) by specifying the property identifier (`ncPropertyId`) and the index as arguments.
+Removing an item from a collection is done through the `removeCollectionItem` method (\[element("1m7")\]) by specifying the property identifier (`ncPropertyId`) and the index as arguments.
 The result is of type `ncMethodResult`.
 
 ## Touchpoints

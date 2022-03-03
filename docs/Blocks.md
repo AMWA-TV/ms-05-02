@@ -16,9 +16,9 @@ Blocks have the following properties (inherited properties from `ncObject` are n
 | specDescription   | ncString                       | Yes          | Description of blockSpec that defines this block                                   |
 | isDynamic         | ncBoolean                      | Yes          | Indicates if the contents of the block can change (members, ports or signal paths) |
 | isModified        | ncBoolean                      | Yes          | Indicates if the contents of the block have changed since the last restart         |
-| members           | sequence<ncOid>                | Yes          | Oids of this block's members                                                       |
-| ports             | sequence<ncPort>               | Yes          | This block's ports                                                                 |
-| signalPaths       | sequence<ncSignalPath>         | Yes          | This block's signal paths                                                          |
+| members           | sequence\<ncOid\>                | Yes          | Oids of this block's members                                                       |
+| ports             | sequence\<ncPort\>               | Yes          | This block's ports                                                                 |
+| signalPaths       | sequence\<ncSignalPath\>         | Yes          | This block's signal paths                                                          |
 
 Where the following data types are defined:
 
