@@ -12,17 +12,17 @@ The device manager contains basic device information and statuses.
 
 | **Property Name** | **Datatype**                   | **Readonly** | **Description**                                                         |
 | ----------------- | ------------------------------ | ------------ | ------------------------------------------------------------------------|
-| ncVersion        | ncVersionCode                 | Yes          | Version of NCA this device is compatible with                           |
-| manufacturer      | ncString                      | Yes          | Manufacturer descriptor                                                 |
-| product           | ncString                      | Yes          | Product descriptor                                                      |
-| serialNumber      | ncString                      | Yes          | Manufacturer's serial number                                            |
-| userInventoryCode | ncString                      | Yes          | Asset tracking identifier (user specified)                              |
-| deviceName        | ncString                      | Yes          | Name of this device in the application. Instance name, not product name |
-| deviceRole        | ncString                      | No           | Role of this device in the application                                  |
-| controlEnabled    | ncBoolean                     | Yes          | Indicates if this device is responsive to NCA commands                  |
-| operationalState  | ncDeviceOperationalState      | Yes          | Device operational state                                                |
-| resetCause        | ncResetCause                  | Yes          | Reason for most recent reset                                            |
-| message           | ncString                      | Yes          | Arbitrary message from the device to controllers                        |
+| ncVersion         | ncVersionCode                  | Yes          | Version of NCA this device is compatible with                           |
+| manufacturer      | ncString                       | Yes          | Manufacturer descriptor                                                 |
+| product           | ncString                       | Yes          | Product descriptor                                                      |
+| serialNumber      | ncString                       | Yes          | Manufacturer's serial number                                            |
+| userInventoryCode | ncString                       | Yes          | Asset tracking identifier (user specified)                              |
+| deviceName        | ncString                       | Yes          | Name of this device in the application. Instance name, not product name |
+| deviceRole        | ncString                       | No           | Role of this device in the application                                  |
+| controlEnabled    | ncBoolean                      | Yes          | Indicates if this device is responsive to NCA commands                  |
+| operationalState  | ncDeviceOperationalState       | Yes          | Device operational state                                                |
+| resetCause        | ncResetCause                   | Yes          | Reason for most recent reset                                            |
+| message           | ncString                       | Yes          | Arbitrary message from the device to controllers                        |
 
 Where the following types are defined:
 
@@ -141,7 +141,7 @@ interface ncClassIdentity {
 }
 
 interface ncMethodResultClassDescriptors : ncMethodResult { // class descriptors result
-    attribute sequence<ncClassDescriptor> descriptor;
+    attribute sequence<ncClassDescriptor> value;
 };
 ```
 

@@ -525,6 +525,10 @@ $macro(AgentDatatypes)
 		"PayloadError",								// 3	Some kind of error has occurred
 	};
 	
+	interface ncReceiverStatus {
+		attribute ncConnectionStatus 		connectionStatus;
+		attribute ncPayloadStatus			payloadStatus;
+	};
 
 $endmacro
 $macro(MethodResultDatatypes) 
@@ -558,45 +562,38 @@ $macro(MethodResultDatatypes)
 		attribute ncMethodStatus status;
 		attribute ncString errorMessage;
 	};
-	interface ncMethodResultBlockDescriptors : 	 ncMethodResult {	// block descriptors result
-		attribute sequence<ncBlockrDescriptor> value;
+	interface ncMethodResultBlockDescriptors : ncMethodResult {	// block descriptors result
+		attribute sequence<ncBlockDescriptor> value;
 	};
 	interface ncMethodResultBlockMemberDescriptors : ncMethodResult {	// block member descriptors result
 		attribute sequence<ncBlockMemberDescriptor> value;
-	};
-	interface ncMethodResultBlockSpecInfo		 : 	 ncMethodResult {	// BlockSpec info result
-		attribute ncString 		id;										// BlockSpec's global ID
-		attribute ncVersionCode	versionCode;							// Blockspec's version code
-		attribute ncString 		parentId;								// Parent blockSpec's global  ID
-		attribute ncVersionCode	parentVersionCode;						// Parent blockspec's version code
-		attribute ncString			description;							// Simple description of blockSpec
-	};
+	};	
 	interface ncMethodResultBoolean : 				 ncMethodResult {	// single boolean result
 		attribute ncBoolean value;	
 	};
-	interface ncMethodResultClassDescriptors : 	 ncMethodResult {	// class descriptors result
-		attribute sequence<ncClassDescriptor> descriptor;
+	interface ncMethodResultClassDescriptors : ncMethodResult {	// class descriptors result
+		attribute sequence<ncClassDescriptor> value;
 	};
 	interface ncMethodResultClassId : 				 ncMethodResult {	// classId result
-		attribute	 ncClassID id;
+		attribute	 ncClassID value;
 	};
 	interface ncMethodResultClassIdentity : 		 ncMethodResult {	// classIdentity result
-		attribute	 ncClassIdentity identity;	
+		attribute	 ncClassIdentity value;	
 	};
 	interface ncMethodResultClassVersion : 		 ncMethodResult {	// classVersion result
-		attribute	 ncVersionCode version;	
+		attribute	 ncVersionCode value;	
 	};
 	interface ncMethodResultDatatype : 			 ncMethodResult {	// NTP time result
-		attribute ncDatatype datatype;
+		attribute ncDatatype value;
 	};
 	interface ncMethodResultDatatypeDescriptors : 	 ncMethodResult {	// dataype descriptors result
 		attribute sequence<ncDatatypeDescriptor> value;
 	};
 	interface ncMethodResultFirmwareComponent : 	 ncMethodResult {	// component descriptor result
-		attribute ncfirmwareComponent component;
+		attribute ncfirmwareComponent value;
 	};
 	interface ncMethodResultId32 : 				 ncMethodResult {	// Id32 result
-		attribute ncId32 index;	
+		attribute ncId32 value;	
 	};	
 	interface ncMethodResultObjectIdPath :			 ncMethodResult {	// object path result
 		attribute ncObjectIDPath value;	
@@ -605,10 +602,10 @@ $macro(MethodResultDatatypes)
 		attribute ncRolePath value;	
 	};
 	interface ncMethodResultObjectSequence : 		 ncMethodResult {	// object-sequence result
-		attribute sequence<ObjectSequenceItem> items;
+		attribute sequence<ObjectSequenceItem> value;
 	};
 	interface ncMethodResultObjectSequenceItem : 	 ncMethodResult {	// object-sequence item result
-		attribute sequence<ObjectSequenceItem> items;
+		attribute sequence<ObjectSequenceItem> value;
 	};
 	interface ncMethodResultOID : 					 ncMethodResult {	// object ID result
 		attribute ncOid value;	
@@ -623,11 +620,10 @@ $macro(MethodResultDatatypes)
 		attribute any value;
 	}
 	interface ncMethodResultReceiverStatus : ncMethodResult {	
-		attribute ncConnectionStatus 		connectionStatus;
-		attribute ncPayloadStatus			payloadStatus;
+		attribute ncReceiverStatus 		value;
 	};
 	interface ncMethodResultSessionID :			 ncMethodResult {	// session ID result
-		attribute ncSessionID SessionID;
+		attribute ncSessionID value;
 	};
 	interface ncMethodResultSignalPath : 			 ncMethodResult {	// signal path result
 		attribute ncSignalPath value;
@@ -642,10 +638,10 @@ $macro(MethodResultDatatypes)
 		attribute ncTimeInterval value;	
 	};
 	interface ncMethodResultTimeNtp : 				 ncMethodResult {	// NTP time result
-		attribute ncTimeNtp time;
+		attribute ncTimeNtp value;
 	};
 	interface ncMethodResultTimePtp : 				 ncMethodResult {	// PTP time result
-		attribute ncTimePtp time;
+		attribute ncTimePtp value;
 	};
 	interface ncMethodResultTouchpoints : 			 ncMethodResult {	// touchpoints result
 		attribute sequence<ncTouchpoint> value;
@@ -710,7 +706,7 @@ $macro(BaseClasses)
 	//	Class ncObject, base classes for major class categories, and associated datatypes
 	//  ----------------------------------------------------------------------------------
 	
-	[control-class("1",1)] interface ncObject{	
+	[control-class("1",1)] interface ncObject{
 
 		//	Abstract base class for entire NCC class structure
 	
