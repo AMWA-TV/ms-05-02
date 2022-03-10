@@ -931,7 +931,7 @@ $macro(Managers)
 		);	
 				
 		[element("3m4")] 
-		 ncMethodResultDataTypes GetDataTypes(				// Get descriptors of datatypes used by blocks(s)
+		 ncMethodResultDatatypeDescriptors GetDataTypes(				// Get descriptors of datatypes used by blocks(s)
 			 ncRolePath blockPath, 									// path to block 
 			 ncBoolean recurseBlocks, 							// TRUE to recurse contained blocks
 			 ncBoolean allDefs									// TRUE to include descriptors of referenced datatypes
