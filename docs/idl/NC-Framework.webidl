@@ -162,13 +162,13 @@ $macro(Identifiers)
 			attribute ncUint16		index;	
 		};
 		 
-		typedef ncElementID		 ncPropertyID;	
+		typedef ncElementID		 ncPropertyId;	
 		typedef ncElementID		 ncMethodID;			
 		typedef ncElementID		 ncEventID;			
 						
 		// MULTIPURPOSE INTERNAL HANDLES 
-		typedef Uint16				 ncId32;				
-		typedef Uint32				 ncID32;			
+		typedef ncUint16				 ncId16;				
+		typedef ncUint32				 ncId32;			
 		
 		// OTHER 
 		typedef ncString			 ncUri;	
@@ -248,7 +248,7 @@ $macro(EventAndSubscriptionDatatypes)
 	 };
 	 	 
 	interface ncPropertyChangedEventData {					//	Payload of property-changed event		 
-		attribute ncPropertyID			propertyId;			// 	ID of changed property
+		attribute ncPropertyId			propertyId;			// 	ID of changed property
 		attribute ncPropertyChangeType	changeType;			// 	Mainly for maps & sets
 		attribute any					propertyValue;		// 	Property-type specific 
 	 };
@@ -310,7 +310,7 @@ $macro(ModelDatatypes)
 	interface ncDatatypeDescriptor {
 		 ncName								name;			// datatype name
 		 ncDatatypeType						type;			// primitive, typedef, struct, enum, or null
-		(ncString  or ncName or sequence<ncFieldDescriptor> or sequence<ncEnumItemDescriptor> or null) content; // dataype content, see below
+		(ncString  or ncName or sequence<ncFieldDescriptor> or sequence<ncEnumItemDescriptor> or null) content; // datatype content, see below
 		
 		//  Contents of property 'content':
 		//
@@ -706,7 +706,7 @@ $macro(BaseClasses)
 	//	Class ncObject, base classes for major class categories, and associated datatypes
 	//  ----------------------------------------------------------------------------------
 	
-	[control-class("1",1)] interface ncObject{
+	[control-class("1",1)] interface ncObject {
 
 		//	Abstract base class for entire NCC class structure
 	
@@ -724,8 +724,8 @@ $macro(BaseClasses)
 		// Generic GET/SET methods
 	
 		[element("1m1")]  ncMethodResultPropertyValue	get(ncPropertyId id);											// Get property value
-		[element("1m2")]  ncMethodResult				set(ncPropertyID id, any value);								// Set property value
-		[element("1m3")]  ncMethodResult				clear(ncPropertyID id);										// Sets property to initial value
+		[element("1m2")]  ncMethodResult				set(ncPropertyId id, any value);								// Set property value
+		[element("1m3")]  ncMethodResult				clear(ncPropertyId id);										// Sets property to initial value
 		[element("1m4")]  ncMethodResultPropertyValue	getCollectionItem(ncPropertyId id, ncId32 index);					// Get collection item
 		[element("1m5")]  ncMethodResult				setCollectionItem(ncPropertyId id, ncId32 index, any value);	// Set collection item
 		[element("1m6")]  ncMethodResultId32			addCollectionItem(ncPropertyId id, any value);					// Add item to collection
@@ -734,7 +734,7 @@ $macro(BaseClasses)
 		// Optional lock methods
 		[element("1m8")]  ncMethodResult lockWait(
 			 ncOid target, 												// OID of object to be (un)locked
-			 ncLockStatus requestedLockStatus, 							// Type of lock requested, or unlock
+			 ncLockState requestedLockStatus, 							// Type of lock requested, or unlock
 			 ncTimeInterval timeout												// Method fails if wait exceeds this.  0=forever
 		);
 
@@ -964,13 +964,13 @@ $macro(Managers)
 			 ncMethodResult		
 			addPropertyChangeSubscription(
 				 ncOid						emitter,					// ID of object where property is
-				 ncPropertyID 				property					// ID of the property
+				 ncPropertyId 				property					// ID of the property
 		);
 		[element("3m4")]
 			 ncMethodResult
 			removePropertyChangeSubscription(
 				 ncOid			emitter,								// ID of object where property is
-				 ncPropertyID 	property								// ID of the property
+				 ncPropertyId 	property								// ID of the property
 		);
 	};
 
