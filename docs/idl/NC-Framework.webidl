@@ -363,7 +363,7 @@ $macro(ModelDatatypes)
 	};
 	
 	interface ncClassDescriptor {						// Descriptor of a class
-		 ncString							description;	// non-programmatic description - may be empty
+		ncString							description;	// non-programmatic description - may be empty
 		sequence<ncPropertyDescriptor> 	properties;		// 0-n property descriptors
 		sequence<ncMethodDescriptor>		methods;		// 0-n method descriptors
 		sequence<ncEventDescriptor>		events;			// 0-n event descriptors
@@ -723,13 +723,13 @@ $macro(BaseClasses)
 		
 		// Generic GET/SET methods
 	
-		[element("1m1")]  ncMethodResultPropertyValue	get(ncPropertyId Id);											// Get property value
-		[element("1m2")]  ncMethodResult				set(ncPropertyID id, any Value);								// Set property value
+		[element("1m1")]  ncMethodResultPropertyValue	get(ncPropertyId id);											// Get property value
+		[element("1m2")]  ncMethodResult				set(ncPropertyID id, any value);								// Set property value
 		[element("1m3")]  ncMethodResult				clear(ncPropertyID id);										// Sets property to initial value
-		[element("1m4")]  ncMethodResultPropertyValue	getCollectionItem(ncPropertyId Id, ncId32 Index);					// Get collection item
-		[element("1m5")]  ncMethodResult				setCollectionItem(ncPropertyId Id, ncId32 Index, any Value);	// Set collection item
-		[element("1m6")]  ncMethodResultId32			addCollectionItem(ncPropertyId Id, any Value);					// Add item to collection
-		[element("1m7")]  ncMethodResult				removeCollectionItem(ncPropertyId, ncId32 Index);				// Delete collection item
+		[element("1m4")]  ncMethodResultPropertyValue	getCollectionItem(ncPropertyId id, ncId32 index);					// Get collection item
+		[element("1m5")]  ncMethodResult				setCollectionItem(ncPropertyId id, ncId32 index, any value);	// Set collection item
+		[element("1m6")]  ncMethodResultId32			addCollectionItem(ncPropertyId id, any value);					// Add item to collection
+		[element("1m7")]  ncMethodResult				removeCollectionItem(ncPropertyId id, ncId32 index);				// Delete collection item
 
 		// Optional lock methods
 		[element("1m8")]  ncMethodResult lockWait(
@@ -1020,7 +1020,7 @@ $macro(FeatureSet001)
 		
 		[element("4p1")]  attribute ncUint16		setpoint;		// current switch position
 		[element("4p2")]  attribute ncBitset		pointEnabled;	// map of which positions are enabled
-		[element("4p3")]  attribute sequence(ncString) labels;		// list of position labels
+		[element("4p3")]  attribute sequence<ncString> labels;		// list of position labels
 	};
 		
 	[control-class("1.2.1.3",1)]  interface ncIdentificationActuator {
