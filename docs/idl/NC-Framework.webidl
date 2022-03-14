@@ -282,7 +282,7 @@ $macro(ApplicationDatatypes)
 	
 	// Decibel-related datatypes
 	
-	typedef ncFloat32 		 ncDb			// A ratio expressed in dB.
+	typedef ncFloat32 		 ncDB			// A ratio expressed in dB.
 	typedef	 ncDB			 ncDbv			// dB ref 1 Volt - used only for analogue signals
 	typedef ncDB			 ncDbu			// dB ref 0.774 Volt - used only for analogue signals
 	typedef	 ncDB			 ncDbfs			// dB ref device maximum internal digital sample value
