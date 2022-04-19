@@ -498,7 +498,7 @@ $macro(AgentDatatypes)
 		"ConnectionError"	// 3 Connected but broken
 	};
 	
-	interface NcPayloadStatus {
+	enum NcPayloadStatus {
 		"Undefined",				// 0 This is the value when there's no connection.
 		"PayloadOK",				// 1 Payload type is one we know about and the PDU is well-formed
 		"PayloadFormatUnsupported",	// 2 Payload is not one we know about
