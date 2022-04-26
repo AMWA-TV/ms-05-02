@@ -715,9 +715,9 @@ $macro(BaseClasses)
 	[control-class("1.2.1", "1.0.0")] interface NcSignalWorker: NcWorker {
 
 		// Signal worker base class
-		[element("2p1")]				attribute	NcBoolean			enabled;	// TRUE iff worker is enabled
-		[element("2p2")]				attribute	sequence<NcPort>	ports;		// The worker's signal ports
-		[element("2p3")]	readonly	attribute	NcTimeInterval		latency;	// Processing latency of this object (optional)
+		[element("3p1")]				attribute	NcBoolean			enabled;	// TRUE iff worker is enabled
+		[element("3p2")]				attribute	sequence<NcPort>	ports;		// The worker's signal ports
+		[element("3p3")]	readonly	attribute	NcTimeInterval		latency;	// Processing latency of this object (optional)
 	};
 
 	[control-class("1.2.1.1", "1.0.0")] interface NcActuator: NcSignalWorker {
@@ -906,38 +906,38 @@ $macro(FeatureSet001)
 	[control-class("1.2.1.1.1", "1.0.0")] interface NcGain: NcActuator {
 	
 		//	Simple gain control
-		[element("4p1")]	attribute	NcDB	setPoint;
+		[element("5p1")]	attribute	NcDB	setPoint;
 	};
 	
 	[control-class("1.2.1.1.2", "1.0.0")] interface NcSwitch: NcActuator {
 	
 		// n-position switch with a name for each position
 		
-		[element("4p1")]	attribute	NcUint16			setpoint;		// current switch position
-		[element("4p2")]	attribute	NcBitset			pointEnabled;	// map of which positions are enabled
-		[element("4p3")]	attribute	sequence<NcString>	labels;			// list of position labels
+		[element("5p1")]	attribute	NcUint16			setpoint;		// current switch position
+		[element("5p2")]	attribute	NcBitset			pointEnabled;	// map of which positions are enabled
+		[element("5p3")]	attribute	sequence<NcString>	labels;			// list of position labels
 	};
 
 	[control-class("1.2.1.1.3", "1.0.0")] interface NcIdentificationActuator: NcActuator {
 	
 		// Identification actuator - sets some kind of physical indicator on the device
 		
-		[element("4p1")]	attribute	NcBoolean	active;	// TRUE iff indicator is active
+		[element("5p1")]	attribute	NcBoolean	active;	// TRUE iff indicator is active
 	};
 		
 	[control-class("1.2.1.2.1", "1.0.0")] interface NcLevelSensor: NcSensor {
 		
 		// Simple level sensor that reads in DB
 		
-		[element("4p1")]	attribute	NcDB	reading;
+		[element("5p1")]	attribute	NcDB	reading;
 	};
 	
 	[control-class("1.2.1.2.2", "1.0.0")] interface NcStateSensor: NcSensor {
 	
 		// State sensor - returns an index into an array of state names.
 		
-		[element("4p1")]  attribute NcUint16 			reading;
-		[element("4p2")]  attribute sequence(NcString)	stateNames;
+		[element("5p1")]  attribute NcUint16 			reading;
+		[element("5p2")]  attribute sequence(NcString)	stateNames;
 	};
 	
 	[control-class("1.2.1.2.3", "1.0.0")] interface NcIdentificationSensor: NcSensor {
@@ -1126,8 +1126,8 @@ $macro(FeatureSet017)
 	
  	[control-class("1.2.3", "1.0.0")] interface NcWorkflowDataRecord: NcWorker {
 	
-		[element("2p1"]	attribute	NcProductionDataRecordType	type;
-		[element("2p2"]	attribute	NsString					id;
+		[element("3p1"]	attribute	NcProductionDataRecordType	type;
+		[element("3p2"]	attribute	NsString					id;
 		
 		// Additional properties and methods will be defined by subclasses.
 	};
