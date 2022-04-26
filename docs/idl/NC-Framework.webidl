@@ -712,7 +712,7 @@ $macro(BaseClasses)
 		// Worker base class
 	};
 	
-	[control-class("1.2.1", "1.0.0")] interface NcSignalWorker: NcWorker{
+	[control-class("1.2.1", "1.0.0")] interface NcSignalWorker: NcWorker {
 
 		// Signal worker base class
 		[element("2p1")]				attribute	NcBoolean			enabled;	// TRUE iff worker is enabled
