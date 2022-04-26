@@ -486,30 +486,6 @@ $macro(ManagementDatatypes)
 		attribute NcBlob deviceSpecificDetails; //Device implementation specific details
 	};
 $endmacro
-$macro(AgentDatatypes)
-	//  ----------------------------------------------------------------------------------
-	//	Agent datatypes
-	//  ----------------------------------------------------------------------------------
-	
-	enum NcConnectionStatus 
-		"Undefined",		// 0 This is the value when there is no receiver
-		"Connected",		// 1 Connected to a stream
-		"Disconnected",		// 2 Not connected to a stream
-		"ConnectionError"	// 3 Connected but broken
-	};
-	
-	enum NcPayloadStatus {
-		"Undefined",				// 0 This is the value when there's no connection.
-		"PayloadOK",				// 1 Payload type is one we know about and the PDU is well-formed
-		"PayloadFormatUnsupported",	// 2 Payload is not one we know about
-		"PayloadError",				// 3 Some kind of error has occurred
-	};
-	
-	interface NcReceiverStatus {
-		attribute	NcConnectionStatus	connectionStatus;
-		attribute	NcPayloadStatus		payloadStatus;
-	};
-$endmacro
 $macro(MethodResultDatatypes) 
 	//  ----------------------------------------------------------------------------------
 	//	Method result datatypes
@@ -652,7 +628,6 @@ $macro(CoreDatatypes)
 	$BlockDatatypes()
 	$ModelDatatypes()
 	$ManagementDatatypes()
-	$AgentDatatypes()
 	$MethodResultDatatypes()
 	
 	// Concurrency lock states
@@ -732,24 +707,25 @@ $macro(BaseClasses)
 		[element("1e1")]	[event]	void	PropertyChanged(NcPropertyChangedEventData eventData);
 	};
 
-	[control-class("1.2", "1.0.0")] interface NcWorker: NcObject{
-
+	[control-class("1.2", "1.0.0")] interface NcWorker: NcObject {
+	
 		// Worker base class
-		[element("2p1")]				attribute	NcBoolean			enabled;	// TRUE iff worker is enabled
-		[element("2p2")]				attribute	sequence<NcPort>	ports;		// The worker's signal ports
-		[element("2p3")]	readonly	attribute	NcTimeInterval		latency;	// Processing latency of this object (optional)
+	};
+	
+	[control-class("1.2.1", "1.0.0")] interface NcSignalWorker: NcWorker {
+
+		// Signal worker base class
+		[element("3p1")]				attribute	NcBoolean			enabled;	// TRUE iff worker is enabled
+		[element("3p2")]				attribute	sequence<NcPort>	ports;		// The worker's signal ports
+		[element("3p3")]	readonly	attribute	NcTimeInterval		latency;	// Processing latency of this object (optional)
 	};
 
-	[control-class("1.2.1", "1.0.0")] interface NcActuator: NcWorker {
+	[control-class("1.2.1.1", "1.0.0")] interface NcActuator: NcSignalWorker {
 		// Actuator base class
 	};
 
-	[control-class("1.2.2", "1.0.0")] interface NcSensor: NcWorker {
+	[control-class("1.2.1.2", "1.0.0")] interface NcSensor: NcSignalWorker {
 		// Sensor base class
-	};
-
-	[control-class("1.4", "1.0.0")] interface NcAgent: NcObject {
-		// Agent base class
 	};
 $endmacro
 $macro(Block)
@@ -801,58 +777,16 @@ $macro(Block)
 		);
 	};
 $endmacro
-$macro(CoreAgents)
-	//  ----------------------------------------------------------------------------------
-	//	Agents
-	//  ----------------------------------------------------------------------------------
-
-	//	Object sequence agent
-	[control-class("1.4.1", "1.0.0")] interface NcObjectSequence: NcAgent {
-	
-		[element("3p1")]	sequence<NcObjectSequenceItem>	items // The sequence, ordered by 'index' property
-	};
-	
-	// Object-sequence list item
-	interface NcObjectSequenceItem {
-	
-	// 	Object sequence item.
-	//	Sequences are ordered by value of 'index' property.
-	
-		attribute	NcUint16 	index;	// ordinal
-		attribute	NcOid		oid;	// object ID
-		attribute	NcRolePath	path;	// object path
-	};
-$endmacro
-$macro(WorkflowDataCore)
-	//  ----------------------------------------------------------------------------------
-	//	Workflow data
-	//  ----------------------------------------------------------------------------------
-	
-	//	Workflow data record base class
-	[control-class("1.6", "1.0.0")] interface NcWorkflowDataRecord: NcAgent {
-	
-		[element("2p1"]	attribute	NcProductionDataRecordType	type;
-		[element("2p2"]	attribute	NsString					id;
-		
-		// Additional properties and methods will be defined by subclasses.
-	};
-	
-	enum NcProductionDataRecordType {
-		"Blob",			// 0 binary large object, format undefined
-		"As10Header",	// 1 AMWA AS-10	header
-		"As10Shim"		// 2 AMWA AS-10 shim
-	};
-$endmacro
 $macro(Managers)
 	//  -----------------------------------------------------------------------------
 	// Manager classes
 	// -----------------------------------------------------------------------------
 
-	[control-class("1.7", "1.0.0")] interface NcManager: NcObject {
+	[control-class("1.3", "1.0.0")] interface NcManager: NcObject {
 		// Manager base class
 	};
 	
-	[control-class("1.7.1", "1.0.0")] interface NcDeviceManager: NcManager {
+	[control-class("1.3.1", "1.0.0")] interface NcDeviceManager: NcManager {
 		
 		//	Device manager class
 		//	Contains basic device information and status.
@@ -870,11 +804,11 @@ $macro(Managers)
 		[element("3p11")]	readonly	attribute	NcString					message				// Arbitrary message from dev to controller			<Mandatory>
 	};
 	
-	[control-class("1.7.2", "1.0.0")] interface NcSecurityManager: NcManager {
+	[control-class("1.3.2", "1.0.0")] interface NcSecurityManager: NcManager {
 		//	Security manager class
 	};
 	
-	[control-class("1.7.3", "1.0.0")] interface NcClassManager: NcManager {
+	[control-class("1.3.3", "1.0.0")] interface NcClassManager: NcManager {
 	
 		//	Class manager class
 		//  Returns definitions of control classes and datatypes that are used in the device.
@@ -913,7 +847,7 @@ $macro(Managers)
 		);
 	};
 	
-	[control-class("1.7.4", "1.0.0")] interface NcFirmwareManager: NcManager {
+	[control-class("1.3.4", "1.0.0")] interface NcFirmwareManager: NcManager {
 		
 		//	Firmware / software manager : Reports versions of components
 		
@@ -922,7 +856,7 @@ $macro(Managers)
 		[element("3m1")]	NcMethodResultFirmwareComponent	GetComponent();
 	};
 	
-	[control-class("1.7.5", "1.0.0")] interface NcSubscriptionManager: NcManager {
+	[control-class("1.3.5", "1.0.0")] interface NcSubscriptionManager: NcManager {
 	
 		// Subscription manager
 		
@@ -939,7 +873,7 @@ $macro(Managers)
 		);
 	};
 
-	[control-class("1.7.6", "1.0.0")] interface NcPowerManager: NcManager {
+	[control-class("1.3.6", "1.0.0")] interface NcPowerManager: NcManager {
 		[element("3p1")]	readonly	attribute	NcDeviceGenericState 	state;
 		[element("3p2")]	readonly	attribute	sequence<NcOid>			powerSupplyOids;		// OIDs of available ncPowerSupply objects
 		[element("3p3")]				attribute	sequence<NcOid>			activePowerSupplyOids;	// OIDs of active ncPowerSupply objects
@@ -953,7 +887,7 @@ $macro(Managers)
 		);
 	};
 	
-	[control-class("1.7.8", "1.0.0")] interface NcDeviceTimeManager: NcManager {
+	[control-class("1.3.7", "1.0.0")] interface NcDeviceTimeManager: NcManager {
 		//
 		//	Controls device's internal clock(s) and its reference.
 		//
@@ -969,44 +903,44 @@ $macro(FeatureSet001)
 	// Feature set 001 - General control & monitoring
 	// -----------------------------------------------------------------------------
 	
-	[control-class("1.2.1.1", "1.0.0")] interface NcGain: NcActuator {
+	[control-class("1.2.1.1.1", "1.0.0")] interface NcGain: NcActuator {
 	
 		//	Simple gain control
-		[element("4p1")]	attribute	NcDB	setPoint;
+		[element("5p1")]	attribute	NcDB	setPoint;
 	};
 	
-	[control-class("1.2.1.2", "1.0.0")] interface NcSwitch: NcWorker {
+	[control-class("1.2.1.1.2", "1.0.0")] interface NcSwitch: NcActuator {
 	
 		// n-position switch with a name for each position
 		
-		[element("4p1")]	attribute	NcUint16			setpoint;		// current switch position
-		[element("4p2")]	attribute	NcBitset			pointEnabled;	// map of which positions are enabled
-		[element("4p3")]	attribute	sequence<NcString>	labels;			// list of position labels
+		[element("5p1")]	attribute	NcUint16			setpoint;		// current switch position
+		[element("5p2")]	attribute	NcBitset			pointEnabled;	// map of which positions are enabled
+		[element("5p3")]	attribute	sequence<NcString>	labels;			// list of position labels
 	};
 
-	[control-class("1.2.1.3", "1.0.0")] interface NcIdentificationActuator: NcActuator {
+	[control-class("1.2.1.1.3", "1.0.0")] interface NcIdentificationActuator: NcActuator {
 	
 		// Identification actuator - sets some kind of physical indicator on the device
 		
-		[element("4p1")]	attribute	NcBoolean	active;	// TRUE iff indicator is active
+		[element("5p1")]	attribute	NcBoolean	active;	// TRUE iff indicator is active
 	};
 		
-	[control-class("1.2.2.1", "1.0.0")] interface NcLevelSensor: NcSensor {
+	[control-class("1.2.1.2.1", "1.0.0")] interface NcLevelSensor: NcSensor {
 		
 		// Simple level sensor that reads in DB
 		
-		[element("4p1")]	attribute	NcDB	reading;
+		[element("5p1")]	attribute	NcDB	reading;
 	};
 	
-	[control-class("1.2.1.2", "1.0.0")] interface NcStateSensor: NcSensor {
+	[control-class("1.2.1.2.2", "1.0.0")] interface NcStateSensor: NcSensor {
 	
 		// State sensor - returns an index into an array of state names.
 		
-		[element("4p1")]  attribute NcUint16 			reading;
-		[element("4p2")]  attribute sequence(NcString)	stateNames;
+		[element("5p1")]  attribute NcUint16 			reading;
+		[element("5p2")]  attribute sequence(NcString)	stateNames;
 	};
 	
-	[control-class("1.2.2.3", "1.0.0")] interface ncIdentificationSensor: NcSensor {
+	[control-class("1.2.1.2.3", "1.0.0")] interface NcIdentificationSensor: NcSensor {
 		
 		// 	Identification sensor - raises an event when the user activates some kind of
 		//	this-is-me control on the device.
@@ -1020,11 +954,28 @@ $macro(FeatureSet002)
 	//
 	// Feature set 002 - NMOS receiver Monitoring
 	//
-	// Related datatypes are in module 'AgentDatatypes'
-	//
 	// -----------------------------------------------------------------------------
 	
-	[control-class("1.4.1", "1.0.0")] interface NcReceiverMonitor: NcAgent {
+	enum NcConnectionStatus {
+		"Undefined",		// 0 This is the value when there is no receiver
+		"Connected",		// 1 Connected to a stream
+		"Disconnected",		// 2 Not connected to a stream
+		"ConnectionError"	// 3 Connected but broken
+	};
+	
+	enum NcPayloadStatus {
+		"Undefined",				// 0 This is the value when there's no connection.
+		"PayloadOK",				// 1 Payload type is one we know about and the PDU is well-formed
+		"PayloadFormatUnsupported",	// 2 Payload is not one we know about
+		"PayloadError",				// 3 Some kind of error has occurred
+	};
+	
+	interface NcReceiverStatus {
+		attribute	NcConnectionStatus	connectionStatus;
+		attribute	NcPayloadStatus		payloadStatus;
+	};
+	
+	[control-class("1.2.2", "1.0.0")] interface NcReceiverMonitor: NcWorker {
 	
 		// Receiver monitoring agent.
 		// For attaching to specific receivers, uses the Touchpoint mechanism inherited from NcObject.
@@ -1045,7 +996,7 @@ $macro(FeatureSet002)
 		//	should subscribe to the appropriate property-changed event(s).
 	};
 
-	[control-class("1.4.1.1", "1.0.0")] interface NcReceiverMonitorProtected: NcReceiverMonitor {
+	[control-class("1.2.2.1", "1.0.0")] interface NcReceiverMonitorProtected: NcReceiverMonitor {
 	
 		// Derived receiver monitoring agent class for SMPTE ST 2022-7-type receivers.
 		
@@ -1083,7 +1034,7 @@ $macro(FeatureSet006)
 	//	Placeholder for work to be done in the future
 	//
 	//  ----------------------------------------------------------------------------------
-	[control-class("1.3",1)] interface NcMatrix {
+	[control-class("1.2.1.3",1)] interface NcMatrix: NcSignalWorker {
 		
 	};
 $endmacro
@@ -1167,6 +1118,50 @@ $macro(FeatureSet016)
 	//
 	//  ----------------------------------------------------------------------------------
 $endmacro
+$macro(FeatureSet017)
+
+	// -----------------------------------------------------------------------------
+	// Feature set 007 - Workflow Data
+	// -----------------------------------------------------------------------------
+	
+ 	[control-class("1.2.3", "1.0.0")] interface NcWorkflowDataRecord: NcWorker {
+	
+		[element("3p1"]	attribute	NcProductionDataRecordType	type;
+		[element("3p2"]	attribute	NsString					id;
+		
+		// Additional properties and methods will be defined by subclasses.
+	};
+	
+	enum NcProductionDataRecordType {
+		"Blob",			// 0 binary large object, format undefined
+		"As10Header",	// 1 AMWA AS-10	header
+		"As10Shim"		// 2 AMWA AS-10 shim
+	};
+$endmacro
+$macro(FeatureSet018)
+
+	// -----------------------------------------------------------------------------
+	// Feature set 007 - Object sequence
+	// -----------------------------------------------------------------------------
+
+	[control-class("1.2.4", "1.0.0")] interface NcObjectSequence: NcWorker {
+	
+		[element("3p1")]	sequence<NcObjectSequenceItem>	items // The sequence, ordered by 'index' property
+	};
+	
+	// Object-sequence list item
+	interface NcObjectSequenceItem {
+	
+	// 	Object sequence item.
+	//	Sequences are ordered by value of 'index' property.
+	
+		attribute	NcUint16 	index;	// ordinal
+		attribute	NcOid		oid;	// object ID
+		attribute	NcRolePath	path;	// object path
+	};
+	
+$endmacro
+
 $#
 $# ============================================================================
 $#
@@ -1186,7 +1181,6 @@ $#
 	$BaseClasses()
 	$Block()
 	$CoreAgents()
-	$WorkflowDataCore()
 	$Managers()
 	
 	$FeatureSet001()	$#	 General control & monitoring
