@@ -793,7 +793,7 @@ $macro(Managers)
 		// Manager base class
 	};
 	
-	[control-class("1.3.1", "1.0.0")] interface NcDeviceManager: NcManager {
+	[control-class("1.3.1", "1.0.0","DeviceManager")] interface NcDeviceManager: NcManager {
 		
 		//	Device manager class
 		//	Contains basic device information and status.
@@ -811,11 +811,11 @@ $macro(Managers)
 		[element("3p11")]	readonly	attribute	NcString					message				// Arbitrary message from dev to controller			<Mandatory>
 	};
 	
-	[control-class("1.3.2", "1.0.0")] interface NcSecurityManager: NcManager {
+	[control-class("1.3.2", "1.0.0","SecurityManager")] interface NcSecurityManager: NcManager {
 		//	Security manager class
 	};
 	
-	[control-class("1.3.3", "1.0.0")] interface NcClassManager: NcManager {
+	[control-class("1.3.3", "1.0.0","ClassManager")] interface NcClassManager: NcManager {
 	
 		//	Class manager class
 		//  Returns definitions of control classes and datatypes that are used in the device.
@@ -854,7 +854,7 @@ $macro(Managers)
 		);
 	};
 	
-	[control-class("1.3.4", "1.0.0")] interface NcFirmwareManager: NcManager {
+	[control-class("1.3.4", "1.0.0","FirmwareManager")] interface NcFirmwareManager: NcManager {
 		
 		//	Firmware / software manager : Reports versions of components
 		
@@ -863,7 +863,7 @@ $macro(Managers)
 		[element("3m1")]	NcMethodResultFirmwareComponent	GetComponent();
 	};
 	
-	[control-class("1.3.5", "1.0.0")] interface NcSubscriptionManager: NcManager {
+	[control-class("1.3.5", "1.0.0","SubscriptionManager")] interface NcSubscriptionManager: NcManager {
 	
 		// Subscription manager
 		
@@ -880,7 +880,7 @@ $macro(Managers)
 		);
 	};
 
-	[control-class("1.3.6", "1.0.0")] interface NcPowerManager: NcManager {
+	[control-class("1.3.6", "1.0.0","PowerManager")] interface NcPowerManager: NcManager {
 		[element("3p1")]	readonly	attribute	NcDeviceGenericState 	state;
 		[element("3p2")]	readonly	attribute	sequence<NcOid>			powerSupplyOids;		// OIDs of available NcPowerSupply objects
 		[element("3p3")]				attribute	sequence<NcOid>			activePowerSupplyOids;	// OIDs of active NcPowerSupply objects
@@ -894,7 +894,7 @@ $macro(Managers)
 		);
 	};
 	
-	[control-class("1.3.7", "1.0.0")] interface NcDeviceTimeManager: NcManager {
+	[control-class("1.3.7", "1.0.0","DeviceTimeManager")] interface NcDeviceTimeManager: NcManager {
 		//
 		//	Controls device's internal clock(s) and its reference.
 		//
@@ -952,7 +952,7 @@ $macro(FeatureSet001)
 		// 	Identification sensor - raises an event when the user activates some kind of
 		//	this-is-me control on the device.
 		
-		[element("4e1")]	[event]	void	Identify(NcEventData eventData);
+		[element("5e1")]	[event]	void	Identify(NcEventData);
 	};
 $endmacro
 $macro(FeatureSet002)
