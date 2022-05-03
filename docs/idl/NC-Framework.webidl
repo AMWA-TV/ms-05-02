@@ -332,7 +332,7 @@ $macro(ModelDatatypes)
 		NcBoolean		readOnly;		// TRUE iff property is read-only
 		NcBoolean		persistent;		// TRUE iff property value survives power-on reset
 		NcBoolean		required;		// TRUE iff property must be implemented
-		NcBoolean		isCollection;	// TRUE iff property is a collection
+		NcBoolean		isSequence;	// TRUE iff property is a sequence
 	};
 	
 	// Descriptor of a field of a struct
@@ -340,7 +340,7 @@ $macro(ModelDatatypes)
 		NcName		name;			// name of field
 		NcName		typeName;		// name of field's datatype
 		NcBoolean	isNullable;		// TRUE iff the field is nullable
-		NcBoolean	isCollection;	// TRUE iff the field is a collection
+		NcBoolean	isSequence;	// TRUE iff the field is a sequence
 	};
 	
 	// Descriptor of an enum
@@ -696,10 +696,10 @@ $macro(BaseClasses)
 		[element("1m1")]	NcMethodResultPropertyValue	Get(NcPropertyId id);											// Get property value
 		[element("1m2")]	NcMethodResult				Set(NcPropertyId id, any value);								// Set property value
 		[element("1m3")]	NcMethodResult				Clear(NcPropertyId id);											// Sets property to initial value
-		[element("1m4")]	NcMethodResultPropertyValue	GetCollectionItem(NcPropertyId id, NcId32 index);				// Get collection item
-		[element("1m5")]	NcMethodResult				SetCollectionItem(NcPropertyId id, NcId32 index, any value);	// Set collection item
-		[element("1m6")]	NcMethodResultId32			AddCollectionItem(NcPropertyId id, any value);					// Add item to collection
-		[element("1m7")]	NcMethodResult				RemoveCollectionItem(NcPropertyId id, NcId32 index);			// Delete collection item
+		[element("1m4")]	NcMethodResultPropertyValue	GetSequenceItem(NcPropertyId id, NcId32 index);				// Get sequence item
+		[element("1m5")]	NcMethodResult				SetSequenceItem(NcPropertyId id, NcId32 index, any value);	// Set sequence item
+		[element("1m6")]	NcMethodResultId32			AddSequenceItem(NcPropertyId id, any value);					// Add item to sequence
+		[element("1m7")]	NcMethodResult				RemoveSequenceItem(NcPropertyId id, NcId32 index);			// Delete sequence item
 
 		// Optional lock methods
 		[element("1m8")]	NcMethodResult	LockWait(
