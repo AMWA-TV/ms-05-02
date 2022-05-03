@@ -287,7 +287,7 @@ $macro(ModelDatatypes)
 		"Primitive",	// 0 primitive, e.g. NcUint16
 		"Typedef",		// 1 typedef, i,e. simple alias of another datatype
 		"Struct",		// 2 data structure
-		"Enum"
+		"Enum"			// 3 enum datatype
 	};
 
 	interface NcDatatypeDescriptor {
