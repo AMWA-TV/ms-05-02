@@ -138,7 +138,7 @@ $macro(Identifiers)
 	typedef NcUint32	NcOid;		// Object id
 
 	// OBJECT ROLE PATH
-	// Array of roles, starting from the role of ncRoot,
+	// Array of roles, starting from the role of NcRoot,
 	// ending with role of object in question.
 
 	typedef sequence(NcName)	NcRolePath;
@@ -165,7 +165,7 @@ $macro(PortDatatypes)
 	// Device-unique port identifier
 	interface NcPortReference {
 		attribute NcRolePath	owner;	// Rolepath of owning object
-		attribute NcRole		role;	// Unique within owning object
+		attribute NcRole		role;	// Unique identifier of this port within the owning object
 	};
 
 	interface NcPort {
@@ -174,11 +174,13 @@ $macro(PortDatatypes)
 		attribute NcRolePath	clockPath;	// Rolepath of this port's sample clock or empty if none
 	};
 
+	// Signal path descriptor	
 	interface NcSignalPath {
-		attribute NcName	role;	// Unique within owning object
-		attribute NcRole	source;	// path origin
-		attribute NcRole	sink;	// path terminus
-	);
+		attribute	NcRole			role;	// Unique identifier of this signal path in this block
+		attribute	NcLabel			label;	// Optional label
+		attribute	NcPortReference	source;
+		attribute	NcPortReference	sink;
+	};
 $endmacro
 $macro(TouchpointDatatypes)
 	//  ----------------------------------------------------------------------------------
@@ -282,44 +284,63 @@ $macro(ModelDatatypes)
 	//  ----------------------------------------------------------------------------------
 	
 	enum NcDatatypeType {
-		"primitive",	// 0 primitive, e.g. NcUint16
-		"typedef",		// 1 typedef, i,e. simple alias of another datatype
-		"struct",		// 2 data structure
-		"enum",			// 3 enumeration
-		"null"			// 4 null
+		"Primitive",	// 0 primitive, e.g. NcUint16
+		"Typedef",		// 1 typedef, i,e. simple alias of another datatype
+		"Struct",		// 2 data structure
+		"Enum"			// 3 enum datatype
 	};
-	
+
 	interface NcDatatypeDescriptor {
 		NcName			name;	// datatype name
-		NcDatatypeType	type;	// primitive, typedef, struct, enum, or null
-		(NcString or NcName or sequence<NcFieldDescriptor> or sequence<NcEnumItemDescriptor> or null) content; // datatype content, see below
+		NcDatatypeType	type;	// Primitive, Typedef, Struct, Enum
 		
-		//  Contents of property 'content':
+		//  Further variants may introduce a content property as follows:
 		//
 		//		type		content
 		//	-----------------------------------------------------------------------------------------
-		//		primitive	empty string
-		//		typedef		name of referenced type
-		//		struct		sequence<NcFieldDescriptor>, one item per field of the struct	
-		// 	 	enum		sequence<NcEnumItemDescriptor>, one item per enum option
-		//		null		null
+		//		Primitive	no further content
+		//		Typedef		name of referenced type
+		//		Struct		sequence<NcFieldDescriptor>, one item per field of the struct
+		// 	 	Enum		sequence<NcEnumItemDescriptor>, one item per enum option
 		//	-----------------------------------------------------------------------------------------	
+	};
+	
+	interface NcDatatypeDescriptorPrimitive: NcDatatypeDescriptor {
+		//type will be Primitive
+	};
+
+	interface NcDatatypeDescriptorTypeDef: NcDatatypeDescriptor {
+		//type will be Typedef
+		NcName	content;	// original typedef datatype name
+	};
+
+	interface NcDatatypeDescriptorStruct: NcDatatypeDescriptor {
+		//type will be Struct
+		sequence<NcFieldDescriptor>	content;	// one item descriptor per field of the struct
+	};
+
+	interface NcDatatypeDescriptorEnum: NcDatatypeDescriptor {
+		//type will be Enum
+		sequence<NcEnumItemDescriptor>	content;	// one item descriptor per enum option
 	};
 	
 	// Descriptor of a class property
 	interface NcPropertyDescriptor {
-		NcPropertyId	id;			// element ID of property
-		NcName			name;		// name of property
-		NcName			typeName;	// name of property's datatype
-		NcBoolean		readOnly;	// TRUE iff property is read-only
-		NcBoolean		persistent;	// TRUE iff property value survives power-on reset
-		NcBoolean		required;	// TRUE iff property must be implemented
+		NcPropertyId	id;				// element ID of property
+		NcName			name;			// name of property
+		NcName			typeName;		// name of property's datatype. If empty then the type is any
+		NcBoolean		readOnly;		// TRUE iff property is read-only
+		NcBoolean		persistent;		// TRUE iff property value survives power-on reset
+		NcBoolean		required;		// TRUE iff property must be implemented
+		NcBoolean		isSequence;	// TRUE iff property is a sequence
 	};
 	
 	// Descriptor of a field of a struct
 	interface NcFieldDescriptor {
-		NcName	name;		// name of field
-		NcName	typeName;	// name of field's datatype
+		NcName		name;			// name of field
+		NcName		typeName;		// name of field's datatype
+		NcBoolean	isNullable;		// TRUE iff the field is nullable
+		NcBoolean	isSequence;	// TRUE iff the field is a sequence
 	};
 	
 	// Descriptor of an enum
@@ -362,32 +383,26 @@ $macro(PropertyConstraintDatatypes)
 	//	Used in block member descriptors - see the BlockDatatypes module
 	//  ----------------------------------------------------------------------------------
 
-	interface NcPropertyConstraintBase {
+	interface NcPropertyConstraint {
 		[optional]	attribute	NcRolePath		path;		// relative path to member (null or omitted => current member)
-					attribute	NcPropertyId	propertyId;	// ID  of property being constrained
+					attribute	NcPropertyId	propertyId;	// ID of property being constrained
 		[optional]	attribute	any				value;		// Set property to this value
 	}
 
-	interface NcPropertyConstraintNumber: NcPropertyConstraintBase{
+	interface NcPropertyConstraintNumber: NcPropertyConstraint{
 		[optional]	attribute	any	maximum;	// not less than this
 		[optional]	attribute	any	minimum;	// not more than this
 		[optional]	attribute	any	step;		// stepsize
 	}	
 	
-	interface NcPropertyConstraintString: NcPropertyConstraintBase {
+	interface NcPropertyConstraintString: NcPropertyConstraint {
 	}
 	
-	interface NcPropertyConstraintBoolean: NcPropertyConstraintBase {
+	interface NcPropertyConstraintBoolean: NcPropertyConstraint {
 	}
 	
-	interface NcPropertyConstraintOther: NcPropertyConstraintBase {
+	interface NcPropertyConstraintOther: NcPropertyConstraint {
 	}
-
-	typedef
-		(NcPropertyConstraintNumber or
-		 NcPropertyConstraintString	or
-		 NcPropertyConstraintBoolean or
-		 NcPropertyConstraintOther)		NcPropertyConstraint;
 $endmacro
 $macro(BlockDatatypes)
 	//  ----------------------------------------------------------------------------------
@@ -401,14 +416,6 @@ $macro(BlockDatatypes)
 	//		Object in question may be a block or an application object.
 	//		Absolute paths begin with root block name, which is always null.
 	//		Relative paths begin with name of first-level nested block inside current one.
-
-	// Signal path descriptor	
-	interface NcSignalPath {
-		attribute	NcRole			role;	// Role of this signal path in this block
-		attribute	NcLabel			Label;	// Implementation-defined
-		attribute	NcPortReference	source;
-		attribute	NcPortReference	sink;
-	};
 
 	interface NcBlockMemberDescriptor{
 		attribute	NcRole			role;			// Role of member in its containing block
@@ -481,7 +488,7 @@ $macro(ManagementDatatypes)
 		"Updating",			// 2 Device is performing a software or firmware update.
 	};
 
-	interface ncDeviceOperationalState {
+	interface NcDeviceOperationalState {
 		attribute NcDeviceGenericState generic;
 		attribute NcBlob deviceSpecificDetails; //Device implementation specific details
 	};
@@ -689,10 +696,10 @@ $macro(BaseClasses)
 		[element("1m1")]	NcMethodResultPropertyValue	Get(NcPropertyId id);											// Get property value
 		[element("1m2")]	NcMethodResult				Set(NcPropertyId id, any value);								// Set property value
 		[element("1m3")]	NcMethodResult				Clear(NcPropertyId id);											// Sets property to initial value
-		[element("1m4")]	NcMethodResultPropertyValue	GetCollectionItem(NcPropertyId id, NcId32 index);				// Get collection item
-		[element("1m5")]	NcMethodResult				SetCollectionItem(NcPropertyId id, NcId32 index, any value);	// Set collection item
-		[element("1m6")]	NcMethodResultId32			AddCollectionItem(NcPropertyId id, any value);					// Add item to collection
-		[element("1m7")]	NcMethodResult				RemoveCollectionItem(NcPropertyId id, NcId32 index);			// Delete collection item
+		[element("1m4")]	NcMethodResultPropertyValue	GetSequenceItem(NcPropertyId id, NcId32 index);				// Get sequence item
+		[element("1m5")]	NcMethodResult				SetSequenceItem(NcPropertyId id, NcId32 index, any value);	// Set sequence item
+		[element("1m6")]	NcMethodResultId32			AddSequenceItem(NcPropertyId id, any value);					// Add item to sequence
+		[element("1m7")]	NcMethodResult				RemoveSequenceItem(NcPropertyId id, NcId32 index);			// Delete sequence item
 
 		// Optional lock methods
 		[element("1m8")]	NcMethodResult	LockWait(
@@ -791,7 +798,7 @@ $macro(Managers)
 		//	Device manager class
 		//	Contains basic device information and status.
 		
-		[element("3p1")]	readonly	attribute	NcVersionCode				ncVersion			// Version of nc this dev uses						<Mandatory>
+		[element("3p1")]	readonly	attribute	NcVersionCode				NcVersion			// Version of nc this dev uses						<Mandatory>
 		[element("3p2")]	readonly	attribute	NcManufacturer				manufacturer		// Manufacturer descriptor							<Mandatory>
 		[element("3p3")]	readonly	attribute	NcProduct					product				// Product descriptor								<Mandatory>
 		[element("3p4")]	readonly	attribute	NcString					serialNumber		// Mfr's serial number of dev						<Mandatory>
@@ -799,7 +806,7 @@ $macro(Managers)
 		[element("3p6")]				attribute	NcString					deviceName			// Name of this device in the application. Instance name, not product name. 
 		[element("3p7")]				attribute	NcString					deviceRole			// Role of this device in the application.
 		[element("3p8")]				attribute	NcBoolean					controlEnabled		// TRUE iff this dev is responsive to nc commands
-		[element("3p9")]	readonly	attribute	ncDeviceOperationalState	operationalState	// Device operational state							<Mandatory>
+		[element("3p9")]	readonly	attribute	NcDeviceOperationalState	operationalState	// Device operational state							<Mandatory>
 		[element("3p10")]	readonly	attribute	NcResetCause				resetCause			// Reason for most recent reset						<Mandatory>
 		[element("3p11")]	readonly	attribute	NcString					message				// Arbitrary message from dev to controller			<Mandatory>
 	};
@@ -875,8 +882,8 @@ $macro(Managers)
 
 	[control-class("1.3.6", "1.0.0")] interface NcPowerManager: NcManager {
 		[element("3p1")]	readonly	attribute	NcDeviceGenericState 	state;
-		[element("3p2")]	readonly	attribute	sequence<NcOid>			powerSupplyOids;		// OIDs of available ncPowerSupply objects
-		[element("3p3")]				attribute	sequence<NcOid>			activePowerSupplyOids;	// OIDs of active ncPowerSupply objects
+		[element("3p2")]	readonly	attribute	sequence<NcOid>			powerSupplyOids;		// OIDs of available NcPowerSupply objects
+		[element("3p3")]				attribute	sequence<NcOid>			activePowerSupplyOids;	// OIDs of active NcPowerSupply objects
 		[element("3p4")]				attribute	NcBoolean				autoState;				// TRUE if current state was invoked automatically
 		[element("3p5")]	readonly	attribute	NcDeviceGenericState	targetState				// Power state to which the device is transitioning, or None.
 	
@@ -893,8 +900,8 @@ $macro(Managers)
 		//
 
 		[element("3p1")]	readonly	attribute	NcTimePtp		deviceTimePtp;				// Current device time
-		[element("3p2")]	readonly	attribute	sequence<NcOid>	timeSources;				// OIDs of available ncTimeSource objects
-		[element("3p3")]				attribute	NcOid			currentDeviceTimeSource;	// OID of current ncTimeSource object
+		[element("3p2")]	readonly	attribute	sequence<NcOid>	timeSources;				// OIDs of available NcTimeSource objects
+		[element("3p3")]				attribute	NcOid			currentDeviceTimeSource;	// OID of current NcTimeSource object
 	};	
 $endmacro
 $macro(FeatureSet001)
@@ -945,7 +952,7 @@ $macro(FeatureSet001)
 		// 	Identification sensor - raises an event when the user activates some kind of
 		//	this-is-me control on the device.
 		
-		[element("4e1")]	[event]	void	Identify(ncEventData);
+		[element("4e1")]	[event]	void	Identify(NcEventData eventData);
 	};
 $endmacro
 $macro(FeatureSet002)
