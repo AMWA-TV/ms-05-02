@@ -326,13 +326,14 @@ $macro(ModelDatatypes)
 	
 	// Descriptor of a class property
 	interface NcPropertyDescriptor {
-		NcPropertyId	id;				// element ID of property
-		NcName			name;			// name of property
-		NcName			typeName;		// name of property's datatype. If empty then the type is any
-		NcBoolean		readOnly;		// TRUE iff property is read-only
-		NcBoolean		persistent;		// TRUE iff property value survives power-on reset
-		NcBoolean		required;		// TRUE iff property must be implemented
-		NcBoolean		isSequence;	// TRUE iff property is a sequence
+		NcPropertyId			id;				// element ID of property
+		NcName					name;			// name of property
+		NcName					typeName;		// name of property's datatype. If empty then the type is any
+		NcBoolean				readOnly;		// TRUE iff property is read-only
+		NcBoolean				persistent;		// TRUE iff property value survives power-on reset
+		NcBoolean				required;		// TRUE iff property must be implemented
+		NcBoolean				isSequence;		// TRUE iff property is a sequence
+		NcParameterConstraint?	constraints;	// optional constraints on top of the underlying data type
 	};
 	
 	// Descriptor of a field of a struct
@@ -351,9 +352,10 @@ $macro(ModelDatatypes)
 
 	// Descriptor of a method parameter
 	interface NcParameterDescriptor {
-		NcName		name;		// name of parameter
-		NcName		typeName;	// name of parameter's datatype
-		NcBoolean	required;	// TRUE iff parameter is required
+		NcName		name;						// name of parameter
+		NcName		typeName;					// name of parameter's datatype
+		NcBoolean	required;					// TRUE iff parameter is required
+		NcParameterConstraint?	constraints;	// optional constraints on top of the underlying data type
 	};
 	
 	interface NcMethodDescriptor {
@@ -375,6 +377,20 @@ $macro(ModelDatatypes)
 		sequence<NcMethodDescriptor>	methods;		// 0-n method descriptors
 		sequence<NcEventDescriptor>		events;			// 0-n event descriptors
 	};
+
+	interface NcParameterConstraint {
+	}
+
+	interface NcParameterConstraintNumber: NcParameterConstraint{
+		any?	maximum;	// not less than this
+		any?	minimum;	// not more than this
+		any?	step;		// stepsize
+	}	
+	
+	interface NcParameterConstraintString: NcParameterConstraint {
+		NcUint32?	maxCharacters;	// maximum characters allowed
+		NcRegex?	pattern;		// regex pattern
+	}
 $endmacro
 $macro(PropertyConstraintDatatypes)
 	//  ----------------------------------------------------------------------------------
@@ -382,6 +398,8 @@ $macro(PropertyConstraintDatatypes)
 	//
 	//	Used in block member descriptors - see the BlockDatatypes module
 	//  ----------------------------------------------------------------------------------
+
+	typedef NcString	NcRegex; // regex pattern
 
 	interface NcPropertyConstraint {
 		[optional]	attribute	NcRolePath		path;		// relative path to member (null or omitted => current member)
@@ -396,12 +414,8 @@ $macro(PropertyConstraintDatatypes)
 	}	
 	
 	interface NcPropertyConstraintString: NcPropertyConstraint {
-	}
-	
-	interface NcPropertyConstraintBoolean: NcPropertyConstraint {
-	}
-	
-	interface NcPropertyConstraintOther: NcPropertyConstraint {
+		[optional]	attribute	NcUint32	maxCharacters;	// maximum characters allowed
+		[optional]	attribute	NcRegex	pattern;			// regex pattern
 	}
 $endmacro
 $macro(BlockDatatypes)
