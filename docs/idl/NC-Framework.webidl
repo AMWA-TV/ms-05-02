@@ -909,7 +909,11 @@ $macro(FeatureSet001)
 	// -----------------------------------------------------------------------------
 	// Feature set 001 - General control & monitoring
 	// -----------------------------------------------------------------------------
-	
+	interface NcSwitchItem {
+		attribute	NcBoolean	isEnabled; // signals if the switch position is enabled
+		attribute	NcString	label; // optional switch position label
+	};
+
 	[control-class("1.2.1.1.1", "1.0.0")] interface NcGain: NcActuator {
 	
 		//	Simple gain control
@@ -918,11 +922,9 @@ $macro(FeatureSet001)
 	
 	[control-class("1.2.1.1.2", "1.0.0")] interface NcSwitch: NcActuator {
 	
-		// n-position switch with a name for each position
+		// n-position switch with a label for each position
 		
-		[element("5p1")]	attribute	NcUint16			setpoint;		// current switch position
-		[element("5p2")]	attribute	NcBitset			pointEnabled;	// map of which positions are enabled
-		[element("5p3")]	attribute	sequence<NcString>	labels;			// list of position labels
+		[element("5p1")]	attribute	sequence<NcSwitchItem>	positions;	// list of switch positions
 	};
 
 	[control-class("1.2.1.1.3", "1.0.0")] interface NcIdentificationActuator: NcActuator {
