@@ -232,6 +232,10 @@ $macro(EventAndSubscriptionDatatypes)
 		attribute NcEventId	eventId;
 	};
 
+	// Payload of events that have no payload data
+	interface NcEmptyEventData{
+	};
+	
 	// Payload of property-changed event
 	interface NcPropertyChangedEventData {
 		attribute NcPropertyId			propertyId;		// ID of changed property
@@ -254,7 +258,12 @@ $macro(TimeDatatypes)
 	//	Time datatypes
 	//  ----------------------------------------------------------------------------------
 	
-	typedef NcFloat64	NcTimeInterval // Floating point seconds
+	typedef NcFloat64	NcTimeInterval 	// Floating point seconds
+	interface NcTimePtp {				// Time in PTP-compatible format
+		NcBoolean	negative;			// TRUE iff time is negative (used for relative times)
+		NcUint64	seconds;			// 48 bits of seconds (rest of range is unused)
+		NcUint32	nanoseconds;		// 32 bits of nanoseconds
+	};	
 $endmacro
 $macro(ApplicationDatatypes)
 
@@ -954,7 +963,7 @@ $macro(FeatureSet001)
 		// 	Identification sensor - raises an event when the user activates some kind of
 		//	this-is-me control on the device.
 		
-		[element("5e1")]	[event]	void	Identify(NcEventData);
+		[element("5e1")]	[event]	void	Identify(NcEmptyEventData);
 	};
 $endmacro
 $macro(FeatureSet002)
