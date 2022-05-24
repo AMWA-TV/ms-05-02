@@ -326,6 +326,7 @@ $macro(ModelDatatypes)
 	interface NcDatatypeDescriptorStruct: NcDatatypeDescriptor {
 		//type will be Struct
 		sequence<NcFieldDescriptor>	content;	// one item descriptor per field of the struct
+		NcName?	parentType;	// name of the parent type if any
 	};
 
 	interface NcDatatypeDescriptorEnum: NcDatatypeDescriptor {
