@@ -259,7 +259,7 @@ $macro(TimeDatatypes)
 	//  ----------------------------------------------------------------------------------
 	
 	typedef NcFloat64	NcTimeInterval 	// Floating point seconds
-	interface NcTimePtp {				// Time in PTP-compatible format
+	interface NcTime {				// Time in PTP-compatible format
 		NcBoolean	negative;			// TRUE iff time is negative (used for relative times)
 		NcUint64	seconds;			// 48 bits of seconds (rest of range is unused)
 		NcUint32	nanoseconds;		// 32 bits of nanoseconds
@@ -908,7 +908,7 @@ $macro(Managers)
 		//	Controls device's internal clock(s) and its reference.
 		//
 
-		[element("3p1")]	readonly	attribute	NcTimePtp		deviceTimePtp;				// Current device time
+		[element("3p1")]	readonly	attribute	NcTime		deviceTimePtp;				// Current device time
 		[element("3p2")]	readonly	attribute	sequence<NcOid>	timeSources;				// OIDs of available NcTimeSource objects
 		[element("3p3")]				attribute	NcOid			currentDeviceTimeSource;	// OID of current NcTimeSource object
 	};	
@@ -939,6 +939,7 @@ $macro(FeatureSet001)
 	[control-class("1.2.1.1.3", "1.0.0")] interface NcIdentificationActuator: NcActuator {
 	
 		// Identification actuator - sets some kind of physical indicator on the device
+		// If this property is set then it might activate a visual indicator on the device
 		
 		[element("5p1")]	attribute	NcBoolean	active;	// TRUE iff indicator is active
 	};
@@ -961,9 +962,10 @@ $macro(FeatureSet001)
 	[control-class("1.2.1.2.3", "1.0.0")] interface NcIdentificationSensor: NcSensor {
 		
 		// 	Identification sensor - raises an event when the user activates some kind of
-		//	this-is-me control on the device.
-		
-		[element("5e1")]	[event]	void	Identify(NcEmptyEventData);
+		//	this-is-me control on the device. A common implementation is a device with an
+		//	identification button which sets the active state below to true or false
+
+		[element("5p1")]	readonly	attribute	NcBoolean	active;	// TRUE iff indicator is active
 	};
 $endmacro
 $macro(FeatureSet002)
