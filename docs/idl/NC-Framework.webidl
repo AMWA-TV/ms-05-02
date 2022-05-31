@@ -468,12 +468,9 @@ $macro(BlockDatatypes)
 	
 		attribute	sequence<NcPropertyConstraint> constraints	// Constraints on this member or, for a block, its members.
 	};
-	
-	interface NcBlockDescriptor: NcDescriptor {
-		attribute	NcRole			role;			// Role of block in its containing block
-		attribute	NcOid			oid;			// OID of block 
-		attribute	NcBlockSpecId	BlockSpecID;	// ID of BlockSpec this block implements
-		attribute	NcOid			owner;			// Containing block's OID
+
+	interface NcBlockDescriptor: NcBlockMemberDescriptor {
+  		attribute	NcBlockSpecId	BlockSpecID; // ID of BlockSpec this block implements
 	};
 $endmacro
 $macro(ManagementDatatypes)
@@ -610,10 +607,6 @@ $macro(MethodResultDatatypes)
 
 	interface NcMethodResultFloat64: NcMethodResult {
 		attribute	NcFloat64	value;
-	};
-
-	interface NcMethodResultBlockDescriptors: NcMethodResult {
-		attribute	sequence<NcBlockDescriptor>	value;
 	};
 
 	interface NcMethodResultBlockMemberDescriptors: NcMethodResult {
@@ -770,24 +763,28 @@ $macro(Block)
 	//  ----------------------------------------------------------------------------------
 	
 	[control-class("1.1", "1.0.0")] interface NcBlock: NcObject {
-		[element("2p1")]	readonly	attribute	NcBoolean				enabled;			// TRUE if block is functional
-		[element("2p2")]	readonly	attribute	NcString				specId;				// Global ID of blockSpec that defines this block
-		[element("2p3")]	readonly	attribute	NcVersionCode			specVersion;		// Version code of blockSpec that defines this block
-		[element("2p4")]	readonly	attribute	NcString				parentSpecId;		// Global ID of parent of blockSpec that defines this block
-		[element("2p5")]	readonly	attribute	NcVersionCode			parentSpecVersion;	// Version code of parent of blockSpec that defines this block
-		[element("2p6")]	readonly	attribute	NcString				specDescription;	// Description of blockSpec that defines this block
-		[element("2p7")]	readonly	attribute	NcBoolean				isDynamic;			// TRUE if dynamic block
-		[element("2p8")]	readonly	attribute	NcBoolean				isModified;			// TRUE if block contents modified since last reset
-		[element("2p9")]	readonly	attribute	sequence<NcOid> 		members; 			// OIDs of this block's members 
-		[element("2p10")]	readonly	attribute	sequence<NcPort>		ports;				// this block's ports
-		[element("2p11")]	readonly	attribute	sequence<NcSignalPath>	signalPaths; 		// this block's signal paths
+		[element("2p1")]	readonly	attribute	NcBoolean							enabled;			// TRUE if block is functional
+		[element("2p2")]	readonly	attribute	NcString							specId;				// Global ID of blockSpec that defines this block
+		[element("2p3")]	readonly	attribute	NcVersionCode						specVersion;		// Version code of blockSpec that defines this block
+		[element("2p4")]	readonly	attribute	NcString							parentSpecId;		// Global ID of parent of blockSpec that defines this block
+		[element("2p5")]	readonly	attribute	NcVersionCode						parentSpecVersion;	// Version code of parent of blockSpec that defines this block
+		[element("2p6")]	readonly	attribute	NcString							specDescription;	// Description of blockSpec that defines this block
+		[element("2p7")]	readonly	attribute	NcBoolean							isDynamic;			// TRUE if dynamic block
+		[element("2p8")]	readonly	attribute	NcBoolean							isModified;			// TRUE if block contents modified since last reset
+		[element("2p9")]	readonly	attribute	sequence<NcBlockMemberDescriptor>	members;			// Descriptors of this block's members
+		[element("2p10")]	readonly	attribute	sequence<NcPort>					ports;				// this block's ports
+		[element("2p11")]	readonly	attribute	sequence<NcSignalPath>				signalPaths; 		// this block's signal paths
  
 		// Block enumeration methods
 		
 		[element("2m1")]	NcMethodResultBlockMemberDescriptors	GetMemberDescriptors(NcBoolean recurse);	// gets descriptors of members of the block
-		[element("2m2")]	NcMethodResultBlockDescriptors			GetNestedBlocks();							// like GetMembers but returns only nested blocks
 		
-		// BLOCK SEARCH METHODS 
+		// BLOCK SEARCH METHODS
+
+		// finds member(s) by path
+		[element("2m2")]	NcMethodResultBlockMemberDescriptors	FindMembersByPath(
+			NcRolePath path // path to search for
+		); 
 		
 		// finds members with given role name or fragment
 		[element("2m3")]	NcMethodResultBlockMemberDescriptors	FindMembersByRole(
@@ -803,11 +800,6 @@ $macro(Block)
 			NcStringComparisonType nameComparisonType,	// type of string comparison to use	
 			NcClassId classId,							// if nonnull, finds only members with this class ID
 			NcBoolean recurse,							// TRUE to search nested blocks
-		);
-
-		// finds member(s) by path
-		[element("2m5")]	NcMethodResultBlockMemberDescriptors	FindMembersByPath(
-			NcRolePath path // path to search for
 		);
 	};
 $endmacro
