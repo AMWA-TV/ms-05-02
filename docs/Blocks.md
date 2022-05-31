@@ -2,7 +2,7 @@
 
 `ncBlock` is a container class for other classes or blocks. Due to the generic nature of `ncBlock` it is recommended not to create derived block classes but instead always instantiate `ncBlock`.
 
-The top most block in the device tree is called a `root block` and must always have an oId of `1`.
+The top most block in the device tree is called a `root block` and must always have an oId of `1` and a role of `root`.
 
 Blocks have the following properties (inherited properties from `ncObject` are not shown here):
 

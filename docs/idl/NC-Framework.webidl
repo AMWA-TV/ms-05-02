@@ -131,17 +131,15 @@ $macro(Identifiers)
 
 	typedef NcString	NcName;		// Programmatically significant name, alphanumerics + underscore, no spaces
 
-	typedef NcSessionId	NcUint32;	// Control session ID
+	typedef NcString	NcUUID;		// UUID
 
-	typedef NcName		NcRole;		// Role of an element in context
+	typedef NcSessionId	NcUint32;	// Control session ID
 
 	typedef NcUint32	NcOid;		// Object id
 
-	// OBJECT ROLE PATH
-	// Array of roles, starting from the role of NcRoot,
-	// ending with role of object in question.
 
-	typedef sequence(NcName)	NcRolePath;
+
+	typedef sequence(NcName)	NcNamePath; //Name path
 		
 	// Class element id which contains the level and index
 	interface NcElementId {
@@ -164,20 +162,20 @@ $macro(PortDatatypes)
 
 	// Device-unique port identifier
 	interface NcPortReference {
-		attribute NcRolePath	owner;	// Rolepath of owning object
-		attribute NcRole		role;	// Unique identifier of this port within the owning object
+		attribute NcNamePath	owner;	// Rolepath of owning object
+		attribute NcName		role;	// Unique identifier of this port within the owning object
 	};
 
 	interface NcPort {
-		attribute NcRole		role;		// Unique within owning object
+		attribute NcName		role;		// Unique within owning object
 		attribute NcIoDirection	direction;	// Input (sink) or output (source) port
-		attribute NcRolePath	clockPath;	// Rolepath of this port's sample clock or empty if none
+		attribute NcNamePath	clockPath;	// Rolepath of this port's sample clock or empty if none
 	};
 
 	// Signal path descriptor	
 	interface NcSignalPath {
-		attribute	NcRole			role;	// Unique identifier of this signal path in this block
-		attribute	NcLabel			label;	// Optional label
+		attribute	NcName			role;	// Unique identifier of this signal path in this block
+		attribute	NcString		label;	// Optional label
 		attribute	NcPortReference	source;
 		attribute	NcPortReference	sink;
 	};
@@ -210,7 +208,7 @@ $macro(TouchpointDatatypes)
 
 	interface NcTouchpointResourceNmos: NcTouchpointResource {
 		// resourceType is inherited from NcTouchpointResource.
-		attribute NcString	id; // Override
+		attribute NcUUID	id; // Override
 	};
 
 	// IS-08 inputs or outputs
@@ -415,7 +413,7 @@ $macro(PropertyConstraintDatatypes)
 	typedef NcString	NcRegex; // regex pattern
 
 	interface NcPropertyConstraint {
-		[optional]	attribute	NcRolePath		path;		// relative path to member (null or omitted => current member)
+		[optional]	attribute	NcNamePath		path;		// relative path to member (null or omitted => current member)
 					attribute	NcPropertyId	propertyId;	// ID of property being constrained
 		[optional]	attribute	any				value;		// Set property to this value
 	}
@@ -445,11 +443,11 @@ $macro(BlockDatatypes)
 	//		Relative paths begin with name of first-level nested block inside current one.
 
 	interface NcBlockMemberDescriptor: NcDescriptor {
-		attribute	NcRole			role;			// Role of member in its containing block
+		attribute	NcName			role;			// Role of member in its containing block
 		attribute	NcOid			oid;			// OID of member
 		attribute	NcBoolean		constantOid;	// TRUE iff member's OID is hardwired into device 
 		attribute	NcClassIdentity	identity;		// Class ID & version of member
-		attribute	NcLabel			userLabel;		// User label
+		attribute	NcString		userLabel;		// User label
 		attribute	NcOid			owner;			// Containing block's OID
 		
 		// Constraints:
@@ -682,8 +680,6 @@ $macro(CoreDatatypes)
 		"ContainsCaseInsensitive"	// 5 search string anywhere in target - case-insensitive
 	};	
 
-	typedef NcString	NcLabel; // Non-programmatic label
-	
 	interface NcfirmwareComponent {
 		attribute	NcName			name;			// Concise name
 		attribute	NcVersionCode	version;		// Version code
@@ -706,7 +702,7 @@ $macro(BaseClasses)
 		[element("1p3")]			readonly	attribute	NcOid					oid;
 		[element("1p4")]			readonly	attribute	NcBoolean				constantOid;	// TRUE iff OID is hardwired into device
 		[element("1p5")]			readonly	attribute	NcOid					owner;			// OID of containing block
-		[element("1p6")]			readonly	attribute	NcRole					role;			// role of obj in containing block
+		[element("1p6")]			readonly	attribute	NcName					role;			// role of obj in containing block
 		[element("1p7")]						attribute	NcString				userLabel;		// Scribble strip
 		[element("1p8")]			readonly	attribute	NcBoolean				lockable;
 		[element("1p9")]						attribute	NcLockState				lockState;
@@ -760,6 +756,8 @@ $macro(Block)
 	//	Block definitions
 	//
 	//	Container for NcObjects
+	//	Members are identified by oid and role. An object in a hierarchy of nested blocks can be identified by its role path.
+	//	A member's role path is a sequence of role values starting with the root block's role and ending with the member's role.
 	//  ----------------------------------------------------------------------------------
 	
 	[control-class("1.1", "1.0.0")] interface NcBlock: NcObject {
@@ -783,12 +781,12 @@ $macro(Block)
 
 		// finds member(s) by path
 		[element("2m2")]	NcMethodResultBlockMemberDescriptors	FindMembersByPath(
-			NcRolePath path // path to search for
+			NcNamePath path // path to search for
 		); 
 		
 		// finds members with given role name or fragment
 		[element("2m3")]	NcMethodResultBlockMemberDescriptors	FindMembersByRole(
-			NcRole role,								// role text to search for
+			NcName role,								// role text to search for
 			NcStringComparisonType nameComparisonType,	// type of string comparison to use
 			NcClassId classId,							// if nonnull, finds only members with this class ID
 			NcBoolean recurse,							// TRUE to search nested blocks
@@ -860,14 +858,14 @@ $macro(Managers)
 		
 		// Get descriptors of classes used by block(s)
 		[element("3m3")]	NcMethodResultClassDescriptors	GetControlClasses(
-			NcRolePath	blockPath,		// path to block 
+			NcNamePath	blockPath,		// path to block 
 			NcBoolean	recurseBlocks,	// TRUE to recurse contained blocks
 			NcBoolean	allElements		// TRUE to include inherited class elements
 		);
 
 		// Get descriptors of datatypes used by blocks(s)
 		[element("3m4")]	NcMethodResultDatatypeDescriptors GetDataTypes(
-			NcRolePath blockPath,		// path to block 
+			NcNamePath blockPath,		// path to block 
 			NcBoolean recurseBlocks,	// TRUE to recurse contained blocks
 			NcBoolean allDefs			// TRUE to include descriptors of referenced datatypes
 		);
@@ -1187,7 +1185,7 @@ $macro(FeatureSet018)
 	
 		attribute	NcUint16 	index;	// ordinal
 		attribute	NcOid		oid;	// object ID
-		attribute	NcRolePath	path;	// object path
+		attribute	NcNamePath	path;	// object path
 	};
 	
 $endmacro
