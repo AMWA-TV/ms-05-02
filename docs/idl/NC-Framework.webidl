@@ -299,7 +299,11 @@ $macro(ModelDatatypes)
 		"Enum"			// 3 enum datatype
 	};
 
-	interface NcDatatypeDescriptor {
+	interface NcDescriptor {
+		NcString?	description; // optional user facing description
+	};
+
+	interface NcDatatypeDescriptor: NcDescriptor {
 		NcName			name;	// datatype name
 		NcDatatypeType	type;	// Primitive, Typedef, Struct, Enum
 		
@@ -335,7 +339,7 @@ $macro(ModelDatatypes)
 	};
 	
 	// Descriptor of a class property
-	interface NcPropertyDescriptor {
+	interface NcPropertyDescriptor: NcDescriptor {
 		NcPropertyId			id;				// element ID of property
 		NcName					name;			// name of property
 		NcName					typeName;		// name of property's datatype. If empty then the type is any
@@ -347,7 +351,7 @@ $macro(ModelDatatypes)
 	};
 	
 	// Descriptor of a field of a struct
-	interface NcFieldDescriptor {
+	interface NcFieldDescriptor: NcDescriptor {
 		NcName		name;			// name of field
 		NcName		typeName;		// name of field's datatype
 		NcBoolean	isNullable;		// TRUE iff the field is nullable
@@ -355,34 +359,33 @@ $macro(ModelDatatypes)
 	};
 	
 	// Descriptor of an enum
-	interface NcEnumItemDescriptor {
+	interface NcEnumItemDescriptor: NcDescriptor {
 		NcName		name;	// name of option
 		NcUint16	index;	// index value of option (starts at zero)
 	};
 
 	// Descriptor of a method parameter
-	interface NcParameterDescriptor {
+	interface NcParameterDescriptor: NcDescriptor {
 		NcName		name;						// name of parameter
 		NcName		typeName;					// name of parameter's datatype
 		NcBoolean	required;					// TRUE iff parameter is required
 		NcParameterConstraint?	constraints;	// optional constraints on top of the underlying data type
 	};
 	
-	interface NcMethodDescriptor {
+	interface NcMethodDescriptor: NcDescriptor {
 		NcMethodId						id;				// element ID of method
 		NcName							name;			// name of method
 		NcName							resultDatatype;	// name of method result's datatype
 		sequence<NcParameterDescriptor>	parameters;		// 0-n parameter descriptors
 	};
 	
-	interface NcEventDescriptor {
+	interface NcEventDescriptor: NcDescriptor {
 		NcEventId	id;				// element ID of event
 		NcName		name;			// event's name
 		NcName		eventDatatype;	// name of event data's datatype
 	};
 	
-	interface NcClassDescriptor {
-		NcString						description;	// non-programmatic description - may be empty
+	interface NcClassDescriptor: NcDescriptor {
 		sequence<NcPropertyDescriptor>	properties;		// 0-n property descriptors
 		sequence<NcMethodDescriptor>	methods;		// 0-n method descriptors
 		sequence<NcEventDescriptor>		events;			// 0-n event descriptors
@@ -441,7 +444,7 @@ $macro(BlockDatatypes)
 	//		Absolute paths begin with root block name, which is always null.
 	//		Relative paths begin with name of first-level nested block inside current one.
 
-	interface NcBlockMemberDescriptor{
+	interface NcBlockMemberDescriptor: NcDescriptor {
 		attribute	NcRole			role;			// Role of member in its containing block
 		attribute	NcOid			oid;			// OID of member
 		attribute	NcBoolean		constantOid;	// TRUE iff member's OID is hardwired into device 
@@ -466,7 +469,7 @@ $macro(BlockDatatypes)
 		attribute	sequence<NcPropertyConstraint> constraints	// Constraints on this member or, for a block, its members.
 	};
 	
-	interface NcBlockDescriptor{
+	interface NcBlockDescriptor: NcDescriptor {
 		attribute	NcRole			role;			// Role of block in its containing block
 		attribute	NcOid			oid;			// OID of block 
 		attribute	NcBlockSpecId	BlockSpecID;	// ID of BlockSpec this block implements
