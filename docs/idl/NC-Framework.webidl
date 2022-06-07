@@ -224,6 +224,12 @@ $macro(EventAndSubscriptionDatatypes)
 	//	Event and subscription datatypes
 	//  ----------------------------------------------------------------------------------
 	
+	// Type of notification message
+	enum NcNotificationType {
+		"Event",			// 0 - regular event notification
+		"SubscriptionEnd"	// 1 - subscription end notification sent when a subscription ends for any reason
+	};
+
 	// Unique combination of emitter OID and Event ID
 	interface NcEvent {
 		attribute NcOid		emitterOid;
@@ -232,6 +238,11 @@ $macro(EventAndSubscriptionDatatypes)
 
 	// Payload of events that have no payload data
 	interface NcEmptyEventData{
+	};
+
+	// Payload of property-changed event
+	interface NcSubscriptionEndEventData {
+		attribute NcString?	reason;	// Optional reason for ending the subscription
 	};
 	
 	// Payload of property-changed event
@@ -719,12 +730,11 @@ $macro(BaseClasses)
 
 		// Optional lock methods
 		[element("1m8")]	NcMethodResult	LockWait(
-			 NcOid target, 						// OID of object to be (un)locked
 			 NcLockState requestedLockStatus,	// Type of lock requested, or unlock
 			 NcTimeInterval timeout				// Method fails if wait exceeds this.  0=forever
 		);
 
-		[element("1m9")]	NcMethodResult	AbortWaits(NcOid target); // Abort all this session's waits on given target
+		[element("1m9")]	NcMethodResult	AbortLockWaits(); // Abort all this session's lock waits on this object
 	
 		// Events
 		[element("1e1")]	[event]	void	PropertyChanged(NcPropertyChangedEventData eventData);
