@@ -825,7 +825,7 @@ $macro(Managers)
 		//	Device manager class
 		//	Contains basic device information and status.
 		
-		[element("3p1")]	readonly	attribute	NcVersionCode				NcVersion			// Version of nc this dev uses						<Mandatory>
+		[element("3p1")]	readonly	attribute	NcVersionCode				ncVersion			// Version of nc this dev uses						<Mandatory>
 		[element("3p2")]	readonly	attribute	NcManufacturer				manufacturer		// Manufacturer descriptor							<Mandatory>
 		[element("3p3")]	readonly	attribute	NcProduct					product				// Product descriptor								<Mandatory>
 		[element("3p4")]	readonly	attribute	NcString					serialNumber		// Mfr's serial number of dev						<Mandatory>
