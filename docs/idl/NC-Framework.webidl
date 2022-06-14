@@ -504,7 +504,7 @@ $macro(ManagementDatatypes)
 		attribute	NcString	key				// Manufacturer's unique key to product - model number, SKU, etc
 		attribute	NcString	revisionLevel	// Manufacturer's product revision level code
 		attribute	NcString	brandName		// Brand name under which product is sold
-		attribute	NcString		uuid		// Unique UUID of product (not product instance)
+		attribute	NcString	uuid		// Unique UUID of product (not product instance)
 		attribute	NcString	description		// Text description of product
 	};
 	
@@ -894,8 +894,8 @@ $macro(Managers)
 	
 		// Subscription manager
 		
-		[element("3m1")]	NcMethodResult	AddSubscription(NcEvent event);
-		[element("3m2")]	NcMethodResult	RemoveSubscription(NcEvent event);
+		[element("3m1")]	NcMethodResult	AddSubscription(NcEvent event); // When used to subscribe to the property changed event it will subscribe to changes from all of the properties
+		[element("3m2")]	NcMethodResult	RemoveSubscription(NcEvent event); // When used to unsubscribe to the property changed event it will unsubscribe to changes from all of the properties
 		[element("3m3")]	NcMethodResult	AddPropertyChangeSubscription(
 			NcOid			emitter,	// ID of object where property is
 			NcPropertyId	property	// ID of the property
