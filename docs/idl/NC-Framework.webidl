@@ -224,6 +224,12 @@ $macro(EventAndSubscriptionDatatypes)
 	//	Event and subscription datatypes
 	//  ----------------------------------------------------------------------------------
 	
+	// Type of notification message
+	enum NcNotificationType {
+		"Event",			// 0 - regular event notification
+		"SubscriptionEnd"	// 1 - subscription end notification sent when a subscription ends for any reason
+	};
+
 	// Unique combination of emitter OID and Event ID
 	interface NcEvent {
 		attribute NcOid		emitterOid;
@@ -232,6 +238,11 @@ $macro(EventAndSubscriptionDatatypes)
 
 	// Payload of events that have no payload data
 	interface NcEmptyEventData{
+	};
+
+	// Payload of property-changed event
+	interface NcSubscriptionEndEventData {
+		attribute NcString?	reason;	// Optional reason for ending the subscription
 	};
 	
 	// Payload of property-changed event
@@ -396,7 +407,7 @@ $macro(ModelDatatypes)
 		any?	maximum;	// not less than this
 		any?	minimum;	// not more than this
 		any?	step;		// stepsize
-	}	
+	}
 	
 	interface NcParameterConstraintString: NcParameterConstraint {
 		NcUint32?	maxCharacters;	// maximum characters allowed
@@ -493,7 +504,7 @@ $macro(ManagementDatatypes)
 		attribute	NcString	key				// Manufacturer's unique key to product - model number, SKU, etc
 		attribute	NcString	revisionLevel	// Manufacturer's product revision level code
 		attribute	NcString	brandName		// Brand name under which product is sold
-		attribute	NcString		uuid		// Unique UUID of product (not product instance)
+		attribute	NcString	uuid		// Unique UUID of product (not product instance)
 		attribute	NcString	description		// Text description of product
 	};
 	
@@ -719,12 +730,11 @@ $macro(BaseClasses)
 
 		// Optional lock methods
 		[element("1m8")]	NcMethodResult	LockWait(
-			 NcOid target, 						// OID of object to be (un)locked
 			 NcLockState requestedLockStatus,	// Type of lock requested, or unlock
 			 NcTimeInterval timeout				// Method fails if wait exceeds this.  0=forever
 		);
 
-		[element("1m9")]	NcMethodResult	AbortWaits(NcOid target); // Abort all this session's waits on given target
+		[element("1m9")]	NcMethodResult	AbortLockWaits(); // Abort all this session's lock waits on this object
 	
 		// Events
 		[element("1e1")]	[event]	void	PropertyChanged(NcPropertyChangedEventData eventData);
@@ -815,7 +825,7 @@ $macro(Managers)
 		//	Device manager class
 		//	Contains basic device information and status.
 		
-		[element("3p1")]	readonly	attribute	NcVersionCode				NcVersion			// Version of nc this dev uses						<Mandatory>
+		[element("3p1")]	readonly	attribute	NcVersionCode				ncVersion			// Version of nc this dev uses						<Mandatory>
 		[element("3p2")]	readonly	attribute	NcManufacturer				manufacturer		// Manufacturer descriptor							<Mandatory>
 		[element("3p3")]	readonly	attribute	NcProduct					product				// Product descriptor								<Mandatory>
 		[element("3p4")]	readonly	attribute	NcString					serialNumber		// Mfr's serial number of dev						<Mandatory>
@@ -884,8 +894,8 @@ $macro(Managers)
 	
 		// Subscription manager
 		
-		[element("3m1")]	NcMethodResult	AddSubscription(NcEvent event);
-		[element("3m2")]	NcMethodResult	RemoveSubscription(NcEvent event);
+		[element("3m1")]	NcMethodResult	AddSubscription(NcEvent event); // When used to subscribe to the property changed event it will subscribe to changes from all of the properties
+		[element("3m2")]	NcMethodResult	RemoveSubscription(NcEvent event); // When used to unsubscribe to the property changed event it will unsubscribe to changes from all of the properties
 		[element("3m3")]	NcMethodResult	AddPropertyChangeSubscription(
 			NcOid			emitter,	// ID of object where property is
 			NcPropertyId	property	// ID of the property
