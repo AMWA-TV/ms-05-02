@@ -407,7 +407,7 @@ $macro(ModelDatatypes)
 		any?	maximum;	// not less than this
 		any?	minimum;	// not more than this
 		any?	step;		// stepsize
-	}	
+	}
 	
 	interface NcParameterConstraintString: NcParameterConstraint {
 		NcUint32?	maxCharacters;	// maximum characters allowed
