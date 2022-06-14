@@ -491,11 +491,9 @@ $macro(ManagementDatatypes)
 
 	//	Manufacturer desciptor
 	interface NcManufacturer {
-		attribute	NcString			name 				// Manufacturer's name
-		attribute	NcOrganizationId	organizationId		// IEEE OUI or CID of manufacturer
-		attribute	NcUri				website				// URL of the manufacturer's website
-		attribute	NcString			businessContact		// Contact information for business issues
-		attribute	NcString			technicalContact	// Contact information for technical issues
+		attribute	NcString			name 			// Manufacturer's name
+		attribute	NcOrganizationId?	organizationId	// IEEE OUI or CID of manufacturer
+		attribute	NcUri?				website			// URL of the manufacturer's website
 	};
 	
 	// Product descriptor
@@ -503,9 +501,9 @@ $macro(ManagementDatatypes)
 		attribute	NcString	name			// Product name
 		attribute	NcString	key				// Manufacturer's unique key to product - model number, SKU, etc
 		attribute	NcString	revisionLevel	// Manufacturer's product revision level code
-		attribute	NcString	brandName		// Brand name under which product is sold
-		attribute	NcString	uuid		// Unique UUID of product (not product instance)
-		attribute	NcString	description		// Text description of product
+		attribute	NcString?	brandName		// Brand name under which product is sold
+		attribute	NcString?	uuid			// Unique UUID of product (not product instance)
+		attribute	NcString?	description		// Text description of product
 	};
 	
 	enum NcResetCause {
@@ -771,17 +769,18 @@ $macro(Block)
 	//  ----------------------------------------------------------------------------------
 	
 	[control-class("1.1", "1.0.0")] interface NcBlock: NcObject {
-		[element("2p1")]	readonly	attribute	NcBoolean							enabled;			// TRUE if block is functional
+		[element("2p1")]	readonly	attribute	NcBoolean							isRoot;				// TRUE if block contents modified since last reset
 		[element("2p2")]	readonly	attribute	NcString							specId;				// Global ID of blockSpec that defines this block
 		[element("2p3")]	readonly	attribute	NcVersionCode						specVersion;		// Version code of blockSpec that defines this block
-		[element("2p4")]	readonly	attribute	NcString							parentSpecId;		// Global ID of parent of blockSpec that defines this block
-		[element("2p5")]	readonly	attribute	NcVersionCode						parentSpecVersion;	// Version code of parent of blockSpec that defines this block
-		[element("2p6")]	readonly	attribute	NcString							specDescription;	// Description of blockSpec that defines this block
+		[element("2p4")]	readonly	attribute	NcString							specDescription;	// Description of blockSpec that defines this block
+		[element("2p5")]	readonly	attribute	NcString?							parentSpecId;		// Global ID of parent of blockSpec that defines this block
+		[element("2p6")]	readonly	attribute	NcVersionCode?						parentSpecVersion;	// Version code of parent of blockSpec that defines this block
 		[element("2p7")]	readonly	attribute	NcBoolean							isDynamic;			// TRUE if dynamic block
 		[element("2p8")]	readonly	attribute	NcBoolean							isModified;			// TRUE if block contents modified since last reset
-		[element("2p9")]	readonly	attribute	sequence<NcBlockMemberDescriptor>	members;			// Descriptors of this block's members
-		[element("2p10")]	readonly	attribute	sequence<NcPort>					ports;				// this block's ports
-		[element("2p11")]	readonly	attribute	sequence<NcSignalPath>				signalPaths; 		// this block's signal paths
+		[element("2p9")]	readonly	attribute	NcBoolean							enabled;			// TRUE if block is functional
+		[element("2p10")]	readonly	attribute	sequence<NcBlockMemberDescriptor>	members;			// Descriptors of this block's members
+		[element("2p11")]	readonly	attribute	sequence<NcPort>					ports;				// this block's ports
+		[element("2p12")]	readonly	attribute	sequence<NcSignalPath>				signalPaths; 		// this block's signal paths
  
 		// Block enumeration methods
 		
