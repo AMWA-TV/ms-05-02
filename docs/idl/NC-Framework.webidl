@@ -174,10 +174,10 @@ $macro(PortDatatypes)
 
 	// Signal path descriptor	
 	interface NcSignalPath {
-					attribute	NcName			role;	// Unique identifier of this signal path in this block
-		[optional]	attribute	NcString?		label;	// Optional label
-					attribute	NcPortReference	source;
-					attribute	NcPortReference	sink;
+		attribute	NcName			role;	// Unique identifier of this signal path in this block
+		attribute	NcString?		label;	// Optional label
+		attribute	NcPortReference	source;
+		attribute	NcPortReference	sink;
 	};
 $endmacro
 $macro(TouchpointDatatypes)
@@ -242,7 +242,7 @@ $macro(EventAndSubscriptionDatatypes)
 
 	// Payload of property-changed event
 	interface NcSubscriptionEndEventData {
-		[optional]	attribute NcString	reason;	// Optional reason for ending the subscription
+		attribute NcString?	reason;	// Optional reason for ending the subscription
 	};
 	
 	// Payload of property-changed event
@@ -310,7 +310,7 @@ $macro(ModelDatatypes)
 	};
 
 	interface NcDescriptor {
-		[optional]	attribute NcString	description; // optional user facing description
+		attribute NcString?	description; // optional user facing description
 	};
 
 	interface NcDatatypeDescriptor: NcDescriptor {
@@ -350,14 +350,14 @@ $macro(ModelDatatypes)
 	
 	// Descriptor of a class property
 	interface NcPropertyDescriptor: NcDescriptor {
-					attribute NcPropertyId				id;				// element ID of property
-					attribute NcName					name;			// name of property
-					attribute NcName					typeName;		// name of property's datatype. If empty then the type is any
-					attribute NcBoolean					readOnly;		// TRUE iff property is read-only
-					attribute NcBoolean					persistent;		// TRUE iff property value survives power-on reset
-					attribute NcBoolean					required;		// TRUE iff property must be implemented
-					attribute NcBoolean					isSequence;		// TRUE iff property is a sequence
-		[optional]	attribute NcParameterConstraint		constraints;	// optional constraints on top of the underlying data type
+		attribute NcPropertyId				id;				// element ID of property
+		attribute NcName					name;			// name of property
+		attribute NcName					typeName;		// name of property's datatype. If empty then the type is any
+		attribute NcBoolean					readOnly;		// TRUE iff property is read-only
+		attribute NcBoolean					persistent;		// TRUE iff property value survives power-on reset
+		attribute NcBoolean					required;		// TRUE iff property must be implemented
+		attribute NcBoolean					isSequence;		// TRUE iff property is a sequence
+		attribute NcParameterConstraint?	constraints;	// optional constraints on top of the underlying data type
 	};
 	
 	// Descriptor of a field of a struct
@@ -376,10 +376,10 @@ $macro(ModelDatatypes)
 
 	// Descriptor of a method parameter
 	interface NcParameterDescriptor: NcDescriptor {
-					attribute NcName		name;					// name of parameter
-					attribute NcName		typeName;				// name of parameter's datatype
-					attribute NcBoolean	required;					// TRUE iff parameter is required
-		[optional]	attribute NcParameterConstraint	constraints;	// optional constraints on top of the underlying data type
+		attribute NcName					name;			// name of parameter
+		attribute NcName					typeName;		// name of parameter's datatype
+		attribute NcBoolean					required;		// TRUE iff parameter is required
+		attribute NcParameterConstraint?	constraints;	// optional constraints on top of the underlying data type
 	};
 	
 	interface NcMethodDescriptor: NcDescriptor {
@@ -406,14 +406,14 @@ $macro(ModelDatatypes)
 	}
 
 	interface NcParameterConstraintNumber: NcParameterConstraint{
-		[optional]	attribute any	maximum;	// not less than this
-		[optional]	attribute any	minimum;	// not more than this
-		[optional]	attribute any	step;		// stepsize
+		attribute any?	maximum;	// not less than this
+		attribute any?	minimum;	// not more than this
+		attribute any?	step;		// stepsize
 	}
 	
 	interface NcParameterConstraintString: NcParameterConstraint {
-		[optional]	attribute NcUint32	maxCharacters;	// maximum characters allowed
-		[optional]	attribute NcRegex	pattern;		// regex pattern
+		attribute NcUint32?	maxCharacters;	// maximum characters allowed
+		attribute NcRegex?	pattern;		// regex pattern
 	}
 $endmacro
 $macro(PropertyConstraintDatatypes)
@@ -426,20 +426,20 @@ $macro(PropertyConstraintDatatypes)
 	typedef NcString	NcRegex; // regex pattern
 
 	interface NcPropertyConstraint {
-					attribute	NcNamePath?		path;		// relative path to member (null means current member)
-					attribute	NcPropertyId	propertyId;	// ID of property being constrained
-		[optional]	attribute	any				value;		// optionally signal a fixed value for this property
+		attribute	NcNamePath?		path;		// relative path to member (null means current member)
+		attribute	NcPropertyId	propertyId;	// ID of property being constrained
+		attribute	any?			value;		// optionally signal a fixed value for this property
 	}
 
 	interface NcPropertyConstraintNumber: NcPropertyConstraint{
-		[optional]	attribute	any?	maximum;	// not less than this
-		[optional]	attribute	any?	minimum;	// not more than this
-		[optional]	attribute	any?	step;		// stepsize
+		attribute	any?	maximum;	// not less than this
+		attribute	any?	minimum;	// not more than this
+		attribute	any?	step;		// stepsize
 	}	
 	
 	interface NcPropertyConstraintString: NcPropertyConstraint {
-		[optional]	attribute	NcUint32	maxCharacters;	// maximum characters allowed
-		[optional]	attribute	NcRegex	pattern;			// regex pattern
+		attribute	NcUint32?	maxCharacters;	// maximum characters allowed
+		attribute	NcRegex?	pattern;			// regex pattern
 	}
 $endmacro
 $macro(BlockDatatypes)
@@ -477,11 +477,11 @@ $macro(BlockDatatypes)
 		// multiple constraints into a single constraint that represents the intersection of all of them.  When the
 		// given constraint values do not allow such resolution, it is a blockspec coding error.
 	
-		[optional]	attribute	sequence<NcPropertyConstraint> constraints	// Constraints on this member or, for a block, its members.
+		attribute	sequence<NcPropertyConstraint>? constraints	// Constraints on this member or, for a block, its members.
 	};
 
 	interface NcBlockDescriptor: NcBlockMemberDescriptor {
-  		attribute	NcString	blockSpecId; // ID of BlockSpec this block implements
+  		attribute	NcString?	blockSpecId; // ID of BlockSpec this block implements
 	};
 $endmacro
 $macro(ManagementDatatypes)
@@ -493,19 +493,19 @@ $macro(ManagementDatatypes)
 
 	//	Manufacturer desciptor
 	interface NcManufacturer {
-					attribute	NcString			name 			// Manufacturer's name
-		[optional]	attribute	NcOrganizationId	organizationId	// IEEE OUI or CID of manufacturer
-		[optional]	attribute	NcUri				website			// URL of the manufacturer's website
+		attribute	NcString			name 			// Manufacturer's name
+		attribute	NcOrganizationId?	organizationId	// IEEE OUI or CID of manufacturer
+		attribute	NcUri?				website			// URL of the manufacturer's website
 	};
 	
 	// Product descriptor
 	interface NcProduct {
-					attribute	NcString	name			// Product name
-					attribute	NcString	key				// Manufacturer's unique key to product - model number, SKU, etc
-					attribute	NcString	revisionLevel	// Manufacturer's product revision level code
-		[optional]	attribute	NcString	brandName		// Brand name under which product is sold
-		[optional]	attribute	NcString	uuid			// Unique UUID of product (not product instance)
-		[optional]	attribute	NcString	description		// Text description of product
+		attribute	NcString	name			// Product name
+		attribute	NcString	key				// Manufacturer's unique key to product - model number, SKU, etc
+		attribute	NcString	revisionLevel	// Manufacturer's product revision level code
+		attribute	NcString?	brandName		// Brand name under which product is sold
+		attribute	NcString?	uuid			// Unique UUID of product (not product instance)
+		attribute	NcString?	description		// Text description of product
 	};
 	
 	enum NcResetCause {
@@ -522,8 +522,8 @@ $macro(ManagementDatatypes)
 	};
 
 	interface NcDeviceOperationalState {
-					attribute NcDeviceGenericState generic;
-		[optional]	attribute NcBlob deviceSpecificDetails; //Device implementation specific details
+		attribute NcDeviceGenericState generic;
+		attribute NcBlob? deviceSpecificDetails; //Device implementation specific details
 	};
 $endmacro
 $macro(MethodResultDatatypes) 
@@ -553,8 +553,8 @@ $macro(MethodResultDatatypes)
 	
 	// Base datatype
 	interface NcMethodResult {
-					attribute	NcMethodStatus	status;
-		[optional]	attribute	NcString		errorMessage;
+		attribute	NcMethodStatus	status;
+		attribute	NcString?		errorMessage;
 	};
 
 	// property-value result used by generic getter on NcObject
@@ -688,9 +688,9 @@ $macro(CoreDatatypes)
 	};	
 
 	interface NcfirmwareComponent {
-					attribute	NcName			name;			// Concise name
-					attribute	NcVersionCode	version;		// Version code
-		[optional]	attribute	NcString		description;	// optional non-programmatic description
+		attribute	NcName			name;			// Concise name
+		attribute	NcVersionCode	version;		// Version code
+		attribute	NcString?		description;	// optional non-programmatic description
 	};
 $endmacro
 $macro(BaseClasses)
@@ -769,9 +769,9 @@ $macro(Block)
 	
 	[control-class("1.1", "1.0.0")] interface NcBlock: NcObject {
 		[element("2p1")]	readonly	attribute	NcBoolean							isRoot;				// TRUE if block contents modified since last reset
-		[element("2p2")]	readonly	attribute	NcString							specId;				// Global ID of blockSpec that defines this block
-		[element("2p3")]	readonly	attribute	NcVersionCode						specVersion;		// Version code of blockSpec that defines this block
-		[element("2p4")]	readonly	attribute	NcString							specDescription;	// Description of blockSpec that defines this block
+		[element("2p2")]	readonly	attribute	NcString?							specId;				// Global ID of blockSpec that defines this block
+		[element("2p3")]	readonly	attribute	NcVersionCode?						specVersion;		// Version code of blockSpec that defines this block
+		[element("2p4")]	readonly	attribute	NcString?							specDescription;	// Description of blockSpec that defines this block
 		[element("2p5")]	readonly	attribute	NcString?							parentSpecId;		// Global ID of parent of blockSpec that defines this block
 		[element("2p6")]	readonly	attribute	NcVersionCode?						parentSpecVersion;	// Version code of parent of blockSpec that defines this block
 		[element("2p7")]	readonly	attribute	NcBoolean							isDynamic;			// TRUE if dynamic block
