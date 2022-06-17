@@ -335,6 +335,7 @@ $macro(ModelDatatypes)
 	interface NcDatatypeDescriptorTypeDef: NcDatatypeDescriptor {
 		//type will be Typedef
 		attribute NcName	content;	// original typedef datatype name
+		attribute NcBoolean	isSequence  // TRUE iff type is a typedef sequence of another type
 	};
 
 	interface NcDatatypeDescriptorStruct: NcDatatypeDescriptor {
