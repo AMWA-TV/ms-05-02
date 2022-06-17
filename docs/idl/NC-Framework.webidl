@@ -768,7 +768,7 @@ $macro(Block)
 	//  ----------------------------------------------------------------------------------
 	
 	[control-class("1.1", "1.0.0")] interface NcBlock: NcObject {
-		[element("2p1")]	readonly	attribute	NcBoolean							isRoot;				// TRUE if block contents modified since last reset
+		[element("2p1")]	readonly	attribute	NcBoolean							isRoot;				// TRUE if block is the root block
 		[element("2p2")]	readonly	attribute	NcString?							specId;				// Global ID of blockSpec that defines this block
 		[element("2p3")]	readonly	attribute	NcVersionCode?						specVersion;		// Version code of blockSpec that defines this block
 		[element("2p4")]	readonly	attribute	NcString?							specDescription;	// Description of blockSpec that defines this block
