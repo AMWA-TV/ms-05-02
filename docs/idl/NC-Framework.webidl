@@ -352,7 +352,7 @@ $macro(ModelDatatypes)
 	interface NcPropertyDescriptor: NcDescriptor {
 		attribute NcPropertyId				id;				// element ID of property
 		attribute NcName					name;			// name of property
-		attribute NcName					typeName;		// name of property's datatype. If empty then the type is any
+		attribute NcName?					typeName;		// name of property's datatype. Can only ever be null if the type is any
 		attribute NcBoolean					readOnly;		// TRUE iff property is read-only
 		attribute NcBoolean					persistent;		// TRUE iff property value survives power-on reset
 		attribute NcBoolean					isNullable;		// TRUE iff property is nullable
@@ -363,7 +363,7 @@ $macro(ModelDatatypes)
 	// Descriptor of a field of a struct
 	interface NcFieldDescriptor: NcDescriptor {
 		attribute	NcName		name;			// name of field
-		attribute	NcName		typeName;		// name of field's datatype
+		attribute	NcName?		typeName;		// name of field's datatype. Can only ever be null if the type is any
 		attribute	NcBoolean	isNullable;		// TRUE iff the field is nullable
 		attribute	NcBoolean	isSequence;		// TRUE iff the field is a sequence
 	};
@@ -377,7 +377,7 @@ $macro(ModelDatatypes)
 	// Descriptor of a method parameter
 	interface NcParameterDescriptor: NcDescriptor {
 		attribute NcName					name;			// name of parameter
-		attribute NcName					typeName;		// name of parameter's datatype
+		attribute NcName?					typeName;		// name of parameter's datatype. Can only ever be null if the type is any
 		attribute NcBoolean					isNullable;		// TRUE iff parameter is nullable
 		attribute NcParameterConstraint?	constraints;	// optional constraints on top of the underlying data type
 	};
