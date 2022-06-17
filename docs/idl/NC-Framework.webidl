@@ -355,7 +355,7 @@ $macro(ModelDatatypes)
 		attribute NcName					typeName;		// name of property's datatype. If empty then the type is any
 		attribute NcBoolean					readOnly;		// TRUE iff property is read-only
 		attribute NcBoolean					persistent;		// TRUE iff property value survives power-on reset
-		attribute NcBoolean					required;		// TRUE iff property must be implemented
+		attribute NcBoolean					isNullable;		// TRUE iff property is nullable
 		attribute NcBoolean					isSequence;		// TRUE iff property is a sequence
 		attribute NcParameterConstraint?	constraints;	// optional constraints on top of the underlying data type
 	};
@@ -378,7 +378,7 @@ $macro(ModelDatatypes)
 	interface NcParameterDescriptor: NcDescriptor {
 		attribute NcName					name;			// name of parameter
 		attribute NcName					typeName;		// name of parameter's datatype
-		attribute NcBoolean					required;		// TRUE iff parameter is required
+		attribute NcBoolean					isNullable;		// TRUE iff parameter is nullable
 		attribute NcParameterConstraint?	constraints;	// optional constraints on top of the underlying data type
 	};
 	
