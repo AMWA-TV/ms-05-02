@@ -137,9 +137,7 @@ $macro(Identifiers)
 
 	typedef NcUint32	NcOid;		// Object id
 
-
-
-	typedef sequence(NcName)	NcNamePath; //Name path
+	typedef sequence<NcName>	NcNamePath; //Name path
 		
 	// Class element id which contains the level and index
 	interface NcElementId {
