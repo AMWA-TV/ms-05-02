@@ -190,7 +190,7 @@ $macro(TouchpointDatatypes)
 	// Abstract base classes
 	interface NcTouchpoint {
 		attribute NcString				contextNamespace;
-		attribute NcTouchpointResource	resources;
+		attribute NcTouchpointResource	resource;
 	};
 
 	interface NcTouchpointResource {
@@ -203,7 +203,7 @@ $macro(TouchpointDatatypes)
 	// IS-04 registrable entities
 	interface NcTouchpointNmos: NcTouchpoint {
 		// contextNamespace is inherited from NcTouchpoint.
-		attribute NcTouchpointResourceNmos	resources;
+		attribute NcTouchpointResourceNmos	resource;
 	};
 
 	interface NcTouchpointResourceNmos: NcTouchpointResource {
