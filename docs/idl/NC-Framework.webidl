@@ -481,7 +481,7 @@ $macro(BlockDatatypes)
 	};
 
 	interface NcBlockDescriptor: NcBlockMemberDescriptor {
-  		attribute	NcBlockSpecId	BlockSpecID; // ID of BlockSpec this block implements
+  		attribute	NcBlockSpecId	blockSpecID; // ID of BlockSpec this block implements
 	};
 $endmacro
 $macro(ManagementDatatypes)
