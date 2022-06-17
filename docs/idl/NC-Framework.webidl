@@ -477,7 +477,7 @@ $macro(BlockDatatypes)
 		// multiple constraints into a single constraint that represents the intersection of all of them.  When the
 		// given constraint values do not allow such resolution, it is a blockspec coding error.
 	
-		[optional]	attribute	sequence<NcPropertyConstraint>? constraints	// Constraints on this member or, for a block, its members.
+		[optional]	attribute	sequence<NcPropertyConstraint> constraints	// Constraints on this member or, for a block, its members.
 	};
 
 	interface NcBlockDescriptor: NcBlockMemberDescriptor {
