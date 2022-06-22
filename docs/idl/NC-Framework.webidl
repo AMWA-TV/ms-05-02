@@ -745,8 +745,8 @@ $macro(BaseClasses)
 	[control-class("1.2.1", "1.0.0")] interface NcSignalWorker: NcWorker {
 
 		// Signal worker base class
-		[element("3p2")]				attribute	sequence<NcPort>	ports;		// The worker's signal ports
-		[element("3p3")]	readonly	attribute	NcTimeInterval?		latency;	// Processing latency of this object (null if not defined)
+		[element("3p1")]				attribute	sequence<NcPort>	ports;		// The worker's signal ports
+		[element("3p2")]	readonly	attribute	NcTimeInterval?		latency;	// Processing latency of this object (null if not defined)
 	};
 
 	[control-class("1.2.1.1", "1.0.0")] interface NcActuator: NcSignalWorker {
