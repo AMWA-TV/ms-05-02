@@ -355,7 +355,7 @@ $macro(ModelDatatypes)
 		attribute NcBoolean					readOnly;		// TRUE iff property is read-only
 		attribute NcBoolean					persistent;		// TRUE iff property value survives power-on reset
 		attribute NcBoolean					isNullable;		// TRUE iff property is nullable
-		attribute NcBoolean?				isSequence;	// TRUE iff property is a sequence. May be null of the type is any
+		attribute NcBoolean?				isSequence;		// TRUE iff property is a sequence. May be null if the type is any
 		attribute NcParameterConstraint?	constraints;	// optional constraints on top of the underlying data type
 	};
 	
@@ -364,7 +364,7 @@ $macro(ModelDatatypes)
 		attribute	NcName		name;			// name of field
 		attribute	NcName?		typeName;		// name of field's datatype. Can only ever be null if the type is any
 		attribute	NcBoolean	isNullable;		// TRUE iff the field is nullable
-		attribute	NcBoolean?	isSequence;		// TRUE iff the field is a sequence. May be null of the type is any
+		attribute	NcBoolean?	isSequence;		// TRUE iff the field is a sequence. May be null if the type is any
 	};
 	
 	// Descriptor of an enum
@@ -378,6 +378,7 @@ $macro(ModelDatatypes)
 		attribute NcName					name;			// name of parameter
 		attribute NcName?					typeName;		// name of parameter's datatype. Can only ever be null if the type is any
 		attribute NcBoolean					isNullable;		// TRUE iff parameter is nullable
+		attribute NcBoolean?				isSequence;		// TRUE iff the parameter is a sequence. May be null if the type is any
 		attribute NcParameterConstraint?	constraints;	// optional constraints on top of the underlying data type
 	};
 	
