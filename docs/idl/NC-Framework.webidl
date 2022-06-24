@@ -352,10 +352,11 @@ $macro(ModelDatatypes)
 	
 	// Descriptor of a field of a struct
 	interface NcFieldDescriptor: NcDescriptor {
-		attribute	NcName		name;			// name of field
-		attribute	NcName?		typeName;		// name of field's datatype. Can only ever be null if the type is any
-		attribute	NcBoolean	isNullable;		// TRUE iff the field is nullable
-		attribute	NcBoolean?	isSequence;		// TRUE iff the field is a sequence. May be null if the type is any
+		attribute	NcName					name;			// name of field
+		attribute	NcName?					typeName;		// name of field's datatype. Can only ever be null if the type is any
+		attribute	NcBoolean				isNullable;		// TRUE iff the field is nullable
+		attribute	NcBoolean?				isSequence;		// TRUE iff the field is a sequence. May be null if the type is any
+		attribute	NcParameterConstraint?	constraints;	// optional constraints on top of the underlying data type
 	};
 	
 	// Descriptor of an enum
