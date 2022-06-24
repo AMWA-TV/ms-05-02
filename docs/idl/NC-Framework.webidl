@@ -312,18 +312,9 @@ $macro(ModelDatatypes)
 	};
 
 	interface NcDatatypeDescriptor: NcDescriptor {
-		attribute NcName			name;	// datatype name
-		attribute NcDatatypeType	type;	// Primitive, Typedef, Struct, Enum
-		
-		//  Further variants may introduce a content property as follows:
-		//
-		//		type		content
-		//	-----------------------------------------------------------------------------------------
-		//		Primitive	no further content
-		//		Typedef		name of referenced type
-		//		Struct		sequence<NcFieldDescriptor>, one item per field of the struct
-		// 	 	Enum		sequence<NcEnumItemDescriptor>, one item per enum option
-		//	-----------------------------------------------------------------------------------------	
+		attribute NcName					name;			// datatype name
+		attribute NcDatatypeType			type;			// Primitive, Typedef, Struct, Enum
+		attribute NcParameterConstraint?	constraints;	// optional constraints on top of the underlying data type
 	};
 	
 	interface NcDatatypeDescriptorPrimitive: NcDatatypeDescriptor {
@@ -405,7 +396,7 @@ $macro(ModelDatatypes)
 	interface NcParameterConstraint {
 	}
 
-	interface NcParameterConstraintNumber: NcParameterConstraint{
+	interface NcParameterConstraintNumber: NcParameterConstraint {
 		attribute any?	maximum;	// not less than this
 		attribute any?	minimum;	// not more than this
 		attribute any?	step;		// stepsize
@@ -428,10 +419,13 @@ $macro(PropertyConstraintDatatypes)
 	interface NcPropertyConstraint {
 		attribute	NcNamePath?		path;		// relative path to member (null means current member)
 		attribute	NcPropertyId	propertyId;	// ID of property being constrained
-		attribute	any?			value;		// optionally signal a fixed value for this property
 	}
 
-	interface NcPropertyConstraintNumber: NcPropertyConstraint{
+	interface NcPropertyConstraintFixed: NcPropertyConstraint {
+		attribute	any?			value;		// signals a fixed value for this property
+	}
+
+	interface NcPropertyConstraintNumber: NcPropertyConstraint {
 		attribute	any?	maximum;	// not less than this
 		attribute	any?	minimum;	// not more than this
 		attribute	any?	step;		// stepsize
