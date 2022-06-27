@@ -407,10 +407,6 @@ $macro(ModelDatatypes)
 		attribute NcUint32?	maxCharacters;	// maximum characters allowed
 		attribute NcRegex?	pattern;		// regex pattern
 	}
-
-	interface NcParameterConstraintEnum: NcParameterConstraint {
-		attribute	sequence<NcEnumItemDescriptor>	possibleValues;	// allowed values
-	}
 $endmacro
 $macro(PropertyConstraintDatatypes)
 	//  ----------------------------------------------------------------------------------
