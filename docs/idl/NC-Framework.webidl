@@ -1176,29 +1176,6 @@ $macro(FeatureSet017)
 		"As10Shim"		// 2 AMWA AS-10 shim
 	};
 $endmacro
-$macro(FeatureSet018)
-
-	// -----------------------------------------------------------------------------
-	// Feature set 007 - Object sequence
-	// -----------------------------------------------------------------------------
-
-	[control-class("1.2.4", "1.0.0")] interface NcObjectSequence: NcWorker {
-	
-		[element("3p1")]	sequence<NcObjectSequenceItem>	items // The sequence, ordered by 'index' property
-	};
-	
-	// Object-sequence list item
-	interface NcObjectSequenceItem {
-	
-	// 	Object sequence item.
-	//	Sequences are ordered by value of 'index' property.
-	
-		attribute	NcUint16 	index;	// ordinal
-		attribute	NcOid		oid;	// object ID
-		attribute	NcNamePath	path;	// object path
-	};
-	
-$endmacro
 
 $#
 $# ============================================================================
