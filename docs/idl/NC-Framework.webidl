@@ -727,14 +727,6 @@ $macro(BaseClasses)
 		[element("1m5")]	NcMethodResult				SetSequenceItem(NcPropertyId id, NcId32 index, any? value);	// Set sequence item
 		[element("1m6")]	NcMethodResultId32			AddSequenceItem(NcPropertyId id, any? value);				// Add item to sequence
 		[element("1m7")]	NcMethodResult				RemoveSequenceItem(NcPropertyId id, NcId32 index);			// Delete sequence item
-
-		// Optional lock methods
-		[element("1m8")]	NcMethodResult	LockWait(
-			 NcLockState requestedLockStatus,	// Type of lock requested, or unlock
-			 NcTimeInterval timeout				// Method fails if wait exceeds this.  0=forever
-		);
-
-		[element("1m9")]	NcMethodResult	AbortLockWaits(); // Abort all this session's lock waits on this object
 	
 		// Events
 		[element("1e1")]	[event]	void	PropertyChanged(NcPropertyChangedEventData eventData);
@@ -929,6 +921,22 @@ $macro(Managers)
 		[element("3p1")]	readonly	attribute	NcTime			deviceTimePtp;				// Current device time
 		[element("3p2")]	readonly	attribute	sequence<NcOid>	timeSources;				// OIDs of available NcTimeSource objects
 		[element("3p3")]				attribute	NcOid			currentDeviceTimeSource;	// OID of current NcTimeSource object
+	};
+
+	[control-class("1.3.8", "1.0.0", "LockManager")] interface NcLockManager: NcManager {
+		//
+		//	Allows locking and waiting.
+		//	Simple lock sets can also be achieved by using the generic Setter method to modify the lockState property on any NcObject which is lockable.
+		//
+
+		// Lock and wait
+		[element("1m1")]	NcMethodResult	LockWait(
+			NcOid			id						// Target object id
+			NcLockState		requestedLockStatus,	// Type of lock requested, or unlock
+			NcTimeInterval	timeout					// Method fails if wait exceeds this. 0=forever
+		);
+
+		[element("1m2")]	NcMethodResult	AbortLockWaits(); // Abort all this session's lock waits on this object
 	};
 $endmacro
 $macro(FeatureSet001)
