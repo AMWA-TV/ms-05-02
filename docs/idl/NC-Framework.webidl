@@ -84,30 +84,35 @@ $macro(IdentifiersClass)
 	//	Unique 24-bit organization ID: 
 	//	IEEE public Company ID (public CID) or
 	//	IEEE Organizational Unique Identifier (OUI).
+
 	typedef [length(3)] NcBlobFixedLen	NcOrganizationId;
 	
-	// Authority key.  Used to identify proprietary classes. 
-	// Negative 32-bit integer, constructed by prepending FFh
-	// onto the 24-bit organization ID. 
-	
-	interface NcClassAuthorityKey {
-		attribute NcInt8			sentinel;		// Always -1 = FFh
-		attribute NcOrganizationId	organizationId; // Three bytes
-	};
-
-	// Class ID field. Either a definition index or an authority key.
+	// NcClassId is a sequence of NCInt32 class ID fields.
+	// A class ID sequence reflects the ancestry of the class being identified.
 	//
+	// A class ID field is either a definition index or an authority key.
+	//
+	// A definition index is an ordinal that starts at 1 for every inheritance level of the control
+	// model class tree.
+
+	//	e.g.
+	//		[ 1, 1, 3, 5]
+
 	// An authority key shall be inserted in the class ID sequence immediately
 	// after the definition index of the class from which a proprietary class inherits,
 	// i.e. at the point where the proprietary class or class subtree
 	// connects into the class structure.
+
+	// An authority key is a negative 32-bit integer, constructed by prepending FFh
+	// onto the 24-bit organization ID. See NcOrganizationId above.
 	//
 	// Negative values are reserved for authority keys and possible other constructs
 	// in the future. A zero value is never valid.
-	
-	typedef (NcInt32 or NcClassAuthorityKey)	NcClassIdField;
 
-	typedef sequence<NcClassIdField>	NcClassId;
+	//	e.g.
+	//		[ 1, 1, 3, 5, -132131, 1, 4, 5 ]
+	
+	typedef sequence<NcInt32>	NcClassId;
 $endmacro
 $macro(VersionCode)
 	//  ----------------------------------------------------------------------------------
