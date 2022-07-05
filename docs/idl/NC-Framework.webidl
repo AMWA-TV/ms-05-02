@@ -936,7 +936,7 @@ $macro(Managers)
 			NcTimeInterval	timeout					// Method fails if wait exceeds this. 0=forever
 		);
 
-		[element("1m2")]	NcMethodResult	AbortLockWaits(); // Abort all this session's lock waits on this object
+		[element("1m2")]	NcMethodResult	AbortLockWaits(NcOid id); // Abort lock waits on this object
 	};
 $endmacro
 $macro(FeatureSet001)
