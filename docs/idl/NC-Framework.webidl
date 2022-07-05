@@ -829,11 +829,7 @@ $macro(Managers)
 		[element("3p11")]	readonly	attribute	NcString?					message				// Arbitrary message from dev to controller
 	};
 	
-	[control-class("1.3.2", "1.0.0","SecurityManager")] interface NcSecurityManager: NcManager {
-		//	Security manager class
-	};
-	
-	[control-class("1.3.3", "1.0.0","ClassManager")] interface NcClassManager: NcManager {
+	[control-class("1.3.2", "1.0.0","ClassManager")] interface NcClassManager: NcManager {
 	
 		//	Class manager class
 		//  Returns definitions of control classes and datatypes that are used in the device.
@@ -872,14 +868,14 @@ $macro(Managers)
 		);
 	};
 	
-	[control-class("1.3.4", "1.0.0","FirmwareManager")] interface NcFirmwareManager: NcManager {
+	[control-class("1.3.3", "1.0.0","FirmwareManager")] interface NcFirmwareManager: NcManager {
 		
 		//	Firmware / software manager : Reports versions of components
 		
 		[element("3p1")]	readonly	attribute	sequence<NcfirmwareComponent>	components; // List of firmware component descriptors
 	};
 	
-	[control-class("1.3.5", "1.0.0","SubscriptionManager")] interface NcSubscriptionManager: NcManager {
+	[control-class("1.3.4", "1.0.0","SubscriptionManager")] interface NcSubscriptionManager: NcManager {
 	
 		// Subscription manager
 		
@@ -896,7 +892,7 @@ $macro(Managers)
 		);
 	};
 	
-	[control-class("1.3.6", "1.0.0", "DeviceTimeManager")] interface NcDeviceTimeManager: NcManager {
+	[control-class("1.3.5", "1.0.0", "DeviceTimeManager")] interface NcDeviceTimeManager: NcManager {
 		//
 		//	Controls device's internal clock(s) and its reference.
 		//
@@ -906,7 +902,7 @@ $macro(Managers)
 		[element("3p3")]				attribute	NcOid			currentDeviceTimeSource;	// OID of current NcTimeSource object
 	};
 
-	[control-class("1.3.7", "1.0.0", "LockManager")] interface NcLockManager: NcManager {
+	[control-class("1.3.6", "1.0.0", "LockManager")] interface NcLockManager: NcManager {
 		//
 		//	Allows locking and waiting.
 		//	Simple lock sets can also be achieved by using the generic Setter method to modify the lockState property on any NcObject which is lockable.
