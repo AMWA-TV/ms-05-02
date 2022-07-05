@@ -895,22 +895,8 @@ $macro(Managers)
 			NcElementId	property	// ID of the property
 		);
 	};
-
-	[control-class("1.3.6", "1.0.0","PowerManager")] interface NcPowerManager: NcManager {
-		[element("3p1")]	readonly	attribute	NcDeviceGenericState 	state;
-		[element("3p2")]	readonly	attribute	sequence<NcOid>			powerSupplyOids;		// OIDs of available NcPowerSupply objects
-		[element("3p3")]	readonly	attribute	sequence<NcOid>			activePowerSupplyOids;	// OIDs of active NcPowerSupply objects
-		[element("3p4")]	readonly	attribute	NcBoolean				autoState;				// TRUE if current state was invoked automatically
-		[element("3p5")]	readonly	attribute	NcDeviceGenericState	targetState				// Power state to which the device is transitioning, or None.
 	
-		[element("3m1")]	NcMethodResult	ExchangePowerSupplies(
-			NcOid		oldPsu,
-			NcOid		newPsu,
-			NcBoolean	powerOffOld
-		);
-	};
-	
-	[control-class("1.3.7", "1.0.0", "DeviceTimeManager")] interface NcDeviceTimeManager: NcManager {
+	[control-class("1.3.6", "1.0.0", "DeviceTimeManager")] interface NcDeviceTimeManager: NcManager {
 		//
 		//	Controls device's internal clock(s) and its reference.
 		//
@@ -920,7 +906,7 @@ $macro(Managers)
 		[element("3p3")]				attribute	NcOid			currentDeviceTimeSource;	// OID of current NcTimeSource object
 	};
 
-	[control-class("1.3.8", "1.0.0", "LockManager")] interface NcLockManager: NcManager {
+	[control-class("1.3.7", "1.0.0", "LockManager")] interface NcLockManager: NcManager {
 		//
 		//	Allows locking and waiting.
 		//	Simple lock sets can also be achieved by using the generic Setter method to modify the lockState property on any NcObject which is lockable.
@@ -1159,6 +1145,21 @@ $macro(FeatureSet016)
 	//	Feature set 016 - Power supply management
 	//	Placeholder for work to be done in the future
 	//
+
+	[control-class("1.3.8", "1.0.0","PowerManager")] interface NcPowerManager: NcManager {
+		[element("3p1")]	readonly	attribute	NcDeviceGenericState 	state;
+		[element("3p2")]	readonly	attribute	sequence<NcOid>			powerSupplyOids;		// OIDs of available NcPowerSupply objects
+		[element("3p3")]	readonly	attribute	sequence<NcOid>			activePowerSupplyOids;	// OIDs of active NcPowerSupply objects
+		[element("3p4")]	readonly	attribute	NcBoolean				autoState;				// TRUE if current state was invoked automatically
+		[element("3p5")]	readonly	attribute	NcDeviceGenericState	targetState				// Power state to which the device is transitioning, or None.
+	
+		[element("3m1")]	NcMethodResult	ExchangePowerSupplies(
+			NcOid		oldPsu,
+			NcOid		newPsu,
+			NcBoolean	powerOffOld
+		);
+	};
+
 	//  ----------------------------------------------------------------------------------
 $endmacro
 $macro(FeatureSet017)
