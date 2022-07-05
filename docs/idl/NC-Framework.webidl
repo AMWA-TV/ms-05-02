@@ -150,10 +150,6 @@ $macro(Identifiers)
 		attribute NcUint16	index;
 	};
 
-	typedef NcElementId	NcPropertyId;
-	typedef NcElementId	NcMethodId;
-	typedef NcElementId	NcEventId;
-
 	// Multipurpose internal handles
 	typedef NcUint16	NcId16;
 	typedef NcUint32	NcId32;
@@ -236,7 +232,7 @@ $macro(EventAndSubscriptionDatatypes)
 	// Unique combination of emitter OID and Event ID
 	interface NcEvent {
 		attribute NcOid		emitterOid;
-		attribute NcEventId	eventId;
+		attribute NcElementId	eventId;
 	};
 
 	// Payload of events that have no payload data
@@ -250,7 +246,7 @@ $macro(EventAndSubscriptionDatatypes)
 	
 	// Payload of property-changed event
 	interface NcPropertyChangedEventData {
-		attribute NcPropertyId			propertyId;		// ID of changed property
+		attribute NcElementId			propertyId;		// ID of changed property
 		attribute NcPropertyChangeType	changeType;		// Mainly for maps & sets
 		attribute any					propertyValue;	// Property-type specific
 	};
@@ -345,7 +341,7 @@ $macro(ModelDatatypes)
 	
 	// Descriptor of a class property
 	interface NcPropertyDescriptor: NcDescriptor {
-		attribute NcPropertyId				id;				// element ID of property
+		attribute NcElementId				id;				// element ID of property
 		attribute NcName					name;			// name of property
 		attribute NcName?					typeName;		// name of property's datatype. Can only ever be null if the type is any
 		attribute NcBoolean					readOnly;		// TRUE iff property is read-only
@@ -380,14 +376,14 @@ $macro(ModelDatatypes)
 	};
 	
 	interface NcMethodDescriptor: NcDescriptor {
-		attribute NcMethodId						id;				// element ID of method
+		attribute NcElementId						id;				// element ID of method
 		attribute NcName							name;			// name of method
 		attribute NcName							resultDatatype;	// name of method result's datatype
 		attribute sequence<NcParameterDescriptor>	parameters;		// 0-n parameter descriptors
 	};
 	
 	interface NcEventDescriptor: NcDescriptor {
-		attribute NcEventId	id;				// element ID of event
+		attribute NcElementId	id;				// element ID of event
 		attribute NcName		name;			// event's name
 		attribute NcName		eventDatatype;	// name of event data's datatype
 	};
@@ -400,6 +396,7 @@ $macro(ModelDatatypes)
 
 	//Abstract parameter constraint class
 	interface NcParameterConstraint {
+		attribute any?	defaultValue;		// default value
 	}
 
 	interface NcParameterConstraintNumber: NcParameterConstraint {
@@ -423,8 +420,9 @@ $macro(PropertyConstraintDatatypes)
 	typedef NcString	NcRegex; // regex pattern
 
 	interface NcPropertyConstraint {
-		attribute	NcNamePath?		path;		// relative path to member (null means current member)
-		attribute	NcPropertyId	propertyId;	// ID of property being constrained
+		attribute	NcNamePath?		path;			// relative path to member (null means current member)
+		attribute	NcElementId	propertyId;		// ID of property being constrained
+		attribute	any?			defaultValue;	// default value
 	}
 
 	interface NcPropertyConstraintFixed: NcPropertyConstraint {
@@ -720,13 +718,12 @@ $macro(BaseClasses)
 		[element("1p10")]			readonly	attribute	sequence<NcTouchpoint>?	touchpoints;
 		
 		// Generic Get/Set methods
-		[element("1m1")]	NcMethodResultPropertyValue	Get(NcPropertyId id);										// Get property value
-		[element("1m2")]	NcMethodResult				Set(NcPropertyId id, any? value);							// Set property value
-		[element("1m3")]	NcMethodResult				Clear(NcPropertyId id);										// Sets property to initial value
-		[element("1m4")]	NcMethodResultPropertyValue	GetSequenceItem(NcPropertyId id, NcId32 index);				// Get sequence item
-		[element("1m5")]	NcMethodResult				SetSequenceItem(NcPropertyId id, NcId32 index, any? value);	// Set sequence item
-		[element("1m6")]	NcMethodResultId32			AddSequenceItem(NcPropertyId id, any? value);				// Add item to sequence
-		[element("1m7")]	NcMethodResult				RemoveSequenceItem(NcPropertyId id, NcId32 index);			// Delete sequence item
+		[element("1m1")]	NcMethodResultPropertyValue	Get(NcElementId id);										// Get property value
+		[element("1m2")]	NcMethodResult				Set(NcElementId id, any? value);							// Set property value
+		[element("1m3")]	NcMethodResultPropertyValue	GetSequenceItem(NcElementId id, NcId32 index);				// Get sequence item
+		[element("1m4")]	NcMethodResult				SetSequenceItem(NcElementId id, NcId32 index, any? value);	// Set sequence item
+		[element("1m5")]	NcMethodResultId32			AddSequenceItem(NcElementId id, any? value);				// Add item to sequence
+		[element("1m6")]	NcMethodResult				RemoveSequenceItem(NcElementId id, NcId32 index);			// Delete sequence item
 	
 		// Events
 		[element("1e1")]	[event]	void	PropertyChanged(NcPropertyChangedEventData eventData);
@@ -890,20 +887,20 @@ $macro(Managers)
 		[element("3m2")]	NcMethodResult	RemoveSubscription(NcEvent event); // When used to unsubscribe to the property changed event it will unsubscribe to changes from all of the properties
 		[element("3m3")]	NcMethodResult	AddPropertyChangeSubscription(
 			NcOid			emitter,	// ID of object where property is
-			NcPropertyId	property	// ID of the property
+			NcElementId	property	// ID of the property
 		);
 
 		[element("3m4")]	NcMethodResult	RemovePropertyChangeSubscription(
 			NcOid			emitter,	// ID of object where property is
-			NcPropertyId	property	// ID of the property
+			NcElementId	property	// ID of the property
 		);
 	};
 
 	[control-class("1.3.6", "1.0.0","PowerManager")] interface NcPowerManager: NcManager {
 		[element("3p1")]	readonly	attribute	NcDeviceGenericState 	state;
 		[element("3p2")]	readonly	attribute	sequence<NcOid>			powerSupplyOids;		// OIDs of available NcPowerSupply objects
-		[element("3p3")]				attribute	sequence<NcOid>			activePowerSupplyOids;	// OIDs of active NcPowerSupply objects
-		[element("3p4")]				attribute	NcBoolean				autoState;				// TRUE if current state was invoked automatically
+		[element("3p3")]	readonly	attribute	sequence<NcOid>			activePowerSupplyOids;	// OIDs of active NcPowerSupply objects
+		[element("3p4")]	readonly	attribute	NcBoolean				autoState;				// TRUE if current state was invoked automatically
 		[element("3p5")]	readonly	attribute	NcDeviceGenericState	targetState				// Power state to which the device is transitioning, or None.
 	
 		[element("3m1")]	NcMethodResult	ExchangePowerSupplies(
