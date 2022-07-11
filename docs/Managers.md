@@ -79,7 +79,7 @@ interface NcElementID {
 };
 ```
 
-Unsubscribing to an event is done by calling the RemoveSubscription method add passing in the event data described by an `McEvent` type.
+Unsubscribing to an event is done by calling the RemoveSubscription method add passing in the event data described by an `NcEvent` type.
 
 ```typescript
 [element("3m2")]
