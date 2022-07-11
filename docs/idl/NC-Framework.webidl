@@ -248,7 +248,7 @@ $macro(EventAndSubscriptionDatatypes)
 	interface NcPropertyChangedEventData {
 		attribute NcElementId			propertyId;		// ID of changed property
 		attribute NcPropertyChangeType	changeType;		// Mainly for maps & sets
-		attribute any					propertyValue;	// Property-type specific
+		attribute any?					propertyValue;	// Property-type specific
 	};
 
 	// Type of property change
@@ -792,14 +792,6 @@ $macro(Block)
 			NcClassId? classId,							// if non null, finds only members with this class ID
 			NcBoolean recurse,							// TRUE to search nested blocks
 		);
-
-		// finds members with given user label or fragment
-		[element("2m4")]	NcMethodResultBlockMemberDescriptors	FindMembersByUserLabel(
-			NcString userLabel,							// label text to search for
-			NcStringComparisonType nameComparisonType,	// type of string comparison to use	
-			NcClassId? classId,							// if nonnull, finds only members with this class ID
-			NcBoolean recurse,							// TRUE to search nested blocks
-		);
 	};
 $endmacro
 $macro(Managers)
@@ -925,7 +917,7 @@ $macro(FeatureSet001)
 	// -----------------------------------------------------------------------------
 	interface NcSwitchItem {
 		attribute	NcBoolean	isEnabled;	// signals if the switch position is enabled
-		attribute	NcString	label;		// optional switch position label
+		attribute	NcString?	label;		// optional switch position label
 	};
 
 	[control-class("1.2.1.1.1", "1.0.0")] interface NcGain: NcActuator {
@@ -1002,7 +994,7 @@ $macro(FeatureSet002)
 	
 	[control-class("1.2.2", "1.0.0")] interface NcReceiverMonitor: NcWorker {
 	
-		// Receiver monitoring agent.
+		// Receiver monitoring worker.
 		// For attaching to specific receivers, uses the Touchpoint mechanism inherited from NcObject.
 		
 		[element("3p1")]	readonly attribute NcConnectionStatus	connectionStatus
@@ -1023,7 +1015,7 @@ $macro(FeatureSet002)
 
 	[control-class("1.2.2.1", "1.0.0")] interface NcReceiverMonitorProtected: NcReceiverMonitor {
 	
-		// Derived receiver monitoring agent class for SMPTE ST 2022-7-type receivers.
+		// Derived receiver monitoring worker class for SMPTE ST 2022-7-type receivers.
 		
 		[element("4p1")]	readonly	attribute	NcBoolean	signalProtectionStatus;
 	};
@@ -1197,7 +1189,6 @@ $#
 	$BlockDatatypes()
 	$BaseClasses()
 	$Block()
-	$CoreAgents()
 	$Managers()
 	
 	$FeatureSet001()	$#	 General control & monitoring

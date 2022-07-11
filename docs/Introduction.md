@@ -5,7 +5,7 @@ It is aimed to serve as the foundation for building devices, components and feat
 
 This specification relies on previous familiarity with the following related specifications:
 
-- [AMWA MS-05-01 NMOS Control Architecture Framework](https://specs.amwa.tv/ms-05-01/)
-- [AMWA MS-05-03 NMOS Control Blockspecs](https://specs.amwa.tv/ms-05-03/)
+- [MS-05-01 NMOS Control Architecture](https://specs.amwa.tv/ms-05-01)
+- [MS-05-03 NMOS Control Block Specifications](https://specs.amwa.tv/ms-05-03)
 
-The webIDL definitions contain both core models and feature sets models which only apply to certain features being implemented.
+The [webIDL definitions](idl/NC-Framework.webidl) contain both core models and feature sets models which only apply to certain features being implemented.
