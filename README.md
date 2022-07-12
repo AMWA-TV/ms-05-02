@@ -19,6 +19,12 @@ Sets out the rules and framework for building control models in NMOS devices.
 
 WebIDL definitions and supporting documentation describe the way control models may be created.
 
+### Other specifications in the suite
+
+- [MS-05-01 NMOS Control Architecture](https://specs.amwa.tv/ms-05-01)
+- [MS-05-03 NMOS Control Block Specifications](https://specs.amwa.tv/ms-05-03)
+- [IS-12 NMOS Control Protocol](https://specs.amwa.tv/is-12)
+
 <!-- INTRO-END -->
 
 ## Getting started

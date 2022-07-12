@@ -8,5 +8,6 @@
 - [NcObject](NcObject.md)
 - [Blocks](Blocks.md)
 - [Managers](Managers.md)
-- [Agents](Agents.md)
+- [Workers](Workers.md)
 - [Feature sets](Feature%20sets.md)
+- [WebIDL definitions](idl/NC-Framework.webidl)
