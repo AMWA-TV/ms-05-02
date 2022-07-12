@@ -165,7 +165,8 @@ interface NcMethodResultDatatypeDescriptors : NcMethodResult { // dataype descri
 
 ## Other managers
 
-| **Name**             | **Description**                                                      |
-| -------------------- | ---------------------------------------------------------------------|
-| NcFirmwareManager    | Manager handling device firmware operations                          |
-| NcDeviceTimeManager  | Manager handling device's internal clock(s) and its reference        |
+| **Name**             | **Description**                                                                 |
+| -------------------- | --------------------------------------------------------------------------------|
+| NcFirmwareManager    | Manager handling device firmware operations                                     |
+| NcDeviceTimeManager  | Manager handling device's internal clock(s) and its reference                   |
+| NcLockManager        | Manager handling locking of objects with the ability to wait on aquiring a lock |
