@@ -8,4 +8,4 @@ This specification relies on previous familiarity with the following related spe
 - [MS-05-01 NMOS Control Architecture](https://specs.amwa.tv/ms-05-01)
 - [MS-05-03 NMOS Control Block Specifications](https://specs.amwa.tv/ms-05-03)
 
-The [webIDL definitions](idl/NC-Framework.webidl) contain both core models and feature sets models which only apply to certain features being implemented.
+The [webIDL definitions](../APIs/idl/NC-Framework.webidl) contain both core models and feature sets models which only apply to certain features being implemented.
