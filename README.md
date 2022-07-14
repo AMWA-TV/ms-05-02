@@ -17,7 +17,7 @@ Sets out the rules and framework for building control models in NMOS devices.
 
 ### How does it work?
 
-WebIDL definitions and supporting documentation describe the way control models may be created.
+Web IDL definitions and supporting documentation describe the way control models may be created.
 
 ### Other specifications in the suite
 

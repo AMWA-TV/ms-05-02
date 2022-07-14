@@ -9,12 +9,12 @@ $macro(HeaderComments)
 	//		- 	specific classes and datatypes needed by particular feature sets.
 	//
 	//	This file must be preprocessed with the 'pyexpand' macro processor to yield a complete
-	//	WebIDL file.
+	//	Web IDL file.
 	//
 	//	With this scheme, an NCC module is defined as follows:
 	//
 	//		$macro(myModule)
-	//			... WebIDL statements ...
+	//			... Web IDL statements ...
 	//		$endmacro
 	//
 	//		$myModule()

@@ -1,6 +1,6 @@
 # Concepts
 
-The webIDL definitions are available [here](../idl/NC-Framework.webidl).
+The Web IDL definitions are available [here](../idl/NC-Framework.webidl).
 
 The definitions include datatypes and classes which include properties, methods and events.
 
@@ -21,7 +21,7 @@ interface NcElementID {
 };
 ```
 
-Properties, methods and events inside a class are uniquely identified using the element webIDL extension:
+Properties, methods and events inside a class are uniquely identified using the element Web IDL extension:
 
 * properties - `[element("_p_")]`
 * methods - `[element("_m_")]`
@@ -54,9 +54,9 @@ Here are some examples from the `NcObject` class:
 };
 ```
 
-Readonly properties are signaled using the `readonly` token as specified in the webIDL standard.
+Readonly properties are signaled using the `readonly` token as specified in the Web IDL standard.
 
-Nullable types are signaled using the `?` marker at the end of the type as specified in the webIDL standard.
+Nullable types are signaled using the `?` marker at the end of the type as specified in the Web IDL standard.
 
 Example:
 

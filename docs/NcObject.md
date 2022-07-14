@@ -71,7 +71,7 @@ Events can only be consumed as notifications when subscribed to in the Subscript
 
 ## Working with collections inside an ncObject
 
-Collection types are defined as webIDL sequences of a specific type.
+Collection types are defined as Web IDL sequences of a specific type.
 There are generic methods for getting, setting, adding and deleting items inside a collection property as part of `NcObject`.
 
 Getting a collection item is done through the `GetSequenceItem` method (\[element("1m3")\]) by specifying the property identifier (`NcElementId`) and the index as arguments.
