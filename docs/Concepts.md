@@ -1,6 +1,6 @@
 # Concepts
 
-The webIDL definitions are available [here](../APIs/idl/NC-Framework.webidl).
+The webIDL definitions are available [here](../idl/NC-Framework.webidl).
 
 The definitions include datatypes and classes which include properties, methods and events.
 
