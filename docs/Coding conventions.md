@@ -23,9 +23,8 @@
     - [**Typedefs**](#typedefs)
     - [**Primitives**](#primitives)
     - [**Comments**](#comments)
-      - [**Web IDL comments***](#web-idl-comments)
+      - [**Web IDL comments**](#web-idl-comments)
       - [**Macro comments**](#macro-comments)
-    - [**Blank lines**](#blank-lines)
   - [Control class definitions](#control-class-definitions)
   - [Datatype definitions](#datatype-definitions)
   - [Naming and capitalization](#naming-and-capitalization)
@@ -189,10 +188,10 @@ NcDeviceManager
 Every property, method, or event declaration of every control class is prefixed by the `[element(.,..)]` attribute. Syntax is:
 
 ```typescript
-    [element(elementID)]
+    [element(elementId)]
 ```
 
-where **element*id** is a delimited string of the form `nTm`, where
+where **elementId** is a delimited string of the form `nTm`, where
     - `n` is the definition level of the class in the class tree.
     - 'm' is the ordinal of the definition within the class.
 
@@ -222,42 +221,23 @@ Web IDL supports aliasing of types using the familiar **typedef** construct. For
     typedef unrestrictedfloat  ncDB      // Floating-point decibels
 ```
 
-By convention, typedefs in NCA may only be one level of indirection away from built-in types. For example, this typedef, while legal in Web IDL, would not be allowed in NCA:
+By convention, typedefs in NCA MUST only be one level of indirection away from built-in types. For example, this typedef, while legal in Web IDL, would not be allowed in NCA:
 
 ```typescript
     typedef ncDB ncMyDB                 // A custom kind of DB
 ```
 
-...because it is two levels of indirection away from the built-in type ```unrestrictedfloat``.
+...because it is two levels of indirection away from the built-in type `unrestrictedfloat`.
 
 ### **Primitives**
 
-NCA defines its own set of primitive datatypes as aliases of built-in Web IDL datatypes. Their definitions are in the specification module `PrimitiveDatatypes`. The complete list is as follows:
+NCA defines its own set of primitive datatypes as aliases of built-in Web IDL datatypes. Their definitions are in the specification module `PrimitiveDatatypes`.
 
-```typescript
-    [primitive] typedef boolean             NcBoolean;
-    [primitive] typedef byte                NcInt8;
-    [primitive] typedef short               NcInt16;
-    [primitive] typedef long                NcInt32;
-    [primitive] typedef longlong            NcInt64;
-    [primitive] typedef octet               NcUint8;
-    [primitive] typedef unsignedshort       NcUint16;
-    [primitive] typedef unsignedlong        NcUint32;
-    [primitive] typedef unsignedlonglong    NcUint64;
-    [primitive] typedef unrestrictedfloat   NcFloat32;
-    [primitive] typedef unrestricteddouble  NcFloat64;
-    [primitive] typedef bytestring          NcString;   // UTF-8
-    [primitive] typedef any                 NcBlob;
-    [primitive] typedef any                 NcBlobFixedLen;
-```
-
-Note the presence of the `[primitive]` extended attribute.
-
-Except for these primitive definitions, Framework code always uses the NCA datatypes, not the built-in datatypes.
+Except for primitive definitions, Framework code MUST use the NCA datatypes, not the built-in datatypes.
 
 ### **Comments**
 
-#### **Web IDL comments***
+#### **Web IDL comments**
 
 Web IDL supports c-style single-line comments:
 
@@ -279,10 +259,6 @@ pyexpander treats all such comments as normal source code text, so they're simpl
 #### **Macro comments**
 
 Any line beginning with **$#** is treated as a macro comment by pyexpander. Such lines are **not** copied into the output file.
-
-### **Blank lines**
-
-Pyexpander faithfully copies blank lines to its output file. This behavior causes the output file to have a number of spurious blank lines. A Windows vbScript utility is available to delete these lines. It's in the file **\<where\>**.
 
 ## Control class definitions
 
