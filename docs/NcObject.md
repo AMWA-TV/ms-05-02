@@ -69,7 +69,7 @@ enum NcPropertyChangeType {// Type of property change
 
 Events can only be consumed as notifications when subscribed to in the SubscriptionManager. See the [Managers](Managers.md) section.
 
-## Working with collections inside an ncObject
+## Working with collections inside an NcObject
 
 Collection types are defined as Web IDL sequences of a specific type.
 There are generic methods for getting, setting, adding and deleting items inside a collection property as part of `NcObject`.
