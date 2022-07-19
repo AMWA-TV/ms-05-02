@@ -310,6 +310,8 @@ Here is a complete example, ***excerpted*** from the definition of the NCA base 
 };
 ```
 
+Because **NcObject** is the base class, all other control classes MUST be directly or indirectly derived from it.
+
 ## Datatype definitions
 
 Simple NCA datatypes are defined as typedefs. Complex datatypes (i.e. structures) are defined as Web IDL interfaces with properties only - no methods or events. No NCA-specific metadata is required. The RGB interface definition given above is a valid complex datatype definition. Here it is again, except with NCA primitive datatypes instead of built-in Web IDL datatypes used for the properties - this is correct NCA style:
