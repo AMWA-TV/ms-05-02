@@ -109,12 +109,12 @@ interface NcTouchpointResource{
 };
 ```
 
-For NMOS namespaces there are derived types.
+For NMOS namespaces there are derived types and the `contextNamespace` values can only be `x-nmos` or `x-nmos/channelmapping`.
 
 ```typescript
 // IS-04 registrable entities
 interface NcTouchpointNmos : NcTouchpoint{
-    // ContextNamespace is inherited from NcTouchpoint.
+    // contextNamespace is inherited from NcTouchpoint and can only be x-nmos or x-nmos/channelmapping
     attribute NcTouchpointResourceNmos resource;
 };
 

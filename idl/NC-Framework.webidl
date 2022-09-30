@@ -201,7 +201,7 @@ $macro(TouchpointDatatypes)
 
 	// IS-04 registrable entities
 	interface NcTouchpointNmos: NcTouchpoint {
-		// contextNamespace is inherited from NcTouchpoint.
+		// contextNamespace is inherited from NcTouchpoint and can only be x-nmos or x-nmos/channelmapping
 		attribute NcTouchpointResourceNmos	resource;
 	};
 
