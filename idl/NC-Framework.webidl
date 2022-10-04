@@ -201,18 +201,18 @@ $macro(TouchpointDatatypes)
 
 	// IS-04 registrable entities
 	interface NcTouchpointNmos: NcTouchpoint {
-		// contextNamespace is inherited from NcTouchpoint.
+		// contextNamespace is inherited from NcTouchpoint and can only be x-nmos or x-nmos/channelmapping
 		attribute NcTouchpointResourceNmos	resource;
 	};
 
 	interface NcTouchpointResourceNmos: NcTouchpointResource {
-		// resourceType is inherited from NcTouchpointResource.
+		// resourceType is inherited from NcTouchpointResource and can only be: node, device, source, flow, sender, receiver
 		attribute NcUUID	id; // Override
 	};
 
 	// IS-08 inputs or outputs
 	interface NcTouchpointResourceNmos_is_08: NcTouchpointResourceNmos {
-		// resourceType is inherited from NcTouchpointResource
+		// resourceType is inherited from NcTouchpointResource and can only be: input, output
 		// id is inherited from NcTouchpointResourceNmos
 		attribute NcString	ioId; // IS-08 input or output ID
 	};

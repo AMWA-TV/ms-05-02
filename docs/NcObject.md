@@ -91,12 +91,12 @@ The result is of type `NcMethodResult`.
 Touchpoints represent the way in which a control model object may expose identity mappings across other contexts.
 All `NcObject` may have touchpoints.
 
-The `NcTouchpoint` class specifies a namespace and resources.
+The `NcTouchpoint` class specifies a namespace and a resource.
 
 ```typescript
 interface NcTouchpoint{
     attribute NcString contextNamespace;
-    attribute NcTouchpointResource resources;
+    attribute NcTouchpointResource resource;
 };
 ```
 
@@ -109,23 +109,23 @@ interface NcTouchpointResource{
 };
 ```
 
-For NMOS namespaces there are derived types.
+For NMOS namespaces there are derived types and the `contextNamespace` values can only be `x-nmos` or `x-nmos/channelmapping`.
 
 ```typescript
 // IS-04 registrable entities
 interface NcTouchpointNmos : NcTouchpoint{
-    // ContextNamespace is inherited from NcTouchpoint.
-    attribute NcTouchpointResourceNmos resources;
+    // contextNamespace is inherited from NcTouchpoint and can only be x-nmos or x-nmos/channelmapping
+    attribute NcTouchpointResourceNmos resource;
 };
 
 interface NcTouchpointResourceNmos : NcTouchpointResource{
-    // resourceType is inherited from NcTouchpointResource.
+    // resourceType is inherited from NcTouchpointResource and can only be: node, device, source, flow, sender, receiver
     attribute NcUUID id; // override 
 };
 
 // IS-08 inputs or outputs
 interface NcTouchpointResourceNmos_is_08 : NcTouchpointResourceNmos{
-    // resourceType is inherited from NcTouchpointResource
+    // resourceType is inherited from NcTouchpointResource and can only be: input, output
     // id is inherited from NcTouchpointResourceNmos
     attribute NcString ioId; // IS-08 input or output ID
 };
@@ -133,6 +133,10 @@ interface NcTouchpointResourceNmos_is_08 : NcTouchpointResourceNmos{
 
 For general NMOS contexts (IS-04, IS-05 and IS-07) the `NcTouchpointNmos` class MUST be used which has a resource of type `NcTouchpointResourceNmos`. This allows specifying the UUID of the underlying NMOS resource.
 
+`Note`: The `resourceType` in this case can only be: node, device, source, flow, sender or receiver.
+
 For IS-08 this is further derived to use a resource of type `NcTouchpointResourceNmos_is_08`. This allows linking to a UUID and an input or output id.
+
+`Note`: The `resourceType` in this case can only be: input or output.
 
 Architectural information about the touchpoints concept is available in [MS-05-01](https://specs.amwa.tv/ms-05-01) under the `Identification\NCA-NMOS identity mapping` section.
