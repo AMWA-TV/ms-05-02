@@ -55,7 +55,7 @@ interface NcPropertyChangedEventData {
     attribute NcElementId           propertyId;         // ID of changed property
     attribute NcPropertyChangeType  changeType;         // Information regarding the change type
     attribute any?                  value;              // Property-type specific
-    attribute NcUint32?             sequenceItemIndex;  // Index of sequence item if the property is a sequence
+    attribute NcId32?               sequenceItemIndex;  // Index of sequence item if the property is a sequence
 };
 
 // Type of property change
