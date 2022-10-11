@@ -246,19 +246,18 @@ $macro(EventAndSubscriptionDatatypes)
 	
 	// Payload of property-changed event
 	interface NcPropertyChangedEventData {
-		attribute NcElementId			propertyId;		// ID of changed property
-		attribute NcPropertyChangeType	changeType;		// Mainly for maps & sets
-		attribute any?					propertyValue;	// Property-type specific
+		attribute NcElementId			propertyId;			// ID of changed property
+		attribute NcPropertyChangeType	changeType;			// Information regarding the change type
+		attribute any?					value;				// Property-type specific
+		attribute NcUint32?				sequenceItemIndex;	// Index of sequence item if the property is a sequence
 	};
 
 	// Type of property change
 	enum NcPropertyChangeType {
-		"CurrentChanged",	// 0 Scalar property - current value changed
-		"MinChanged",		// 1 Scalar property - min allowed value changed
-		"MaxChanged",		// 2 Scalar property - max allowed value change
-		"ItemAdded",		// 3 Set or map - item(s) added
-		"ItemChanged",		// 4 Set or map - item(s) changed
-		"ItemDeleted"		// 5 Set or map - item(s) deleted
+		"ValueChanged",			// 0 current value changed
+		"SequenceItemAdded",	// 1 sequence item added
+		"SequenceItemChanged",	// 2 sequence item changed
+		"SequenceItemRemoved"	// 3 sequence item removed
 	};
 $endmacro
 $macro(TimeDatatypes)
