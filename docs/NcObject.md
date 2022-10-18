@@ -48,22 +48,22 @@ The Set method (`[element("1m2")]`) accepts `NcElementId` and any value (type de
 ## PropertyChanged event
 
 NcObject offers a PropertyChanged event `[element("1e1")]` which MUST trigger anytime a property on the object is changed.
-The event data is of type `NcPropertyChangedEventData` which MUST include the property id, property value and the change type.
+The event data is of type `NcPropertyChangedEventData` which MUST include the property id, value and the change type. If the property is a sequence, then the event will also include the index of the item in the sequence which was the subject of the change.
 
 ```typescript
 interface NcPropertyChangedEventData {
-    attribute NcElementId propertyId; // ID of changed property
-    attribute NcPropertyChangeType changeType; // Mainly for maps & sets
-    attribute any? propertyValue; // Property-type specific 
+    attribute NcElementId           propertyId;         // ID of changed property
+    attribute NcPropertyChangeType  changeType;         // Information regarding the change type
+    attribute any?                  value;              // Property-type specific
+    attribute NcId32?               sequenceItemIndex;  // Index of sequence item if the property is a sequence
 };
 
-enum NcPropertyChangeType {// Type of property change
-    "CurrentChanged", // 0 Scalar property - current value changed
-    "MinChanged", // 1 Scalar property - min allowed value changed
-    "MaxChanged", // 2 Scalar property - max allowed value change
-    "ItemAdded", // 3 Set or map - item(s) added
-    "ItemChanged", // 4 Set or map - item(s) changed
-    "ItemDeleted" // 5 Set or map - item(s) deleted
+// Type of property change
+enum NcPropertyChangeType {
+    "ValueChanged",         // 0 current value changed
+    "SequenceItemAdded",    // 1 sequence item added
+    "SequenceItemChanged",  // 2 sequence item changed
+    "SequenceItemRemoved"   // 3 sequence item removed
 };
 ```
 
