@@ -103,14 +103,14 @@ $macro(IdentifiersClass)
 	// i.e. at the point where the proprietary class or class subtree
 	// connects into the class structure.
 
-	// An authority key is a negative 32-bit integer, constructed by prepending FFh
-	// onto the 24-bit organization ID. See NcOrganizationId above.
+	// For organizations which own a unique CID or OUI the authority key MUST be a negative 32-bit integer, constructed by
+	// prepending FFh onto the 24-bit organization identifier.
 	//
-	// Negative values are reserved for authority keys and possible other constructs
-	// in the future. A zero value is never valid.
-
-	//	e.g.
+	// For organizations which do not own a unique CID or OUI the authority key MUST be 0.
+	// e.g.
 	//		[ 1, 1, 3, 5, -132131, 1, 4, 5 ]
+	// or
+	//		[ 1, 1, 3, 5, 0, 1, 4, 5 ]
 	
 	typedef sequence<NcInt32>	NcClassId;
 $endmacro
