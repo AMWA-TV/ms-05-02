@@ -138,8 +138,6 @@ $macro(Identifiers)
 
 	typedef NcString	NcUUID;		// UUID
 
-	typedef NcSessionId	NcUint32;	// Control session ID
-
 	typedef NcUint32	NcOid;		// Object id
 
 	typedef sequence<NcName>	NcNamePath; //Name path
@@ -432,7 +430,7 @@ $macro(PropertyConstraintDatatypes)
 		attribute	any?	maximum;	// not less than this
 		attribute	any?	minimum;	// not more than this
 		attribute	any?	step;		// stepsize
-	}	
+	}
 	
 	interface NcPropertyConstraintString: NcPropertyConstraint {
 		attribute	NcUint32?	maxCharacters;	// maximum characters allowed
@@ -537,7 +535,7 @@ $macro(MethodResultDatatypes)
 		"ProtocolVersionError",	// 1  Control command had incompatible protocol version code
 		"DeviceError",			// 2  Something went wrong
 		"Readonly",				// 3  Attempt to change read-only value
-		"Locked",				// 4  Addressed object is locked by another controller session
+		"Locked",				// 4  Addressed object is locked by another controller
 		"BadCommandFormat",		// 5  Badly-formed command
 		"BadOid",				// 6  Command addresses a nonexistent object
 		"ParameterError",		// 7  Method parameter has invalid format
@@ -637,10 +635,6 @@ $macro(MethodResultDatatypes)
 
 	interface NcMethodResultReceiverStatus: NcMethodResult {
 		attribute	NcReceiverStatus	value;
-	};
-
-	interface NcMethodResultSessionID: NcMethodResult {
-		attribute	NcSessionId	value;
 	};
 $endmacro
 $macro(CoreDatatypes)
