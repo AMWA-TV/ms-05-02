@@ -527,27 +527,34 @@ $macro(ManagementDatatypes)
 $endmacro
 $macro(MethodResultDatatypes) 
 	//  ----------------------------------------------------------------------------------
-	//	Method result datatypes
+	//  Method result datatypes
 	//  ----------------------------------------------------------------------------------
 
+	// NcMethodStatus follows the following ranges:
+
+	// Informational statuses: 100 - 199
+	// Succesful statuses: 200 - 299
+	// Reserved range: 300 - 399
+	// Client error statuses: 400 - 499
+	// Server error statuses: 500 - 599
+
 	enum NcMethodStatus {
-		"Ok",					// 0  Method call was successful
-		"ProtocolVersionError",	// 1  Control command had incompatible protocol version code
-		"DeviceError",			// 2  Something went wrong
-		"Readonly",				// 3  Attempt to change read-only value
-		"Locked",				// 4  Addressed object is locked by another controller
-		"BadCommandFormat",		// 5  Badly-formed command
-		"BadOid",				// 6  Command addresses a nonexistent object
-		"ParameterError",		// 7  Method parameter has invalid format
-		"ParameterOutOfRange",	// 8  Method parameter has out-of-range value
-		"NotImplemented",		// 9  Addressed method is not implemented by the addressed object
-		"InvalidRequest",		// 10 Requested method call is invalid in current operating context
-		"ProcessingFailed",		// 11 Device did not succeed in executing the addressed method
-		"BadMethodID",			// 12 Command addresses a method that is not in the addressed object
-		"PartiallySucceeded",	// 13 Addressed method began executing but stopped before completing
-		"Timeout",				// 14 Method call did not finish within the allotted time
-		"BufferOverflow",		// 15 Something was too big
-		"OmittedProperty"		// 16 Command referenced an optional property that is not instantiated in the referenced object
+		"Ok",                       // 200 - Method call was successful
+		"BadCommandFormat",         // 400 - Badly-formed command
+		"Unauthorized",             // 401 - Client is not authorized
+		"BadOid",                   // 404 - Command addresses a nonexistent object
+		"Readonly",                 // 405 - Attempt to change read-only state
+		"InvalidRequest",           // 406 - Method call is invalid in current operating context
+		"Conflict",                 // 409 - There is a conflict with the current state of the device
+		"BufferOverflow",           // 413 - Something was too big
+		"ParameterError",           // 417 - Method parameter does not meet expectations
+		"Locked",                   // 423 - Addressed object is locked
+		"DeviceError",              // 500 - Internal device error
+		"MethodNotImplemented",     // 501 - Addressed method is not implemented by the addressed object
+		"PropertyNotImplemented",   // 502 - Addressed property is not implemented by the addressed object
+		"NotReady",                 // 503 - The device is not ready to handle any commands
+		"Timeout",                  // 504 - Method call did not finish within the allotted time
+		"ProtocolVersionError"      // 505 - Incompatible protocol version
 	};
 	
 	// Base datatype
@@ -657,13 +664,6 @@ $macro(CoreDatatypes)
 	$ManagementDatatypes()
 	$MethodResultDatatypes()
 	
-	// Concurrency lock states
-	enum NcLockState {
-		"NoLock",			// 0 object is not locked
-		"LockNoWrite",		// 1 object may be queried but not modified
-		"LockNoReadWrite",	// 2 object may neither be queried nor modified
-	};
-	
 	// Input and/or output
 	enum NcIoDirection {
 		"Undefined",	// 0 Flow direction is not defined
@@ -695,32 +695,30 @@ $macro(BaseClasses)
 	//	Class NcObject, base classes for major class categories, and associated datatypes
 	//  ----------------------------------------------------------------------------------
 	
-	[control-class("1", "1.0.0")] interface NcObject {
+    [control-class("1", "1.0.0")] interface NcObject {
 
-		//	Abstract base class for entire class structure
-	
-		[element("1p1")]	static	readonly	attribute	NcClassId 				classId;
-		[element("1p2")]	static	readonly	attribute	NcVersionCode			classVersion;
-		[element("1p3")]			readonly	attribute	NcOid					oid;
-		[element("1p4")]			readonly	attribute	NcBoolean				constantOid;	// TRUE iff OID is hardwired into device
-		[element("1p5")]			readonly	attribute	NcOid?					owner;			// OID of containing block. Can only ever be null for the root block
-		[element("1p6")]			readonly	attribute	NcName					role;			// role of obj in containing block
-		[element("1p7")]						attribute	NcString				userLabel;		// Scribble strip
-		[element("1p8")]			readonly	attribute	NcBoolean				lockable;
-		[element("1p9")]						attribute	NcLockState				lockState;
-		[element("1p10")]			readonly	attribute	sequence<NcTouchpoint>?	touchpoints;
-		
-		// Generic Get/Set methods
-		[element("1m1")]	NcMethodResultPropertyValue	Get(NcElementId id);										// Get property value
-		[element("1m2")]	NcMethodResult				Set(NcElementId id, any? value);							// Set property value
-		[element("1m3")]	NcMethodResultPropertyValue	GetSequenceItem(NcElementId id, NcId32 index);				// Get sequence item
-		[element("1m4")]	NcMethodResult				SetSequenceItem(NcElementId id, NcId32 index, any? value);	// Set sequence item
-		[element("1m5")]	NcMethodResultId32			AddSequenceItem(NcElementId id, any? value);				// Add item to sequence
-		[element("1m6")]	NcMethodResult				RemoveSequenceItem(NcElementId id, NcId32 index);			// Delete sequence item
-	
-		// Events
-		[element("1e1")]	[event]	void	PropertyChanged(NcPropertyChangedEventData eventData);
-	};
+        // Abstract base class for entire class structure
+
+        [element("1p1")]    static  readonly    attribute   NcClassId               classId;
+        [element("1p2")]    static  readonly    attribute   NcVersionCode           classVersion;
+        [element("1p3")]            readonly    attribute   NcOid                   oid;
+        [element("1p4")]            readonly    attribute   NcBoolean               constantOid;    // TRUE iff OID is hardwired into device
+        [element("1p5")]            readonly    attribute   NcOid?                  owner;          // OID of containing block. Can only ever be null for the root block
+        [element("1p6")]            readonly    attribute   NcName                  role;           // role of obj in containing block
+        [element("1p7")]                        attribute   NcString                userLabel;      // Scribble strip
+        [element("1p8")]            readonly    attribute   sequence<NcTouchpoint>? touchpoints;
+        
+        // Generic Get/Set methods
+        [element("1m1")]    NcMethodResultPropertyValue Get(NcElementId id);                                        // Get property value
+        [element("1m2")]    NcMethodResult              Set(NcElementId id, any? value);                            // Set property value
+        [element("1m3")]    NcMethodResultPropertyValue GetSequenceItem(NcElementId id, NcId32 index);              // Get sequence item
+        [element("1m4")]    NcMethodResult              SetSequenceItem(NcElementId id, NcId32 index, any? value);  // Set sequence item
+        [element("1m5")]    NcMethodResultId32          AddSequenceItem(NcElementId id, any? value);                // Add item to sequence
+        [element("1m6")]    NcMethodResult              RemoveSequenceItem(NcElementId id, NcId32 index);           // Delete sequence item
+
+        // Events
+        [element("1e1")]    [event] void    PropertyChanged(NcPropertyChangedEventData eventData);
+    };
 
 	[control-class("1.2", "1.0.0")] interface NcWorker: NcObject {
 	
@@ -796,23 +794,22 @@ $macro(Managers)
 		// Manager base class
 	};
 	
-	[control-class("1.3.1", "1.0.0","DeviceManager")] interface NcDeviceManager: NcManager {
-		
-		//	Device manager class
-		//	Contains basic device information and status.
-		
-		[element("3p1")]	readonly	attribute	NcVersionCode				ncVersion			// Version of nc this dev uses
-		[element("3p2")]	readonly	attribute	NcManufacturer				manufacturer		// Manufacturer descriptor
-		[element("3p3")]	readonly	attribute	NcProduct					product				// Product descriptor
-		[element("3p4")]	readonly	attribute	NcString					serialNumber		// Mfr's serial number of dev
-		[element("3p5")]				attribute	NcString					userInventoryCode	// Asset tracking identifier (user specified)
-		[element("3p6")]				attribute	NcString					deviceName			// Name of this device in the application. Instance name, not product name.
-		[element("3p7")]				attribute	NcString					deviceRole			// Role of this device in the application.
-		[element("3p8")]				attribute	NcBoolean					controlEnabled		// TRUE iff this dev is responsive to nc commands
-		[element("3p9")]	readonly	attribute	NcDeviceOperationalState	operationalState	// Device operational state
-		[element("3p10")]	readonly	attribute	NcResetCause				resetCause			// Reason for most recent reset
-		[element("3p11")]	readonly	attribute	NcString?					message				// Arbitrary message from dev to controller
-	};
+    [control-class("1.3.1", "1.0.0", "DeviceManager")] interface NcDeviceManager: NcManager {
+        
+        //  Device manager class
+        //  Contains basic device information and status.
+        
+        [element("3p1")]    readonly    attribute   NcVersionCode               ncVersion           // Version of nc this dev uses
+        [element("3p2")]    readonly    attribute   NcManufacturer              manufacturer        // Manufacturer descriptor
+        [element("3p3")]    readonly    attribute   NcProduct                   product             // Product descriptor
+        [element("3p4")]    readonly    attribute   NcString                    serialNumber        // Mfr's serial number of dev
+        [element("3p5")]                attribute   NcString                    userInventoryCode   // Asset tracking identifier (user specified)
+        [element("3p6")]                attribute   NcString                    deviceName          // Name of this device in the application. Instance name, not product name.
+        [element("3p7")]                attribute   NcString                    deviceRole          // Role of this device in the application.
+        [element("3p8")]    readonly    attribute   NcDeviceOperationalState    operationalState    // Device operational state
+        [element("3p9")]    readonly    attribute   NcResetCause                resetCause          // Reason for most recent reset
+        [element("3p10")]   readonly    attribute   NcString?                   message             // Arbitrary message from dev to controller
+    };
 	
 	[control-class("1.3.2", "1.0.0","ClassManager")] interface NcClassManager: NcManager {
 	
@@ -885,22 +882,6 @@ $macro(Managers)
 		[element("3p1")]	readonly	attribute	NcTime			deviceTimePtp;				// Current device time
 		[element("3p2")]	readonly	attribute	sequence<NcOid>	timeSources;				// OIDs of available NcTimeSource objects
 		[element("3p3")]				attribute	NcOid			currentDeviceTimeSource;	// OID of current NcTimeSource object
-	};
-
-	[control-class("1.3.6", "1.0.0", "LockManager")] interface NcLockManager: NcManager {
-		//
-		//	Allows locking and waiting.
-		//	Simple lock sets can also be achieved by using the generic Setter method to modify the lockState property on any NcObject which is lockable.
-		//
-
-		// Lock and wait
-		[element("1m1")]	NcMethodResult	LockWait(
-			NcOid			id						// Target object id
-			NcLockState		requestedLockStatus,	// Type of lock requested, or unlock
-			NcTimeInterval	timeout					// Method fails if wait exceeds this. 0=forever
-		);
-
-		[element("1m2")]	NcMethodResult	AbortLockWaits(NcOid id); // Abort lock waits on this object
 	};
 $endmacro
 $macro(FeatureSet001)

@@ -25,7 +25,6 @@ The device manager contains basic device information and statuses.
 | userInventoryCode | NcString                       | No           | Asset tracking identifier (user specified)                              |
 | deviceName        | NcString                       | No           | Name of this device in the application. Instance name, not product name |
 | deviceRole        | NcString                       | No           | Role of this device in the application                                  |
-| controlEnabled    | NcBoolean                      | No           | Indicates if this device is responsive to NCA commands                  |
 | operationalState  | NcDeviceOperationalState       | Yes          | Device operational state                                                |
 | resetCause        | NcResetCause                   | Yes          | Reason for most recent reset                                            |
 | message           | NcString?                      | Yes          | Arbitrary message from the device to controllers                        |
@@ -169,4 +168,3 @@ interface NcMethodResultDatatypeDescriptors : NcMethodResult { // dataype descri
 | -------------------- | --------------------------------------------------------------------------------|
 | NcFirmwareManager    | Manager handling device firmware operations                                     |
 | NcDeviceTimeManager  | Manager handling device's internal clock(s) and its reference                   |
-| NcLockManager        | Manager handling locking of objects with the ability to wait on aquiring a lock |
