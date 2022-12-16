@@ -811,44 +811,28 @@ $macro(Managers)
         [element("3p10")]   readonly    attribute   NcString?                   message             // Arbitrary message from dev to controller
     };
 	
-	[control-class("1.3.2", "1.0.0","ClassManager")] interface NcClassManager: NcManager {
-	
-		//	Class manager class
-		//  Returns definitions of control classes and datatypes that are used in the device.
-		
-		[element("3p1")]	readonly	attribute	sequence<NcClassDescriptor>		controlClasses;
-		[element("3p2")]	readonly	attribute	sequence<NcDatatypeDescriptor>	datatypes;
-		
-		// Methods to retrieve a single class or type descriptor
-		
-		// Get a single class descriptor
-		[element("3m1")]	NcMethodResultClassDescriptors	GetControlClass(
-			NcClassIdentity identity,	// class ID & version
-			NcBoolean allElements		// TRUE to include inherited class elements
-		);
+    [control-class("1.3.2", "1.0.0", "ClassManager")] interface NcClassManager: NcManager {
+        
+        //  Class manager class
+        //  Returns definitions of control classes and datatypes that are used in the device.
+        
+        [element("3p1")]    readonly    attribute   sequence<NcClassDescriptor>     controlClasses;
+        [element("3p2")]    readonly    attribute   sequence<NcDatatypeDescriptor>  datatypes;
+        
+        // Methods to retrieve a single class or type descriptor
+        
+        // Get a single class descriptor
+        [element("3m1")]    NcMethodResultClassDescriptors  GetControlClass(
+            NcClassIdentity identity,   // class ID & version
+            NcBoolean allElements       // TRUE to include inherited class elements
+        );
 
-		// Get descriptor of datatype and maybe its component datatypes
-		[element("3m2")]	NcMethodResultDatatypeDescriptors GetDatatype(
-			NcName name,		// name of datatype
-			NcBoolean allDefs	// TRUE to include descriptors of component datatypes
-		);
-		
-		// Methods to retrieve all the class and type descriptors used by a given block or nest of blocks
-		
-		// Get descriptors of classes used by block(s)
-		[element("3m3")]	NcMethodResultClassDescriptors	GetControlClasses(
-			NcNamePath	blockPath,		// path to block 
-			NcBoolean	recurseBlocks,	// TRUE to recurse contained blocks
-			NcBoolean	allElements		// TRUE to include inherited class elements
-		);
-
-		// Get descriptors of datatypes used by blocks(s)
-		[element("3m4")]	NcMethodResultDatatypeDescriptors GetDataTypes(
-			NcNamePath blockPath,		// path to block 
-			NcBoolean recurseBlocks,	// TRUE to recurse contained blocks
-			NcBoolean allDefs			// TRUE to include descriptors of referenced datatypes
-		);
-	};
+        // Get descriptor of datatype and maybe its component datatypes
+        [element("3m2")]    NcMethodResultDatatypeDescriptors GetDatatype(
+            NcName name,        // name of datatype
+            NcBoolean allDefs   // TRUE to include descriptors of component datatypes
+        );
+    };
 	
 	[control-class("1.3.3", "1.0.0","FirmwareManager")] interface NcFirmwareManager: NcManager {
 		
@@ -857,22 +841,13 @@ $macro(Managers)
 		[element("3p1")]	readonly	attribute	sequence<NcfirmwareComponent>	components; // List of firmware component descriptors
 	};
 	
-	[control-class("1.3.4", "1.0.0","SubscriptionManager")] interface NcSubscriptionManager: NcManager {
-	
-		// Subscription manager
-		
-		[element("3m1")]	NcMethodResult	AddSubscription(NcEvent event); // When used to subscribe to the property changed event it will subscribe to changes from all of the properties
-		[element("3m2")]	NcMethodResult	RemoveSubscription(NcEvent event); // When used to unsubscribe to the property changed event it will unsubscribe to changes from all of the properties
-		[element("3m3")]	NcMethodResult	AddPropertyChangeSubscription(
-			NcOid			emitter,	// ID of object where property is
-			NcElementId	property	// ID of the property
-		);
-
-		[element("3m4")]	NcMethodResult	RemovePropertyChangeSubscription(
-			NcOid			emitter,	// ID of object where property is
-			NcElementId	property	// ID of the property
-		);
-	};
+    [control-class("1.3.4", "1.0.0", "SubscriptionManager")] interface NcSubscriptionManager: NcManager {
+        
+        // Subscription manager
+        
+        [element("3m1")]    NcMethodResult  AddSubscription(NcEvent event); // When used to subscribe to the property changed event it will subscribe to changes from all of the properties
+        [element("3m2")]    NcMethodResult  RemoveSubscription(NcEvent event); // When used to unsubscribe to the property changed event it will unsubscribe to changes from all of the properties
+    };
 	
 	[control-class("1.3.5", "1.0.0", "DeviceTimeManager")] interface NcDeviceTimeManager: NcManager {
 		//

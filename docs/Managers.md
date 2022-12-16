@@ -9,7 +9,7 @@ The roles for the managers defined by the framework are defined using the `contr
 Example:
 
 ```typescript
-[control-class("1.3.1", "1.0.0","DeviceManager")] interface NcDeviceManager: NcManager
+[control-class("1.3.1", "1.0.0", "DeviceManager")] interface NcDeviceManager: NcManager
 ```
 
 ## Device manager
@@ -56,7 +56,7 @@ interface NcDeviceOperationalState {
 The `NcSubscriptionManager` is a special manager which handles clients subscribing to events.
 Subscribing is the way in which events can be consumed as notifications through a supported control protocol.
 
-Subscribing to an event is done by calling the AddSubscription method add passing in the event data described by an `NcEvent` type.
+Subscribing to an event is done by calling the AddSubscription method add passing in the event data described by the `NcEvent` type.
 
 ```typescript
 [element("3m1")]
@@ -110,7 +110,7 @@ interface NcClassDescriptor: NcDescriptor {
 };
 ```
 
-and `ncDatatypeDescriptor` is:
+and `NcDatatypeDescriptor` is:
 
 ```typescript
 interface NcDatatypeDescriptor: NcDescriptor {
