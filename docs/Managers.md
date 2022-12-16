@@ -141,7 +141,7 @@ interface NcDatatypeDescriptorEnum: NcDatatypeDescriptor {
 };
 ```
 
-The descriptor for an individual control class may be retrieved using the `GetControlClass` method (`[element("3m1")]`) and passing the identity (type `NcClassIdentity`) and allElements (if all inherited elements should be included - type `NcBoolean`) as arguments. The method has a response of type `NcMethodResultClassDescriptors`.
+The descriptor for an individual control class may be retrieved using the `GetControlClass` method (`[element("3m1")]`) and passing the identity (type `NcClassIdentity`) and allElements (if all inherited elements should be included - type `NcBoolean`) as arguments. The method has a response of type `NcMethodResultClassDescriptor`.
 
 ```typescript
 interface NcClassIdentity {
@@ -149,16 +149,16 @@ interface NcClassIdentity {
     attribute NcVersionCode version;
 }
 
-interface NcMethodResultClassDescriptors : NcMethodResult { // class descriptors result
-    attribute sequence<NcClassDescriptor> value;
+interface NcMethodResultClassDescriptor : NcMethodResult { // class descriptors result
+    attribute NcClassDescriptor value;
 };
 ```
 
-The descriptor for an individual data type may be retrieved using the `GetDatatype` method (`[element("3m2")]`) and passing the name (type `NcName`) and allDefs (if all component datatype should be included - type `NcBoolean`) as arguments. The method has a response of type `NcMethodResultDatatypeDescriptors`.
+The descriptor for an individual data type may be retrieved using the `GetDatatype` method (`[element("3m2")]`) and passing the name (type `NcName`) and allDefs (if all component datatype should be included - type `NcBoolean`) as arguments. The method has a response of type `NcMethodResultDatatypeDescriptor`.
 
 ```typescript
-interface NcMethodResultDatatypeDescriptors : NcMethodResult { // dataype descriptors result
-    attribute sequence<NcDatatypeDescriptor> value;
+interface NcMethodResultDatatypeDescriptor : NcMethodResult { // dataype descriptors result
+    attribute NcDatatypeDescriptor value;
 };
 ```
 

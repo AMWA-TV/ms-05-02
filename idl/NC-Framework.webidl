@@ -628,13 +628,13 @@ $macro(MethodResultDatatypes)
 		attribute	sequence<NcBlockMemberDescriptor>	value;
 	};
 
-	interface NcMethodResultClassDescriptors: NcMethodResult {
-		attribute	sequence<NcClassDescriptor>	value;
-	};
+    interface NcMethodResultClassDescriptor: NcMethodResult {
+        attribute   NcClassDescriptor   value;
+    };
 
-	interface NcMethodResultDatatypeDescriptors: NcMethodResult {
-		attribute	sequence<NcDatatypeDescriptor>	value;
-	};
+    interface NcMethodResultDatatypeDescriptor: NcMethodResult {
+        attribute   NcDatatypeDescriptor    value;
+    };
 
 	interface NcMethodResultId32: NcMethodResult {
 		attribute	NcId32	value;
@@ -822,15 +822,14 @@ $macro(Managers)
         // Methods to retrieve a single class or type descriptor
         
         // Get a single class descriptor
-        [element("3m1")]    NcMethodResultClassDescriptors  GetControlClass(
-            NcClassIdentity identity,   // class ID & version
-            NcBoolean allElements       // TRUE to include inherited class elements
+        // Inherited class elements are always included
+        [element("3m1")]    NcMethodResultClassDescriptor GetControlClass(
+            NcClassIdentity identity   // class ID & version
         );
 
-        // Get descriptor of datatype and maybe its component datatypes
-        [element("3m2")]    NcMethodResultDatatypeDescriptors GetDatatype(
-            NcName name,        // name of datatype
-            NcBoolean allDefs   // TRUE to include descriptors of component datatypes
+        // Get a single datatype descriptor
+        [element("3m2")]    NcMethodResultDatatypeDescriptor GetDatatype(
+            NcName name // name of datatype
         );
     };
 	
@@ -842,7 +841,7 @@ $macro(Managers)
 	};
 	
     [control-class("1.3.4", "1.0.0", "SubscriptionManager")] interface NcSubscriptionManager: NcManager {
-        
+
         // Subscription manager
         
         [element("3m1")]    NcMethodResult  AddSubscription(NcEvent event); // When used to subscribe to the property changed event it will subscribe to changes from all of the properties
