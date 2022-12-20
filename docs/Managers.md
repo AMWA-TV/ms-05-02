@@ -9,7 +9,7 @@ The roles for the managers defined by the framework are defined using the `contr
 Example:
 
 ```typescript
-[control-class("1.3.1", "1.0.0","DeviceManager")] interface NcDeviceManager: NcManager
+[control-class("1.3.1", "1.0.0", "DeviceManager")] interface NcDeviceManager: NcManager
 ```
 
 ## Device manager
@@ -56,7 +56,7 @@ interface NcDeviceOperationalState {
 The `NcSubscriptionManager` is a special manager which handles clients subscribing to events.
 Subscribing is the way in which events can be consumed as notifications through a supported control protocol.
 
-Subscribing to an event is done by calling the AddSubscription method add passing in the event data described by an `NcEvent` type.
+Subscribing to an event is done by calling the AddSubscription method add passing in the event data described by the `NcEvent` type.
 
 ```typescript
 [element("3m1")]
@@ -110,7 +110,7 @@ interface NcClassDescriptor: NcDescriptor {
 };
 ```
 
-and `ncDatatypeDescriptor` is:
+and `NcDatatypeDescriptor` is:
 
 ```typescript
 interface NcDatatypeDescriptor: NcDescriptor {
@@ -141,7 +141,7 @@ interface NcDatatypeDescriptorEnum: NcDatatypeDescriptor {
 };
 ```
 
-The descriptor for an individual control class may be retrieved using the `GetControlClass` method (`[element("3m1")]`) and passing the identity (type `NcClassIdentity`) and allElements (if all inherited elements should be included - type `NcBoolean`) as arguments. The method has a response of type `NcMethodResultClassDescriptors`.
+The descriptor for an individual control class may be retrieved using the `GetControlClass` method (`[element("3m1")]`) and passing the identity (type `NcClassIdentity`) and allElements (if all inherited elements should be included - type `NcBoolean`) as arguments. The method has a response of type `NcMethodResultClassDescriptor`.
 
 ```typescript
 interface NcClassIdentity {
@@ -149,16 +149,16 @@ interface NcClassIdentity {
     attribute NcVersionCode version;
 }
 
-interface NcMethodResultClassDescriptors : NcMethodResult { // class descriptors result
-    attribute sequence<NcClassDescriptor> value;
+interface NcMethodResultClassDescriptor : NcMethodResult { // class descriptors result
+    attribute NcClassDescriptor value;
 };
 ```
 
-The descriptor for an individual data type may be retrieved using the `GetDatatype` method (`[element("3m2")]`) and passing the name (type `NcName`) and allDefs (if all component datatype should be included - type `NcBoolean`) as arguments. The method has a response of type `NcMethodResultDatatypeDescriptors`.
+The descriptor for an individual data type may be retrieved using the `GetDatatype` method (`[element("3m2")]`) and passing the name (type `NcName`) and allDefs (if all component datatype should be included - type `NcBoolean`) as arguments. The method has a response of type `NcMethodResultDatatypeDescriptor`.
 
 ```typescript
-interface NcMethodResultDatatypeDescriptors : NcMethodResult { // dataype descriptors result
-    attribute sequence<NcDatatypeDescriptor> value;
+interface NcMethodResultDatatypeDescriptor : NcMethodResult { // dataype descriptors result
+    attribute NcDatatypeDescriptor value;
 };
 ```
 
