@@ -29,24 +29,22 @@ $macro(HeaderComments)
 	//  ----------------------------------------------------------------------------------
 $endmacro
 $macro(PrimitiveDatatypes)
-	//  ----------------------------------------------------------------------------------
-	// 	P r i m i t i v e   D a t a t y p e s
-	//  ----------------------------------------------------------------------------------
+    //  ----------------------------------------------------------------------------------
+    // 	P r i m i t i v e   D a t a t y p e s
+    //  ----------------------------------------------------------------------------------
 
-	[primitive] typedef boolean				NcBoolean;
-	[primitive] typedef byte				NcInt8;
-	[primitive] typedef short				NcInt16;
-	[primitive] typedef long				NcInt32;
-	[primitive] typedef longlong			NcInt64;
-	[primitive] typedef octet				NcUint8;
-	[primitive] typedef unsignedshort		NcUint16;
-	[primitive] typedef unsignedlong		NcUint32;
-	[primitive] typedef unsignedlonglong	NcUint64;
-	[primitive] typedef unrestrictedfloat	NcFloat32;
-	[primitive] typedef unrestricteddouble	NcFloat64;
-	[primitive] typedef bytestring			NcString;	// UTF-8
-	[primitive] typedef any					NcBlob;
-	[primitive] typedef any					NcBlobFixedLen;
+    [primitive] typedef boolean             NcBoolean;
+    [primitive] typedef byte                NcInt8;
+    [primitive] typedef short               NcInt16;
+    [primitive] typedef long                NcInt32;
+    [primitive] typedef longlong            NcInt64;
+    [primitive] typedef octet               NcUint8;
+    [primitive] typedef unsignedshort       NcUint16;
+    [primitive] typedef unsignedlong        NcUint32;
+    [primitive] typedef unsignedlonglong    NcUint64;
+    [primitive] typedef unrestrictedfloat   NcFloat32;
+    [primitive] typedef unrestricteddouble  NcFloat64;
+    [primitive] typedef bytestring          NcString; // UTF-8
 $endmacro
 $macro(IdentifiersClass)
 	//  ----------------------------------------------------------------------------------
@@ -85,7 +83,7 @@ $macro(IdentifiersClass)
 	//	IEEE public Company ID (public CID) or
 	//	IEEE Organizational Unique Identifier (OUI).
 
-	typedef [length(3)] NcBlobFixedLen	NcOrganizationId;
+	typedef NcInt32 OrganizationId;
 	
 	// NcClassId is a sequence of NCInt32 class ID fields.
 	// A class ID sequence reflects the ancestry of the class being identified.
@@ -217,46 +215,25 @@ $macro(TouchpointDatatypes)
 $endmacro
 $macro(EventAndSubscriptionDatatypes)
 
-	//  ----------------------------------------------------------------------------------
-	//	Event and subscription datatypes
-	//  ----------------------------------------------------------------------------------
-	
-	// Type of notification message
-	enum NcNotificationType {
-		"Event",			// 0 - regular event notification
-		"SubscriptionEnd"	// 1 - subscription end notification sent when a subscription ends for any reason
-	};
+    //  ----------------------------------------------------------------------------------
+    //	Event and subscription datatypes
+    //  ----------------------------------------------------------------------------------
 
-	// Unique combination of emitter OID and Event ID
-	interface NcEvent {
-		attribute NcOid		emitterOid;
-		attribute NcElementId	eventId;
-	};
+    // Payload of property-changed event
+    interface NcPropertyChangedEventData {
+        attribute NcElementId           propertyId;         // ID of changed property
+        attribute NcPropertyChangeType  changeType;         // Information regarding the change type
+        attribute any?                  value;              // Property-type specific
+        attribute NcId32?               sequenceItemIndex;  // Index of sequence item if the property is a sequence
+    };
 
-	// Payload of events that have no payload data
-	interface NcEmptyEventData{
-	};
-
-	// Payload of property-changed event
-	interface NcSubscriptionEndEventData {
-		attribute NcString?	reason;	// Optional reason for ending the subscription
-	};
-	
-	// Payload of property-changed event
-	interface NcPropertyChangedEventData {
-		attribute NcElementId			propertyId;			// ID of changed property
-		attribute NcPropertyChangeType	changeType;			// Information regarding the change type
-		attribute any?					value;				// Property-type specific
-		attribute NcId32?				sequenceItemIndex;	// Index of sequence item if the property is a sequence
-	};
-
-	// Type of property change
-	enum NcPropertyChangeType {
-		"ValueChanged",			// 0 current value changed
-		"SequenceItemAdded",	// 1 sequence item added
-		"SequenceItemChanged",	// 2 sequence item changed
-		"SequenceItemRemoved"	// 3 sequence item removed
-	};
+    // Type of property change
+    enum NcPropertyChangeType {
+        "ValueChanged",         // 0 current value changed
+        "SequenceItemAdded",    // 1 sequence item added
+        "SequenceItemChanged",  // 2 sequence item changed
+        "SequenceItemRemoved"   // 3 sequence item removed
+    };
 $endmacro
 $macro(TimeDatatypes)
 	//  ----------------------------------------------------------------------------------
@@ -520,10 +497,10 @@ $macro(ManagementDatatypes)
 		"Updating",			// 2 Device is performing a software or firmware update.
 	};
 
-	interface NcDeviceOperationalState {
-		attribute NcDeviceGenericState generic;
-		attribute NcBlob? deviceSpecificDetails; //Device implementation specific details
-	};
+    interface NcDeviceOperationalState {
+        attribute NcDeviceGenericState  generic;
+        attribute NcString?             deviceSpecificDetails;  //Device implementation specific details
+    };
 $endmacro
 $macro(MethodResultDatatypes) 
 	//  ----------------------------------------------------------------------------------
@@ -610,14 +587,6 @@ $macro(MethodResultDatatypes)
 
 	interface NcMethodResultFloat32: NcMethodResult {
 		attribute	NcFloat32	value;
-	};
-
-	interface NcMethodResultBlob: NcMethodResult {
-		attribute	NcBlob	value;
-	};
-
-	interface NcMethodResultBlobFixedLen: NcMethodResult {
-		attribute	NcBlobFixedLen	value;
 	};
 
 	interface NcMethodResultFloat64: NcMethodResult {
@@ -844,8 +813,8 @@ $macro(Managers)
 
         // Subscription manager
         
-        [element("3m1")]    NcMethodResult  AddSubscription(NcEvent event); // When used to subscribe to the property changed event it will subscribe to changes from all of the properties
-        [element("3m2")]    NcMethodResult  RemoveSubscription(NcEvent event); // When used to unsubscribe to the property changed event it will unsubscribe to changes from all of the properties
+        [element("3m1")]    NcMethodResult  AddSubscription(NcOid oid);     // Will subscribe to changes from all of the properties on the specified oid
+        [element("3m2")]    NcMethodResult  RemoveSubscription(NcOid oid);  // Will unsubscribe to changes from all of the properties on the specified oid
     };
 	
 	[control-class("1.3.5", "1.0.0", "DeviceTimeManager")] interface NcDeviceTimeManager: NcManager {
@@ -1100,23 +1069,22 @@ $macro(FeatureSet016)
 $endmacro
 $macro(FeatureSet017)
 
-	// -----------------------------------------------------------------------------
-	// Feature set 007 - Workflow Data
-	// -----------------------------------------------------------------------------
-	
- 	[control-class("1.2.3", "1.0.0")] interface NcWorkflowDataRecord: NcWorker {
-	
-		[element("3p1")]	attribute	NcProductionDataRecordType	type;
-		[element("3p2")]	attribute	NsString					id;
-		
-		// Additional properties and methods will be defined by subclasses.
-	};
-	
-	enum NcProductionDataRecordType {
-		"Blob",			// 0 binary large object, format undefined
-		"As10Header",	// 1 AMWA AS-10	header
-		"As10Shim"		// 2 AMWA AS-10 shim
-	};
+    // -----------------------------------------------------------------------------
+    // Feature set 007 - Workflow Data
+    // -----------------------------------------------------------------------------
+
+    [control-class("1.2.3", "1.0.0")] interface NcWorkflowDataRecord: NcWorker {
+
+        [element("3p1")]    attribute   NcProductionDataRecordType  type;
+        [element("3p2")]    attribute   NsString                    id;
+        
+        // Additional properties and methods will be defined by subclasses.
+    };
+
+    enum NcProductionDataRecordType {
+        "As10Header",   // 0 AMWA AS-10	header
+        "As10Shim"      // 1 AMWA AS-10 shim
+    };
 $endmacro
 
 $#
