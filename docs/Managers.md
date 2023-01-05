@@ -47,7 +47,7 @@ enum NcDeviceGenericState {
 
 interface NcDeviceOperationalState {
     attribute NcDeviceGenericState generic;
-    attribute ncBlob? deviceSpecificDetails;
+    attribute NcString? deviceSpecificDetails;
 };
 ```
 
@@ -56,35 +56,18 @@ interface NcDeviceOperationalState {
 The `NcSubscriptionManager` is a special manager which handles clients subscribing to events.
 Subscribing is the way in which events can be consumed as notifications through a supported control protocol.
 
-Subscribing to an event is done by calling the AddSubscription method add passing in the event data described by the `NcEvent` type.
+Subscribing to an event is done by calling the AddSubscription method and passing in the desired object id.
 
 ```typescript
 [element("3m1")]
-ncMethodResult AddSubscription(
-    NcEvent event// the event to which the controller is subscribing
-);
+NcMethodResult AddSubscription(NcOid oid); // Will subscribe to changes from all of the properties on the specified oid
 ```
 
-```typescript
-interface NcEvent{ // unique combination of emitter OID and Event ID
-    attribute NcOid emitterOid; 
-    attribute NcElementId eventId; 
-};
-
-// CLASS ELEMENT ID
-interface NcElementID {
-    attribute ncUint16 level;
-    attribute ncUint16 index;
-};
-```
-
-Unsubscribing to an event is done by calling the RemoveSubscription method add passing in the event data described by an `NcEvent` type.
+Unsubscribing to an event is done by calling the RemoveSubscription method and passing in the desired object id.
 
 ```typescript
 [element("3m2")]
-ncMethodResult RemoveSubscription(
-    NcEvent event
-);
+NcMethodResult RemoveSubscription(NcOid oid); // Will unsubscribe to changes from all of the properties on the specified oid
 ```
 
 ## Class manager
