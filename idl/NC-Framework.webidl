@@ -34,11 +34,9 @@ $macro(PrimitiveDatatypes)
     //  ----------------------------------------------------------------------------------
 
     [primitive] typedef boolean             NcBoolean;
-    [primitive] typedef byte                NcInt8;
     [primitive] typedef short               NcInt16;
     [primitive] typedef long                NcInt32;
     [primitive] typedef longlong            NcInt64;
-    [primitive] typedef octet               NcUint8;
     [primitive] typedef unsignedshort       NcUint16;
     [primitive] typedef unsignedlong        NcUint32;
     [primitive] typedef unsignedlonglong    NcUint64;
@@ -557,20 +555,12 @@ $macro(MethodResultDatatypes)
 		attribute	NcInt16	value;
 	};
 
-	interface NcMethodResultInt8: NcMethodResult {
-		attribute	NcInt8	value;
-	};
-
 	interface NcMethodResultInt32: NcMethodResult {
 		attribute	NcInt32	value;
 	};
 
 	interface NcMethodResultInt64: NcMethodResult {
 		attribute	NcInt64	value;
-	};
-
-	interface NcMethodResultUint8: NcMethodResult {
-		attribute	NcUint8	value;
 	};
 
 	interface NcMethodResultUint16: NcMethodResult {
