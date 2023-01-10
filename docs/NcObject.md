@@ -28,8 +28,8 @@ The Get method (`[element("1m1")]`) accepts `NcElementId` as an arguments and re
 ```typescript
 // Class element id which contains the level and index
 interface NcElementId {
-    attribute ncUint16 level;
-    attribute ncUint16 index;
+    attribute NcUint16 level;
+    attribute NcUint16 index;
 };
 ```
 
