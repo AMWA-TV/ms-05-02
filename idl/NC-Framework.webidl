@@ -81,7 +81,7 @@ $macro(IdentifiersClass)
 	//	IEEE public Company ID (public CID) or
 	//	IEEE Organizational Unique Identifier (OUI).
 
-	typedef NcInt32 OrganizationId;
+	typedef NcInt32 NcOrganizationId;
 	
 	// NcClassId is a sequence of NCInt32 class ID fields.
 	// A class ID sequence reflects the ancestry of the class being identified.
