@@ -26,14 +26,14 @@ NcObject offers two generic methods for retrieving and setting a property on an 
 The Get method (`[element("1m1")]`) accepts `NcElementId` as an arguments and returns `NcMethodResultPropertyValue`.
 
 ```typescript
-// CLASS ELEMENT ID  
-interface NcElementID {
-    attribute ncUint16 level;
-    attribute ncUint16 index;
+// Class element id which contains the level and index
+interface NcElementId {
+    attribute NcUint16 level;
+    attribute NcUint16 index;
 };
 ```
 
-`NcMethodResultPropertyValue` inherits from `ncMethodResult` but can return any value type depending on the underlying property type.
+`NcMethodResultPropertyValue` inherits from `NcMethodResult` but can return any value type depending on the underlying property type.
 
 ```typescript
 interface NcMethodResultPropertyValue : ncMethodResult { // property-value result
