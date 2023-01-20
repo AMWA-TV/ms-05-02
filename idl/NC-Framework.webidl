@@ -846,7 +846,7 @@ $macro(FeatureSet001)
         // - The active state is changed remotely and activates a visual or audio beacon element on the device
         // - A physical button or trigger on the device changes the active state which can be monitored remotely
         
-        [element("5p1")]    attribute   NcBoolean   active; // TRUE iff beacon is active
+        [element("3p1")]    attribute   NcBoolean   active; // TRUE iff beacon is active
     };
 
     [control-class("1.2.1.2.1", "1.0.0")] interface NcLevelSensor: NcSensor {
