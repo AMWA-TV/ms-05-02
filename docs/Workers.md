@@ -6,6 +6,7 @@ Signal workers are special workers which have ports and affect the signal paths 
 
 | **Name**                   | **Type**                                  | **Description**                                                                                           |
 | -------------------------- | ------------------------------------------|-----------------------------------------------------------------------------------------------------------|
+| NcIdentBeacon              | NcWorker                                  | Worker used to identify a device by toggling the beacon active state                                      |
 | NcReceiverMonitor          | NcWorker                                  | Worker attached to a stream receiver in order to convey status information                                |
 | NcReceiverMonitorProtected | NcWorker                                  | Derived receiver monitor for SMPTE ST 2022-7-type receivers                                               |
 | NcWorkflowDataRecord       | NcWorker                                  | Worker handling production workflow information associated with the contents and context of media signals |

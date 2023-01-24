@@ -23,7 +23,7 @@ Object ids (`oid` property) may be constant across system restarts in which case
 
 NcObject offers two generic methods for retrieving and setting a property on an object.
 
-The Get method (`[element("1m1")]`) accepts `NcElementId` as an arguments and returns `NcMethodResultPropertyValue`.
+The Get method (`[element("1m1")]`) accepts `NcElementId` as an argument and returns `NcMethodResultPropertyValue`.
 
 ```typescript
 // Class element id which contains the level and index

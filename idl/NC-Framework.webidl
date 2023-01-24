@@ -819,58 +819,50 @@ $macro(Managers)
 $endmacro
 $macro(FeatureSet001)
 
-	// -----------------------------------------------------------------------------
-	// Feature set 001 - General control & monitoring
-	// -----------------------------------------------------------------------------
-	interface NcSwitchItem {
-		attribute	NcBoolean	isEnabled;	// signals if the switch position is enabled
-		attribute	NcString?	label;		// optional switch position label
-	};
+    // -----------------------------------------------------------------------------
+    // Feature set 001 - General control & monitoring
+    // -----------------------------------------------------------------------------
+    interface NcSwitchItem {
+        attribute   NcBoolean   isEnabled;  // signals if the switch position is enabled
+        attribute   NcString?   label;      // optional switch position label
+    };
 
-	[control-class("1.2.1.1.1", "1.0.0")] interface NcGain: NcActuator {
-	
-		//	Simple gain control
-		[element("5p1")]	attribute	NcDB	setPoint;
-	};
-	
-	[control-class("1.2.1.1.2", "1.0.0")] interface NcSwitch: NcActuator {
-	
-		// n-position switch with a label for each position
-		
-		[element("5p1")]	attribute	sequence<NcSwitchItem>	positions;	// list of switch positions
-	};
+    [control-class("1.2.1.1.1", "1.0.0")] interface NcGain: NcActuator {
 
-	[control-class("1.2.1.1.3", "1.0.0")] interface NcIdentificationActuator: NcActuator {
-	
-		// Identification actuator - sets some kind of physical indicator on the device
-		// If this property is set then it might activate a visual indicator on the device
-		
-		[element("5p1")]	attribute	NcBoolean	active;	// TRUE iff indicator is active
-	};
-		
-	[control-class("1.2.1.2.1", "1.0.0")] interface NcLevelSensor: NcSensor {
-		
-		// Simple level sensor that reads in DB
-		
-		[element("5p1")]	attribute	NcDB	reading;
-	};
-	
-	[control-class("1.2.1.2.2", "1.0.0")] interface NcStateSensor: NcSensor {
-	
-		// State sensor - returns an index into an array of state names.
-		
-		[element("5p1")]  attribute NcUint16 			reading;
-		[element("5p2")]  attribute sequence<NcString>	stateNames;
-	};
-	
-	[control-class("1.2.1.2.3", "1.0.0")] interface NcIdentificationSensor: NcSensor {
-		
-		// 	Identification sensor - raises an event when the user activates some kind of
-		//	this-is-me control on the device. A common implementation is a device with an
-		//	identification button which sets the active state below to true or false
+        // Simple gain control
+        [element("5p1")]    attribute   NcDB    gainValue;
+    };
 
-		[element("5p1")]	readonly	attribute	NcBoolean	active;	// TRUE iff indicator is active
-	};
+    [control-class("1.2.1.1.2", "1.0.0")] interface NcSwitch: NcActuator {
+
+        // n-position switch with a label for each position
+        
+        [element("5p1")]    attribute   sequence<NcSwitchItem>  positions; // list of switch positions
+    };
+
+    [control-class("1.2.2", "1.0.0")] interface NcIdentBeacon : NcWorker {
+
+        // Identification beacon may be used in different ways subject to implementation:
+        // - The active state is changed remotely and activates a visual or audio beacon element on the device
+        // - A physical button or trigger on the device changes the active state which can be monitored remotely
+        
+        [element("3p1")]    attribute   NcBoolean   active; // TRUE iff beacon is active
+    };
+
+    [control-class("1.2.1.2.1", "1.0.0")] interface NcLevelSensor: NcSensor {
+        
+        // Simple level sensor that reads in DB
+        
+        [element("5p1")]    attribute   NcDB    reading;
+    };
+
+    [control-class("1.2.1.2.2", "1.0.0")] interface NcStateSensor: NcSensor {
+
+        // State sensor - returns an index into an array of state names.
+        
+        [element("5p1")]    attribute   NcUint16            reading;
+        [element("5p2")]    attribute   sequence<NcString>  stateNames;
+    };
 $endmacro
 $macro(FeatureSet002)
 
@@ -899,7 +891,7 @@ $macro(FeatureSet002)
 		attribute	NcPayloadStatus		payloadStatus;
 	};
 	
-	[control-class("1.2.2", "1.0.0")] interface NcReceiverMonitor: NcWorker {
+	[control-class("1.2.3", "1.0.0")] interface NcReceiverMonitor: NcWorker {
 	
 		// Receiver monitoring worker.
 		// For attaching to specific receivers, uses the Touchpoint mechanism inherited from NcObject.
@@ -920,7 +912,7 @@ $macro(FeatureSet002)
 		//	should subscribe to the appropriate property-changed event(s).
 	};
 
-	[control-class("1.2.2.1", "1.0.0")] interface NcReceiverMonitorProtected: NcReceiverMonitor {
+	[control-class("1.2.3.1", "1.0.0")] interface NcReceiverMonitorProtected: NcReceiverMonitor {
 	
 		// Derived receiver monitoring worker class for SMPTE ST 2022-7-type receivers.
 		
@@ -1063,7 +1055,7 @@ $macro(FeatureSet017)
     // Feature set 007 - Workflow Data
     // -----------------------------------------------------------------------------
 
-    [control-class("1.2.3", "1.0.0")] interface NcWorkflowDataRecord: NcWorker {
+    [control-class("1.2.4", "1.0.0")] interface NcWorkflowDataRecord: NcWorker {
 
         [element("3p1")]    attribute   NcProductionDataRecordType  type;
         [element("3p2")]    attribute   NsString                    id;
