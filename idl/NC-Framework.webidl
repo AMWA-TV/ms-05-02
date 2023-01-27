@@ -641,7 +641,7 @@ $macro(CoreDatatypes)
 		"ContainsCaseInsensitive"	// 5 search string anywhere in target - case-insensitive
 	};	
 
-	interface NcfirmwareComponent {
+	interface NcFirmwareComponent {
 		attribute	NcName			name;			// Concise name
 		attribute	NcVersionCode	version;		// Version code
 		attribute	NcString?		description;	// optional non-programmatic description
@@ -796,7 +796,7 @@ $macro(Managers)
 		
 		//	Firmware / software manager : Reports versions of components
 		
-		[element("3p1")]	readonly	attribute	sequence<NcfirmwareComponent>	components; // List of firmware component descriptors
+		[element("3p1")]	readonly	attribute	sequence<NcFirmwareComponent>	components; // List of firmware component descriptors
 	};
 	
     [control-class("1.3.4", "1.0.0", "SubscriptionManager")] interface NcSubscriptionManager: NcManager {
@@ -853,15 +853,7 @@ $macro(FeatureSet001)
         
         // Simple level sensor that reads in DB
         
-        [element("5p1")]    attribute   NcDB    reading;
-    };
-
-    [control-class("1.2.1.2.2", "1.0.0")] interface NcStateSensor: NcSensor {
-
-        // State sensor - returns an index into an array of state names.
-        
-        [element("5p1")]    attribute   NcUint16            reading;
-        [element("5p2")]    attribute   sequence<NcString>  stateNames;
+        [element("5p1")]    readonly    attribute   NcDB    reading;
     };
 $endmacro
 $macro(FeatureSet002)
