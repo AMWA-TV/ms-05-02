@@ -431,7 +431,7 @@ $macro(BlockDatatypes)
         attribute   NcOid           oid;            // OID of member
         attribute   NcBoolean       constantOid;    // TRUE iff member's OID is hardwired into device 
         attribute   NcClassIdentity identity;       // Class ID & version of member
-        attribute   NcString        userLabel;      // User label
+        attribute   NcString?       userLabel;      // User label
         attribute   NcOid           owner;          // Containing block's OID
 
         // Constraints:
