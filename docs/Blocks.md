@@ -26,7 +26,7 @@ Where the following data types are defined:
 ```typescript
 typedef NcString NcName;
 
-typedef sequence<NcName> NcNamePath;
+typedef sequence<NcString>  NcRolePath;
 
 enum NcIoDirection { // Input and/or output
     "Undefined", // 0 Flow direction is not defined
@@ -36,16 +36,16 @@ enum NcIoDirection { // Input and/or output
 };
 
 interface NcPort {
-    attribute NcName role; // Unique within owning object
-    attribute NcIoDirection direction; // Input (sink) or output (source) port
-    attribute NcNamePath? clockPath; // Rolepath of this port's sample clock or null if none
+    attribute NcString      role;       // Unique within owning object
+    attribute NcIoDirection direction;  // Input (sink) or output (source) port
+    attribute NcRolePath?   clockPath;  // Rolepath of this port's sample clock or null if none
 };
 
 interface NcSignalPath {
-    attribute NcName role; // Unique identifier of this signal path in this block
-    attribute NcString? label; // Optional label
-    attribute NcPortReference source;
-    attribute NcPortReference sink;
+    attribute   NcString        role;   // Unique identifier of this signal path in this block
+    attribute   NcString?       label;  // Optional label
+    attribute   NcPortReference source;
+    attribute   NcPortReference sink;
 };
 ```
 
@@ -58,8 +58,8 @@ Blockspecs are defined in [MS-05-03 NMOS Control Block Specifications](https://s
 Blocks enable device tree discovery by offering the descriptors of their contained members in the `members` property.
 
 ```typescript
-interface NcBlockMemberDescriptor{
-    attribute NcName role; // Role of member in its containing block
+interface NcBlockMemberDescriptor {
+    attribute NcString role; // Role of member in its containing block
     attribute NcOid oid; // OID of member
     attribute NcBoolean constantOid // TRUE iff member's OID is hardwired into device 
     attribute NcClassIdentity identity; // Class ID & version of member

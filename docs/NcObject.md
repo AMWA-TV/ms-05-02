@@ -36,7 +36,7 @@ interface NcElementId {
 `NcMethodResultPropertyValue` inherits from `NcMethodResult` but can return any value type depending on the underlying property type.
 
 ```typescript
-interface NcMethodResultPropertyValue : ncMethodResult { // property-value result
+interface NcMethodResultPropertyValue : NcMethodResult { // property-value result
     attribute any? value;
 }
 ```

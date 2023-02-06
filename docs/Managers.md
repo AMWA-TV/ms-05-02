@@ -33,10 +33,12 @@ Where the following types are defined:
 
 ```typescript
 enum NcResetCause {
-    "PowerOn", // 0 Last reset was caused by device power-on.
-    "InternalError", // 1 Last reset was caused by an internal error.
-    "Upgrade", // 2 Last reset was caused by a software or firmware upgrade.
-    "ControllerRequest" // 3 Last reset was caused by a controller request.
+    "Unknown",              // 0 Last reset cause is unknown.
+    "PowerOn",              // 1 Last reset was caused by device power-on.
+    "InternalError",        // 2 Last reset was caused by an internal error.
+    "Upgrade",              // 3 Last reset was caused by a software or firmware upgrade.
+    "ControllerRequest",    // 4 Last reset was caused by a controller request.
+    "ManualReset"           // 5 Last reset was caused by a manual request from the front panel of the device.
 };
 
 enum NcDeviceGenericState {
