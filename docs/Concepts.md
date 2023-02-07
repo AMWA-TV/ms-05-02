@@ -40,7 +40,7 @@ Here are some examples from the `NcObject` class:
     [element("1p4")]         readonly attribute NcBoolean constantOid;
     [element("1p5")]         readonly attribute NcOid? owner;
     [element("1p6")]         readonly attribute NcRole role;
-    [element("1p7")]                  attribute NcString userLabel;
+    [element("1p7")]                  attribute NcString? userLabel;
     ...
     
     // GENERIC GET/SET METHODS
@@ -67,23 +67,29 @@ Example:
 };
 ```
 
-All methods must return a class which inherits from `NcMethodResult` and provide a status and an optional errorMessage.
+All methods MUST return a datatype which inherits from `NcMethodResult` and provide a status.
 
 ```typescript
 interface NcMethodResult {// Base datatype
     attribute NcMethodStatus status;
-    attribute NcString errorMessage;
 };
 ```
 
 `NcMethodStatus` is an enumeration:
 
 ```typescript
-enum NcMethodStatus {// Method result status values
-    "Ok", // 0  Method call was successful 
-    "ProtocolVersionError", // 1  Control command had incompatible protocol version code
-    "DeviceError", // 2  Something went wrong
+enum NcMethodStatus {
+    "Ok",   // 200 - Method call was successful
     ...
+};
+```
+
+When a method call encounters an error the return MUST be `NcMethodResultError` or a derived datatype.
+
+```typescript
+// Error result - to be used when the method call encounters an error
+interface NcMethodResultError: NcMethodResult {
+    attribute   NcString    errorMessage;
 };
 ```
 
