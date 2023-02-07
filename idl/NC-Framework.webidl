@@ -744,7 +744,7 @@ $macro(Block)
         // finds members with given role name or fragment
         [element("2m3")]    NcMethodResultBlockMemberDescriptors    FindMembersByRole(
             NcString role,                              // role text to search for
-            NcStringComparisonType nameComparisonType,  // type of string comparison to use
+            NcStringComparisonType roleComparisonType,  // type of string comparison to use
             NcClassId? classId,                         // if non null, finds only members with this class ID
             NcBoolean recurse                           // TRUE to search nested blocks
         );
