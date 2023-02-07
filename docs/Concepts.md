@@ -34,12 +34,12 @@ Here are some examples from the `NcObject` class:
 
     // PROPERTIES
 
-    [element("1p1")]  static readonly attribute NcClassID classId;
+    [element("1p1")]  static readonly attribute NcClassId classId;
     [element("1p2")]  static readonly attribute NcVersionCode classVersion;
     [element("1p3")]         readonly attribute NcOid oid;
     [element("1p4")]         readonly attribute NcBoolean constantOid;
     [element("1p5")]         readonly attribute NcOid? owner;
-    [element("1p6")]         readonly attribute NcRole role;
+    [element("1p6")]         readonly attribute NcString role;
     [element("1p7")]                  attribute NcString? userLabel;
     ...
     
@@ -96,7 +96,7 @@ interface NcMethodResultError: NcMethodResult {
 Derived `NcMethodResult` types may also return values or possibly further custom statuses.
 
 ```typescript
-interface NcMethodResultBoolean : ncMethodResult { // boolean result
+interface NcMethodResultBoolean : NcMethodResult { // boolean result
     attribute NcBoolean value;
 };
 ```
