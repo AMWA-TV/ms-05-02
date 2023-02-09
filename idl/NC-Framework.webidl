@@ -732,15 +732,22 @@ $macro(Block)
 
         // finds member(s) by path
         [element("2m2")]    NcMethodResultBlockMemberDescriptors    FindMembersByPath(
-            NcRolePath path // path to search for
-        ); 
+            NcRolePath  path                              // path to search for
+        );
         
         // finds members with given role name or fragment
         [element("2m3")]    NcMethodResultBlockMemberDescriptors    FindMembersByRole(
-            NcString role,                              // role text to search for
-            NcBoolean caseSensitive,                    // signals if the comparison should be case sensitive
-            NcBoolean matchWholeString,                 // TRUE to only return exact matches
-            NcBoolean recurse                           // TRUE to search nested blocks
+            NcString    role,                             // role text to search for
+            NcBoolean   caseSensitive,                    // signals if the comparison should be case sensitive
+            NcBoolean   matchWholeString,                 // TRUE to only return exact matches
+            NcBoolean   recurse                           // TRUE to search nested blocks
+        );
+
+        // finds members with given class id
+        [element("2m4")]    NcMethodResultBlockMemberDescriptors    FindMembersByClassId(
+            NcClassId   id,                               // class id to search for
+            NcBoolean   includeDerived                    // If TRUE it will also include derived class descriptors
+            NcBoolean   recurse                           // TRUE to search nested blocks
         );
     };
 $endmacro
