@@ -159,7 +159,7 @@ $macro(PortDatatypes)
     // Device-unique port identifier
     interface NcPortReference {
         attribute NcRolePath    owner;  // Rolepath of owning object
-        attribute NcString      role;   // Unique identifier of this port within the owning object
+        attribute NcString      role;   // Unique role of port in the object that owns it.
     };
 
     interface NcPort {
@@ -170,7 +170,7 @@ $macro(PortDatatypes)
 
     // Signal path descriptor
     interface NcSignalPath {
-        attribute NcString        role;   // Unique identifier of this signal path in this block
+        attribute NcString        role;   // Unique role of this signal path in this block
         attribute NcString?       label;  // Optional label
         attribute NcPortReference source;
         attribute NcPortReference sink;
