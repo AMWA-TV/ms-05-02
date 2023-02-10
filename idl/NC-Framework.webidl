@@ -801,7 +801,7 @@ $macro(Managers)
         );
     };
 
-    [control-class("1.3.3", "1.0.0","FirmwareManager")] interface NcFirmwareManager: NcManager {
+    [control-class("1.3.3", "1.0.0", "FirmwareManager")] interface NcFirmwareManager: NcManager {
         
         //  Firmware / software manager : Reports versions of components
         
