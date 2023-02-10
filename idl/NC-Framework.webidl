@@ -791,13 +791,13 @@ $macro(Managers)
         // Inherited class elements are always included
         [element("3m1")]    NcMethodResultClassDescriptor GetControlClass(
             NcClassIdentity identity,   // class ID & version
-            NcBoolean includeInherited  // if set would the descriptor would contain all inherited elements
+            NcBoolean includeInherited  // if set the descriptor would contain all inherited elements
         );
 
         // Get a single datatype descriptor
         [element("3m2")]    NcMethodResultDatatypeDescriptor GetDatatype(
             NcName name,                // name of datatype,
-            NcBoolean includeInherited  // if set would the descriptor would contain all inherited elements
+            NcBoolean includeInherited  // if set the descriptor would contain all inherited elements
         );
     };
 
