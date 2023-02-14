@@ -12,7 +12,7 @@ The properties of NcObject are listed in the following table.
 | constantOid       | NcBoolean                      | Yes          | flag to indicate if the oid is constant or not                        |
 | owner             | NcOid                          | Yes          | unique object id of the parent                                        |
 | role              | NcRole                         | Yes          | unique role of the object within the containing block                 |
-| userLabel         | NcString                       | No           | user definable label                                                  |
+| userLabel         | NcString?                      | No           | user definable label                                                  |
 | touchpoints       | sequence<NcTouchpoint>         | Yes          | sequence of touchpoint (see Touchpoints section for details)          |
 
 The `role` is a structural identifier which MUST be persisted across restarts. The role path of an element can be constructed from its role and the roles of all its parents. The role path can then be used to target a particular section of the control model tree or to retrieve the object ids again after a restart.

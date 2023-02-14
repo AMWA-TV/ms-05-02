@@ -1,36 +1,36 @@
-//	NC-Framework
+//  NC-Framework
 
 $macro(HeaderComments)
-	//  ----------------------------------------------------------------------------------
-	//	NC-Framework classes and datatypes
-	//
-	//	Contains definitions of:
-	//		-	core classes and datatypes needed
-	//		- 	specific classes and datatypes needed by particular feature sets.
-	//
-	//	This file must be preprocessed with the 'pyexpand' macro processor to yield a complete
-	//	Web IDL file.
-	//
-	//	With this scheme, an NCC module is defined as follows:
-	//
-	//		$macro(myModule)
-	//			... Web IDL statements ...
-	//		$endmacro
-	//
-	//		$myModule()
-	//
-	//	pyexpand is a single-pass processor, so forward references are not allowed.
-	//	Thus, this file defines all the elemental submodules first. The code
-	//	that generates the fully expanded NC-Framework definition is at the end of the file.
-	//
-	//	A pyexpand comment - i.e. a string that is not copied to the output - begins
-	//	with dollar-hash.  All characters from a dollar-hash symbol through the end of
-	//	the line are ignored.
-	//  ----------------------------------------------------------------------------------
+    //  ----------------------------------------------------------------------------------
+    //  NC-Framework classes and datatypes
+    //
+    //  Contains definitions of:
+    //  -   core classes and datatypes needed
+    //  -   specific classes and datatypes needed by particular feature sets.
+    //
+    //  This file must be preprocessed with the 'pyexpand' macro processor to yield a complete
+    //  Web IDL file.
+    //
+    //  With this scheme, an NCC module is defined as follows:
+    //
+    //      $macro(myModule)
+    //          ... Web IDL statements ...
+    //      $endmacro
+    //
+    //      $myModule()
+    //
+    //  pyexpand is a single-pass processor, so forward references are not allowed.
+    //  Thus, this file defines all the elemental submodules first. The code
+    //  that generates the fully expanded NC-Framework definition is at the end of the file.
+    //
+    //  A pyexpand comment - i.e. a string that is not copied to the output - begins
+    //  with dollar-hash.  All characters from a dollar-hash symbol through the end of
+    //  the line are ignored.
+    //  ----------------------------------------------------------------------------------
 $endmacro
 $macro(PrimitiveDatatypes)
     //  ----------------------------------------------------------------------------------
-    // 	P r i m i t i v e   D a t a t y p e s
+    // P r i m i t i v e   D a t a t y p e s
     //  ----------------------------------------------------------------------------------
 
     [primitive] typedef boolean             NcBoolean;
@@ -45,89 +45,89 @@ $macro(PrimitiveDatatypes)
     [primitive] typedef bytestring          NcString; // UTF-8
 $endmacro
 $macro(IdentifiersClass)
-	//  ----------------------------------------------------------------------------------
-	//	Class identifiers
-	//	
-	//  An control class is uniquely identified by the concatenation of its definition 
-	//	indices, in combination with a version code. A definition index is basically
-	//	an index of a class within its inheritance level of the class tree.
-	//
-	//	For further explanation, please refer to MS-05-01 (NC-Architecture).
-	//
-	//	In the control model, the concatenated set of definition indices is called a Class ID;
-	//	the corresponding datatype is 'NcClassId'.
-	//
-	// 	The combination of a Class ID and a version code <v> is called the Class Identity;
-	//	the corresponding datatype is 'NcClassIdentity'.
-	//
-	//	In this specification, class identity will be coded as 'i1.i2. ...,v
-	//
-	//	where 
-	//		'i1', 'i2', etc. are the definition index values, i.e. the Class ID.
-	//		'v' is the class version code (see 'NcVersionCode')
-	//	e.g.
-	//		- class ID of version 1 of NcObject = '1,1.0.0'
-	//		- class ID of version 1 of NcBlock 	= '1.3,1.0.0'
-	//		- class ID of version 2 of NcWorker = '1.1,2.0.0'
-	//		- class ID of version 1 of NcGain 	= '1.1.3,1.0.0'
-	//
-	//	The framework allows the definition of proprietary classes that inherit from standard classes.
-	//	Proprietary Class IDs embed an IEEE OUI or CID to avoid value clashes among
-	//	multiple organizations. 
-	//
-	//  ----------------------------------------------------------------------------------
+    //  ----------------------------------------------------------------------------------
+    //  Class identifiers
+    //  
+    //  An control class is uniquely identified by the concatenation of its definition 
+    //  indices, in combination with a version code. A definition index is basically
+    //  an index of a class within its inheritance level of the class tree.
+    //
+    //  For further explanation, please refer to MS-05-01 (NC-Architecture).
+    //
+    //  In the control model, the concatenated set of definition indices is called a Class ID;
+    //  the corresponding datatype is 'NcClassId'.
+    //
+    //  The combination of a Class ID and a version code <v> is called the Class Identity;
+    //  the corresponding datatype is 'NcClassIdentity'.
+    //
+    //  In this specification, class identity will be coded as 'i1.i2. ...,v
+    //
+    //  where 
+    //      'i1', 'i2', etc. are the definition index values, i.e. the Class ID.
+    //      'v' is the class version code (see 'NcVersionCode')
+    //  e.g.
+    //      - class ID of version 1 of NcObject = '1,1.0.0'
+    //      - class ID of version 1 of NcBlock  = '1.3,1.0.0'
+    //      - class ID of version 2 of NcWorker = '1.1,2.0.0'
+    //      - class ID of version 1 of NcGain   = '1.1.3,1.0.0'
+    //
+    //  The framework allows the definition of proprietary classes that inherit from standard classes.
+    //  Proprietary Class IDs embed an IEEE OUI or CID to avoid value clashes among
+    //  multiple organizations. 
+    //
+    //  ----------------------------------------------------------------------------------
 
-	//	Unique 24-bit organization ID: 
-	//	IEEE public Company ID (public CID) or
-	//	IEEE Organizational Unique Identifier (OUI).
+    //  Unique 24-bit organization ID: 
+    //  IEEE public Company ID (public CID) or
+    //  IEEE Organizational Unique Identifier (OUI).
 
-	typedef NcInt32 NcOrganizationId;
-	
-	// NcClassId is a sequence of NCInt32 class ID fields.
-	// A class ID sequence reflects the ancestry of the class being identified.
-	//
-	// A class ID field is either a definition index or an authority key.
-	//
-	// A definition index is an ordinal that starts at 1 for every inheritance level of the control
-	// model class tree.
+    typedef NcInt32 NcOrganizationId;
 
-	//	e.g.
-	//		[ 1, 1, 3, 5]
+    // NcClassId is a sequence of NCInt32 class ID fields.
+    // A class ID sequence reflects the ancestry of the class being identified.
+    //
+    // A class ID field is either a definition index or an authority key.
+    //
+    // A definition index is an ordinal that starts at 1 for every inheritance level of the control
+    // model class tree.
 
-	// An authority key shall be inserted in the class ID sequence immediately
-	// after the definition index of the class from which a proprietary class inherits,
-	// i.e. at the point where the proprietary class or class subtree
-	// connects into the class structure.
+    //  e.g.
+    //      [ 1, 1, 3, 5]
 
-	// For organizations which own a unique CID or OUI the authority key MUST be a negative 32-bit integer, constructed by
-	// prepending FFh onto the 24-bit organization identifier.
-	//
-	// For organizations which do not own a unique CID or OUI the authority key MUST be 0.
-	// e.g.
-	//		[ 1, 1, 3, 5, -132131, 1, 4, 5 ]
-	// or
-	//		[ 1, 1, 3, 5, 0, 1, 4, 5 ]
-	
-	typedef sequence<NcInt32>	NcClassId;
+    // An authority key shall be inserted in the class ID sequence immediately
+    // after the definition index of the class from which a proprietary class inherits,
+    // i.e. at the point where the proprietary class or class subtree
+    // connects into the class structure.
+
+    // For organizations which own a unique CID or OUI the authority key MUST be a negative 32-bit integer, constructed by
+    // prepending FFh onto the 24-bit organization identifier.
+    //
+    // For organizations which do not own a unique CID or OUI the authority key MUST be 0.
+    // e.g.
+    //      [ 1, 1, 3, 5, -132131, 1, 4, 5 ]
+    // or
+    //      [ 1, 1, 3, 5, 0, 1, 4, 5 ]
+
+    typedef sequence<NcInt32>   NcClassId;
 $endmacro
 $macro(VersionCode)
-	//  ----------------------------------------------------------------------------------
-	// 	Version code
-	//
-	//	Semantic version code, compliant with https://semver.org
-	//
-	//  ----------------------------------------------------------------------------------
-	
-	typedef NcString	NcVersionCode //Version code in semantic versioning format
-	
-	interface NcClassIdentity {
-		attribute NcClassId		id;
-		attribute NcVersionCode	version;
-	};
+    //  ----------------------------------------------------------------------------------
+    //  Version code
+    //
+    //  Semantic version code, compliant with https://semver.org
+    //
+    //  ----------------------------------------------------------------------------------
+
+    typedef NcString    NcVersionCode //Version code in semantic versioning format
+
+    interface NcClassIdentity {
+        attribute NcClassId     id;
+        attribute NcVersionCode version;
+    };
 $endmacro
 $macro(Identifiers)
     //  ----------------------------------------------------------------------------------
-    //	Identifiers
+    //  Identifiers
     //  ----------------------------------------------------------------------------------
 
     typedef NcString    NcName; // Programmatically significant name, alphanumerics + underscore, no spaces
@@ -159,7 +159,7 @@ $macro(PortDatatypes)
     // Device-unique port identifier
     interface NcPortReference {
         attribute NcRolePath    owner;  // Rolepath of owning object
-        attribute NcString      role;   // Unique identifier of this port within the owning object
+        attribute NcString      role;   // Unique role of port in the object that owns it.
     };
 
     interface NcPort {
@@ -170,54 +170,54 @@ $macro(PortDatatypes)
 
     // Signal path descriptor
     interface NcSignalPath {
-        attribute   NcString        role;   // Unique identifier of this signal path in this block
-        attribute   NcString?       label;  // Optional label
-        attribute   NcPortReference source;
-        attribute   NcPortReference sink;
+        attribute NcString        role;   // Unique role of this signal path in this block
+        attribute NcString?       label;  // Optional label
+        attribute NcPortReference source;
+        attribute NcPortReference sink;
     };
 $endmacro
 $macro(TouchpointDatatypes)
-	//  ----------------------------------------------------------------------------------
-	//	Touchpoint datatypes
-	//
-	//	Datatypes of Touchpoint mechanism for interfacing with other contexts
-	//  ----------------------------------------------------------------------------------
+    //  ----------------------------------------------------------------------------------
+    //  Touchpoint datatypes
+    //
+    //  Datatypes of Touchpoint mechanism for interfacing with other contexts
+    //  ----------------------------------------------------------------------------------
 
-	// Abstract base classes
-	interface NcTouchpoint {
-		attribute NcString				contextNamespace;
-		attribute NcTouchpointResource	resource;
-	};
+    // Abstract base classes
+    interface NcTouchpoint {
+        attribute NcString              contextNamespace;
+        attribute NcTouchpointResource  resource;
+    };
 
-	interface NcTouchpointResource {
-		attribute NcString	resourceType;
-		attribute any		id; // Subclasses will override
-	};
+    interface NcTouchpointResource {
+        attribute NcString  resourceType;
+        attribute any       id; // Subclasses will override
+    };
 
-	// NMOS-specific subclasses
+    // NMOS-specific subclasses
 
-	// IS-04 registrable entities
-	interface NcTouchpointNmos: NcTouchpoint {
-		// contextNamespace is inherited from NcTouchpoint and can only be x-nmos or x-nmos/channelmapping
-		attribute NcTouchpointResourceNmos	resource;
-	};
+    // IS-04 registrable entities
+    interface NcTouchpointNmos: NcTouchpoint {
+        // contextNamespace is inherited from NcTouchpoint and can only be x-nmos or x-nmos/channelmapping
+        attribute NcTouchpointResourceNmos  resource;
+    };
 
-	interface NcTouchpointResourceNmos: NcTouchpointResource {
-		// resourceType is inherited from NcTouchpointResource and can only be: node, device, source, flow, sender, receiver
-		attribute NcUUID	id; // Override
-	};
+    interface NcTouchpointResourceNmos: NcTouchpointResource {
+        // resourceType is inherited from NcTouchpointResource and can only be: node, device, source, flow, sender, receiver
+        attribute NcUUID    id; // Override
+    };
 
-	// IS-08 inputs or outputs
-	interface NcTouchpointResourceNmos_is_08: NcTouchpointResourceNmos {
-		// resourceType is inherited from NcTouchpointResource and can only be: input, output
-		// id is inherited from NcTouchpointResourceNmos
-		attribute NcString	ioId; // IS-08 input or output ID
-	};
+    // IS-08 inputs or outputs
+    interface NcTouchpointResourceNmos_is_08: NcTouchpointResourceNmos {
+        // resourceType is inherited from NcTouchpointResource and can only be: input, output
+        // id is inherited from NcTouchpointResourceNmos
+        attribute NcString  ioId; // IS-08 input or output ID
+    };
 $endmacro
 $macro(EventAndSubscriptionDatatypes)
 
     //  ----------------------------------------------------------------------------------
-    //	Event and subscription datatypes
+    //  Event and subscription datatypes
     //  ----------------------------------------------------------------------------------
 
     // Payload of property-changed event
@@ -237,186 +237,190 @@ $macro(EventAndSubscriptionDatatypes)
     };
 $endmacro
 $macro(TimeDatatypes)
-	//  ----------------------------------------------------------------------------------
-	//	Time datatypes
-	//  ----------------------------------------------------------------------------------
-	
-	typedef NcFloat64	NcTimeInterval 	// Floating point seconds
+    //  ----------------------------------------------------------------------------------
+    //  Time datatypes
+    //  ----------------------------------------------------------------------------------
 
-	interface NcTime {				// Time in PTP-compatible format
-		attribute NcBoolean	negative;			// TRUE iff time is negative (used for relative times)
-		attribute NcUint64	seconds;			// 48 bits of seconds (rest of range is unused)
-		attribute NcUint32	nanoseconds;		// 32 bits of nanoseconds
-	};	
+    typedef NcInt64 NcTimeInterval  // Time interval described in nanoseconds
+
+    // Time in PTP-compatible format
+    interface NcTime {
+        attribute NcBoolean negative;       // TRUE iff time is negative (used for relative times)
+        attribute NcUint64  seconds;        // 48 bits of seconds (rest of range is unused)
+        attribute NcUint32  nanoseconds;    // 32 bits of nanoseconds
+    };
 $endmacro
 $macro(ApplicationDatatypes)
 
-	//  ----------------------------------------------------------------------------------
-	//	Application datatypes
-	//  ----------------------------------------------------------------------------------
-	
-	// Decibel-related datatypes
-	
-	typedef NcFloat32	NcDB	// A ratio expressed in dB.
-	typedef NcDB		NcDbv	// dB ref 1 Volt - used only for analogue signals
-	typedef NcDB		NcDbu	// dB ref 0.774 Volt - used only for analogue signals
-	typedef NcDB		NcDbfs	// dB ref device maximum internal digital sample value
-	typedef NcDB		NcDbz	// dB ref nominal device operating level
+    //  ----------------------------------------------------------------------------------
+    //  Application datatypes
+    //  ----------------------------------------------------------------------------------
 
-	// dB relative to given reference
-	struct NcDBr {
-		attribute NcDB	value;	// the dBr value
-		attribute NcDbz	ref;	// the reference level
-	};
+    // Decibel-related datatypes
+
+    typedef NcFloat32   NcDB    // A ratio expressed in dB.
+    typedef NcDB        NcDbv   // dB ref 1 Volt - used only for analogue signals
+    typedef NcDB        NcDbu   // dB ref 0.774 Volt - used only for analogue signals
+    typedef NcDB        NcDbfs  // dB ref device maximum internal digital sample value
+    typedef NcDB        NcDbz   // dB ref nominal device operating level
+
+    // dB relative to given reference
+    struct NcDBr {
+        attribute NcDB  value;  // the dBr value
+        attribute NcDbz ref;    // the reference level
+    };
 $endmacro
 $macro(ModelDatatypes)
-	//  ----------------------------------------------------------------------------------
-	//	Model datatypes
-	//	
-	//	Datatypes that describe the elements of control classes and datatypes
-	//  ----------------------------------------------------------------------------------
-	
-	enum NcDatatypeType {
-		"Primitive",	// 0 primitive, e.g. NcUint16
-		"Typedef",		// 1 typedef, i,e. simple alias of another datatype
-		"Struct",		// 2 data structure
-		"Enum"			// 3 enum datatype
-	};
+    //  ----------------------------------------------------------------------------------
+    //  Model datatypes
+    //  
+    //  Datatypes that describe the elements of control classes and datatypes
+    //  ----------------------------------------------------------------------------------
 
-	interface NcDescriptor {
-		attribute NcString?	description; // optional user facing description
-	};
+    enum NcDatatypeType {
+        "Primitive",    // 0 primitive, e.g. NcUint16
+        "Typedef",      // 1 typedef, i,e. simple alias of another datatype
+        "Struct",       // 2 data structure
+        "Enum"          // 3 enum datatype
+    };
 
-	interface NcDatatypeDescriptor: NcDescriptor {
-		attribute NcName					name;			// datatype name
-		attribute NcDatatypeType			type;			// Primitive, Typedef, Struct, Enum
-		attribute NcParameterConstraint?	constraints;	// optional constraints on top of the underlying data type
-	};
-	
-	interface NcDatatypeDescriptorPrimitive: NcDatatypeDescriptor {
-		//type will be Primitive
-	};
+    interface NcDescriptor {
+        attribute NcString? description; // optional user facing description
+    };
 
-	interface NcDatatypeDescriptorTypeDef: NcDatatypeDescriptor {
-		//type will be Typedef
-		attribute NcName	content;	// original typedef datatype name
-		attribute NcBoolean	isSequence  // TRUE iff type is a typedef sequence of another type
-	};
+    interface NcDatatypeDescriptor: NcDescriptor {
+        attribute NcName                    name;           // datatype name
+        attribute NcDatatypeType            type;           // Primitive, Typedef, Struct, Enum
+        attribute NcParameterConstraints?   constraints;    // optional constraints on top of the underlying data type
+    };
 
-	interface NcDatatypeDescriptorStruct: NcDatatypeDescriptor {
-		//type will be Struct
-		attribute sequence<NcFieldDescriptor>	content;	// one item descriptor per field of the struct
-		attribute NcName?	parentType;	// name of the parent type if any or null if it has no parent
-	};
+    interface NcDatatypeDescriptorPrimitive: NcDatatypeDescriptor {
+        //type will be Primitive
+    };
 
-	interface NcDatatypeDescriptorEnum: NcDatatypeDescriptor {
-		//type will be Enum
-		attribute sequence<NcEnumItemDescriptor>	content;	// one item descriptor per enum option
-	};
-	
-	// Descriptor of a class property
-	interface NcPropertyDescriptor: NcDescriptor {
-		attribute NcElementId				id;				// element ID of property
-		attribute NcName					name;			// name of property
-		attribute NcName?					typeName;		// name of property's datatype. Can only ever be null if the type is any
-		attribute NcBoolean					readOnly;		// TRUE iff property is read-only
-		attribute NcBoolean					persistent;		// TRUE iff property value survives power-on reset
-		attribute NcBoolean					isNullable;		// TRUE iff property is nullable
-		attribute NcBoolean?				isSequence;		// TRUE iff property is a sequence. May be null if the type is any
-		attribute NcParameterConstraint?	constraints;	// optional constraints on top of the underlying data type
-	};
-	
-	// Descriptor of a field of a struct
-	interface NcFieldDescriptor: NcDescriptor {
-		attribute	NcName					name;			// name of field
-		attribute	NcName?					typeName;		// name of field's datatype. Can only ever be null if the type is any
-		attribute	NcBoolean				isNullable;		// TRUE iff the field is nullable
-		attribute	NcBoolean?				isSequence;		// TRUE iff the field is a sequence. May be null if the type is any
-		attribute	NcParameterConstraint?	constraints;	// optional constraints on top of the underlying data type
-	};
-	
-	// Descriptor of an enum
-	interface NcEnumItemDescriptor: NcDescriptor {
-		attribute NcName		name;	// name of option
-		attribute NcUint16	index;		// index value of option (starts at zero)
-	};
+    interface NcDatatypeDescriptorTypeDef: NcDatatypeDescriptor {
+        //type will be Typedef
+        attribute NcName    parentType; // original typedef datatype name
+        attribute NcBoolean isSequence  // TRUE iff type is a typedef sequence of another type
+    };
 
-	// Descriptor of a method parameter
-	interface NcParameterDescriptor: NcDescriptor {
-		attribute NcName					name;			// name of parameter
-		attribute NcName?					typeName;		// name of parameter's datatype. Can only ever be null if the type is any
-		attribute NcBoolean					isNullable;		// TRUE iff parameter is nullable
-		attribute NcBoolean?				isSequence;		// TRUE iff the parameter is a sequence. May be null if the type is any
-		attribute NcParameterConstraint?	constraints;	// optional constraints on top of the underlying data type
-	};
-	
-	interface NcMethodDescriptor: NcDescriptor {
-		attribute NcElementId						id;				// element ID of method
-		attribute NcName							name;			// name of method
-		attribute NcName							resultDatatype;	// name of method result's datatype
-		attribute sequence<NcParameterDescriptor>	parameters;		// 0-n parameter descriptors
-	};
-	
-	interface NcEventDescriptor: NcDescriptor {
-		attribute NcElementId	id;				// element ID of event
-		attribute NcName		name;			// event's name
-		attribute NcName		eventDatatype;	// name of event data's datatype
-	};
-	
-	interface NcClassDescriptor: NcDescriptor {
-		attribute sequence<NcPropertyDescriptor>	properties;	// 0-n property descriptors
-		attribute sequence<NcMethodDescriptor>		methods;	// 0-n method descriptors.
-		attribute sequence<NcEventDescriptor>		events;		// 0-n event descriptors.
-	};
+    interface NcDatatypeDescriptorStruct: NcDatatypeDescriptor {
+        //type will be Struct
+        attribute sequence<NcFieldDescriptor>   fields; // one item descriptor per field of the struct
+        attribute NcName?   parentType;                 // name of the parent type if any or null if it has no parent
+    };
 
-	//Abstract parameter constraint class
-	interface NcParameterConstraint {
-		attribute any?	defaultValue;		// default value
-	}
+    interface NcDatatypeDescriptorEnum: NcDatatypeDescriptor {
+        //type will be Enum
+        attribute sequence<NcEnumItemDescriptor>    items;  // one item descriptor per enum option
+    };
 
-	interface NcParameterConstraintNumber: NcParameterConstraint {
-		attribute any?	maximum;	// not less than this
-		attribute any?	minimum;	// not more than this
-		attribute any?	step;		// stepsize
-	}
-	
-	interface NcParameterConstraintString: NcParameterConstraint {
-		attribute NcUint32?	maxCharacters;	// maximum characters allowed
-		attribute NcRegex?	pattern;		// regex pattern
-	}
+    // Descriptor of a class property
+    interface NcPropertyDescriptor: NcDescriptor {
+        attribute NcElementId               id;             // element ID of property
+        attribute NcName                    name;           // name of property
+        attribute NcName?                   typeName;       // name of property's datatype. Can only ever be null if the type is any
+        attribute NcBoolean                 isReadOnly;     // TRUE iff property is read-only
+        attribute NcBoolean                 isPersistent;   // TRUE iff property value survives power-on reset
+        attribute NcBoolean                 isNullable;     // TRUE iff property is nullable
+        attribute NcBoolean                 isSequence;     // TRUE iff property is a sequence
+        attribute NcParameterConstraints?   constraints;    // optional constraints on top of the underlying data type
+    };
+
+    // Descriptor of a field of a struct
+    interface NcFieldDescriptor: NcDescriptor {
+        attribute NcName                  name;           // name of field
+        attribute NcName?                 typeName;       // name of field's datatype. Can only ever be null if the type is any
+        attribute NcBoolean               isNullable;     // TRUE iff the field is nullable
+        attribute NcBoolean               isSequence;     // TRUE iff the field is a sequence
+        attribute NcParameterConstraints? constraints;    // optional constraints on top of the underlying data type
+    };
+
+    // Descriptor of an enum
+    interface NcEnumItemDescriptor: NcDescriptor {
+        attribute NcName    name;   // name of option
+        attribute NcUint16  value;  // enum item numerical value
+    };
+
+    // Descriptor of a method parameter
+    interface NcParameterDescriptor: NcDescriptor {
+        attribute NcName                    name;           // name of parameter
+        attribute NcName?                   typeName;       // name of parameter's datatype. Can only ever be null if the type is any
+        attribute NcBoolean                 isNullable;     // TRUE iff parameter is nullable
+        attribute NcBoolean                 isSequence;     // TRUE iff the parameter is a sequence
+        attribute NcParameterConstraints?   constraints;    // optional constraints on top of the underlying data type
+    };
+
+    interface NcMethodDescriptor: NcDescriptor {
+        attribute NcElementId                       id;             // element ID of method
+        attribute NcName                            name;           // name of method
+        attribute NcName                            resultDatatype; // name of method result's datatype
+        attribute sequence<NcParameterDescriptor>   parameters;     // 0-n parameter descriptors
+    };
+
+    interface NcEventDescriptor: NcDescriptor {
+        attribute NcElementId   id;             // element ID of event
+        attribute NcName        name;           // event's name
+        attribute NcName        eventDatatype;  // name of event data's datatype
+    };
+
+    interface NcClassDescriptor: NcDescriptor {
+        attribute NcClassIdentity                   identity;   // identity of the class
+        attribute NcName                            name;       // name of the class
+        attribute NcString?                         fixedRole;  // role if the class has fixed role (manager classes)
+        attribute sequence<NcPropertyDescriptor>    properties; // 0-n property descriptors
+        attribute sequence<NcMethodDescriptor>      methods;    // 0-n method descriptors.
+        attribute sequence<NcEventDescriptor>       events;     // 0-n event descriptors.
+    };
+
+    //Abstract parameter constraint class
+    interface NcParameterConstraints {
+        attribute any? defaultValue;   // default value
+    }
+
+    interface NcParameterConstraintsNumber: NcParameterConstraints {
+        attribute any? maximum;    // not less than this
+        attribute any? minimum;    // not more than this
+        attribute any? step;       // stepsize
+    }
+
+    interface NcParameterConstraintsString: NcParameterConstraints {
+        attribute NcUint32? maxCharacters;  // maximum characters allowed
+        attribute NcRegex?  pattern;        // regex pattern
+    }
 $endmacro
 $macro(PropertyConstraintDatatypes)
     //  ----------------------------------------------------------------------------------
-    //	Property constraint datatypes
+    //  Property constraint datatypes
     //
-    //	Used in block member descriptors - see the BlockDatatypes module
+    //  Used in block member descriptors - see the BlockDatatypes module
     //  ----------------------------------------------------------------------------------
 
     typedef NcString    NcRegex; // regex pattern
 
-    interface NcPropertyConstraint {
-        attribute   NcRolePath? path;           // relative path to member (null means current member)
-        attribute   NcElementId propertyId;     // ID of property being constrained
-        attribute   any?        defaultValue;   // default value
+    interface NcPropertyConstraints {
+        attribute NcRolePath? path;           // relative path to member (null means current member)
+        attribute NcElementId propertyId;     // ID of property being constrained
+        attribute any?        defaultValue;   // default value
     }
 
-    interface NcPropertyConstraintFixed: NcPropertyConstraint {
-        attribute   any?    value;  // signals a fixed value for this property
+    interface NcPropertyConstraintsFixed: NcPropertyConstraints {
+        attribute any?    value;  // signals a fixed value for this property
     }
 
-    interface NcPropertyConstraintNumber: NcPropertyConstraint {
-        attribute   any?    maximum;    // not less than this
-        attribute   any?    minimum;    // not more than this
-        attribute   any?    step;       // stepsize
+    interface NcPropertyConstraintsNumber: NcPropertyConstraints {
+        attribute any?    maximum;    // not less than this
+        attribute any?    minimum;    // not more than this
+        attribute any?    step;       // stepsize
     }
 
-    interface NcPropertyConstraintString: NcPropertyConstraint {
-        attribute   NcUint32?   maxCharacters;  // maximum characters allowed
-        attribute   NcRegex?    pattern;        // regex pattern
+    interface NcPropertyConstraintsString: NcPropertyConstraints {
+        attribute NcUint32?   maxCharacters;  // maximum characters allowed
+        attribute NcRegex?    pattern;        // regex pattern
     }
 
-    interface NcPropertyConstraintEnum: NcPropertyConstraint {
-        attribute   sequence<NcEnumItemDescriptor>  possibleValues;	// allowed values
+    interface NcPropertyConstraintsEnum: NcPropertyConstraints {
+        attribute sequence<NcEnumItemDescriptor>  possibleValues;   // allowed values
     }
 $endmacro
 $macro(BlockDatatypes)
@@ -427,12 +431,12 @@ $macro(BlockDatatypes)
     //  ----------------------------------------------------------------------------------
 
     interface NcBlockMemberDescriptor: NcDescriptor {
-        attribute   NcString        role;           // Role of member in its containing block
-        attribute   NcOid           oid;            // OID of member
-        attribute   NcBoolean       constantOid;    // TRUE iff member's OID is hardwired into device 
-        attribute   NcClassIdentity identity;       // Class ID & version of member
-        attribute   NcString?       userLabel;      // User label
-        attribute   NcOid           owner;          // Containing block's OID
+        attribute NcString        role;           // Role of member in its containing block
+        attribute NcOid           oid;            // OID of member
+        attribute NcBoolean       constantOid;    // TRUE iff member's OID is hardwired into device 
+        attribute NcClassIdentity identity;       // Class ID & version of member
+        attribute NcString?       userLabel;      // User label
+        attribute NcOid           owner;          // Containing block's OID
 
         // Constraints:
         // A constraint is applied to this member using a constraints object with constraints.path empty or omitted.
@@ -448,7 +452,7 @@ $macro(BlockDatatypes)
         // multiple constraints into a single constraint that represents the intersection of all of them.  When the
         // given constraint values do not allow such resolution, it is a blockspec coding error.
 
-        attribute   sequence<NcPropertyConstraint>? constraints // Constraints on this member or, for a block, its members.
+        attribute sequence<NcPropertyConstraints>? constraints // Constraints on this member or, for a block, its members.
     };
 
     interface NcBlockDescriptor: NcBlockMemberDescriptor {
@@ -464,19 +468,19 @@ $macro(ManagementDatatypes)
 
     //  Manufacturer desciptor
     interface NcManufacturer {
-        attribute   NcString            name            // Manufacturer's name
-        attribute   NcOrganizationId?   organizationId  // IEEE OUI or CID of manufacturer
-        attribute   NcUri?              website         // URL of the manufacturer's website
+        attribute NcString            name            // Manufacturer's name
+        attribute NcOrganizationId?   organizationId  // IEEE OUI or CID of manufacturer
+        attribute NcUri?              website         // URL of the manufacturer's website
     };
 
     // Product descriptor
     interface NcProduct {
-        attribute   NcString    name            // Product name
-        attribute   NcString    key             // Manufacturer's unique key to product - model number, SKU, etc
-        attribute   NcString    revisionLevel   // Manufacturer's product revision level code
-        attribute   NcString?   brandName       // Brand name under which product is sold
-        attribute   NcString?   uuid            // Unique UUID of product (not product instance)
-        attribute   NcString?   description     // Text description of product
+        attribute NcString    name            // Product name
+        attribute NcString    key             // Manufacturer's unique key to product - model number, SKU, etc
+        attribute NcString    revisionLevel   // Manufacturer's product revision level code
+        attribute NcString?   brandName       // Brand name under which product is sold
+        attribute NcString?   uuid            // Unique UUID of product (not product instance)
+        attribute NcString?   description     // Text description of product
     };
 
     enum NcResetCause {
@@ -536,122 +540,112 @@ $macro(MethodResultDatatypes)
 
     // Base datatype
     interface NcMethodResult {
-        attribute   NcMethodStatus  status;
+        attribute NcMethodStatus  status;
     };
 
     // Error result - to be used when the method call encounters an error
     interface NcMethodResultError: NcMethodResult {
-        attribute   NcString    errorMessage;
+        attribute NcString    errorMessage;
     };
 
     // property-value result used by generic getter on NcObject
     interface NcMethodResultPropertyValue: NcMethodResult {
-        attribute   any?    value;
+        attribute any?    value;
     }
 
     interface NcMethodResultBoolean: NcMethodResult {
-        attribute   NcBoolean   value;
+        attribute NcBoolean   value;
     };
 
     interface NcMethodResultString: NcMethodResult {
-        attribute   NcString    value;
+        attribute NcString    value;
     };
 
     interface NcMethodResultInt16: NcMethodResult {
-        attribute   NcInt16 value;
+        attribute NcInt16 value;
     };
 
     interface NcMethodResultInt32: NcMethodResult {
-        attribute   NcInt32 value;
+        attribute NcInt32 value;
     };
 
     interface NcMethodResultInt64: NcMethodResult {
-        attribute   NcInt64 value;
+        attribute NcInt64 value;
     };
 
     interface NcMethodResultUint16: NcMethodResult {
-        attribute   NcUint16    value;
+        attribute NcUint16    value;
     };
 
     interface NcMethodResultUint32: NcMethodResult {
-        attribute   NcUint32    value;
+        attribute NcUint32    value;
     };
 
     interface NcMethodResultUint64: NcMethodResult {
-        attribute   NcUint64    value;
+        attribute NcUint64    value;
     };
 
     interface NcMethodResultFloat32: NcMethodResult {
-        attribute   NcFloat32   value;
+        attribute NcFloat32   value;
     };
 
     interface NcMethodResultFloat64: NcMethodResult {
-        attribute   NcFloat64   value;
+        attribute NcFloat64   value;
     };
 
     interface NcMethodResultBlockMemberDescriptors: NcMethodResult {
-        attribute   sequence<NcBlockMemberDescriptor>   value;
+        attribute sequence<NcBlockMemberDescriptor>   value;
     };
 
     interface NcMethodResultClassDescriptor: NcMethodResult {
-        attribute   NcClassDescriptor   value;
+        attribute NcClassDescriptor   value;
     };
 
     interface NcMethodResultDatatypeDescriptor: NcMethodResult {
-        attribute   NcDatatypeDescriptor    value;
+        attribute NcDatatypeDescriptor    value;
     };
 
     interface NcMethodResultId32: NcMethodResult {
-        attribute   NcId32  value;
+        attribute NcId32  value;
     };
 
     interface NcMethodResultReceiverStatus: NcMethodResult {
-        attribute   NcReceiverStatus    value;
+        attribute NcReceiverStatus    value;
     };
 $endmacro
 $macro(CoreDatatypes)
 
-	//  ----------------------------------------------------------------------------------
-	//	Core datatypes
-	//  ----------------------------------------------------------------------------------
-	
-	$IdentifiersClass()
-	$Identifiers()
-	$VersionCode()
-	$PortDatatypes()
-	$TouchpointDatatypes()
-	$EventAndSubscriptionDatatypes()
-	$TimeDatatypes()
-	$ApplicationDatatypes()
-	$PropertyConstraintDatatypes()
-	$BlockDatatypes()
-	$ModelDatatypes()
-	$ManagementDatatypes()
-	$MethodResultDatatypes()
-	
-	// Input and/or output
-	enum NcIoDirection {
-		"Undefined",	// 0 Flow direction is not defined
-		"Input",		// 1 Samples flow into owning object
-		"Output",		// 2 Samples flow out of owning object
-		"Bidirectional"	// 3 For possible future use
-	};
-	
-	// String comparison options
-	enum NcStringComparisonType {
-		"Exact",					// 0 exact case-sensitive compare
-		"Substring",				// 1 "starts with" - case-sensitive
-		"Contains",					// 2 search string anywhere in target - case-sensitive
-		"ExactCaseInsensitive",		// 3 exact case-insensitive compare
-		"SubstringCaseInsensitive",	// 4 "starts with" - case-insensitive
-		"ContainsCaseInsensitive"	// 5 search string anywhere in target - case-insensitive
-	};	
+    //  ----------------------------------------------------------------------------------
+    //  Core datatypes
+    //  ----------------------------------------------------------------------------------
 
-	interface NcFirmwareComponent {
-		attribute	NcName			name;			// Concise name
-		attribute	NcVersionCode	version;		// Version code
-		attribute	NcString?		description;	// optional non-programmatic description
-	};
+    $IdentifiersClass()
+    $Identifiers()
+    $VersionCode()
+    $PortDatatypes()
+    $TouchpointDatatypes()
+    $EventAndSubscriptionDatatypes()
+    $TimeDatatypes()
+    $ApplicationDatatypes()
+    $PropertyConstraintDatatypes()
+    $BlockDatatypes()
+    $ModelDatatypes()
+    $ManagementDatatypes()
+    $MethodResultDatatypes()
+
+    // Input and/or output
+    enum NcIoDirection {
+        "Undefined",    // 0 Flow direction is not defined
+        "Input",        // 1 Samples flow into owning object
+        "Output",       // 2 Samples flow out of owning object
+        "Bidirectional" // 3 For possible future use
+    };
+
+    interface NcFirmwareComponent {
+        attribute NcName          name;           // Concise name
+        attribute NcVersionCode   version;        // Version code
+        attribute NcString?       description;    // optional non-programmatic description
+    };
 $endmacro
 $macro(BaseClasses)
     //  ----------------------------------------------------------------------------------
@@ -738,15 +732,22 @@ $macro(Block)
 
         // finds member(s) by path
         [element("2m2")]    NcMethodResultBlockMemberDescriptors    FindMembersByPath(
-            NcRolePath path // path to search for
-        ); 
+            NcRolePath  path                              // path to search for
+        );
         
         // finds members with given role name or fragment
         [element("2m3")]    NcMethodResultBlockMemberDescriptors    FindMembersByRole(
-            NcString role,                              // role text to search for
-            NcStringComparisonType roleComparisonType,  // type of string comparison to use
-            NcClassId? classId,                         // if non null, finds only members with this class ID
-            NcBoolean recurse                           // TRUE to search nested blocks
+            NcString    role,                             // role text to search for
+            NcBoolean   caseSensitive,                    // signals if the comparison should be case sensitive
+            NcBoolean   matchWholeString,                 // TRUE to only return exact matches
+            NcBoolean   recurse                           // TRUE to search nested blocks
+        );
+
+        // finds members with given class id
+        [element("2m4")]    NcMethodResultBlockMemberDescriptors    FindMembersByClassId(
+            NcClassId   id,                               // class id to search for
+            NcBoolean   includeDerived                    // If TRUE it will also include derived class descriptors
+            NcBoolean   recurse                           // TRUE to search nested blocks
         );
     };
 $endmacro
@@ -781,24 +782,26 @@ $macro(Managers)
         //  Class manager class
         //  Returns definitions of control classes and datatypes that are used in the device.
         
-        [element("3p1")]    readonly    attribute   sequence<NcClassDescriptor>     controlClasses;
-        [element("3p2")]    readonly    attribute   sequence<NcDatatypeDescriptor>  datatypes;
+        [element("3p1")]    readonly    attribute   sequence<NcClassDescriptor>     controlClasses; // descriptors which do not contain inherited elements
+        [element("3p2")]    readonly    attribute   sequence<NcDatatypeDescriptor>  datatypes;      // descriptors which do not contain inherited elements
         
         // Methods to retrieve a single class or type descriptor
         
         // Get a single class descriptor
         // Inherited class elements are always included
         [element("3m1")]    NcMethodResultClassDescriptor GetControlClass(
-            NcClassIdentity identity   // class ID & version
+            NcClassIdentity identity,   // class ID & version
+            NcBoolean includeInherited  // if set the descriptor would contain all inherited elements
         );
 
         // Get a single datatype descriptor
         [element("3m2")]    NcMethodResultDatatypeDescriptor GetDatatype(
-            NcName name // name of datatype
+            NcName name,                // name of datatype,
+            NcBoolean includeInherited  // if set the descriptor would contain all inherited elements
         );
     };
 
-    [control-class("1.3.3", "1.0.0","FirmwareManager")] interface NcFirmwareManager: NcManager {
+    [control-class("1.3.3", "1.0.0", "FirmwareManager")] interface NcFirmwareManager: NcManager {
         
         //  Firmware / software manager : Reports versions of components
         
@@ -829,8 +832,8 @@ $macro(FeatureSet001)
     // Feature set 001 - General control & monitoring
     // -----------------------------------------------------------------------------
     interface NcSwitchItem {
-        attribute   NcBoolean   isEnabled;  // signals if the switch position is enabled
-        attribute   NcString?   label;      // optional switch position label
+        attribute NcBoolean   isEnabled;  // signals if the switch position is enabled
+        attribute NcString?   label;      // optional switch position label
     };
 
     [control-class("1.2.1.1.1", "1.0.0")] interface NcGain: NcActuator {
@@ -864,165 +867,165 @@ $macro(FeatureSet001)
 $endmacro
 $macro(FeatureSet002)
 
-	// -----------------------------------------------------------------------------
-	//
-	// Feature set 002 - NMOS receiver Monitoring
-	//
-	// -----------------------------------------------------------------------------
-	
-	enum NcConnectionStatus {
-		"Undefined",		// 0 This is the value when there is no receiver
-		"Connected",		// 1 Connected to a stream
-		"Disconnected",		// 2 Not connected to a stream
-		"ConnectionError"	// 3 Connected but broken
-	};
-	
-	enum NcPayloadStatus {
-		"Undefined",				// 0 This is the value when there's no connection.
-		"PayloadOK",				// 1 Payload type is one we know about and the PDU is well-formed
-		"PayloadFormatUnsupported",	// 2 Payload is not one we know about
-		"PayloadError",				// 3 Some kind of error has occurred
-	};
-	
-	interface NcReceiverStatus {
-		attribute	NcConnectionStatus	connectionStatus;
-		attribute	NcPayloadStatus		payloadStatus;
-	};
-	
-	[control-class("1.2.3", "1.0.0")] interface NcReceiverMonitor: NcWorker {
-	
-		// Receiver monitoring worker.
-		// For attaching to specific receivers, uses the Touchpoint mechanism inherited from NcObject.
-		
-		[element("3p1")]	readonly attribute NcConnectionStatus	connectionStatus
-		[element("3p2")]	readonly attribute NcString?			connectionStatusMessage;	// Arbitrary text message
-		[element("3p3")]	readonly attribute NcPayloadStatus		payloadStatus;
-		[element("3p4")]	readonly attribute NcString?			payloadStatusMessage;		// Arbitrary text message
-	
-		[element("3m1")]	NcMethodResultReceiverStatus	GetStatus(); // connection status + payload status in one call
-		
-		//	NOTIFICATIONS:
-		//
-		// 	This class inherits the property-changed event from NcObject.
-		//	That event is the primary means by which controllers will learn
-		//	of receiver status changes.  The Get(...) methods listed above
-		//	should not be used for polling receiver status. Instead, controllers
-		//	should subscribe to the appropriate property-changed event(s).
-	};
+    // -----------------------------------------------------------------------------
+    //
+    // Feature set 002 - NMOS receiver Monitoring
+    //
+    // -----------------------------------------------------------------------------
 
-	[control-class("1.2.3.1", "1.0.0")] interface NcReceiverMonitorProtected: NcReceiverMonitor {
-	
-		// Derived receiver monitoring worker class for SMPTE ST 2022-7-type receivers.
-		
-		[element("4p1")]	readonly	attribute	NcBoolean	signalProtectionStatus;
-	};
+    enum NcConnectionStatus {
+        "Undefined",        // 0 This is the value when there is no receiver
+        "Connected",        // 1 Connected to a stream
+        "Disconnected",     // 2 Not connected to a stream
+        "ConnectionError"   // 3 Connected but broken
+    };
+
+    enum NcPayloadStatus {
+        "Undefined",                // 0 This is the value when there's no connection.
+        "PayloadOK",                // 1 Payload type is one we know about and the PDU is well-formed
+        "PayloadFormatUnsupported", // 2 Payload is not one we know about
+        "PayloadError",             // 3 Some kind of error has occurred
+    };
+
+    interface NcReceiverStatus {
+        attribute   NcConnectionStatus  connectionStatus;
+        attribute   NcPayloadStatus     payloadStatus;
+    };
+
+    [control-class("1.2.3", "1.0.0")] interface NcReceiverMonitor: NcWorker {
+
+        // Receiver monitoring worker.
+        // For attaching to specific receivers, uses the Touchpoint mechanism inherited from NcObject.
+        
+        [element("3p1")]    readonly attribute NcConnectionStatus   connectionStatus
+        [element("3p2")]    readonly attribute NcString?            connectionStatusMessage;    // Arbitrary text message
+        [element("3p3")]    readonly attribute NcPayloadStatus      payloadStatus;
+        [element("3p4")]    readonly attribute NcString?            payloadStatusMessage;       // Arbitrary text message
+
+        [element("3m1")]    NcMethodResultReceiverStatus    GetStatus(); // connection status + payload status in one call
+        
+        //  NOTIFICATIONS:
+        //
+        //  This class inherits the property-changed event from NcObject.
+        //  That event is the primary means by which controllers will learn
+        //  of receiver status changes.  The Get(...) methods listed above
+        //  should not be used for polling receiver status. Instead, controllers
+        //  should subscribe to the appropriate property-changed event(s).
+    };
+
+    [control-class("1.2.3.1", "1.0.0")] interface NcReceiverMonitorProtected: NcReceiverMonitor {
+
+        // Derived receiver monitoring worker class for SMPTE ST 2022-7-type receivers.
+        
+        [element("4p1")]    readonly    attribute   NcBoolean   signalProtectionStatus;
+    };
 $endmacro
 $macro(FeatureSet003)
-	//  ----------------------------------------------------------------------------------
-	//	
-	//	Feature set 003 - Audio control & monitoring
-	//	Placeholder for work to be done in the future
-	//
-	//  ----------------------------------------------------------------------------------
+    //  ----------------------------------------------------------------------------------
+    //
+    //  Feature set 003 - Audio control & monitoring
+    //  Placeholder for work to be done in the future
+    //
+    //  ----------------------------------------------------------------------------------
 $endmacro
 $macro(FeatureSet004)
-	//  ----------------------------------------------------------------------------------
-	//	
-	//	Feature set 004 - Video control & monitoring
-	//	Placeholder for work to be done in the future
-	//
-	//  ----------------------------------------------------------------------------------
+    //  ----------------------------------------------------------------------------------
+    //
+    //  Feature set 004 - Video control & monitoring
+    //  Placeholder for work to be done in the future
+    //
+    //  ----------------------------------------------------------------------------------
 $endmacro
 $macro(FeatureSet005)
-	//  ----------------------------------------------------------------------------------
-	//	
-	//	Feature set 005 - Control aggregation
-	//	Placeholder for work to be done in the future
-	//
-	//  ----------------------------------------------------------------------------------
+    //  ----------------------------------------------------------------------------------
+    //
+    //  Feature set 005 - Control aggregation
+    //  Placeholder for work to be done in the future
+    //
+    //  ----------------------------------------------------------------------------------
 $endmacro
 $macro(FeatureSet006)
-	//  ----------------------------------------------------------------------------------
-	//
-	//	Feature set 006 - Matrixing
-	//	Placeholder for work to be done in the future
-	//
-	//  ----------------------------------------------------------------------------------
-	[control-class("1.2.1.3", "1.0.0")] interface NcMatrix: NcSignalWorker {
-		
-	};
+    //  ----------------------------------------------------------------------------------
+    //
+    //  Feature set 006 - Matrixing
+    //  Placeholder for work to be done in the future
+    //
+    //  ----------------------------------------------------------------------------------
+    [control-class("1.2.1.3", "1.0.0")] interface NcMatrix: NcSignalWorker {
+        
+    };
 $endmacro
 $macro(FeatureSet007)
-	//  ----------------------------------------------------------------------------------
-	//	
-	//	Feature set 007 - Datasets
-	//	Placeholder for work to be done in the future
-	//
-	//  ----------------------------------------------------------------------------------
+    //  ----------------------------------------------------------------------------------
+    //
+    //  Feature set 007 - Datasets
+    //  Placeholder for work to be done in the future
+    //
+    //  ----------------------------------------------------------------------------------
 $endmacro
 $macro(FeatureSet008)
-	//  ----------------------------------------------------------------------------------
-	//	
-	//	Feature set 8 - Logging
-	//	Placeholder for work to be done in the future
-	//
-	//  ----------------------------------------------------------------------------------
+    //  ----------------------------------------------------------------------------------
+    //
+    //  Feature set 8 - Logging
+    //  Placeholder for work to be done in the future
+    //
+    //  ----------------------------------------------------------------------------------
 $endmacro
 $macro(FeatureSet009)
-	//  ----------------------------------------------------------------------------------
-	//	
-	//	Feature set 009 - Media file storage & playout
-	//	Placeholder for work to be done in the future
-	//
-	//  ----------------------------------------------------------------------------------
+    //  ----------------------------------------------------------------------------------
+    //
+    //  Feature set 009 - Media file storage & playout
+    //  Placeholder for work to be done in the future
+    //
+    //  ----------------------------------------------------------------------------------
 $endmacro
 $macro(FeatureSet010)
-	//  ----------------------------------------------------------------------------------
-	//	
-	//	Feature set 010 - Command sets & prestored programs
-	//	Placeholder for work to be done in the future
-	//
-	//  ----------------------------------------------------------------------------------
+    //  ----------------------------------------------------------------------------------
+    //
+    //  Feature set 010 - Command sets & prestored programs
+    //  Placeholder for work to be done in the future
+    //
+    //  ----------------------------------------------------------------------------------
 $endmacro
 $macro(FeatureSet011)
-	//  ----------------------------------------------------------------------------------
-	//	
-	//	Feature set 011 - Prestored control parameters
-	//	Placeholder for work to be done in the future
-	//
-	//  ----------------------------------------------------------------------------------
+    //  ----------------------------------------------------------------------------------
+    //  
+    //  Feature set 011 - Prestored control parameters
+    //  Placeholder for work to be done in the future
+    //
+    //  ----------------------------------------------------------------------------------
 $endmacro
 $macro(FeatureSet012)
-	//  ----------------------------------------------------------------------------------
-	//	
-	//	Feature set 012 - Connection management
-	//	Placeholder for work to be done in the future
-	//
-	//  ----------------------------------------------------------------------------------
+    //  ----------------------------------------------------------------------------------
+    //  
+    //  Feature set 012 - Connection management
+    //  Placeholder for work to be done in the future
+    //
+    //  ----------------------------------------------------------------------------------
 $endmacro
 $macro(FeatureSet013)
-	//  ----------------------------------------------------------------------------------
-	//	
-	//	Feature set 013 - Dynamic device configuration
-	//	Placeholder for work to be done in the future
-	//
-	//  ----------------------------------------------------------------------------------
+    //  ----------------------------------------------------------------------------------
+    //  
+    //  Feature set 013 - Dynamic device configuration
+    //  Placeholder for work to be done in the future
+    //
+    //  ----------------------------------------------------------------------------------
 $endmacro
 $macro(FeatureSet014)
-	//  ----------------------------------------------------------------------------------
-	//	
-	//	Feature set 014 - Access control
-	//	Placeholder for work to be done in the future
-	//
-	//  ----------------------------------------------------------------------------------
+    //  ----------------------------------------------------------------------------------
+    //  
+    //  Feature set 014 - Access control
+    //  Placeholder for work to be done in the future
+    //
+    //  ----------------------------------------------------------------------------------
 $endmacro
 $macro(FeatureSet015)
-	//  ----------------------------------------------------------------------------------
-	//	
-	//	Feature set 015 - Spatial media control
-	//	Placeholder for work to be done in the future
-	//
-	//  ----------------------------------------------------------------------------------
+    //  ----------------------------------------------------------------------------------
+    //  
+    //  Feature set 015 - Spatial media control
+    //  Placeholder for work to be done in the future
+    //
+    //  ----------------------------------------------------------------------------------
 $endmacro
 $macro(FeatureSet016)
     //  ----------------------------------------------------------------------------------
@@ -1062,7 +1065,7 @@ $macro(FeatureSet017)
     };
 
     enum NcProductionDataRecordType {
-        "As10Header",   // 0 AMWA AS-10	header
+        "As10Header",   // 0 AMWA AS-10 header
         "As10Shim"      // 1 AMWA AS-10 shim
     };
 $endmacro
@@ -1070,27 +1073,27 @@ $endmacro
 $#
 $# ============================================================================
 $#
-$# 	The actual control model formal specification is generated here.
+$#  The actual control model formal specification is generated here.
 $#
-$#	To include an control class module in the specification, invoke its macro
-$#	somewhere in the set below.
+$#  To include an control class module in the specification, invoke its macro
+$#  somewhere in the set below.
 $#
-$#	If a module is defined in the code above but not included in this set,
-$#	it will not be part of the formal specification. 
+$#  If a module is defined in the code above but not included in this set,
+$#  it will not be part of the formal specification. 
 $#
 $# ============================================================================
 $#
-	$HeaderComments()
-	$CoreDatatypes()
-	$BlockDatatypes()
-	$BaseClasses()
-	$Block()
-	$Managers()
-	
-	$FeatureSet001()	$#	 General control & monitoring
-	$FeatureSet002()	$#	 NMOS endpoint monitoring
-$#	 Other feature sets should be included here as they get designed.
-	
+    $HeaderComments()
+    $CoreDatatypes()
+    $BlockDatatypes()
+    $BaseClasses()
+    $Block()
+    $Managers()
+
+    $FeatureSet001()    $#  General control & monitoring
+    $FeatureSet002()    $#  NMOS endpoint monitoring
+$#  Other feature sets should be included here as they get designed.
+
 // ============================================================================
 // END OF NC-Framework	
 // ============================================================================

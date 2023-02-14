@@ -63,9 +63,9 @@ interface NcBlockMemberDescriptor {
     attribute NcOid oid; // OID of member
     attribute NcBoolean constantOid // TRUE iff member's OID is hardwired into device 
     attribute NcClassIdentity identity; // Class ID & version of member
-    attribute NcLabel userLabel; // User label
+    attribute NcString? userLabel; // User label
     attribute NcOid owner; // Containing block's OID
-    attribute sequence<NcPropertyConstraint>? constraints // Constraints on this member or, for a block, its members.
+    attribute sequence<NcPropertyConstraints>? constraints // Constraints on this member or, for a block, its members.
 };
 ```
 
@@ -75,3 +75,4 @@ All blocks also offer some search methods for convenience:
 
 * FindMembersByPath (`[element("2m2")]`) - retrieve descriptors for members filtered using a role path sequence of roles
 * FindMembersByRole (`[element("2m3")]`) - retrieve descriptors for members filtered by the role property
+* FindMembersByClassId (`[element("2m4")]`) - retrieve descriptors for members filtered by a given class id sequence
