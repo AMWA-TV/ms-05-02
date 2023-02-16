@@ -209,8 +209,13 @@ $macro(TouchpointDatatypes)
 
     // IS-04 registrable entities
     interface NcTouchpointNmos: NcTouchpoint {
-        // contextNamespace is inherited from NcTouchpoint and can only be x-nmos or x-nmos/channelmapping
+        // contextNamespace is inherited from NcTouchpoint and can only be x-nmos
         attribute NcTouchpointResourceNmos  resource;
+    };
+
+    interface NcTouchpointNmosChannelMapping: NcTouchpoint {
+        // contextNamespace is inherited from NcTouchpoint and can only be x-nmos/channelmapping
+        attribute NcTouchpointResourceNmosChannelMapping  resource;
     };
 
     interface NcTouchpointResourceNmos: NcTouchpointResource {
@@ -218,11 +223,11 @@ $macro(TouchpointDatatypes)
         attribute NcUuid    id; // Override
     };
 
-    // IS-08 inputs or outputs
-    interface NcTouchpointResourceNmos_is_08: NcTouchpointResourceNmos {
+    // IS-08 Audio Channel Mapping inputs or outputs
+    interface NcTouchpointResourceNmosChannelMapping: NcTouchpointResourceNmos {
         // resourceType is inherited from NcTouchpointResource and can only be: input, output
         // id is inherited from NcTouchpointResourceNmos
-        attribute NcString  ioId; // IS-08 input or output ID
+        attribute NcString  ioId; // IS-08 Audio Channel Mapping input or output ID
     };
 $endmacro
 $macro(EventAndSubscriptionDatatypes)

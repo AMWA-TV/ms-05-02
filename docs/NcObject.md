@@ -115,21 +115,26 @@ For NMOS namespaces there are derived types and the `contextNamespace` values ca
 
 ```typescript
 // IS-04 registrable entities
-interface NcTouchpointNmos : NcTouchpoint{
-    // contextNamespace is inherited from NcTouchpoint and can only be x-nmos or x-nmos/channelmapping
-    attribute NcTouchpointResourceNmos resource;
+interface NcTouchpointNmos: NcTouchpoint {
+    // contextNamespace is inherited from NcTouchpoint and can only be x-nmos
+    attribute NcTouchpointResourceNmos  resource;
 };
 
-interface NcTouchpointResourceNmos : NcTouchpointResource{
+interface NcTouchpointNmosChannelMapping: NcTouchpoint {
+    // contextNamespace is inherited from NcTouchpoint and can only be x-nmos/channelmapping
+    attribute NcTouchpointResourceNmosChannelMapping  resource;
+};
+
+interface NcTouchpointResourceNmos: NcTouchpointResource {
     // resourceType is inherited from NcTouchpointResource and can only be: node, device, source, flow, sender, receiver
-    attribute NcUuid id; // override 
+    attribute NcUuid    id; // Override
 };
 
-// IS-08 inputs or outputs
-interface NcTouchpointResourceNmos_is_08 : NcTouchpointResourceNmos{
+// IS-08 Audio Channel Mapping inputs or outputs
+interface NcTouchpointResourceNmosChannelMapping: NcTouchpointResourceNmos {
     // resourceType is inherited from NcTouchpointResource and can only be: input, output
     // id is inherited from NcTouchpointResourceNmos
-    attribute NcString ioId; // IS-08 input or output ID
+    attribute NcString  ioId; // IS-08 Audio Channel Mapping input or output ID
 };
 ```
 
@@ -137,7 +142,7 @@ For general NMOS contexts (IS-04, IS-05 and IS-07) the `NcTouchpointNmos` class 
 
 `Note`: The `resourceType` in this case can only be: node, device, source, flow, sender or receiver.
 
-For IS-08 this is further derived to use a resource of type `NcTouchpointResourceNmos_is_08`. This allows linking to a UUID and an input or output id.
+For IS-08 Audio Channel Mapping this is further derived to use a resource of type `NcTouchpointResourceNmosChannelMapping`. This allows linking to a UUID and an input or output id.
 
 `Note`: The `resourceType` in this case can only be: input or output.
 
