@@ -23,13 +23,17 @@ Object ids (`oid` property) may be constant across system restarts in which case
 
 NcObject offers two generic methods for retrieving and setting a property on an object.
 
-The Get method (`[element("1m1")]`) accepts `NcElementId` as an argument and returns `NcMethodResultPropertyValue`.
+The Get method (`[element("1m1")]`) accepts `NcPropertyId` as an argument and returns `NcMethodResultPropertyValue`.
 
 ```typescript
 // Class element id which contains the level and index
 interface NcElementId {
-    attribute NcUint16 level;
-    attribute NcUint16 index;
+    attribute NcUint16  level;
+    attribute NcUint16  index;
+};
+
+interface NcPropertyId : NcElementId {
+    //Property element id
 };
 ```
 
@@ -41,7 +45,7 @@ interface NcMethodResultPropertyValue : NcMethodResult { // property-value resul
 }
 ```
 
-The Set method (`[element("1m2")]`) accepts `NcElementId` and any value (type depends on the underlying property type) as arguments. The return type is the base `NcMethodResult`.
+The Set method (`[element("1m2")]`) accepts `NcPropertyId` and any value (type depends on the underlying property type) as arguments. The return type is the base `NcMethodResult`.
 
 ## PropertyChanged event
 
@@ -50,7 +54,7 @@ The event data is of type `NcPropertyChangedEventData` which MUST include the pr
 
 ```typescript
 interface NcPropertyChangedEventData {
-    attribute NcElementId           propertyId;         // ID of changed property
+    attribute NcPropertyId          propertyId;         // ID of changed property
     attribute NcPropertyChangeType  changeType;         // Information regarding the change type
     attribute any?                  value;              // Property-type specific
     attribute NcId32?               sequenceItemIndex;  // Index of sequence item if the property is a sequence
@@ -65,23 +69,23 @@ enum NcPropertyChangeType {
 };
 ```
 
-Events can only be consumed as notifications when subscribed to in the SubscriptionManager. See the [Managers](Managers.md) section.
+Events can only be consumed as notifications when subscribed to. Subscriptions and their implementation are protocol-specific. For more details refer to [IS-12 NMOS Control Protocol](https://specs.amwa.tv/is-12/branches/v1.0-dev/docs/Protocol_messaging.html).
 
 ## Working with collections inside an NcObject
 
 Collection types are defined as Web IDL sequences of a specific type.
 There are generic methods for getting, setting, adding and deleting items inside a collection property as part of `NcObject`.
 
-Getting a collection item is done through the `GetSequenceItem` method (\[element("1m3")\]) by specifying the property identifier (`NcElementId`) and the index as arguments.
+Getting a collection item is done through the `GetSequenceItem` method (\[element("1m3")\]) by specifying the property identifier (`NcPropertyId`) and the index as arguments.
 The result is of type `NcMethodResultPropertyValue`.
 
-Setting a collection item is done through the `SetSequenceItem` method (\[element("1m4")\]) by specifying the property identifier (`NcElementId`), the index and the value as arguments.
+Setting a collection item is done through the `SetSequenceItem` method (\[element("1m4")\]) by specifying the property identifier (`NcPropertyId`), the index and the value as arguments.
 The result is of type `NcMethodResult`.
 
-Adding an item to a collection is done through the `AddSequenceItem` method (\[element("1m5")\]) by specifying the property identifier (`NcElementId`) and the value as arguments.
+Adding an item to a collection is done through the `AddSequenceItem` method (\[element("1m5")\]) by specifying the property identifier (`NcPropertyId`) and the value as arguments.
 The result is of type `NcMethodResultId32` which contains the index where the value was added.
 
-Removing an item from a collection is done through the `RemoveSequenceItem` method (\[element("1m6")\]) by specifying the property identifier (`NcElementId`) and the index as arguments.
+Removing an item from a collection is done through the `RemoveSequenceItem` method (\[element("1m6")\]) by specifying the property identifier (`NcPropertyId`) and the index as arguments.
 The result is of type `NcMethodResult`.
 
 ## Touchpoints
@@ -118,7 +122,7 @@ interface NcTouchpointNmos : NcTouchpoint{
 
 interface NcTouchpointResourceNmos : NcTouchpointResource{
     // resourceType is inherited from NcTouchpointResource and can only be: node, device, source, flow, sender, receiver
-    attribute NcUUID id; // override 
+    attribute NcUuid id; // override 
 };
 
 // IS-08 inputs or outputs

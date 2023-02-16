@@ -132,7 +132,7 @@ $macro(Identifiers)
 
     typedef NcString    NcName; // Programmatically significant name, alphanumerics + underscore, no spaces
 
-    typedef NcString    NcUUID; // UUID
+    typedef NcString    NcUuid; // UUID
 
     typedef NcUint32    NcOid;  // Object id
 
@@ -145,6 +145,18 @@ $macro(Identifiers)
     interface NcElementId {
         attribute NcUint16  level;
         attribute NcUint16  index;
+    };
+
+    interface NcPropertyId : NcElementId {
+        //Property element id
+    };
+
+    interface NcMethodId : NcElementId {
+        //Method element id
+    };
+
+    interface NcEventId : NcElementId {
+        //Event element id
     };
 
     // Multipurpose internal handles
@@ -204,7 +216,7 @@ $macro(TouchpointDatatypes)
 
     interface NcTouchpointResourceNmos: NcTouchpointResource {
         // resourceType is inherited from NcTouchpointResource and can only be: node, device, source, flow, sender, receiver
-        attribute NcUUID    id; // Override
+        attribute NcUuid    id; // Override
     };
 
     // IS-08 inputs or outputs
@@ -222,7 +234,7 @@ $macro(EventAndSubscriptionDatatypes)
 
     // Payload of property-changed event
     interface NcPropertyChangedEventData {
-        attribute NcElementId           propertyId;         // ID of changed property
+        attribute NcPropertyId          propertyId;         // ID of changed property
         attribute NcPropertyChangeType  changeType;         // Information regarding the change type
         attribute any?                  value;              // Property-type specific
         attribute NcId32?               sequenceItemIndex;  // Index of sequence item if the property is a sequence
@@ -317,7 +329,7 @@ $macro(ModelDatatypes)
 
     // Descriptor of a class property
     interface NcPropertyDescriptor: NcDescriptor {
-        attribute NcElementId               id;             // element ID of property
+        attribute NcPropertyId              id;             // element ID of property
         attribute NcName                    name;           // name of property
         attribute NcName?                   typeName;       // name of property's datatype. Can only ever be null if the type is any
         attribute NcBoolean                 isReadOnly;     // TRUE iff property is read-only
@@ -352,14 +364,14 @@ $macro(ModelDatatypes)
     };
 
     interface NcMethodDescriptor: NcDescriptor {
-        attribute NcElementId                       id;             // element ID of method
+        attribute NcMethodId                        id;             // element ID of method
         attribute NcName                            name;           // name of method
         attribute NcName                            resultDatatype; // name of method result's datatype
         attribute sequence<NcParameterDescriptor>   parameters;     // 0-n parameter descriptors
     };
 
     interface NcEventDescriptor: NcDescriptor {
-        attribute NcElementId   id;             // element ID of event
+        attribute NcEventId     id;             // element ID of event
         attribute NcName        name;           // event's name
         attribute NcName        eventDatatype;  // name of event data's datatype
     };
@@ -399,9 +411,9 @@ $macro(PropertyConstraintDatatypes)
     typedef NcString    NcRegex; // regex pattern
 
     interface NcPropertyConstraints {
-        attribute NcRolePath? path;           // relative path to member (null means current member)
-        attribute NcElementId propertyId;     // ID of property being constrained
-        attribute any?        defaultValue;   // default value
+        attribute NcRolePath?   path;           // relative path to member (null means current member)
+        attribute NcPropertyId  propertyId;     // ID of property being constrained
+        attribute any?          defaultValue;   // default value
     }
 
     interface NcPropertyConstraintsFixed: NcPropertyConstraints {
@@ -668,12 +680,12 @@ $macro(BaseClasses)
         [element("1p8")]            readonly    attribute   sequence<NcTouchpoint>? touchpoints;
         
         // Generic Get/Set methods
-        [element("1m1")]    NcMethodResultPropertyValue Get(NcElementId id);                                        // Get property value
-        [element("1m2")]    NcMethodResult              Set(NcElementId id, any? value);                            // Set property value
-        [element("1m3")]    NcMethodResultPropertyValue GetSequenceItem(NcElementId id, NcId32 index);              // Get sequence item
-        [element("1m4")]    NcMethodResult              SetSequenceItem(NcElementId id, NcId32 index, any? value);  // Set sequence item
-        [element("1m5")]    NcMethodResultId32          AddSequenceItem(NcElementId id, any? value);                // Add item to sequence
-        [element("1m6")]    NcMethodResult              RemoveSequenceItem(NcElementId id, NcId32 index);           // Delete sequence item
+        [element("1m1")]    NcMethodResultPropertyValue Get(NcPropertyId id);                                        // Get property value
+        [element("1m2")]    NcMethodResult              Set(NcPropertyId id, any? value);                            // Set property value
+        [element("1m3")]    NcMethodResultPropertyValue GetSequenceItem(NcPropertyId id, NcId32 index);              // Get sequence item
+        [element("1m4")]    NcMethodResult              SetSequenceItem(NcPropertyId id, NcId32 index, any? value);  // Set sequence item
+        [element("1m5")]    NcMethodResultId32          AddSequenceItem(NcPropertyId id, any? value);                // Add item to sequence
+        [element("1m6")]    NcMethodResult              RemoveSequenceItem(NcPropertyId id, NcId32 index);           // Delete sequence item
 
         // Events
         [element("1e1")]    [event] void    PropertyChanged(NcPropertyChangedEventData eventData);
@@ -808,15 +820,7 @@ $macro(Managers)
         [element("3p1")]    readonly    attribute   sequence<NcFirmwareComponent>   components; // List of firmware component descriptors
     };
 
-    [control-class("1.3.4", "1.0.0", "SubscriptionManager")] interface NcSubscriptionManager: NcManager {
-
-        // Subscription manager
-        
-        [element("3m1")]    NcMethodResult  AddSubscription(NcOid oid);     // Will subscribe to changes from all of the properties on the specified oid
-        [element("3m2")]    NcMethodResult  RemoveSubscription(NcOid oid);  // Will unsubscribe to changes from all of the properties on the specified oid
-    };
-
-    [control-class("1.3.5", "1.0.0", "DeviceTimeManager")] interface NcDeviceTimeManager: NcManager {
+    [control-class("1.3.4", "1.0.0", "DeviceTimeManager")] interface NcDeviceTimeManager: NcManager {
         //
         //  Controls device's internal clock(s) and its reference.
         //
