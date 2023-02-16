@@ -57,7 +57,7 @@ interface NcPropertyChangedEventData {
     attribute NcPropertyId          propertyId;         // ID of changed property
     attribute NcPropertyChangeType  changeType;         // Information regarding the change type
     attribute any?                  value;              // Property-type specific
-    attribute NcId32?               sequenceItemIndex;  // Index of sequence item if the property is a sequence
+    attribute NcId?                 sequenceItemIndex;  // Index of sequence item if the property is a sequence
 };
 
 // Type of property change
@@ -83,7 +83,7 @@ Setting a collection item is done through the `SetSequenceItem` method (\[elemen
 The result is of type `NcMethodResult`.
 
 Adding an item to a collection is done through the `AddSequenceItem` method (\[element("1m5")\]) by specifying the property identifier (`NcPropertyId`) and the value as arguments.
-The result is of type `NcMethodResultId32` which contains the index where the value was added.
+The result is of type `NcMethodResultId` which contains the index where the value was added.
 
 Removing an item from a collection is done through the `RemoveSequenceItem` method (\[element("1m6")\]) by specifying the property identifier (`NcPropertyId`) and the index as arguments.
 The result is of type `NcMethodResult`.

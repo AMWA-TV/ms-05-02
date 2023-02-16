@@ -159,9 +159,8 @@ $macro(Identifiers)
         //Event element id
     };
 
-    // Multipurpose internal handles
-    typedef NcUint16    NcId16;
-    typedef NcUint32    NcId32;
+    // Multipurpose internal handle
+    typedef NcUint32    NcId;
 $endmacro
 $macro(PortDatatypes)
     //  ----------------------------------------------------------------------------------
@@ -237,7 +236,7 @@ $macro(EventAndSubscriptionDatatypes)
         attribute NcPropertyId          propertyId;         // ID of changed property
         attribute NcPropertyChangeType  changeType;         // Information regarding the change type
         attribute any?                  value;              // Property-type specific
-        attribute NcId32?               sequenceItemIndex;  // Index of sequence item if the property is a sequence
+        attribute NcId?                 sequenceItemIndex;  // Index of sequence item if the property is a sequence
     };
 
     // Type of property change
@@ -617,8 +616,8 @@ $macro(MethodResultDatatypes)
         attribute NcDatatypeDescriptor    value;
     };
 
-    interface NcMethodResultId32: NcMethodResult {
-        attribute NcId32  value;
+    interface NcMethodResultId: NcMethodResult {
+        attribute NcId  value;
     };
 
     interface NcMethodResultReceiverStatus: NcMethodResult {
@@ -682,10 +681,10 @@ $macro(BaseClasses)
         // Generic Get/Set methods
         [element("1m1")]    NcMethodResultPropertyValue Get(NcPropertyId id);                                        // Get property value
         [element("1m2")]    NcMethodResult              Set(NcPropertyId id, any? value);                            // Set property value
-        [element("1m3")]    NcMethodResultPropertyValue GetSequenceItem(NcPropertyId id, NcId32 index);              // Get sequence item
-        [element("1m4")]    NcMethodResult              SetSequenceItem(NcPropertyId id, NcId32 index, any? value);  // Set sequence item
-        [element("1m5")]    NcMethodResultId32          AddSequenceItem(NcPropertyId id, any? value);                // Add item to sequence
-        [element("1m6")]    NcMethodResult              RemoveSequenceItem(NcPropertyId id, NcId32 index);           // Delete sequence item
+        [element("1m3")]    NcMethodResultPropertyValue GetSequenceItem(NcPropertyId id, NcId index);                // Get sequence item
+        [element("1m4")]    NcMethodResult              SetSequenceItem(NcPropertyId id, NcId index, any? value);    // Set sequence item
+        [element("1m5")]    NcMethodResultId          AddSequenceItem(NcPropertyId id, any? value);                // Add item to sequence
+        [element("1m6")]    NcMethodResult              RemoveSequenceItem(NcPropertyId id, NcId index);             // Delete sequence item
 
         // Events
         [element("1e1")]    [event] void    PropertyChanged(NcPropertyChangedEventData eventData);
