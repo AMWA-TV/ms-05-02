@@ -195,10 +195,10 @@ where **elementId** is a delimited string of the form `nTm`, where
     - `n` is the definition level of the class in the class tree.
     - 'm' is the ordinal of the definition within the class.
 
-For example, here is the element definition for the `setPoint` property of `NcGain`:
+For example, here is the element definition for the `gainValue` property of `NcGain`:
 
 ```typescript
-    [element("5p1")] attribute NcDB setPoint;
+    [element("5p1")] attribute NcDB gainValue;
 ```
 
 #### **The `[event]` extended attribute**

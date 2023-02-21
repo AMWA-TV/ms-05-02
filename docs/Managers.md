@@ -56,25 +56,6 @@ interface NcDeviceOperationalState {
 };
 ```
 
-## Subscription manager
-
-The `NcSubscriptionManager` is a special manager which handles clients subscribing to events.
-Subscribing is the way in which events can be consumed as notifications through a supported control protocol.
-
-Subscribing to an event is done by calling the AddSubscription method and passing in the desired object id.
-
-```typescript
-[element("3m1")]
-NcMethodResult AddSubscription(NcOid oid); // Will subscribe to changes from all of the properties on the specified oid
-```
-
-Unsubscribing to an event is done by calling the RemoveSubscription method and passing in the desired object id.
-
-```typescript
-[element("3m2")]
-NcMethodResult RemoveSubscription(NcOid oid); // Will unsubscribe to changes from all of the properties on the specified oid
-```
-
 ## Class manager
 
 The `NcClassManager` is a special manager which handles class and type discovery.

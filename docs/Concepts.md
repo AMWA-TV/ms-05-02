@@ -12,12 +12,25 @@ Object id datatype
 typedef NcUint32 NcOid;
 ```
 
-Element id datatype
+Element id datatypes:
 
 ```typescript
-interface NcElementID {
-    attribute NcUint16 level;
-    attribute NcUint16 index;
+// Class element id which contains the level and index
+interface NcElementId {
+    attribute NcUint16  level;
+    attribute NcUint16  index;
+};
+
+interface NcPropertyId : NcElementId {
+    //Property element id
+};
+
+interface NcMethodId : NcElementId {
+    //Method element id
+};
+
+interface NcEventId : NcElementId {
+    //Event element id
 };
 ```
 
@@ -45,8 +58,8 @@ Here are some examples from the `NcObject` class:
     
     // GENERIC GET/SET METHODS
 
-    [element("1m1")]  NcMethodResultPropertyValue Get(NcElementId id);
-    [element("1m2")]  NcMethodResult Set(NcElementId id, any? value);
+    [element("1m1")]  NcMethodResultPropertyValue Get(NcPropertyId id);
+    [element("1m2")]  NcMethodResult Set(NcPropertyId id, any? value);
     ...
 
     // EVENTS
