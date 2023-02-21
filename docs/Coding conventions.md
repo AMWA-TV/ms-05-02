@@ -266,7 +266,7 @@ NCA Control classes are defined as Web IDL interfaces with properties, methods, 
 Here is a complete example, ***excerpted*** from the definition of the NCA base class **NcObject**:
 
 ```typescript
-    [control-class("1", "1.0.0")] interface NcObjectExcerpt {
+    [control-class("1")] interface NcObjectExcerpt {
 
         //  Excerpted from definition of NcObject
 
