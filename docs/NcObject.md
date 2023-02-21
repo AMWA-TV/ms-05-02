@@ -7,7 +7,6 @@ The properties of NcObject are listed in the following table.
 | **Property Name** | **Datatype**                   | **Readonly** | **Description**                                                       |
 | ----------------- | ------------------------------ | ------------ | ----------------------------------------------------------------------|
 | classId           | NcClassID                      | Yes          | sequence of numeric class identifiers or authority keys               |
-| classVersion      | NcVersionCode                  | Yes          | class version represented according to Semantic versioning guidelines |
 | oid               | NcOid                          | Yes          | unique object id                                                      |
 | constantOid       | NcBoolean                      | Yes          | flag to indicate if the oid is constant or not                        |
 | owner             | NcOid                          | Yes          | unique object id of the parent                                        |

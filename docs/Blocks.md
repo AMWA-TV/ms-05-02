@@ -59,13 +59,13 @@ Blocks enable device tree discovery by offering the descriptors of their contain
 
 ```typescript
 interface NcBlockMemberDescriptor {
-    attribute NcString role; // Role of member in its containing block
-    attribute NcOid oid; // OID of member
-    attribute NcBoolean constantOid // TRUE iff member's OID is hardwired into device 
-    attribute NcClassIdentity identity; // Class ID & version of member
-    attribute NcString? userLabel; // User label
-    attribute NcOid owner; // Containing block's OID
-    attribute sequence<NcPropertyConstraints>? constraints // Constraints on this member or, for a block, its members.
+    attribute NcString role;                                // Role of member in its containing block
+    attribute NcOid oid;                                    // OID of member
+    attribute NcBoolean constantOid                         // TRUE iff member's OID is hardwired into device 
+    attribute NcClassId identity;                           // Class ID
+    attribute NcString? userLabel;                          // User label
+    attribute NcOid owner;                                  // Containing block's OID
+    attribute sequence<NcPropertyConstraints>? constraints  // Constraints on this member or, for a block, its members.
 };
 ```
 

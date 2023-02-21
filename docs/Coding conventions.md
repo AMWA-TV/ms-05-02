@@ -160,13 +160,12 @@ NCA defines several important extended attributes, as described next.
 Every NCA control class definition is prefixed by the `[control-class(...)]` extended attribute. Syntax is:
 
 ```bash
-    control-class(classID, classVersion, staticRole)
+    control-class(classID, staticRole)
 ```
 
 where:
 
 - **classID** is an NCA class ID expressed as a string of the form `i(1),i(2),...,i(N)`
-- **classVersion** is a semantic version code expressed as a string of the form `v(1).v(2).v(3)`
 - **staticRole** is the static role all instances of this class must use. This is currently only the case for managers so it may be omitted for other control classes.
 
 For example:
@@ -174,13 +173,13 @@ For example:
 NcGain
 
 ```bash
-    [control-class("1.2.1.1.1", "1.0.0")]
+    [control-class("1.2.1.1.1")]
 ```
 
 NcDeviceManager
 
 ```bash
-    [control-class("1.3.1", "1.0.0", "DeviceManager")]
+    [control-class("1.3.1", "DeviceManager")]
 ```
 
 #### **The `[element(...)]` extended attribute**
@@ -272,8 +271,7 @@ Here is a complete example, ***excerpted*** from the definition of the NCA base 
         //  Excerpted from definition of NcObject
 
         [element("1p1")]  static readonly attribute NcClassId       classId;
-        [element("1p2")]  static readonly attribute NcVersionCode   classVersion;
-        [element("1p3")]         readonly attribute NcOid           oid;
+        [element("1p2")]         readonly attribute NcOid           oid;
         
         // Generic Get/Set methods used by this class and all subclasses
 
