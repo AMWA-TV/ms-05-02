@@ -677,10 +677,10 @@ $macro(BaseClasses)
         [element("1p1")]    static  readonly    attribute   NcClassId               classId;
         [element("1p2")]    static  readonly    attribute   NcVersionCode           classVersion;
         [element("1p3")]            readonly    attribute   NcOid                   oid;
-        [element("1p4")]            readonly    attribute   NcBoolean               constantOid;    // TRUE iff OID is hardwired into device
-        [element("1p5")]            readonly    attribute   NcOid?                  owner;          // OID of containing block. Can only ever be null for the root block
-        [element("1p6")]            readonly    attribute   NcString                role;           // role of obj in containing block
-        [element("1p7")]                        attribute   NcString?               userLabel;      // Scribble strip
+        [element("1p4")]            readonly    attribute   NcBoolean               constantOid;                          // TRUE iff OID is hardwired into device
+        [element("1p5")]            readonly    attribute   NcOid?                  owner;                                // OID of containing block. Can only ever be null for the root block
+        [element("1p6")]            readonly    attribute   NcString                role;                                 // role of obj in containing block
+        [element("1p7")]                        attribute   NcString?               userLabel;                            // Scribble strip
         [element("1p8")]            readonly    attribute   sequence<NcTouchpoint>? touchpoints;
         
         // Generic Get/Set methods
@@ -688,7 +688,7 @@ $macro(BaseClasses)
         [element("1m2")]    NcMethodResult              Set(NcPropertyId id, any? value);                            // Set property value
         [element("1m3")]    NcMethodResultPropertyValue GetSequenceItem(NcPropertyId id, NcId index);                // Get sequence item
         [element("1m4")]    NcMethodResult              SetSequenceItem(NcPropertyId id, NcId index, any? value);    // Set sequence item
-        [element("1m5")]    NcMethodResultId          AddSequenceItem(NcPropertyId id, any? value);                // Add item to sequence
+        [element("1m5")]    NcMethodResultId            AddSequenceItem(NcPropertyId id, any? value);                // Add item to sequence
         [element("1m6")]    NcMethodResult              RemoveSequenceItem(NcPropertyId id, NcId index);             // Delete sequence item
 
         // Events
