@@ -49,27 +49,12 @@ $macro(IdentifiersClass)
     //  Class identifiers
     //  
     //  An control class is uniquely identified by the concatenation of its definition 
-    //  indices, in combination with a version code. A definition index is basically
-    //  an index of a class within its inheritance level of the class tree.
+    //  indices. A definition index is basically an index of a class within its inheritance level of the class tree.
     //
     //  For further explanation, please refer to MS-05-01 (NC-Architecture).
     //
     //  In the control model, the concatenated set of definition indices is called a Class ID;
     //  the corresponding datatype is 'NcClassId'.
-    //
-    //  The combination of a Class ID and a version code <v> is called the Class Identity;
-    //  the corresponding datatype is 'NcClassIdentity'.
-    //
-    //  In this specification, class identity will be coded as 'i1.i2. ...,v
-    //
-    //  where 
-    //      'i1', 'i2', etc. are the definition index values, i.e. the Class ID.
-    //      'v' is the class version code (see 'NcVersionCode')
-    //  e.g.
-    //      - class ID of version 1 of NcObject = '1,1.0.0'
-    //      - class ID of version 1 of NcBlock  = '1.3,1.0.0'
-    //      - class ID of version 2 of NcWorker = '1.1,2.0.0'
-    //      - class ID of version 1 of NcGain   = '1.1.3,1.0.0'
     //
     //  The framework allows the definition of proprietary classes that inherit from standard classes.
     //  Proprietary Class IDs embed an IEEE OUI or CID to avoid value clashes among
@@ -119,11 +104,6 @@ $macro(VersionCode)
     //  ----------------------------------------------------------------------------------
 
     typedef NcString    NcVersionCode //Version code in semantic versioning format
-
-    interface NcClassIdentity {
-        attribute NcClassId     id;
-        attribute NcVersionCode version;
-    };
 $endmacro
 $macro(Identifiers)
     //  ----------------------------------------------------------------------------------
@@ -340,6 +320,7 @@ $macro(ModelDatatypes)
         attribute NcBoolean                 isPersistent;   // TRUE iff property value survives power-on reset
         attribute NcBoolean                 isNullable;     // TRUE iff property is nullable
         attribute NcBoolean                 isSequence;     // TRUE iff property is a sequence
+        attribute NcBoolean                 isDeprecated;   // TRUE iff property is marked as deprecated
         attribute NcParameterConstraints?   constraints;    // optional constraints on top of the underlying data type
     };
 
@@ -372,16 +353,18 @@ $macro(ModelDatatypes)
         attribute NcName                            name;           // name of method
         attribute NcName                            resultDatatype; // name of method result's datatype
         attribute sequence<NcParameterDescriptor>   parameters;     // 0-n parameter descriptors
+        attribute NcBoolean                         isDeprecated;   // TRUE iff method is marked as deprecated
     };
 
     interface NcEventDescriptor: NcDescriptor {
         attribute NcEventId     id;             // element ID of event
         attribute NcName        name;           // event's name
         attribute NcName        eventDatatype;  // name of event data's datatype
+        attribute NcBoolean     isDeprecated;   // TRUE iff event is marked as deprecated
     };
 
     interface NcClassDescriptor: NcDescriptor {
-        attribute NcClassIdentity                   identity;   // identity of the class
+        attribute NcClassId                         identity;   // identity of the class
         attribute NcName                            name;       // name of the class
         attribute NcString?                         fixedRole;  // role if the class has fixed role (manager classes)
         attribute sequence<NcPropertyDescriptor>    properties; // 0-n property descriptors
@@ -450,7 +433,7 @@ $macro(BlockDatatypes)
         attribute NcString        role;           // Role of member in its containing block
         attribute NcOid           oid;            // OID of member
         attribute NcBoolean       constantOid;    // TRUE iff member's OID is hardwired into device 
-        attribute NcClassIdentity identity;       // Class ID & version of member
+        attribute NcClassId       classId;        // Class ID
         attribute NcString?       userLabel;      // User label
         attribute NcOid           owner;          // Containing block's OID
 
@@ -537,6 +520,8 @@ $macro(MethodResultDatatypes)
 
     enum NcMethodStatus {
         "Ok",                       // 200 - Method call was successful
+        "PropertyDeprecated",       // 298 - Method call was successful but targeted property is deprecated
+        "MethodDeprecated",         // 299 - Method call was successful but method is deprecated
         "BadCommandFormat",         // 400 - Badly-formed command
         "Unauthorized",             // 401 - Client is not authorized
         "BadOid",                   // 404 - Command addresses a nonexistent object
@@ -670,18 +655,18 @@ $macro(BaseClasses)
     //  Class NcObject, base classes for major class categories, and associated datatypes
     //  ----------------------------------------------------------------------------------
 
-    [control-class("1", "1.0.0")] interface NcObject {
+    [control-class("1")] interface NcObject {
 
         // Abstract base class for entire class structure
 
-        [element("1p1")]    static  readonly    attribute   NcClassId               classId;
-        [element("1p2")]    static  readonly    attribute   NcVersionCode           classVersion;
-        [element("1p3")]            readonly    attribute   NcOid                   oid;
-        [element("1p4")]            readonly    attribute   NcBoolean               constantOid;                          // TRUE iff OID is hardwired into device
-        [element("1p5")]            readonly    attribute   NcOid?                  owner;                                // OID of containing block. Can only ever be null for the root block
-        [element("1p6")]            readonly    attribute   NcString                role;                                 // role of obj in containing block
-        [element("1p7")]                        attribute   NcString?               userLabel;                            // Scribble strip
-        [element("1p8")]            readonly    attribute   sequence<NcTouchpoint>? touchpoints;
+        [element("1p1")]    static  readonly    attribute   NcClassId                           classId;
+        [element("1p2")]            readonly    attribute   NcOid                               oid;
+        [element("1p3")]            readonly    attribute   NcBoolean                           constantOid;                 // TRUE iff OID is hardwired into device
+        [element("1p4")]            readonly    attribute   NcOid?                              owner;                       // OID of containing block. Can only ever be null for the root block
+        [element("1p5")]            readonly    attribute   NcString                            role;                        // role of obj in containing block
+        [element("1p6")]                        attribute   NcString?                           userLabel;                   // Scribble strip
+        [element("1p7")]            readonly    attribute   sequence<NcTouchpoint>?             touchpoints;
+        [element("1p8")]            readonly    attribute   sequence<NcPropertyConstraints>?    runtimePropertyConstraints;  // runtime property constraints
         
         // Generic Get/Set methods
         [element("1m1")]    NcMethodResultPropertyValue Get(NcPropertyId id);                                        // Get property value
@@ -695,25 +680,25 @@ $macro(BaseClasses)
         [element("1e1")]    [event] void    PropertyChanged(NcPropertyChangedEventData eventData);
     };
 
-    [control-class("1.2", "1.0.0")] interface NcWorker: NcObject {
+    [control-class("1.2")] interface NcWorker: NcObject {
 
         // Worker base class
 
         [element("2p1")]    attribute   NcBoolean   enabled;    // TRUE iff worker is enabled
     };
 
-    [control-class("1.2.1", "1.0.0")] interface NcSignalWorker: NcWorker {
+    [control-class("1.2.1")] interface NcSignalWorker: NcWorker {
 
         // Signal worker base class
         [element("3p1")]                attribute   sequence<NcPort>    ports;      // The worker's signal ports
         [element("3p2")]    readonly    attribute   NcTimeInterval?     latency;    // Processing latency of this object (null if not defined)
     };
 
-    [control-class("1.2.1.1", "1.0.0")] interface NcActuator: NcSignalWorker {
+    [control-class("1.2.1.1")] interface NcActuator: NcSignalWorker {
         // Actuator base class
     };
 
-    [control-class("1.2.1.2", "1.0.0")] interface NcSensor: NcSignalWorker {
+    [control-class("1.2.1.2")] interface NcSensor: NcSignalWorker {
         // Sensor base class
     };
 $endmacro
@@ -726,7 +711,7 @@ $macro(Block)
     //      A member's role path is a sequence of role values starting with the root block's role and ending with the member's role.
     //  ----------------------------------------------------------------------------------
 
-    [control-class("1.1", "1.0.0")] interface NcBlock: NcObject {
+    [control-class("1.1")] interface NcBlock: NcObject {
         [element("2p1")]    readonly    attribute   NcBoolean                           isRoot;             // TRUE if block is the root block
         [element("2p2")]    readonly    attribute   NcString?                           specId;             // Global ID of blockSpec that defines this block
         [element("2p3")]    readonly    attribute   NcVersionCode?                      specVersion;        // Version code of blockSpec that defines this block
@@ -772,11 +757,11 @@ $macro(Managers)
     // Manager classes
     // -----------------------------------------------------------------------------
 
-    [control-class("1.3", "1.0.0")] interface NcManager: NcObject {
+    [control-class("1.3")] interface NcManager: NcObject {
         // Manager base class
     };
 
-    [control-class("1.3.1", "1.0.0", "DeviceManager")] interface NcDeviceManager: NcManager {
+    [control-class("1.3.1", "DeviceManager")] interface NcDeviceManager: NcManager {
         
         //  Device manager class
         //  Contains basic device information and status.
@@ -793,7 +778,7 @@ $macro(Managers)
         [element("3p10")]   readonly    attribute   NcString?                   message             // Arbitrary message from dev to controller
     };
 
-    [control-class("1.3.2", "1.0.0", "ClassManager")] interface NcClassManager: NcManager {
+    [control-class("1.3.2", "ClassManager")] interface NcClassManager: NcManager {
         
         //  Class manager class
         //  Returns definitions of control classes and datatypes that are used in the device.
@@ -806,7 +791,7 @@ $macro(Managers)
         // Get a single class descriptor
         // Inherited class elements are always included
         [element("3m1")]    NcMethodResultClassDescriptor GetControlClass(
-            NcClassIdentity identity,   // class ID & version
+            NcClassId identity,         // class ID
             NcBoolean includeInherited  // if set the descriptor would contain all inherited elements
         );
 
@@ -817,14 +802,14 @@ $macro(Managers)
         );
     };
 
-    [control-class("1.3.3", "1.0.0", "FirmwareManager")] interface NcFirmwareManager: NcManager {
+    [control-class("1.3.3", "FirmwareManager")] interface NcFirmwareManager: NcManager {
         
         //  Firmware / software manager : Reports versions of components
         
         [element("3p1")]    readonly    attribute   sequence<NcFirmwareComponent>   components; // List of firmware component descriptors
     };
 
-    [control-class("1.3.4", "1.0.0", "DeviceTimeManager")] interface NcDeviceTimeManager: NcManager {
+    [control-class("1.3.4", "DeviceTimeManager")] interface NcDeviceTimeManager: NcManager {
         //
         //  Controls device's internal clock(s) and its reference.
         //
@@ -844,20 +829,20 @@ $macro(FeatureSet001)
         attribute NcString?   label;      // optional switch position label
     };
 
-    [control-class("1.2.1.1.1", "1.0.0")] interface NcGain: NcActuator {
+    [control-class("1.2.1.1.1")] interface NcGain: NcActuator {
 
         // Simple gain control
         [element("5p1")]    attribute   NcDB    gainValue;
     };
 
-    [control-class("1.2.1.1.2", "1.0.0")] interface NcSwitch: NcActuator {
+    [control-class("1.2.1.1.2")] interface NcSwitch: NcActuator {
 
         // n-position switch with a label for each position
         
         [element("5p1")]    attribute   sequence<NcSwitchItem>  positions; // list of switch positions
     };
 
-    [control-class("1.2.2", "1.0.0")] interface NcIdentBeacon : NcWorker {
+    [control-class("1.2.2")] interface NcIdentBeacon : NcWorker {
 
         // Identification beacon may be used in different ways subject to implementation:
         // - The active state is changed remotely and activates a visual or audio beacon element on the device
@@ -866,7 +851,7 @@ $macro(FeatureSet001)
         [element("3p1")]    attribute   NcBoolean   active; // TRUE iff beacon is active
     };
 
-    [control-class("1.2.1.2.1", "1.0.0")] interface NcLevelSensor: NcSensor {
+    [control-class("1.2.1.2.1")] interface NcLevelSensor: NcSensor {
         
         // Simple level sensor that reads in DB
         
@@ -900,7 +885,7 @@ $macro(FeatureSet002)
         attribute   NcPayloadStatus     payloadStatus;
     };
 
-    [control-class("1.2.3", "1.0.0")] interface NcReceiverMonitor: NcWorker {
+    [control-class("1.2.3")] interface NcReceiverMonitor: NcWorker {
 
         // Receiver monitoring worker.
         // For attaching to specific receivers, uses the Touchpoint mechanism inherited from NcObject.
@@ -921,7 +906,7 @@ $macro(FeatureSet002)
         //  should subscribe to the appropriate property-changed event(s).
     };
 
-    [control-class("1.2.3.1", "1.0.0")] interface NcReceiverMonitorProtected: NcReceiverMonitor {
+    [control-class("1.2.3.1")] interface NcReceiverMonitorProtected: NcReceiverMonitor {
 
         // Derived receiver monitoring worker class for SMPTE ST 2022-7-type receivers.
         
@@ -959,7 +944,7 @@ $macro(FeatureSet006)
     //  Placeholder for work to be done in the future
     //
     //  ----------------------------------------------------------------------------------
-    [control-class("1.2.1.3", "1.0.0")] interface NcMatrix: NcSignalWorker {
+    [control-class("1.2.1.3")] interface NcMatrix: NcSignalWorker {
         
     };
 $endmacro
@@ -1042,7 +1027,7 @@ $macro(FeatureSet016)
     //  Placeholder for work to be done in the future
     //
 
-    [control-class("1.3.8", "1.0.0","PowerManager")] interface NcPowerManager: NcManager {
+    [control-class("1.3.8", "PowerManager")] interface NcPowerManager: NcManager {
         [element("3p1")]    readonly    attribute   NcDeviceGenericState    state;
         [element("3p2")]    readonly    attribute   sequence<NcOid>         powerSupplyOids;        // OIDs of available NcPowerSupply objects
         [element("3p3")]    readonly    attribute   sequence<NcOid>         activePowerSupplyOids;  // OIDs of active NcPowerSupply objects
@@ -1064,7 +1049,7 @@ $macro(FeatureSet017)
     // Feature set 007 - Workflow Data
     // -----------------------------------------------------------------------------
 
-    [control-class("1.2.4", "1.0.0")] interface NcWorkflowDataRecord: NcWorker {
+    [control-class("1.2.4")] interface NcWorkflowDataRecord: NcWorker {
 
         [element("3p1")]    attribute   NcProductionDataRecordType  type;
         [element("3p2")]    attribute   NsString                    id;

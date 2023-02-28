@@ -43,17 +43,16 @@ Properties, methods and events inside a class are uniquely identified using the 
 Here are some examples from the `NcObject` class:
 
 ```typescript
-[control-class("1", "1.0.0")] interface NcObject {
+[control-class("1")] interface NcObject {
 
     // PROPERTIES
 
-    [element("1p1")]  static readonly attribute NcClassId classId;
-    [element("1p2")]  static readonly attribute NcVersionCode classVersion;
-    [element("1p3")]         readonly attribute NcOid oid;
-    [element("1p4")]         readonly attribute NcBoolean constantOid;
-    [element("1p5")]         readonly attribute NcOid? owner;
-    [element("1p6")]         readonly attribute NcString role;
-    [element("1p7")]                  attribute NcString? userLabel;
+    [element("1p1")]  static readonly attribute NcClassId   classId;
+    [element("1p2")]         readonly attribute NcOid       oid;
+    [element("1p3")]         readonly attribute NcBoolean   constantOid;
+    [element("1p4")]         readonly attribute NcOid?      owner;
+    [element("1p5")]         readonly attribute NcString    role;
+    [element("1p6")]                  attribute NcString?   userLabel;
     ...
     
     // GENERIC GET/SET METHODS
@@ -74,7 +73,7 @@ Nullable types are signaled using the `?` marker at the end of the type as speci
 Example:
 
 ```typescript
-[control-class("1.99", "1.0.0")] interface SomeClass {
+[control-class("1.99")] interface SomeClass {
     [element("2p55")]  attribute SomeType? someProperty;
     [element("2m20")]  SomeReturnType SomeMethod(SomeArgType? argument);
 };

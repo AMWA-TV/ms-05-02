@@ -9,7 +9,7 @@ The roles for the managers defined by the framework are defined using the `contr
 Example:
 
 ```typescript
-[control-class("1.3.1", "1.0.0", "DeviceManager")] interface NcDeviceManager: NcManager
+[control-class("1.3.1", "DeviceManager")] interface NcDeviceManager: NcManager
 ```
 
 ## Device manager
@@ -110,13 +110,10 @@ interface NcDatatypeDescriptorEnum: NcDatatypeDescriptor {
 };
 ```
 
-The descriptor for an individual control class may be retrieved using the `GetControlClass` method (`[element("3m1")]`) and passing the identity (type `NcClassIdentity`) and includeInherited (if all inherited elements should be included - type `NcBoolean`) as arguments. The method has a response of type `NcMethodResultClassDescriptor`.
+The descriptor for an individual control class may be retrieved using the `GetControlClass` method (`[element("3m1")]`) and passing the identity (type `NcClassId`) and includeInherited (if all inherited elements should be included - type `NcBoolean`) as arguments. The method has a response of type `NcMethodResultClassDescriptor`.
 
 ```typescript
-interface NcClassIdentity {
-    attribute NcClassId id;
-    attribute NcVersionCode version;
-}
+typedef sequence<NcInt32>   NcClassId;
 
 interface NcMethodResultClassDescriptor : NcMethodResult { // class descriptors result
     attribute NcClassDescriptor value;
