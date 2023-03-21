@@ -659,7 +659,7 @@ $macro(BaseClasses)
 
         // Abstract base class for entire class structure
 
-        [element("1p1")]    readonly    attribute   NcClassId                           classId;
+        [element("1p1")]    readonly    attribute   NcClassId                           classId;                     // static value. All instances of the same class will have the same value
         [element("1p2")]    readonly    attribute   NcOid                               oid;
         [element("1p3")]    readonly    attribute   NcBoolean                           constantOid;                 // TRUE iff OID is hardwired into device
         [element("1p4")]    readonly    attribute   NcOid?                              owner;                       // OID of containing block. Can only ever be null for the root block
