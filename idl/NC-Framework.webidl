@@ -659,14 +659,14 @@ $macro(BaseClasses)
 
         // Abstract base class for entire class structure
 
-        [element("1p1")]    static  readonly    attribute   NcClassId                           classId;
-        [element("1p2")]            readonly    attribute   NcOid                               oid;
-        [element("1p3")]            readonly    attribute   NcBoolean                           constantOid;                 // TRUE iff OID is hardwired into device
-        [element("1p4")]            readonly    attribute   NcOid?                              owner;                       // OID of containing block. Can only ever be null for the root block
-        [element("1p5")]            readonly    attribute   NcString                            role;                        // role of obj in containing block
-        [element("1p6")]                        attribute   NcString?                           userLabel;                   // Scribble strip
-        [element("1p7")]            readonly    attribute   sequence<NcTouchpoint>?             touchpoints;
-        [element("1p8")]            readonly    attribute   sequence<NcPropertyConstraints>?    runtimePropertyConstraints;  // runtime property constraints
+        [element("1p1")]    readonly    attribute   NcClassId                           classId;                     // static value. All instances of the same class will have the same value
+        [element("1p2")]    readonly    attribute   NcOid                               oid;
+        [element("1p3")]    readonly    attribute   NcBoolean                           constantOid;                 // TRUE iff OID is hardwired into device
+        [element("1p4")]    readonly    attribute   NcOid?                              owner;                       // OID of containing block. Can only ever be null for the root block
+        [element("1p5")]    readonly    attribute   NcString                            role;                        // role of obj in containing block
+        [element("1p6")]                attribute   NcString?                           userLabel;                   // Scribble strip
+        [element("1p7")]    readonly    attribute   sequence<NcTouchpoint>?             touchpoints;
+        [element("1p8")]    readonly    attribute   sequence<NcPropertyConstraints>?    runtimePropertyConstraints;  // runtime property constraints
         
         // Generic Get/Set methods
         [element("1m1")]    NcMethodResultPropertyValue Get(NcPropertyId id);                                        // Get property value
@@ -733,7 +733,7 @@ $macro(Block)
 
         // finds member(s) by path
         [element("2m2")]    NcMethodResultBlockMemberDescriptors    FindMembersByPath(
-            NcRolePath  path                              // path to search for
+            NcRolePath  path                              // relative path to search for (should not include the role of the block targeted by oid)
         );
         
         // finds members with given role name or fragment

@@ -270,8 +270,8 @@ Here is a complete example, ***excerpted*** from the definition of the NCA base 
 
         //  Excerpted from definition of NcObject
 
-        [element("1p1")]  static readonly attribute NcClassId       classId;
-        [element("1p2")]         readonly attribute NcOid           oid;
+        [element("1p1")]  readonly attribute NcClassId       classId;
+        [element("1p2")]  readonly attribute NcOid           oid;
         
         // Generic Get/Set methods used by this class and all subclasses
 
@@ -310,8 +310,6 @@ Simple NCA datatypes are defined as typedefs. Complex datatypes (i.e. structures
 ## Miscellaneous conventions
 
 1. The standard Web IDL keyword **readonly** MUST be used to identify a readonly property.
-
-1. The standard Web IDL keyword **static** MUST be used to identify a property whose value is the same for every instance of an interface.
 
 1. In an attribute definition, the standard Web IDL practice of appending a question-mark "**?**" to the datatype name MUST be used to specify that the attribute is optional.
 
