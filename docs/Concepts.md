@@ -47,12 +47,12 @@ Here are some examples from the `NcObject` class:
 
     // PROPERTIES
 
-    [element("1p1")]  static readonly attribute NcClassId   classId;
-    [element("1p2")]         readonly attribute NcOid       oid;
-    [element("1p3")]         readonly attribute NcBoolean   constantOid;
-    [element("1p4")]         readonly attribute NcOid?      owner;
-    [element("1p5")]         readonly attribute NcString    role;
-    [element("1p6")]                  attribute NcString?   userLabel;
+    [element("1p1")]  readonly attribute NcClassId   classId;
+    [element("1p2")]  readonly attribute NcOid       oid;
+    [element("1p3")]  readonly attribute NcBoolean   constantOid;
+    [element("1p4")]  readonly attribute NcOid?      owner;
+    [element("1p5")]  readonly attribute NcString    role;
+    [element("1p6")]           attribute NcString?   userLabel;
     ...
     
     // GENERIC GET/SET METHODS

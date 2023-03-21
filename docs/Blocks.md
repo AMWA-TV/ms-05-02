@@ -73,6 +73,6 @@ interface NcBlockMemberDescriptor {
 
 All blocks also offer some search methods for convenience:
 
-* FindMembersByPath (`[element("2m2")]`) - retrieve descriptors for members filtered using a role path sequence of roles
+* FindMembersByPath (`[element("2m2")]`) - retrieve descriptors for members filtered using a relative role path sequence of roles. The relative path to search for (should not include the role of the block targeted by oid)
 * FindMembersByRole (`[element("2m3")]`) - retrieve descriptors for members filtered by the role property
 * FindMembersByClassId (`[element("2m4")]`) - retrieve descriptors for members filtered by a given class id sequence
