@@ -127,10 +127,3 @@ interface NcMethodResultDatatypeDescriptor : NcMethodResult { // dataype descrip
     attribute NcDatatypeDescriptor value;
 };
 ```
-
-## Other managers
-
-| **Name**             | **Description**                                                                 |
-| -------------------- | --------------------------------------------------------------------------------|
-| NcFirmwareManager    | Manager handling device firmware operations                                     |
-| NcDeviceTimeManager  | Manager handling device's internal clock(s) and its reference                   |

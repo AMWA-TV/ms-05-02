@@ -321,6 +321,7 @@ $macro(ModelDatatypes)
         attribute NcBoolean                 isNullable;     // TRUE iff property is nullable
         attribute NcBoolean                 isSequence;     // TRUE iff property is a sequence
         attribute NcBoolean                 isDeprecated;   // TRUE iff property is marked as deprecated
+        attribute NcBoolean                 isConstant;     // TRUE iff property is readonly and constant (its value is never expected to change)
         attribute NcParameterConstraints?   constraints;    // optional constraints on top of the underlying data type
     };
 
@@ -801,26 +802,8 @@ $macro(Managers)
             NcBoolean includeInherited  // if set the descriptor would contain all inherited elements
         );
     };
-
-    [control-class("1.3.3", "FirmwareManager")] interface NcFirmwareManager: NcManager {
-        
-        //  Firmware / software manager : Reports versions of components
-        
-        [element("3p1")]    readonly    attribute   sequence<NcFirmwareComponent>   components; // List of firmware component descriptors
-    };
-
-    [control-class("1.3.4", "DeviceTimeManager")] interface NcDeviceTimeManager: NcManager {
-        //
-        //  Controls device's internal clock(s) and its reference.
-        //
-
-        [element("3p1")]    readonly    attribute   NcTime          deviceTimePtp;              // Current device time
-        [element("3p2")]    readonly    attribute   sequence<NcOid> timeSources;                // OIDs of available NcTimeSource objects
-        [element("3p3")]                attribute   NcOid           currentDeviceTimeSource;    // OID of current NcTimeSource object
-    };
 $endmacro
 $macro(FeatureSet001)
-
     // -----------------------------------------------------------------------------
     // Feature set 001 - General control & monitoring
     // -----------------------------------------------------------------------------
@@ -914,120 +897,28 @@ $macro(FeatureSet002)
     };
 $endmacro
 $macro(FeatureSet003)
-    //  ----------------------------------------------------------------------------------
-    //
-    //  Feature set 003 - Audio control & monitoring
-    //  Placeholder for work to be done in the future
-    //
-    //  ----------------------------------------------------------------------------------
-$endmacro
-$macro(FeatureSet004)
-    //  ----------------------------------------------------------------------------------
-    //
-    //  Feature set 004 - Video control & monitoring
-    //  Placeholder for work to be done in the future
-    //
-    //  ----------------------------------------------------------------------------------
-$endmacro
-$macro(FeatureSet005)
-    //  ----------------------------------------------------------------------------------
-    //
-    //  Feature set 005 - Control aggregation
-    //  Placeholder for work to be done in the future
-    //
-    //  ----------------------------------------------------------------------------------
-$endmacro
-$macro(FeatureSet006)
-    //  ----------------------------------------------------------------------------------
-    //
-    //  Feature set 006 - Matrixing
-    //  Placeholder for work to be done in the future
-    //
-    //  ----------------------------------------------------------------------------------
-    [control-class("1.2.1.3")] interface NcMatrix: NcSignalWorker {
+    // -----------------------------------------------------------------------------
+    // Feature set 003 - Other managers
+    // -----------------------------------------------------------------------------
+    
+    [control-class("1.3.3", "FirmwareManager")] interface NcFirmwareManager: NcManager {
         
+        //  Firmware / software manager : Reports versions of components
+        
+        [element("3p1")]    readonly    attribute   sequence<NcFirmwareComponent>   components; // List of firmware component descriptors
     };
-$endmacro
-$macro(FeatureSet007)
-    //  ----------------------------------------------------------------------------------
-    //
-    //  Feature set 007 - Datasets
-    //  Placeholder for work to be done in the future
-    //
-    //  ----------------------------------------------------------------------------------
-$endmacro
-$macro(FeatureSet008)
-    //  ----------------------------------------------------------------------------------
-    //
-    //  Feature set 8 - Logging
-    //  Placeholder for work to be done in the future
-    //
-    //  ----------------------------------------------------------------------------------
-$endmacro
-$macro(FeatureSet009)
-    //  ----------------------------------------------------------------------------------
-    //
-    //  Feature set 009 - Media file storage & playout
-    //  Placeholder for work to be done in the future
-    //
-    //  ----------------------------------------------------------------------------------
-$endmacro
-$macro(FeatureSet010)
-    //  ----------------------------------------------------------------------------------
-    //
-    //  Feature set 010 - Command sets & prestored programs
-    //  Placeholder for work to be done in the future
-    //
-    //  ----------------------------------------------------------------------------------
-$endmacro
-$macro(FeatureSet011)
-    //  ----------------------------------------------------------------------------------
-    //  
-    //  Feature set 011 - Prestored control parameters
-    //  Placeholder for work to be done in the future
-    //
-    //  ----------------------------------------------------------------------------------
-$endmacro
-$macro(FeatureSet012)
-    //  ----------------------------------------------------------------------------------
-    //  
-    //  Feature set 012 - Connection management
-    //  Placeholder for work to be done in the future
-    //
-    //  ----------------------------------------------------------------------------------
-$endmacro
-$macro(FeatureSet013)
-    //  ----------------------------------------------------------------------------------
-    //  
-    //  Feature set 013 - Dynamic device configuration
-    //  Placeholder for work to be done in the future
-    //
-    //  ----------------------------------------------------------------------------------
-$endmacro
-$macro(FeatureSet014)
-    //  ----------------------------------------------------------------------------------
-    //  
-    //  Feature set 014 - Access control
-    //  Placeholder for work to be done in the future
-    //
-    //  ----------------------------------------------------------------------------------
-$endmacro
-$macro(FeatureSet015)
-    //  ----------------------------------------------------------------------------------
-    //  
-    //  Feature set 015 - Spatial media control
-    //  Placeholder for work to be done in the future
-    //
-    //  ----------------------------------------------------------------------------------
-$endmacro
-$macro(FeatureSet016)
-    //  ----------------------------------------------------------------------------------
-    //
-    //  Feature set 016 - Power supply management
-    //  Placeholder for work to be done in the future
-    //
 
-    [control-class("1.3.8", "PowerManager")] interface NcPowerManager: NcManager {
+    [control-class("1.3.4", "DeviceTimeManager")] interface NcDeviceTimeManager: NcManager {
+        //
+        //  Controls device's internal clock(s) and its reference.
+        //
+
+        [element("3p1")]    readonly    attribute   NcTime          deviceTimePtp;              // Current device time
+        [element("3p2")]    readonly    attribute   sequence<NcOid> timeSources;                // OIDs of available NcTimeSource objects
+        [element("3p3")]                attribute   NcOid           currentDeviceTimeSource;    // OID of current NcTimeSource object
+    };
+
+    [control-class("1.3.5", "PowerManager")] interface NcPowerManager: NcManager {
         [element("3p1")]    readonly    attribute   NcDeviceGenericState    state;
         [element("3p2")]    readonly    attribute   sequence<NcOid>         powerSupplyOids;        // OIDs of available NcPowerSupply objects
         [element("3p3")]    readonly    attribute   sequence<NcOid>         activePowerSupplyOids;  // OIDs of active NcPowerSupply objects
@@ -1040,13 +931,114 @@ $macro(FeatureSet016)
             NcBoolean   powerOffOld
         );
     };
-
+$endmacro
+$macro(FeatureSet004)
+    //  ----------------------------------------------------------------------------------
+    //
+    //  Feature set 004 - Audio control & monitoring
+    //  Placeholder for work to be done in the future
+    //
+    //  ----------------------------------------------------------------------------------
+$endmacro
+$macro(FeatureSet005)
+    //  ----------------------------------------------------------------------------------
+    //
+    //  Feature set 005 - Video control & monitoring
+    //  Placeholder for work to be done in the future
+    //
+    //  ----------------------------------------------------------------------------------
+$endmacro
+$macro(FeatureSet006)
+    //  ----------------------------------------------------------------------------------
+    //
+    //  Feature set 006 - Control aggregation
+    //  Placeholder for work to be done in the future
+    //
+    //  ----------------------------------------------------------------------------------
+$endmacro
+$macro(FeatureSet007)
+    //  ----------------------------------------------------------------------------------
+    //
+    //  Feature set 007 - Matrixing
+    //  Placeholder for work to be done in the future
+    //
+    //  ----------------------------------------------------------------------------------
+$endmacro
+$macro(FeatureSet008)
+    //  ----------------------------------------------------------------------------------
+    //
+    //  Feature set 008 - Datasets
+    //  Placeholder for work to be done in the future
+    //
+    //  ----------------------------------------------------------------------------------
+$endmacro
+$macro(FeatureSet009)
+    //  ----------------------------------------------------------------------------------
+    //
+    //  Feature set 9 - Logging
+    //  Placeholder for work to be done in the future
+    //
+    //  ----------------------------------------------------------------------------------
+$endmacro
+$macro(FeatureSet010)
+    //  ----------------------------------------------------------------------------------
+    //
+    //  Feature set 010 - Media file storage & playout
+    //  Placeholder for work to be done in the future
+    //
+    //  ----------------------------------------------------------------------------------
+$endmacro
+$macro(FeatureSet011)
+    //  ----------------------------------------------------------------------------------
+    //
+    //  Feature set 011 - Command sets & prestored programs
+    //  Placeholder for work to be done in the future
+    //
+    //  ----------------------------------------------------------------------------------
+$endmacro
+$macro(FeatureSet012)
+    //  ----------------------------------------------------------------------------------
+    //  
+    //  Feature set 012 - Prestored control parameters
+    //  Placeholder for work to be done in the future
+    //
+    //  ----------------------------------------------------------------------------------
+$endmacro
+$macro(FeatureSet013)
+    //  ----------------------------------------------------------------------------------
+    //  
+    //  Feature set 013 - Connection management
+    //  Placeholder for work to be done in the future
+    //
+    //  ----------------------------------------------------------------------------------
+$endmacro
+$macro(FeatureSet014)
+    //  ----------------------------------------------------------------------------------
+    //  
+    //  Feature set 014 - Dynamic device configuration
+    //  Placeholder for work to be done in the future
+    //
+    //  ----------------------------------------------------------------------------------
+$endmacro
+$macro(FeatureSet015)
+    //  ----------------------------------------------------------------------------------
+    //  
+    //  Feature set 015 - Access control
+    //  Placeholder for work to be done in the future
+    //
+    //  ----------------------------------------------------------------------------------
+$endmacro
+$macro(FeatureSet016)
+    //  ----------------------------------------------------------------------------------
+    //  
+    //  Feature set 016 - Spatial media control
+    //  Placeholder for work to be done in the future
+    //
     //  ----------------------------------------------------------------------------------
 $endmacro
 $macro(FeatureSet017)
-
     // -----------------------------------------------------------------------------
-    // Feature set 007 - Workflow Data
+    // Feature set 017 - Workflow Data
     // -----------------------------------------------------------------------------
 
     [control-class("1.2.4")] interface NcWorkflowDataRecord: NcWorker {
