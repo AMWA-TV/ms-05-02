@@ -84,8 +84,7 @@ $macro(IdentifiersClass)
     // i.e. at the point where the proprietary class or class subtree
     // connects into the class structure.
 
-    // For organizations which own a unique CID or OUI the authority key MUST be a negative 32-bit integer, constructed by
-    // prepending FFh onto the 24-bit organization identifier.
+    // For organizations which own a unique CID or OUI the authority key MUST be the organization identifier as an integer which MUST be negated.
     //
     // For organizations which do not own a unique CID or OUI the authority key MUST be 0.
     // e.g.
