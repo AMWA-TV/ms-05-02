@@ -91,7 +91,7 @@ Where the functionality of a device uses control classes and datatypes it MUST c
 
 NcObject is the base abstract control class for any control class in the control model. Any other control class MUST be derived directly or indirectly from this class.
 
-```typescript
+```webidl
 // NcObject class descriptor
 [control-class("1")] interface NcObject {
     [element("1p1")]    readonly    attribute    NcClassId    classId;    // Static value. All instances of the same class will have the same identity value
@@ -149,7 +149,7 @@ NcBlock is a control class which groups and organises other control classes as i
 Members are identified by oid and role. An object in a hierarchy of nested blocks can be identified by its role path.  
 A member's role path is a sequence of role values starting with the root block's role and ending with the member's role.
 
-```typescript
+```webidl
 // NcBlock class descriptor
 [control-class("1.1")] interface NcBlock: NcObject {
     [element("2p1")]    readonly    attribute    NcBoolean    isRoot;    // TRUE if block is the root block
@@ -196,7 +196,7 @@ A member's role path is a sequence of role values starting with the root block's
 
 NcWorker is the base worker control class for any worker control class in the control model. Vendor specific workers MUST be directly or indirectly derived from this control class.
 
-```typescript
+```webidl
 // NcWorker class descriptor
 [control-class("1.2")] interface NcWorker: NcObject {
     [element("2p1")]                attribute    NcBoolean    enabled;    // TRUE iff worker is enabled
@@ -207,7 +207,7 @@ NcWorker is the base worker control class for any worker control class in the co
 
 NcSignalWorker is the base signal worker control class for any worker control class in the control model which manipulates signals. Vendor specific signal workers MUST be directly or indirectly derived from this control class.
 
-```typescript
+```webidl
 // NcSignalWorker class descriptor
 [control-class("1.2.1")] interface NcSignalWorker: NcWorker {
     [element("3p1")]                attribute    sequence<NcPort>    ports;    // The worker's signal ports
@@ -219,7 +219,7 @@ NcSignalWorker is the base signal worker control class for any worker control cl
 
 NcActuator is the base actuator worker control class for any actuator control class in the control model. Vendor specific actuators SHOULD be directly or indirectly derived from this control class.
 
-```typescript
+```webidl
 // NcActuator class descriptor
 [control-class("1.2.1.1")] interface NcActuator: NcSignalWorker {
 };
@@ -229,7 +229,7 @@ NcActuator is the base actuator worker control class for any actuator control cl
 
 NcSensor is the base sensor worker control class for any sensor control class in the control model. Vendor specific sensors SHOULD be directly or indirectly derived from this control class.
 
-```typescript
+```webidl
 // NcSensor class descriptor
 [control-class("1.2.1.2")] interface NcSensor: NcSignalWorker {
 };
@@ -239,7 +239,7 @@ NcSensor is the base sensor worker control class for any sensor control class in
 
 NcManager is the base abstract manager control class for any manager control class in the control model. Manager control classes are singleton classes. Vendor specific managers MUST be directly or indirectly derived from this control class.
 
-```typescript
+```webidl
 // NcManager class descriptor
 [control-class("1.3")] interface NcManager: NcObject {
 };
@@ -249,7 +249,7 @@ NcManager is the base abstract manager control class for any manager control cla
 
 NcDeviceManager is the device manager control class which contains device information and status.
 
-```typescript
+```webidl
 // NcDeviceManager class descriptor
 [control-class("1.3.1")] interface NcDeviceManager: NcManager {
     [element("3p1")]    readonly    attribute    NcVersionCode    ncVersion;    // Version of nc this dev uses
@@ -269,7 +269,7 @@ NcDeviceManager is the device manager control class which contains device inform
 
 NcClassManager is the class manager control class.
 
-```typescript
+```webidl
 // NcClassManager class descriptor
 [control-class("1.3.2")] interface NcClassManager: NcManager {
     [element("3p1")]    readonly    attribute    sequence<NcClassDescriptor>    controlClasses;    // Descriptions of all control classes in the device (descriptors do not contain inherited elements)
@@ -293,7 +293,7 @@ NcClassManager is the class manager control class.
 
 ### Primitives
 
-```typescript
+```webidl
     [primitive] typedef boolean             NcBoolean;
     [primitive] typedef short               NcInt16;
     [primitive] typedef long                NcInt32;
@@ -313,7 +313,7 @@ Unique 24-bit organization ID:
 - IEEE public Company ID (public CID) or
 - IEEE Organizational Unique Identifier (OUI).
 
-```typescript
+```webidl
 typedef NcInt32    NcOrganizationId; // Unique 24-bit organization ID
 ```
 
@@ -336,31 +336,31 @@ e.g.
 or  
      [ 1, 1, 3, 5, 0, 1, 4, 5 ]
 
-```typescript
+```webidl
 typedef sequence<NcInt32>    NcClassId; // Sequence of class ID fields.
 ```
 
 ### NcVersionCode
 
-```typescript
+```webidl
 typedef NcString    NcVersionCode; // Version code in semantic versioning format
 ```
 
 ### NcName
 
-```typescript
+```webidl
 typedef NcString    NcName; // Programmatically significant name, alphanumerics + underscore, no spaces
 ```
 
 ### NcUuid
 
-```typescript
+```webidl
 typedef NcString    NcUuid; // UUID
 ```
 
 ### NcOid
 
-```typescript
+```webidl
 typedef NcUint32    NcOid; // Object id
 ```
 
@@ -369,13 +369,13 @@ typedef NcUint32    NcOid; // Object id
 Ordered list of roles ending with the role of object in question.  
 The object in question may be a block or another object.
 
-```typescript
+```webidl
 typedef sequence<NcString>    NcRolePath; // Role path
 ```
 
 ### NcElementId
 
-```typescript
+```webidl
 // Class element id which contains the level and index
 interface NcElementId {
     attribute NcUint16    level; // Level of the element
@@ -385,7 +385,7 @@ interface NcElementId {
 
 ### NcPropertyId
 
-```typescript
+```webidl
 // Property id which contains the level and index
 interface NcPropertyId: NcElementId {
 };
@@ -393,7 +393,7 @@ interface NcPropertyId: NcElementId {
 
 ### NcMethodId
 
-```typescript
+```webidl
 // Method id which contains the level and index
 interface NcMethodId: NcElementId {
 };
@@ -401,7 +401,7 @@ interface NcMethodId: NcElementId {
 
 ### NcEventId
 
-```typescript
+```webidl
 // Event id which contains the level and index
 interface NcEventId: NcElementId {
 };
@@ -409,13 +409,13 @@ interface NcEventId: NcElementId {
 
 ### NcId
 
-```typescript
+```webidl
 typedef NcUint32    NcId; // Identity handler
 ```
 
 ### NcIoDirection
 
-```typescript
+```webidl
 // Input and/or output direction
 enum NcIoDirection {
     "Undefined",        // 0 Not defined
@@ -427,7 +427,7 @@ enum NcIoDirection {
 
 ### NcPortReference
 
-```typescript
+```webidl
 // Device-unique port identifier
 interface NcPortReference {
     attribute NcRolePath    owner; // Role path of owning object
@@ -437,7 +437,7 @@ interface NcPortReference {
 
 ### NcPort
 
-```typescript
+```webidl
 // Port class
 interface NcPort {
     attribute NcString    role; // Unique within owning object
@@ -448,7 +448,7 @@ interface NcPort {
 
 ### NcSignalPath
 
-```typescript
+```webidl
 // Signal path descriptor
 interface NcSignalPath {
     attribute NcString    role; // Unique identifier of this signal path in this block
@@ -460,7 +460,7 @@ interface NcSignalPath {
 
 ### NcTouchpoint
 
-```typescript
+```webidl
 // Base touchpoint class
 interface NcTouchpoint {
     attribute NcString    contextNamespace; // Context namespace
@@ -469,7 +469,7 @@ interface NcTouchpoint {
 
 ### NcTouchpointResource
 
-```typescript
+```webidl
 // Touchpoint resource class
 interface NcTouchpointResource {
     attribute NcString    resourceType; // The type of the resource
@@ -478,7 +478,7 @@ interface NcTouchpointResource {
 
 ### NcTouchpointNmos
 
-```typescript
+```webidl
 // Touchpoint class for NMOS resources
 interface NcTouchpointNmos: NcTouchpoint {
     attribute NcTouchpointResourceNmos    resource; // Context NMOS resource
@@ -489,7 +489,7 @@ The `contextNamespace` attribute is inherited from NcTouchpoint and can only be 
 
 ### NcTouchpointNmosChannelMapping
 
-```typescript
+```webidl
 // Touchpoint class for NMOS IS-08 resources
 interface NcTouchpointNmosChannelMapping: NcTouchpoint {
     attribute NcTouchpointResourceNmosChannelMapping    resource; // Context Channel Mapping resource
@@ -500,7 +500,7 @@ The `contextNamespace` attribute is inherited from NcTouchpoint and can only be 
 
 ### NcTouchpointResourceNmos
 
-```typescript
+```webidl
 // Touchpoint resource class for NMOS resources
 interface NcTouchpointResourceNmos: NcTouchpointResource {
     attribute NcUuid    id; // NMOS resource UUID
@@ -511,7 +511,7 @@ The `resourceType` attribute is inherited from NcTouchpointResource and can only
 
 ### NcTouchpointResourceNmosChannelMapping
 
-```typescript
+```webidl
 // Touchpoint resource class for NMOS resources
 interface NcTouchpointResourceNmosChannelMapping: NcTouchpointResourceNmos {
     attribute NcString    ioId; // IS-08 Audio Channel Mapping input or output ID
@@ -522,7 +522,7 @@ The `resourceType` attribute is inherited from NcTouchpointResource and can only
 
 ### NcPropertyChangedEventData
 
-```typescript
+```webidl
 // Payload of property-changed event
 interface NcPropertyChangedEventData {
     attribute NcPropertyId    propertyId; // ID of changed property
@@ -534,7 +534,7 @@ interface NcPropertyChangedEventData {
 
 ### NcPropertyChangeType
 
-```typescript
+```webidl
 // Type of property change
 enum NcPropertyChangeType {
     "ValueChanged",        // 0 Current value changed
@@ -546,13 +546,13 @@ enum NcPropertyChangeType {
 
 ### NcTimeInterval
 
-```typescript
+```webidl
 typedef NcInt64    NcTimeInterval; // Time interval described in nanoseconds
 ```
 
 ### NcDatatypeType
 
-```typescript
+```webidl
 // Datatype type
 enum NcDatatypeType {
     "Primitive",        // 0 Primitive datatype
@@ -564,7 +564,7 @@ enum NcDatatypeType {
 
 ### NcDescriptor
 
-```typescript
+```webidl
 // Base descriptor
 interface NcDescriptor {
     attribute NcString?    description; // Optional user facing description
@@ -573,7 +573,7 @@ interface NcDescriptor {
 
 ### NcDatatypeDescriptor
 
-```typescript
+```webidl
 // Base datatype descriptor
 interface NcDatatypeDescriptor: NcDescriptor {
     attribute NcName    name; // Datatype name
@@ -584,7 +584,7 @@ interface NcDatatypeDescriptor: NcDescriptor {
 
 ### NcDatatypeDescriptorPrimitive
 
-```typescript
+```webidl
 // Primitive datatype descriptor
 interface NcDatatypeDescriptorPrimitive: NcDatatypeDescriptor {
 };
@@ -594,7 +594,7 @@ The `type` attribute will be `Primitive`.
 
 ### NcDatatypeDescriptorTypeDef
 
-```typescript
+```webidl
 // Type def datatype descriptor
 interface NcDatatypeDescriptorTypeDef: NcDatatypeDescriptor {
     attribute NcName    parentType; // Original typedef datatype name
@@ -606,7 +606,7 @@ The `type` attribute will be `Typedef`.
 
 ### NcDatatypeDescriptorStruct
 
-```typescript
+```webidl
 // Struct datatype descriptor
 interface NcDatatypeDescriptorStruct: NcDatatypeDescriptor {
     attribute sequence<NcFieldDescriptor>    fields; // One item descriptor per field of the struct
@@ -618,7 +618,7 @@ The `type` attribute will be `Struct`.
 
 ### NcDatatypeDescriptorEnum
 
-```typescript
+```webidl
 // Enum datatype descriptor
 interface NcDatatypeDescriptorEnum: NcDatatypeDescriptor {
     attribute sequence<NcEnumItemDescriptor>    items; // One item descriptor per enum option
@@ -629,7 +629,7 @@ The `type` attribute will be `Enum`.
 
 ### NcPropertyDescriptor
 
-```typescript
+```webidl
 // Descriptor of a class property
 interface NcPropertyDescriptor: NcDescriptor {
     attribute NcPropertyId    id; // Property id with level and index
@@ -647,7 +647,7 @@ interface NcPropertyDescriptor: NcDescriptor {
 
 ### NcFieldDescriptor
 
-```typescript
+```webidl
 // Descriptor of a field of a struct
 interface NcFieldDescriptor: NcDescriptor {
     attribute NcName    name; // Name of field
@@ -660,7 +660,7 @@ interface NcFieldDescriptor: NcDescriptor {
 
 ### NcEnumItemDescriptor
 
-```typescript
+```webidl
 // Descriptor of an enum item
 interface NcEnumItemDescriptor: NcDescriptor {
     attribute NcName    name; // Name of option
@@ -670,7 +670,7 @@ interface NcEnumItemDescriptor: NcDescriptor {
 
 ### NcParameterDescriptor
 
-```typescript
+```webidl
 // Descriptor of a method parameter
 interface NcParameterDescriptor: NcDescriptor {
     attribute NcName    name; // Name of parameter
@@ -683,7 +683,7 @@ interface NcParameterDescriptor: NcDescriptor {
 
 ### NcMethodDescriptor
 
-```typescript
+```webidl
 // Descriptor of a class method
 interface NcMethodDescriptor: NcDescriptor {
     attribute NcMethodId    id; // Method id with level and index
@@ -696,7 +696,7 @@ interface NcMethodDescriptor: NcDescriptor {
 
 ### NcEventDescriptor
 
-```typescript
+```webidl
 // Descriptor of a class event
 interface NcEventDescriptor: NcDescriptor {
     attribute NcEventId    id; // Event id with level and index
@@ -708,7 +708,7 @@ interface NcEventDescriptor: NcDescriptor {
 
 ### NcClassDescriptor
 
-```typescript
+```webidl
 // Descriptor of a class
 interface NcClassDescriptor: NcDescriptor {
     attribute NcClassId    identity; // Identity of the class
@@ -722,7 +722,7 @@ interface NcClassDescriptor: NcDescriptor {
 
 ### NcParameterConstraints
 
-```typescript
+```webidl
 // Abstract parameter constraints class
 interface NcParameterConstraints {
     attribute any?    defaultValue; // Default value
@@ -731,7 +731,7 @@ interface NcParameterConstraints {
 
 ### NcParameterConstraintsNumber
 
-```typescript
+```webidl
 // Number parameter constraints class
 interface NcParameterConstraintsNumber: NcParameterConstraints {
     attribute any?    maximum; // optional maximum
@@ -742,7 +742,7 @@ interface NcParameterConstraintsNumber: NcParameterConstraints {
 
 ### NcParameterConstraintsString
 
-```typescript
+```webidl
 // String parameter constraints class
 interface NcParameterConstraintsString: NcParameterConstraints {
     attribute NcUint32?    maxCharacters; // maximum characters allowed
@@ -752,13 +752,13 @@ interface NcParameterConstraintsString: NcParameterConstraints {
 
 ### NcRegex
 
-```typescript
+```webidl
 typedef NcString    NcRegex; // Regex pattern
 ```
 
 ### NcPropertyConstraints
 
-```typescript
+```webidl
 // Property constraints class
 interface NcPropertyConstraints {
     attribute NcRolePath?    path; // relative path to member (null means current member)
@@ -769,7 +769,7 @@ interface NcPropertyConstraints {
 
 ### NcPropertyConstraintsFixed
 
-```typescript
+```webidl
 // Fixed property constraints class
 interface NcPropertyConstraintsFixed: NcPropertyConstraints {
     attribute any?    value; // Signals a fixed value for this property
@@ -778,7 +778,7 @@ interface NcPropertyConstraintsFixed: NcPropertyConstraints {
 
 ### NcPropertyConstraintsNumber
 
-```typescript
+```webidl
 // Number property constraints class
 interface NcPropertyConstraintsNumber: NcPropertyConstraints {
     attribute any?    maximum; // optional maximum
@@ -789,7 +789,7 @@ interface NcPropertyConstraintsNumber: NcPropertyConstraints {
 
 ### NcPropertyConstraintsString
 
-```typescript
+```webidl
 // String property constraints class
 interface NcPropertyConstraintsString: NcPropertyConstraints {
     attribute NcUint32?    maxCharacters; // maximum characters allowed
@@ -799,7 +799,7 @@ interface NcPropertyConstraintsString: NcPropertyConstraints {
 
 ### NcPropertyConstraintsEnum
 
-```typescript
+```webidl
 // Enum property constraints class
 interface NcPropertyConstraintsEnum: NcPropertyConstraints {
     attribute sequence<NcEnumItemDescriptor>    possibleValues; // Allowed values
@@ -808,7 +808,7 @@ interface NcPropertyConstraintsEnum: NcPropertyConstraints {
 
 ### NcBlockMemberDescriptor
 
-```typescript
+```webidl
 // Descriptor which is specific to a block member which is not a block
 interface NcBlockMemberDescriptor: NcDescriptor {
     attribute NcString    role; // Role of member in its containing block
@@ -825,7 +825,7 @@ The `constraints` attribute on this descriptor represents the optional constrain
 
 ### NcBlockDescriptor
 
-```typescript
+```webidl
 // Descriptor which is specific to a block
 interface NcBlockDescriptor: NcBlockMemberDescriptor {
     attribute NcString?    blockSpecId; // ID of BlockSpec this block implements
@@ -834,13 +834,13 @@ interface NcBlockDescriptor: NcBlockMemberDescriptor {
 
 ### NcUri
 
-```typescript
+```webidl
 typedef NcString    NcUri; // Uniform resource identifier
 ```
 
 ### NcManufacturer
 
-```typescript
+```webidl
 // Manufacturer descriptor
 interface NcManufacturer {
     attribute NcString    name; // Manufacturer's name
@@ -851,7 +851,7 @@ interface NcManufacturer {
 
 ### NcProduct
 
-```typescript
+```webidl
 // Product descriptor
 interface NcProduct {
     attribute NcString    name; // Product name
@@ -865,7 +865,7 @@ interface NcProduct {
 
 ### NcResetCause
 
-```typescript
+```webidl
 // Reset cause enum
 enum NcResetCause {
     "Unknown",        // 0 Unknown
@@ -879,7 +879,7 @@ enum NcResetCause {
 
 ### NcDeviceGenericState
 
-```typescript
+```webidl
 // Device generic operational state
 enum NcDeviceGenericState {
     "Unknown",        // 0 Unknown
@@ -893,7 +893,7 @@ enum NcDeviceGenericState {
 
 ### NcDeviceOperationalState
 
-```typescript
+```webidl
 // Device operational state
 interface NcDeviceOperationalState {
     attribute NcDeviceGenericState    generic; // Generic operational state
@@ -903,7 +903,7 @@ interface NcDeviceOperationalState {
 
 ### NcMethodStatus
 
-```typescript
+```webidl
 // Method invokation status
 enum NcMethodStatus {
     "Ok",        // 200 Method call was successful
@@ -929,7 +929,7 @@ enum NcMethodStatus {
 
 ### NcMethodResult
 
-```typescript
+```webidl
 // Base result of the invoked method
 interface NcMethodResult {
     attribute NcMethodStatus    status; // Status for the invoked method
@@ -938,7 +938,7 @@ interface NcMethodResult {
 
 ### NcMethodResultError
 
-```typescript
+```webidl
 // Error result - to be used when the method call encounters an error
 interface NcMethodResultError: NcMethodResult {
     attribute NcString    errorMessage; // Optional error message
@@ -947,7 +947,7 @@ interface NcMethodResultError: NcMethodResult {
 
 ### NcMethodResultPropertyValue
 
-```typescript
+```webidl
 // Result when invoking the getter method associated with a property
 interface NcMethodResultPropertyValue: NcMethodResult {
     attribute any?    value; // Getter method value for the associated property
@@ -956,7 +956,7 @@ interface NcMethodResultPropertyValue: NcMethodResult {
 
 ### NcMethodResultBlockMemberDescriptors
 
-```typescript
+```webidl
 // Method result containing block member descriptors as the value
 interface NcMethodResultBlockMemberDescriptors: NcMethodResult {
     attribute sequence<NcBlockMemberDescriptor>    value; // Block member descriptors method result value
@@ -965,7 +965,7 @@ interface NcMethodResultBlockMemberDescriptors: NcMethodResult {
 
 ### NcMethodResultClassDescriptor
 
-```typescript
+```webidl
 // Method result containing a class descriptor as the value
 interface NcMethodResultClassDescriptor: NcMethodResult {
     attribute NcClassDescriptor    value; // Class descriptor method result value
@@ -974,7 +974,7 @@ interface NcMethodResultClassDescriptor: NcMethodResult {
 
 ### NcMethodResultDatatypeDescriptor
 
-```typescript
+```webidl
 // Method result containing a datatype descriptor as the value
 interface NcMethodResultDatatypeDescriptor: NcMethodResult {
     attribute NcDatatypeDescriptor    value; // Datatype descriptor method result value
@@ -983,7 +983,7 @@ interface NcMethodResultDatatypeDescriptor: NcMethodResult {
 
 ### NcMethodResultId
 
-```typescript
+```webidl
 // Id method result
 interface NcMethodResultId: NcMethodResult {
     attribute NcId    value; // Id result value
