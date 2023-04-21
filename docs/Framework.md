@@ -323,7 +323,7 @@ NcClassId is a sequence of NCInt32 class ID fields.
 A class ID sequence reflects the ancestry of the class being identified.
 
 A class ID field is either a definition index or an authority key.
-A definition index is an ordinal that starts at 1 for every inheritance level of the control model class tree for example [ 1, 1, 3, 5].
+A definition index is an ordinal that starts at 1 for every inheritance level of the control model class tree for example `[ 1, 1, 3, 5]`.
 
 An authority key shall be inserted in the class ID sequence immediately after the definition index of the class from which a proprietary class inherits,
 i.e. at the point where the proprietary class or class subtree connects into the class structure.
@@ -332,9 +332,9 @@ For organizations which own a unique CID or OUI the authority key MUST be the or
 
 For organizations which do not own a unique CID or OUI the authority key MUST be 0.
 e.g.  
-     [ 1, 1, 3, 5, -132131, 1, 4, 5 ]  
+     `[ 1, 1, 3, 5, -132131, 1, 4, 5 ]`  
 or  
-     [ 1, 1, 3, 5, 0, 1, 4, 5 ]
+     `[ 1, 1, 3, 5, 0, 1, 4, 5 ]`
 
 ```webidl
 typedef sequence<NcInt32>    NcClassId; // Sequence of class ID fields.
