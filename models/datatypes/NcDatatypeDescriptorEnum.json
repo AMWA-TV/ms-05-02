@@ -1,0 +1,15 @@
+{
+  "description": "Enum datatype descriptor",
+  "name": "NcDatatypeDescriptorEnum",
+  "type": 2,
+  "fields": [
+    {
+      "description": "One item descriptor per enum option",
+      "name": "items",
+      "typeName": "NcEnumItemDescriptor",
+      "isNullable": false,
+      "isSequence": true
+    }
+  ],
+  "parentType": "NcDatatypeDescriptor"
+}

@@ -1,0 +1,10 @@
+{
+    "description": "long",
+    "name": "NcInt32",
+    "type": 0,
+    "constraints": {
+        "minimum": -2147483648,
+        "maximum": 2147483647,
+        "step": 1
+    }
+}

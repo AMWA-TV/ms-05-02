@@ -1,0 +1,50 @@
+{
+  "description": "Descriptor of a class",
+  "name": "NcClassDescriptor",
+  "type": 2,
+  "fields": [
+    {
+      "description": "Identity of the class",
+      "name": "identity",
+      "typeName": "NcClassId",
+      "isNullable": false,
+      "isSequence": false
+    },
+    {
+      "description": "Name of the class",
+      "name": "name",
+      "typeName": "NcName",
+      "isNullable": false,
+      "isSequence": false
+    },
+    {
+      "description": "Role if the class has fixed role (manager classes)",
+      "name": "fixedRole",
+      "typeName": "NcString",
+      "isNullable": true,
+      "isSequence": false
+    },
+    {
+      "description": "Property descriptors",
+      "name": "properties",
+      "typeName": "NcPropertyDescriptor",
+      "isNullable": false,
+      "isSequence": true
+    },
+    {
+      "description": "Method descriptors",
+      "name": "methods",
+      "typeName": "NcMethodDescriptor",
+      "isNullable": false,
+      "isSequence": true
+    },
+    {
+      "description": "Event descriptors",
+      "name": "events",
+      "typeName": "NcEventDescriptor",
+      "isNullable": false,
+      "isSequence": true
+    }
+  ],
+  "parentType": "NcDescriptor"
+}

@@ -1,0 +1,27 @@
+{
+    "description": "Connection status enum data type",
+    "name": "NcConnectionStatus",
+    "type": 3,
+    "items": [
+        {
+            "description": "This is the value when there is no receiver",
+            "name": "Undefined",
+            "value": 0
+        },
+        {
+            "description": "Connected to a stream",
+            "name": "Connected",
+            "value": 1
+        },
+        {
+            "description": "Not connected to a stream",
+            "name": "Disconnected",
+            "value": 2
+        },
+        {
+            "description": "A connection error was encountered",
+            "name": "ConnectionError",
+            "value": 3
+        }
+    ]
+}

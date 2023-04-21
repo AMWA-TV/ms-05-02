@@ -1,0 +1,29 @@
+{
+  "description": "Property constraints class",
+  "name": "NcPropertyConstraints",
+  "type": 2,
+  "fields": [
+    {
+      "description": "relative path to member (null means current member)",
+      "name": "path",
+      "typeName": "NcRolePath",
+      "isNullable": true,
+      "isSequence": false
+    },
+    {
+      "description": "ID of property being constrained",
+      "name": "propertyId",
+      "typeName": "NcPropertyId",
+      "isNullable": false,
+      "isSequence": false
+    },
+    {
+      "description": "optional default value",
+      "name": "defaultValue",
+      "typeName": null,
+      "isNullable": true,
+      "isSequence": false
+    }
+  ],
+  "parentType": null
+}

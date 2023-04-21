@@ -11,6 +11,6 @@
 - [Workers](Workers.md)
 - [Feature sets](Feature%20sets.md)
 
-### Documentation conventions
+### Framework
 
-- [Coding conventions](Coding%20conventions.md)
+- [Framework](Framework.md)

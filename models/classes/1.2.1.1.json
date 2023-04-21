@@ -1,0 +1,14 @@
+{
+  "description": "NcActuator class descriptor",
+  "identity": [
+    1,
+    2,
+    1,
+    1
+  ],
+  "name": "NcActuator",
+  "fixedRole": null,
+  "properties": [],
+  "methods": [],
+  "events": []
+}

@@ -1,0 +1,29 @@
+{
+  "description": "Number property constraints class",
+  "name": "NcPropertyConstraintsNumber",
+  "type": 2,
+  "fields": [
+    {
+      "description": "optional maximum",
+      "name": "maximum",
+      "typeName": null,
+      "isNullable": true,
+      "isSequence": false
+    },
+    {
+      "description": "optional minimum",
+      "name": "minimum",
+      "typeName": null,
+      "isNullable": true,
+      "isSequence": false
+    },
+    {
+      "description": "optional step",
+      "name": "step",
+      "typeName": null,
+      "isNullable": true,
+      "isSequence": false
+    }
+  ],
+  "parentType": "NcPropertyConstraints"
+}

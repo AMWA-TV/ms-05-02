@@ -1,0 +1,29 @@
+{
+    "description": "Base datatype descriptor",
+    "name": "NcDatatypeDescriptor",
+    "type": 2,
+    "fields": [
+        {
+            "description": "Datatype name",
+            "name": "name",
+            "typeName": "NcName",
+            "isNullable": false,
+            "isSequence": false
+        },
+        {
+            "description": "Type: Primitive, Typedef, Struct, Enum",
+            "name": "type",
+            "typeName": "NcDatatypeType",
+            "isNullable": false,
+            "isSequence": false
+        },
+        {
+            "description": "Optional constraints on top of the underlying data type",
+            "name": "constraints",
+            "typeName": "NcParameterConstraints",
+            "isNullable": true,
+            "isSequence": false
+        }
+    ],
+    "parentType": "NcDescriptor"
+}

@@ -1,0 +1,27 @@
+{
+  "description": "Input and/or output direction",
+  "name": "NcIoDirection",
+  "type": 3,
+  "items": [
+    {
+      "description": "Not defined",
+      "name": "Undefined",
+      "value": 0
+    },
+    {
+      "description": "Input direction",
+      "name": "Input",
+      "value": 1
+    },
+    {
+      "description": "Output direction",
+      "name": "Output",
+      "value": 2
+    },
+    {
+      "description": "Bidirectional",
+      "name": "Bidirectional",
+      "value": 3
+    }
+  ]
+}

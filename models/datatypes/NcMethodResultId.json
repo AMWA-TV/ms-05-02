@@ -1,0 +1,15 @@
+{
+  "description": "Id method result",
+  "name": "NcMethodResultId",
+  "type": 2,
+  "fields": [
+    {
+      "description": "Id result value",
+      "name": "value",
+      "typeName": "NcId",
+      "isNullable": false,
+      "isSequence": false
+    }
+  ],
+  "parentType": "NcMethodResult"
+}

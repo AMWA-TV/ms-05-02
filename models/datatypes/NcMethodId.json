@@ -1,0 +1,7 @@
+{
+    "description": "Method id which contains the level and index",
+    "name": "NcMethodId",
+    "type": 2,
+    "fields": [],
+    "parentType": "NcElementId"
+}
