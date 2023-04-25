@@ -87,6 +87,33 @@ Where the functionality of a device uses control classes and datatypes it MUST c
 
 ## Control classes
 
+Control class models are documented using WebIDL interfaces.
+
+Every control class definition is prefixed by the `[control-class(...)]` extended attribute.
+
+```webidl
+    control-class(classID, staticRole)
+```
+
+where:
+
+- `classID` is the class ID expressed as a string of the form `i(1),i(2),...,i(N)`
+- `staticRole` is the static role all instances of this class must use. This is applicable only to singleton classes like managers and is omitted for other control classes
+
+Every property, method, or event declaration of every control class is prefixed by the `[element(.,..)]` attribute.
+
+```webidl
+    [element(elementId)]
+```
+
+where **elementId** is a delimited string of the form `nTm`, where
+
+- `n` is the definition level of the class in the class tree
+- `T` is the elementId type key (p, m or e).
+- `m` is the ordinal of the definition within the class
+
+The `[event]` extended attribute is added to identify events within class definitions.
+
 ### NcObject
 
 NcObject is the base abstract control class for any control class in the control model. Any other control class MUST be derived directly or indirectly from this class.
@@ -290,6 +317,10 @@ NcClassManager is the class manager control class.
 ```
 
 ## Datatypes
+
+Control class models are documented using WebIDL interfaces.
+
+The `[primitive]` extended attribute identifies primitive datatypes.
 
 ### Primitives
 
