@@ -1,7 +1,7 @@
 # Framework
 
 The framework contains core classes and datatypes.
-Where the functionality of a device uses control classes and datatypes it MUST comply with the model definitions in this specification.
+Where the functionality of a device uses control classes and datatypes listed in this specification it MUST comply with the model definitions published.
 
 <!-- TOC -->
 
@@ -9,13 +9,15 @@ Where the functionality of a device uses control classes and datatypes it MUST c
   - [Control classes](#control-classes)
     - [NcObject](#ncobject)
     - [NcBlock](#ncblock)
-    - [NcWorker](#ncworker)
-    - [NcSignalWorker](#ncsignalworker)
-    - [NcActuator](#ncactuator)
-    - [NcSensor](#ncsensor)
-    - [NcManager](#ncmanager)
-    - [NcDeviceManager](#ncdevicemanager)
-    - [NcClassManager](#ncclassmanager)
+    - [Workers](#workers)
+      - [NcWorker](#ncworker)
+      - [NcSignalWorker](#ncsignalworker)
+      - [NcActuator](#ncactuator)
+      - [NcSensor](#ncsensor)
+    - [Managers](#managers)
+      - [NcManager](#ncmanager)
+      - [NcDeviceManager](#ncdevicemanager)
+      - [NcClassManager](#ncclassmanager)
   - [Datatypes](#datatypes)
     - [Primitives](#primitives)
     - [NcOrganizationId](#ncorganizationid)
@@ -114,9 +116,14 @@ where **elementId** is a delimited string of the form `nTm`, where
 
 The `[event]` extended attribute is added to identify events within class definitions.
 
+Readonly properties are signaled using the `readonly` token.
+
+Nullable types are signaled using the `?` marker at the end of the type name.
+
 ### NcObject
 
-NcObject is the base abstract control class for any control class in the control model. Any other control class MUST be derived directly or indirectly from this class.
+NcObject is the base abstract control class for any control class in the control model. Any other control class MUST be derived directly or indirectly from this class.  
+Further explanations are provided in a dedicated [NcObject](NcObject.md) section.
 
 ```webidl
 // NcObject class descriptor
@@ -174,7 +181,8 @@ NcObject is the base abstract control class for any control class in the control
 
 NcBlock is a control class which groups and organises other control classes as its members.  
 Members are identified by oid and role. An object in a hierarchy of nested blocks can be identified by its role path.  
-A member's role path is a sequence of role values starting with the root block's role and ending with the member's role.
+A member's role path is a sequence of role values starting with the root block's role and ending with the member's role.  
+Further explanations are provided in a dedicated [Blocks](Blocks.md) section.
 
 ```webidl
 // NcBlock class descriptor
@@ -219,7 +227,11 @@ A member's role path is a sequence of role values starting with the root block's
 };
 ```
 
-### NcWorker
+### Workers
+
+Further explanations are provided in a dedicated [Workers](Workers.md) section.
+
+#### NcWorker
 
 NcWorker is the base worker control class for any worker control class in the control model. Vendor specific workers MUST be directly or indirectly derived from this control class.
 
@@ -230,7 +242,7 @@ NcWorker is the base worker control class for any worker control class in the co
 };
 ```
 
-### NcSignalWorker
+#### NcSignalWorker
 
 NcSignalWorker is the base signal worker control class for any worker control class in the control model which manipulates signals. Vendor specific signal workers MUST be directly or indirectly derived from this control class.
 
@@ -242,7 +254,7 @@ NcSignalWorker is the base signal worker control class for any worker control cl
 };
 ```
 
-### NcActuator
+#### NcActuator
 
 NcActuator is the base actuator worker control class for any actuator control class in the control model. Vendor specific actuators SHOULD be directly or indirectly derived from this control class.
 
@@ -252,7 +264,7 @@ NcActuator is the base actuator worker control class for any actuator control cl
 };
 ```
 
-### NcSensor
+#### NcSensor
 
 NcSensor is the base sensor worker control class for any sensor control class in the control model. Vendor specific sensors SHOULD be directly or indirectly derived from this control class.
 
@@ -262,7 +274,11 @@ NcSensor is the base sensor worker control class for any sensor control class in
 };
 ```
 
-### NcManager
+### Managers
+
+Further explanations are provided in a dedicated [Managers](Managers.md) section.
+
+#### NcManager
 
 NcManager is the base abstract manager control class for any manager control class in the control model. Manager control classes are singleton classes. Vendor specific managers MUST be directly or indirectly derived from this control class.
 
@@ -272,7 +288,7 @@ NcManager is the base abstract manager control class for any manager control cla
 };
 ```
 
-### NcDeviceManager
+#### NcDeviceManager
 
 NcDeviceManager is the device manager control class which contains device information and status.
 
@@ -292,7 +308,7 @@ NcDeviceManager is the device manager control class which contains device inform
 };
 ```
 
-### NcClassManager
+#### NcClassManager
 
 NcClassManager is the class manager control class.
 
@@ -490,6 +506,8 @@ interface NcSignalPath {
 ```
 
 ### NcTouchpoint
+
+This model is used by the [NcObject](NcObject.md#touchpoints) class for identity mapping to other contexts.
 
 ```webidl
 // Base touchpoint class
@@ -960,6 +978,9 @@ enum NcMethodStatus {
 
 ### NcMethodResult
 
+All methods MUST return a datatype which inherits from NcMethodResult.  
+When a method call encounters an error the return MUST be [NcMethodResultError](#ncmethodresulterror) or a derived datatype.
+
 ```webidl
 // Base result of the invoked method
 interface NcMethodResult {
@@ -977,6 +998,8 @@ interface NcMethodResultError: NcMethodResult {
 ```
 
 ### NcMethodResultPropertyValue
+
+NcMethodResultPropertyValue can hold any value type depending on the underlying property type.
 
 ```webidl
 // Result when invoking the getter method associated with a property
