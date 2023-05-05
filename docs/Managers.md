@@ -1,6 +1,6 @@
 # Managers
 
-Managers are singleton (can only be instantiated once) classes which collate information which pertains to the entire device. Each manager class applies to a specific functional context.  
+Managers are singleton (can only be instantiated once) classes which collate information that pertains to the entire device. Each manager class applies to a specific functional context.  
 All managers must inherit from [NcManager](Framework.md#ncmanager).
 
 All managers MUST always exist as members in the root block and have a fixed role.
