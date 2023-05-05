@@ -4,7 +4,7 @@ NcObject is the base abstract control class for any control class in the control
 
 The control class model for NcObject is listed in the [Framework](Framework.md#ncobject).
 
-The `role` is a structural identifier which MUST be persisted across restarts. asdasda
+The `role` is a structural identifier which MUST be persisted across restarts.
 
 Object ids (`oid` property) may be constant across system restarts in which case they MUST be signaled using the `constandOid` property by settings its value to `true`.
 
