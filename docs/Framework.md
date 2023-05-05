@@ -99,7 +99,7 @@ Every control class definition is prefixed by the `[control-class(...)]` extende
 
 where:
 
-- `classID` is the class ID expressed as a string of the form `i(1),i(2),...,i(N)`
+- `classID` is the class ID expressed as a string of the form `i(1).i(2).i(N)`
 - `staticRole` is the static role all instances of this class must use. This is applicable only to singleton classes like managers and is omitted for other control classes
 
 Every property, method, or event declaration of every control class is prefixed by the `[element(.,..)]` attribute.
