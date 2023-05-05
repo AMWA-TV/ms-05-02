@@ -4,7 +4,7 @@
     "type": 2,
     "fields": [
         {
-            "description": "ID of changed property",
+            "description": "The id of the property that changed",
             "name": "propertyId",
             "typeName": "NcPropertyId",
             "isNullable": false,

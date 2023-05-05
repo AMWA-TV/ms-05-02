@@ -1,5 +1,5 @@
 {
-    "description": "Unique 24-bit organization ID",
+    "description": "Unique 24-bit organization id",
     "name": "NcOrganizationId",
     "type": 1,
     "parentType": "NcInt32",

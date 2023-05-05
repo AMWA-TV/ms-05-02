@@ -16,7 +16,7 @@ More information on ports and signal paths can be found in [MS-05-01 Signal path
 
 ## Tree discovery
 
-Blocks enable device tree discovery by offering the descriptors of their contained members in the `members` property which holds a collection of type [NcBlockMemberDescriptor](Framework.md#ncblockmemberdescriptor).
+Blocks enable device model discovery by offering the descriptors of their contained members in the `members` property which holds a collection of type [NcBlockMemberDescriptor](Framework.md#ncblockmemberdescriptor).
 
 ## Search methods
 

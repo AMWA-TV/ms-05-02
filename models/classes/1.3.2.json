@@ -57,7 +57,7 @@
           "isSequence": false
         },
         {
-          "description": "if set the descriptor would contain all inherited elements",
+          "description": "If set the descriptor would contain all inherited elements",
           "name": "includeInherited",
           "typeName": "NcBoolean",
           "isNullable": false,
@@ -83,7 +83,7 @@
           "isSequence": false
         },
         {
-          "description": "if set the descriptor would contain all inherited elements",
+          "description": "If set the descriptor would contain all inherited elements",
           "name": "includeInherited",
           "typeName": "NcBoolean",
           "isNullable": false,

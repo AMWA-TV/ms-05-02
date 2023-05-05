@@ -148,7 +148,7 @@
       "isDeprecated": false
     },
     {
-      "description": "this block's ports",
+      "description": "Block's ports",
       "id": {
         "level": 2,
         "index": 11
@@ -162,7 +162,7 @@
       "isDeprecated": false
     },
     {
-      "description": "this block's signal paths",
+      "description": "Block's signal paths",
       "id": {
         "level": 2,
         "index": 12
@@ -178,7 +178,7 @@
   ],
   "methods": [
     {
-      "description": "gets descriptors of members of the block",
+      "description": "Gets descriptors of members of the block",
       "id": {
         "level": 2,
         "index": 1
@@ -197,7 +197,7 @@
       "isDeprecated": false
     },
     {
-      "description": "finds member(s) by path",
+      "description": "Finds member(s) by path",
       "id": {
         "level": 2,
         "index": 2
@@ -206,7 +206,7 @@
       "resultDatatype": "NcMethodResultBlockMemberDescriptors",
       "parameters": [
         {
-          "description": "relative path to search for (MUST not include the role of the block targeted by oid)",
+          "description": "Relative path to search for (MUST not include the role of the block targeted by oid)",
           "name": "path",
           "typeName": "NcRolePath",
           "isNullable": false,
@@ -216,7 +216,7 @@
       "isDeprecated": false
     },
     {
-      "description": "finds members with given role name or fragment",
+      "description": "Finds members with given role name or fragment",
       "id": {
         "level": 2,
         "index": 3
@@ -225,14 +225,14 @@
       "resultDatatype": "NcMethodResultBlockMemberDescriptors",
       "parameters": [
         {
-          "description": "role text to search for",
+          "description": "Role text to search for",
           "name": "role",
           "typeName": "NcString",
           "isNullable": false,
           "isSequence": false
         },
         {
-          "description": "signals if the comparison should be case sensitive",
+          "description": "Signals if the comparison should be case sensitive",
           "name": "caseSensitive",
           "typeName": "NcBoolean",
           "isNullable": false,
@@ -256,7 +256,7 @@
       "isDeprecated": false
     },
     {
-      "description": "finds members with given class id",
+      "description": "Finds members with given class id",
       "id": {
         "level": 2,
         "index": 4
@@ -265,7 +265,7 @@
       "resultDatatype": "NcMethodResultBlockMemberDescriptors",
       "parameters": [
         {
-          "description": "class id to search for",
+          "description": "Class id to search for",
           "name": "id",
           "typeName": "NcClassId",
           "isNullable": false,

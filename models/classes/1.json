@@ -63,7 +63,7 @@
       "isDeprecated": false
     },
     {
-      "description": "role of obj in containing block",
+      "description": "Role of object in the containing block",
       "id": {
         "level": 1,
         "index": 5

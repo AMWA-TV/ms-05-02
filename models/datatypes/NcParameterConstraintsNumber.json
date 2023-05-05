@@ -4,21 +4,21 @@
   "type": 2,
   "fields": [
     {
-      "description": "optional maximum",
+      "description": "Optional maximum",
       "name": "maximum",
       "typeName": null,
       "isNullable": true,
       "isSequence": false
     },
     {
-      "description": "optional minimum",
+      "description": "Optional minimum",
       "name": "minimum",
       "typeName": null,
       "isNullable": true,
       "isSequence": false
     },
     {
-      "description": "optional step",
+      "description": "Optional step",
       "name": "step",
       "typeName": null,
       "isNullable": true,

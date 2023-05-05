@@ -9,7 +9,7 @@
   "fixedRole": "DeviceManager",
   "properties": [
     {
-      "description": "Version of nc this dev uses",
+      "description": "Version of MS-05-02 that this device uses",
       "id": {
         "level": 3,
         "index": 1

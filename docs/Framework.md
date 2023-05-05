@@ -132,7 +132,7 @@ Further explanations are provided in a dedicated [NcObject](NcObject.md) section
     [element("1p2")]    readonly    attribute    NcOid    oid;    // Object identifier
     [element("1p3")]    readonly    attribute    NcBoolean    constantOid;    // TRUE iff OID is hardwired into device
     [element("1p4")]    readonly    attribute    NcOid?    owner;    // OID of containing block. Can only ever be null for the root block
-    [element("1p5")]    readonly    attribute    NcString    role;    // role of obj in containing block
+    [element("1p5")]    readonly    attribute    NcString    role;    // Role of object in the containing block
     [element("1p6")]                attribute    NcString?    userLabel;    // Scribble strip
     [element("1p7")]    readonly    attribute    sequence<NcTouchpoint>?    touchpoints;    // Touchpoints to other contexts
     [element("1p8")]    readonly    attribute    sequence<NcPropertyConstraints>?    runtimePropertyConstraints;    // Runtime property constraints
@@ -197,30 +197,30 @@ Further explanations are provided in a dedicated [Blocks](Blocks.md) section.
     [element("2p8")]    readonly    attribute    NcBoolean    isModified;    // TRUE if block contents modified since last reset
     [element("2p9")]    readonly    attribute    NcBoolean    enabled;    // TRUE if block is functional
     [element("2p10")]    readonly    attribute    sequence<NcBlockMemberDescriptor>    members;    // Descriptors of this block's members
-    [element("2p11")]    readonly    attribute    sequence<NcPort>?    ports;    // this block's ports
-    [element("2p12")]    readonly    attribute    sequence<NcSignalPath>?    signalPaths;    // this block's signal paths
+    [element("2p11")]    readonly    attribute    sequence<NcPort>?    ports;    // Block's ports
+    [element("2p12")]    readonly    attribute    sequence<NcSignalPath>?    signalPaths;    // Block's signal paths
 
-    // gets descriptors of members of the block
+    // Gets descriptors of members of the block
     [element("2m1")]    NcMethodResultBlockMemberDescriptors GetMemberDescriptors(
         NcBoolean recurse    // If recurse is set to true, nested members can be retrieved
     );
 
-    // finds member(s) by path
+    // Finds member(s) by path
     [element("2m2")]    NcMethodResultBlockMemberDescriptors FindMembersByPath(
-        NcRolePath path    // relative path to search for (MUST not include the role of the block targeted by oid)
+        NcRolePath path    // Relative path to search for (MUST not include the role of the block targeted by oid)
     );
 
-    // finds members with given role name or fragment
+    // Finds members with given role name or fragment
     [element("2m3")]    NcMethodResultBlockMemberDescriptors FindMembersByRole(
-        NcString role,    // role text to search for
-        NcBoolean caseSensitive,    // signals if the comparison should be case sensitive
+        NcString role,    // Role text to search for
+        NcBoolean caseSensitive,    // Signals if the comparison should be case sensitive
         NcBoolean matchWholeString,    // TRUE to only return exact matches
         NcBoolean recurse    // TRUE to search nested blocks
     );
 
-    // finds members with given class id
+    // Finds members with given class id
     [element("2m4")]    NcMethodResultBlockMemberDescriptors FindMembersByClassId(
-        NcClassId id,    // class id to search for
+        NcClassId id,    // Class id to search for
         NcBoolean includeDerived,    // If TRUE it will also include derived class descriptors
         NcBoolean recurse    // TRUE to search nested blocks
     );
@@ -295,7 +295,7 @@ NcDeviceManager is the device manager control class which contains device inform
 ```typescript
 // NcDeviceManager class descriptor
 [control-class("1.3.1")] interface NcDeviceManager: NcManager {
-    [element("3p1")]    readonly    attribute    NcVersionCode    ncVersion;    // Version of nc this dev uses
+    [element("3p1")]    readonly    attribute    NcVersionCode    ncVersion;    // Version of MS-05-02 that this device uses
     [element("3p2")]    readonly    attribute    NcManufacturer    manufacturer;    // Manufacturer descriptor
     [element("3p3")]    readonly    attribute    NcProduct    product;    // Product descriptor
     [element("3p4")]    readonly    attribute    NcString    serialNumber;    // Serial number
@@ -321,13 +321,13 @@ NcClassManager is the class manager control class.
     // Get a single class descriptor
     [element("3m1")]    NcMethodResultClassDescriptor GetControlClass(
         NcClassId identity,    // class ID
-        NcBoolean includeInherited    // if set the descriptor would contain all inherited elements
+        NcBoolean includeInherited    // If set the descriptor would contain all inherited elements
     );
 
     // Get a single datatype descriptor
     [element("3m2")]    NcMethodResultDatatypeDescriptor GetDatatype(
         NcName name,    // name of datatype
-        NcBoolean includeInherited    // if set the descriptor would contain all inherited elements
+        NcBoolean includeInherited    // If set the descriptor would contain all inherited elements
     );
 };
 ```
@@ -361,12 +361,12 @@ Unique 24-bit organization ID:
 - IEEE Organizational Unique Identifier (OUI).
 
 ```typescript
-typedef NcInt32    NcOrganizationId; // Unique 24-bit organization ID
+typedef NcInt32    NcOrganizationId; // Unique 24-bit organization id
 ```
 
 ### NcClassId
 
-NcClassId is a sequence of NCInt32 class ID fields.
+NcClassId is a sequence of NcInt32 class ID fields.
 A class ID sequence reflects the ancestry of the class being identified.
 
 A class ID field is either a definition index or an authority key.
@@ -563,7 +563,7 @@ The `resourceType` attribute is inherited from NcTouchpointResource and can only
 ```typescript
 // Touchpoint resource class for NMOS resources
 interface NcTouchpointResourceNmosChannelMapping: NcTouchpointResourceNmos {
-    attribute NcString    ioId; // IS-08 Audio Channel Mapping input or output ID
+    attribute NcString    ioId; // IS-08 Audio Channel Mapping input or output id
 };
 ```
 
@@ -574,7 +574,7 @@ The `resourceType` attribute is inherited from NcTouchpointResource and can only
 ```typescript
 // Payload of property-changed event
 interface NcPropertyChangedEventData {
-    attribute NcPropertyId    propertyId; // ID of changed property
+    attribute NcPropertyId    propertyId; // The id of the property that changed
     attribute NcPropertyChangeType    changeType; // Information regarding the change type
     attribute any?    value; // Property-type specific value
     attribute NcId?    sequenceItemIndex; // Index of sequence item if the property is a sequence
@@ -783,9 +783,9 @@ interface NcParameterConstraints {
 ```typescript
 // Number parameter constraints class
 interface NcParameterConstraintsNumber: NcParameterConstraints {
-    attribute any?    maximum; // optional maximum
-    attribute any?    minimum; // optional minimum
-    attribute any?    step; // optional step
+    attribute any?    maximum; // Optional maximum
+    attribute any?    minimum; // Optional minimum
+    attribute any?    step; // Optional step
 };
 ```
 
@@ -794,8 +794,8 @@ interface NcParameterConstraintsNumber: NcParameterConstraints {
 ```typescript
 // String parameter constraints class
 interface NcParameterConstraintsString: NcParameterConstraints {
-    attribute NcUint32?    maxCharacters; // maximum characters allowed
-    attribute NcRegex?    pattern; // regex pattern
+    attribute NcUint32?    maxCharacters; // Maximum characters allowed
+    attribute NcRegex?    pattern; // Regex pattern
 };
 ```
 
@@ -810,9 +810,9 @@ typedef NcString    NcRegex; // Regex pattern
 ```typescript
 // Property constraints class
 interface NcPropertyConstraints {
-    attribute NcRolePath?    path; // relative path to member (null means current member)
-    attribute NcPropertyId    propertyId; // ID of property being constrained
-    attribute any?    defaultValue; // optional default value
+    attribute NcRolePath?    path; // Relative path to member (null means current member)
+    attribute NcPropertyId    propertyId; // The id of the property being constrained
+    attribute any?    defaultValue; // Optional default value
 };
 ```
 
@@ -830,9 +830,9 @@ interface NcPropertyConstraintsFixed: NcPropertyConstraints {
 ```typescript
 // Number property constraints class
 interface NcPropertyConstraintsNumber: NcPropertyConstraints {
-    attribute any?    maximum; // optional maximum
-    attribute any?    minimum; // optional minimum
-    attribute any?    step; // optional step
+    attribute any?    maximum; // Optional maximum
+    attribute any?    minimum; // Optional minimum
+    attribute any?    step; // Optional step
 };
 ```
 
@@ -841,8 +841,8 @@ interface NcPropertyConstraintsNumber: NcPropertyConstraints {
 ```typescript
 // String property constraints class
 interface NcPropertyConstraintsString: NcPropertyConstraints {
-    attribute NcUint32?    maxCharacters; // maximum characters allowed
-    attribute NcRegex?    pattern; // regex pattern
+    attribute NcUint32?    maxCharacters; // Maximum characters allowed
+    attribute NcRegex?    pattern; // Regex pattern
 };
 ```
 
@@ -877,7 +877,7 @@ The `constraints` attribute on this descriptor represents the optional constrain
 ```typescript
 // Descriptor which is specific to a block
 interface NcBlockDescriptor: NcBlockMemberDescriptor {
-    attribute NcString?    blockSpecId; // ID of BlockSpec this block implements
+    attribute NcString?    blockSpecId; // The id of the blockspec this block implements
 };
 ```
 
