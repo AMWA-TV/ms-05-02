@@ -1,0 +1,15 @@
+{
+    "description": "Descriptor which is specific to a block",
+    "name": "NcBlockDescriptor",
+    "type": 2,
+    "fields": [
+        {
+            "description": "The id of the blockspec this block implements",
+            "name": "blockSpecId",
+            "typeName": "NcString",
+            "isNullable": true,
+            "isSequence": false
+        }
+    ],
+    "parentType": "NcBlockMemberDescriptor"
+}

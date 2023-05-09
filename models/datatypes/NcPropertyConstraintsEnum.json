@@ -1,0 +1,15 @@
+{
+  "description": "Enum property constraints class",
+  "name": "NcPropertyConstraintsEnum",
+  "type": 2,
+  "fields": [
+    {
+      "description": "Allowed values",
+      "name": "possibleValues",
+      "typeName": "NcEnumItemDescriptor",
+      "isNullable": false,
+      "isSequence": true
+    }
+  ],
+  "parentType": "NcPropertyConstraints"
+}

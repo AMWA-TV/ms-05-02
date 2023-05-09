@@ -1,0 +1,7 @@
+{
+  "description": "Regex pattern",
+  "name": "NcRegex",
+  "type": 1,
+  "parentType": "NcString",
+  "isSequence": false
+}

@@ -1,0 +1,15 @@
+{
+    "description": "Touchpoint class for NMOS IS-08 resources",
+    "name": "NcTouchpointNmosChannelMapping",
+    "type": 2,
+    "fields": [
+        {
+            "description": "Context Channel Mapping resource",
+            "name": "resource",
+            "typeName": "NcTouchpointResourceNmosChannelMapping",
+            "isNullable": false,
+            "isSequence": false
+        }
+    ],
+    "parentType": "NcTouchpoint"
+}

@@ -1,0 +1,50 @@
+{
+    "description": "Product descriptor",
+    "name": "NcProduct",
+    "type": 2,
+    "fields": [
+        {
+            "description": "Product name",
+            "name": "name",
+            "typeName": "NcString",
+            "isNullable": false,
+            "isSequence": false
+        },
+        {
+            "description": "Manufacturer's unique key to product - model number, SKU, etc",
+            "name": "key",
+            "typeName": "NcString",
+            "isNullable": false,
+            "isSequence": false
+        },
+        {
+            "description": "Manufacturer's product revision level code",
+            "name": "revisionLevel",
+            "typeName": "NcString",
+            "isNullable": false,
+            "isSequence": false
+        },
+        {
+            "description": "Brand name under which product is sold",
+            "name": "brandName",
+            "typeName": "NcString",
+            "isNullable": true,
+            "isSequence": false
+        },
+        {
+            "description": "Unique UUID of product (not product instance)",
+            "name": "uuid",
+            "typeName": "NcString",
+            "isNullable": true,
+            "isSequence": false
+        },
+        {
+            "description": "Text description of product",
+            "name": "description",
+            "typeName": "NcString",
+            "isNullable": true,
+            "isSequence": false
+        }
+    ],
+    "parentType": null
+}

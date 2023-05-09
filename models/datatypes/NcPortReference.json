@@ -1,0 +1,22 @@
+{
+    "description": "Device-unique port identifier",
+    "name": "NcPortReference",
+    "type": 2,
+    "fields": [
+        {
+            "description": "Role path of owning object",
+            "name": "owner",
+            "typeName": "NcRolePath",
+            "isNullable": false,
+            "isSequence": false
+        },
+        {
+            "description": "Unique role of this port within the owning object",
+            "name": "role",
+            "typeName": "NcString",
+            "isNullable": false,
+            "isSequence": false
+        }
+    ],
+    "parentType": null
+}

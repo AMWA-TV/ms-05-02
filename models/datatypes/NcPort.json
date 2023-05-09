@@ -1,0 +1,29 @@
+{
+    "description": "Port class",
+    "name": "NcPort",
+    "type": 2,
+    "fields": [
+        {
+            "description": "Unique within owning object",
+            "name": "role",
+            "typeName": "NcString",
+            "isNullable": false,
+            "isSequence": false
+        },
+        {
+            "description": "Input (sink) or output (source) port",
+            "name": "direction",
+            "typeName": "NcIoDirection",
+            "isNullable": false,
+            "isSequence": false
+        },
+        {
+            "description": "Role path of this port's sample clock or null if none",
+            "name": "clockPath",
+            "typeName": "NcRolePath",
+            "isNullable": true,
+            "isSequence": false
+        }
+    ],
+    "parentType": null
+}

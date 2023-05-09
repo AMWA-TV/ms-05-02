@@ -1,0 +1,7 @@
+{
+    "description": "Object id",
+    "name": "NcOid",
+    "type": 1,
+    "parentType": "NcUint32",
+    "isSequence": false
+}

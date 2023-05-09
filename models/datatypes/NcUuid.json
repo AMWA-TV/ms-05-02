@@ -1,0 +1,7 @@
+{
+    "description": "UUID",
+    "name": "NcUuid",
+    "type": 1,
+    "parentType": "NcString",
+    "isSequence": false
+}

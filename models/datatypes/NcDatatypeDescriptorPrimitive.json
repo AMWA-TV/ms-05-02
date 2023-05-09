@@ -1,0 +1,7 @@
+{
+    "description": "Primitive datatype descriptor",
+    "name": "NcDatatypeDescriptorPrimitive",
+    "type": 2,
+    "fields": [],
+    "parentType": "NcDatatypeDescriptor"
+}

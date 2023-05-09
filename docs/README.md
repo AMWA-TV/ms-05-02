@@ -1,7 +1,6 @@
 ### General
 
 - [Introduction](Introduction.md)
-- [Concepts](Concepts.md)
 
 ### Models
 
@@ -9,8 +8,8 @@
 - [Blocks](Blocks.md)
 - [Managers](Managers.md)
 - [Workers](Workers.md)
+- [Framework](Framework.md)
+
+### Feature sets
+
 - [Feature sets](Feature%20sets.md)
-
-### Documentation conventions
-
-- [Coding conventions](Coding%20conventions.md)

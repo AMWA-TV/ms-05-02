@@ -1,0 +1,293 @@
+{
+  "description": "NcBlock class descriptor",
+  "identity": [
+    1,
+    1
+  ],
+  "name": "NcBlock",
+  "fixedRole": null,
+  "properties": [
+    {
+      "description": "TRUE if block is the root block",
+      "id": {
+        "level": 2,
+        "index": 1
+      },
+      "name": "isRoot",
+      "typeName": "NcBoolean",
+      "isReadOnly": true,
+      "isPersistent": true,
+      "isNullable": false,
+      "isSequence": false,
+      "isDeprecated": false
+    },
+    {
+      "description": "Global ID of blockSpec that defines this block",
+      "id": {
+        "level": 2,
+        "index": 2
+      },
+      "name": "specId",
+      "typeName": "NcString",
+      "isReadOnly": true,
+      "isPersistent": true,
+      "isNullable": true,
+      "isSequence": false,
+      "isDeprecated": false
+    },
+    {
+      "description": "Version code of blockSpec that defines this block",
+      "id": {
+        "level": 2,
+        "index": 3
+      },
+      "name": "specVersion",
+      "typeName": "NcVersionCode",
+      "isReadOnly": true,
+      "isPersistent": true,
+      "isNullable": true,
+      "isSequence": false,
+      "isDeprecated": false
+    },
+    {
+      "description": "Description of blockSpec that defines this block",
+      "id": {
+        "level": 2,
+        "index": 4
+      },
+      "name": "specDescription",
+      "typeName": "NcString",
+      "isReadOnly": true,
+      "isPersistent": true,
+      "isNullable": true,
+      "isSequence": false,
+      "isDeprecated": false
+    },
+    {
+      "description": "Global ID of parent of blockSpec that defines this block",
+      "id": {
+        "level": 2,
+        "index": 5
+      },
+      "name": "parentSpecId",
+      "typeName": "NcString",
+      "isReadOnly": true,
+      "isPersistent": true,
+      "isNullable": true,
+      "isSequence": false,
+      "isDeprecated": false
+    },
+    {
+      "description": "Version code of parent of blockSpec that defines this block",
+      "id": {
+        "level": 2,
+        "index": 6
+      },
+      "name": "parentSpecVersion",
+      "typeName": "NcVersionCode",
+      "isReadOnly": true,
+      "isPersistent": true,
+      "isNullable": true,
+      "isSequence": false,
+      "isDeprecated": false
+    },
+    {
+      "description": "TRUE if dynamic block",
+      "id": {
+        "level": 2,
+        "index": 7
+      },
+      "name": "isDynamic",
+      "typeName": "NcBoolean",
+      "isReadOnly": true,
+      "isPersistent": true,
+      "isNullable": false,
+      "isSequence": false,
+      "isDeprecated": false
+    },
+    {
+      "description": "TRUE if block contents modified since last reset",
+      "id": {
+        "level": 2,
+        "index": 8
+      },
+      "name": "isModified",
+      "typeName": "NcBoolean",
+      "isReadOnly": true,
+      "isPersistent": false,
+      "isNullable": false,
+      "isSequence": false,
+      "isDeprecated": false
+    },
+    {
+      "description": "TRUE if block is functional",
+      "id": {
+        "level": 2,
+        "index": 9
+      },
+      "name": "enabled",
+      "typeName": "NcBoolean",
+      "isReadOnly": true,
+      "isPersistent": true,
+      "isNullable": false,
+      "isSequence": false,
+      "isDeprecated": false
+    },
+    {
+      "description": "Descriptors of this block's members",
+      "id": {
+        "level": 2,
+        "index": 10
+      },
+      "name": "members",
+      "typeName": "NcBlockMemberDescriptor",
+      "isReadOnly": true,
+      "isPersistent": true,
+      "isNullable": false,
+      "isSequence": true,
+      "isDeprecated": false
+    },
+    {
+      "description": "Block's ports",
+      "id": {
+        "level": 2,
+        "index": 11
+      },
+      "name": "ports",
+      "typeName": "NcPort",
+      "isReadOnly": true,
+      "isPersistent": true,
+      "isNullable": true,
+      "isSequence": true,
+      "isDeprecated": false
+    },
+    {
+      "description": "Block's signal paths",
+      "id": {
+        "level": 2,
+        "index": 12
+      },
+      "name": "signalPaths",
+      "typeName": "NcSignalPath",
+      "isReadOnly": true,
+      "isPersistent": true,
+      "isNullable": true,
+      "isSequence": true,
+      "isDeprecated": false
+    }
+  ],
+  "methods": [
+    {
+      "description": "Gets descriptors of members of the block",
+      "id": {
+        "level": 2,
+        "index": 1
+      },
+      "name": "GetMemberDescriptors",
+      "resultDatatype": "NcMethodResultBlockMemberDescriptors",
+      "parameters": [
+        {
+          "description": "If recurse is set to true, nested members can be retrieved",
+          "name": "recurse",
+          "typeName": "NcBoolean",
+          "isNullable": false,
+          "isSequence": false
+        }
+      ],
+      "isDeprecated": false
+    },
+    {
+      "description": "Finds member(s) by path",
+      "id": {
+        "level": 2,
+        "index": 2
+      },
+      "name": "FindMembersByPath",
+      "resultDatatype": "NcMethodResultBlockMemberDescriptors",
+      "parameters": [
+        {
+          "description": "Relative path to search for (MUST not include the role of the block targeted by oid)",
+          "name": "path",
+          "typeName": "NcRolePath",
+          "isNullable": false,
+          "isSequence": false
+        }
+      ],
+      "isDeprecated": false
+    },
+    {
+      "description": "Finds members with given role name or fragment",
+      "id": {
+        "level": 2,
+        "index": 3
+      },
+      "name": "FindMembersByRole",
+      "resultDatatype": "NcMethodResultBlockMemberDescriptors",
+      "parameters": [
+        {
+          "description": "Role text to search for",
+          "name": "role",
+          "typeName": "NcString",
+          "isNullable": false,
+          "isSequence": false
+        },
+        {
+          "description": "Signals if the comparison should be case sensitive",
+          "name": "caseSensitive",
+          "typeName": "NcBoolean",
+          "isNullable": false,
+          "isSequence": false
+        },
+        {
+          "description": "TRUE to only return exact matches",
+          "name": "matchWholeString",
+          "typeName": "NcBoolean",
+          "isNullable": false,
+          "isSequence": false
+        },
+        {
+          "description": "TRUE to search nested blocks",
+          "name": "recurse",
+          "typeName": "NcBoolean",
+          "isNullable": false,
+          "isSequence": false
+        }
+      ],
+      "isDeprecated": false
+    },
+    {
+      "description": "Finds members with given class id",
+      "id": {
+        "level": 2,
+        "index": 4
+      },
+      "name": "FindMembersByClassId",
+      "resultDatatype": "NcMethodResultBlockMemberDescriptors",
+      "parameters": [
+        {
+          "description": "Class id to search for",
+          "name": "id",
+          "typeName": "NcClassId",
+          "isNullable": false,
+          "isSequence": false
+        },
+        {
+          "description": "If TRUE it will also include derived class descriptors",
+          "name": "includeDerived",
+          "typeName": "NcBoolean",
+          "isNullable": false,
+          "isSequence": false
+        },
+        {
+          "description": "TRUE to search nested blocks",
+          "name": "recurse",
+          "typeName": "NcBoolean",
+          "isNullable": false,
+          "isSequence": false
+        }
+      ],
+      "isDeprecated": false
+    }
+  ],
+  "events": []
+}

@@ -1,0 +1,22 @@
+{
+  "description": "Descriptor of an enum item",
+  "name": "NcEnumItemDescriptor",
+  "type": 2,
+  "fields": [
+    {
+      "description": "Name of option",
+      "name": "name",
+      "typeName": "NcName",
+      "isNullable": false,
+      "isSequence": false
+    },
+    {
+      "description": "Enum item numerical value",
+      "name": "value",
+      "typeName": "NcUint16",
+      "isNullable": false,
+      "isSequence": false
+    }
+  ],
+  "parentType": "NcDescriptor"
+}

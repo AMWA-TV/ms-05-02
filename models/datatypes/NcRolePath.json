@@ -1,0 +1,7 @@
+{
+    "description": "Role path",
+    "name": "NcRolePath",
+    "type": 1,
+    "parentType": "NcString",
+    "isSequence": true
+}

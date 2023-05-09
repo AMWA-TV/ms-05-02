@@ -1,78 +1,27 @@
 # Blocks
 
-`NcBlock` is a container class for other classes or blocks. Due to the generic nature of `NcBlock` it is recommended not to create derived block classes but instead always instantiate `NcBlock`.
+`NcBlock` is a container class for other classes or blocks.
 
-The top most block in the device tree is called a `root block` and must always have an oId of `1` and a role of `root`.
+The top most block in a device control tree is called a `root block` and MUST always have an oId of `1` and a role of `root`.
 
-Blocks have the following properties (inherited properties from `NcObject` are not shown here):
+The control class model for NcBlock is listed in the [Framework](Framework.md#ncblock).
 
-| **Property Name** | **Datatype**                        | **Readonly** | **Description**                                                                    |
-| ----------------- | ----------------------------------- | ------------ | -----------------------------------------------------------------------------------|
-| isRoot            | NcBoolean                           | Yes          | Indicates if the block is the root block                                           |
-| specId            | NcString                            | Yes          | Global ID of blockspec that defines this block                                     |
-| specVersion       | NcVersionCode                       | Yes          | Version code of blockspec that defines this block                                  |
-| specDescription   | NcString                            | Yes          | Description of blockSpec that defines this block                                   |
-| parentSpecId      | NcString                            | Yes          | Global ID of parent of blockspec that defines this block                           |
-| parentSpecVersion | NcVersionCode                       | Yes          | Version code of parent of blockspec that defines this block                        |
-| isDynamic         | NcBoolean                           | Yes          | Indicates if the contents of the block can change (members, ports or signal paths) |
-| isModified        | NcBoolean                           | Yes          | Indicates if the contents of the block have changed since the last restart         |
-| enabled           | NcBoolean                           | Yes          | Indicates if the block is functional                                               |
-| members           | sequence\<NcBlockMemberDescriptor\> | Yes          | Oids of this block's members                                                       |
-| ports             | sequence\<NcPort\>?                 | Yes          | This block's ports                                                                 |
-| signalPaths       | sequence\<NcSignalPath\>?           | Yes          | This block's signal paths                                                          |
+The role path of an element can be constructed from its role and the roles of all its parents. The role path can then be used to target a particular section of the control model tree or to retrieve the object ids again after a restart.
 
-Where the following data types are defined:
+## Ports and signal paths
 
-```typescript
-typedef NcString NcName;
+Blocks MAY also model how nested member classes are interconnected using [ports](Framework.md#ncport) and [signal paths](Framework.md#ncsignalpath).
 
-typedef sequence<NcString>  NcRolePath;
-
-enum NcIoDirection { // Input and/or output
-    "Undefined", // 0 Flow direction is not defined
-    "Input", // 1 Samples flow into owning object
-    "Output", // 2 Samples flow out of owning object
-    "Bidirectional" // 3 For possible future use
-};
-
-interface NcPort {
-    attribute NcString      role;       // Unique within owning object
-    attribute NcIoDirection direction;  // Input (sink) or output (source) port
-    attribute NcRolePath?   clockPath;  // Rolepath of this port's sample clock or null if none
-};
-
-interface NcSignalPath {
-    attribute   NcString        role;   // Unique identifier of this signal path in this block
-    attribute   NcString?       label;  // Optional label
-    attribute   NcPortReference source;
-    attribute   NcPortReference sink;
-};
-```
-
-More information on ports and signal paths can be found in [MS-05-01](https://specs.amwa.tv/ms-05-01) under the `Device Model\Signal paths` section.
-
-Blockspecs are defined in [MS-05-03 NMOS Control Block Specifications](https://specs.amwa.tv/ms-05-03).
+More information on ports and signal paths can be found in [MS-05-01 Signal paths](https://specs.amwa.tv/ms-05-01/branches/v1.0-dev/docs/Device_Model.html#signal-paths).
 
 ## Tree discovery
 
-Blocks enable device tree discovery by offering the descriptors of their contained members in the `members` property.
-
-```typescript
-interface NcBlockMemberDescriptor {
-    attribute NcString role;                                // Role of member in its containing block
-    attribute NcOid oid;                                    // OID of member
-    attribute NcBoolean constantOid                         // TRUE iff member's OID is hardwired into device 
-    attribute NcClassId classId;                            // Class ID
-    attribute NcString? userLabel;                          // User label
-    attribute NcOid owner;                                  // Containing block's OID
-    attribute sequence<NcPropertyConstraints>? constraints  // Constraints on this member or, for a block, its members.
-};
-```
+Blocks enable device model discovery by offering the descriptors of their contained members in the `members` property which holds a collection of type [NcBlockMemberDescriptor](Framework.md#ncblockmemberdescriptor).
 
 ## Search methods
 
 All blocks also offer some search methods for convenience:
 
-* FindMembersByPath (`[element("2m2")]`) - retrieve descriptors for members filtered using a relative role path sequence of roles. The relative path to search for (should not include the role of the block targeted by oid)
+* FindMembersByPath (`[element("2m2")]`) - retrieve descriptors for members filtered using a relative role path sequence of roles. The relative path to search for MUST not include the role of the block targeted by oid
 * FindMembersByRole (`[element("2m3")]`) - retrieve descriptors for members filtered by the role property
-* FindMembersByClassId (`[element("2m4")]`) - retrieve descriptors for members filtered by a given class id sequence
+* FindMembersByClassId (`[element("2m4")]`) - retrieve descriptors for members filtered by a given class id
