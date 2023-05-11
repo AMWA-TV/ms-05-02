@@ -14,6 +14,8 @@ Once an object in the device model is allocated an object id, it MUST not change
 
 Object ids MAY be constant across system restarts in which case they MUST be signaled using the `constandOid` property by settings its value to `true`.
 
+Object user labels (`userLabel` property) MUST be persisted across device reboots.
+
 ## Generic getter and setter
 
 NcObject offers two generic methods for retrieving and setting a property on an object.
