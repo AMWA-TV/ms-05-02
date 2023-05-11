@@ -372,8 +372,11 @@ A class ID sequence reflects the ancestry of the class being identified.
 A class ID field is either a definition index or an authority key.
 A definition index is an ordinal that starts at 1 for every inheritance level of the control model class tree for example `[ 1, 1, 3, 5]`.
 
-An authority key shall be inserted in the class ID sequence immediately after the definition index of the class from which a proprietary class inherits,
-i.e. at the point where the proprietary class or class subtree connects into the class structure.
+The class id for all standard control classes defined by the framework MUST not contain authority keys.
+
+Vendor specific control classes MUST contain at least one authority key.
+
+An authority key is inserted in the class ID sequence immediately after the definition index of the class from which a vendor specific class inherits, i.e. at the point where the derived class or class subtree connects into the class structure.
 
 For organizations which own a unique CID or OUI the authority key MUST be the organization identifier as an integer which MUST be negated.
 
@@ -382,6 +385,8 @@ e.g.
      `[ 1, 1, 3, 5, -132131, 1, 4, 5 ]`  
 or  
      `[ 1, 1, 3, 5, 0, 1, 4, 5 ]`
+
+Further information and examples provided in [MS-05-01: Appendix A](https://specs.amwa.tv/ms-05-01/branches/v1.0-dev/docs/Appendix_A_-_Class_ID_Format.html).
 
 ```typescript
 typedef sequence<NcInt32>    NcClassId; // Sequence of class ID fields.
