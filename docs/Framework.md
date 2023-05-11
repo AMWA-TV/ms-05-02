@@ -1000,7 +1000,7 @@ interface NcMethodResult {
 ```typescript
 // Error result - to be used when the method call encounters an error
 interface NcMethodResultError: NcMethodResult {
-    attribute NcString    errorMessage; // Optional error message
+    attribute NcString    errorMessage; // Error message
 };
 ```
 
