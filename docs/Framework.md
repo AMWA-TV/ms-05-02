@@ -914,7 +914,7 @@ interface NcProduct {
     attribute NcString    key; // Manufacturer's unique key to product - model number, SKU, etc
     attribute NcString    revisionLevel; // Manufacturer's product revision level code
     attribute NcString?    brandName; // Brand name under which product is sold
-    attribute NcString?    uuid; // Unique UUID of product (not product instance)
+    attribute NcUuid?    uuid; // Unique UUID of product (not product instance)
     attribute NcString?    description; // Text description of product
 };
 ```

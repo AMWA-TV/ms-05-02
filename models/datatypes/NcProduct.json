@@ -34,7 +34,7 @@
         {
             "description": "Unique UUID of product (not product instance)",
             "name": "uuid",
-            "typeName": "NcString",
+            "typeName": "NcUuid",
             "isNullable": true,
             "isSequence": false
         },
