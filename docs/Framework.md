@@ -114,6 +114,8 @@ where **elementId** is a delimited string of the form `nTm`, where
 - `T` is the elementId type key (p, m or e).
 - `m` is the ordinal of the definition within the class
 
+Every property, method or event MUST be uniquely identified in a control class using element ids.
+
 The `[event]` extended attribute is added to identify events within class definitions.
 
 Readonly properties are signaled using the `readonly` token.
