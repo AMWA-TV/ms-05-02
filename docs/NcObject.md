@@ -6,7 +6,11 @@ The control class model for NcObject is listed in the [Framework](Framework.md#n
 
 The `role` is a structural identifier which MUST be persisted across restarts.
 
-Object ids (`oid` property) may be constant across system restarts in which case they MUST be signaled using the `constandOid` property by settings its value to `true`.
+Object ids (`oid` property) MUST uniquely identity objects in the device model.
+
+Once an object in the device model is allocated an object id, it MUST not change until the device undergoes a reboot.
+
+Object ids MAY be constant across system restarts in which case they MUST be signaled using the `constandOid` property by settings its value to `true`.
 
 ## Generic getter and setter
 
