@@ -2,7 +2,9 @@
 
 `NcBlock` is a container class for other classes or blocks.
 
-The top most block in a device control tree is called a `root block` and MUST always have an oId of `1` and a role of `root`.
+The top most block in a device control model is called a `root block` and MUST always have an oId of `1` and a role of `root`.
+
+All device implementations MUST have a `root block` in their control model.
 
 The control class model for NcBlock is listed in the [Framework](Framework.md#ncblock).
 
