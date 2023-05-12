@@ -37,3 +37,7 @@ The manager has two properties:
 The descriptor for an individual control class can be retrieved using the `GetControlClass` method (`[element("3m1")]`) and passing the identity (type [NcClassId](Framework.md#ncclassid)) and includeInherited (if all inherited elements should be included - type [NcBoolean](Framework.md#primitives)) as arguments. The method has a response of type [NcMethodResultClassDescriptor](Framework.md#ncmethodresultclassdescriptor).
 
 The descriptor for an individual data type can be retrieved using the `GetDatatype` method (`[element("3m2")]`) and passing the name (type [NcName](Framework.md#ncname)) and includeInherited (if all inherited elements should be included - type [NcBoolean](Framework.md#primitives)) as arguments. The method has a response of type [NcMethodResultDatatypeDescriptor](Framework.md#ncmethodresultdatatypedescriptor).
+
+Where the device model instantiates a control class, its class descriptor MUST be made available through the properties and methods defined in the Class manager. Control class descriptors MUST correctly reflect any properties which have an immutable `readonly` state.
+
+Where the device model makes use of a datatype, its datatype descriptor MUST be made available through the properties and methods defined in the Class manager.
