@@ -23,6 +23,12 @@ NcObject offers two generic methods for retrieving and setting a property on an 
 - The Get method (`[element("1m1")]`) accepts [NcPropertyId](Framework.md#ncpropertyid) as an argument and returns [NcMethodResultPropertyValue](Framework.md#ncmethodresultpropertyvalue).
 - The Set method (`[element("1m2")]`) accepts [NcPropertyId](Framework.md#ncpropertyid) and any value (type depends on the underlying property type) as arguments. The return type is the base [NcMethodResult](Framework.md#ncmethodresult).
 
+The value of any property of a control class MUST be retrievable using the Get method.
+
+The `readonly` token clearly marks properties which MUST be readonly (their values MUST not be changeable by calling the Set method, but instead devices MUST correctly respond with an [NcMethodResultError](https://specs.amwa.tv/ms-05-02/branches/v1.0-dev/docs/Framework.html#ncmethodresulterror) datatype and [Readonly](https://specs.amwa.tv/ms-05-02/branches/v1.0-dev/docs/Framework.html#ncmethodstatus) status when the Set method is invoked).
+
+Lack of the `readonly` token does not guarantee the property can be changed using the Set method due to device internal restrictions or operational context. In such cases the device MUST correctly respond with an [NcMethodResultError](https://specs.amwa.tv/ms-05-02/branches/v1.0-dev/docs/Framework.html#ncmethodresulterror) datatype.
+
 ## PropertyChanged event
 
 NcObject offers a PropertyChanged event `[element("1e1")]` which MUST trigger anytime a property on the object is changed.
