@@ -12,7 +12,7 @@ Object ids (`oid` property) MUST uniquely identity objects in the device model.
 
 Once an object in the device model is allocated an object id, it MUST not change until the device undergoes a reboot.
 
-Object ids MAY be constant across system restarts in which case they MUST be signaled using the `constandOid` property by settings its value to `true`.
+If an object has a constant oid (has the same value across system restarts) it MUST signal this behaviour using the `constandOid` property by settings its value to `true`.
 
 Object user labels (`userLabel` property) MUST be persisted across device reboots.
 
