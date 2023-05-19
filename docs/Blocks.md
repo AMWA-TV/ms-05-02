@@ -4,7 +4,7 @@
 
 The top most block in a device control model is called a `root block` and MUST always have an oId of `1` and a role of `root`.
 
-All device implementations MUST have a `root block` in their control model.
+All device implementations MUST have a `root block` in their device model.
 
 The control class model for NcBlock is listed in the [Framework](Framework.md#ncblock).
 
