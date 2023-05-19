@@ -40,4 +40,4 @@ The descriptor for an individual data type can be retrieved using the `GetDataty
 
 Where the device model instantiates a control class, its class descriptor MUST be made available through the properties and methods defined in the Class manager. Control class descriptors MUST correctly reflect any properties which have an immutable `readonly` state.
 
-Where the device model makes use of a datatype, its datatype descriptor MUST be made available through the properties and methods defined in the Class manager.
+Where the device model makes use of a datatype, its datatype descriptor MUST be made available through the properties and methods defined in the class manager.
