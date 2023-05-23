@@ -2,11 +2,15 @@
 
 `NcBlock` is a container class for other classes or blocks.
 
-The top most block in a device control tree is called a `root block` and MUST always have an oId of `1` and a role of `root`.
+The top most block in a device model is called a `root block` and MUST always have an oId of `1` and a role of `root`.
+
+All device implementations MUST have a `root block` in their device model.
 
 The control class model for NcBlock is listed in the [Framework](Framework.md#ncblock).
 
-The role path of an element can be constructed from its role and the roles of all its parents. The role path can then be used to target a particular section of the control model tree or to retrieve the object ids again after a restart.
+A object's role path is a sequence of role values starting with the root block's role, continuing with any containing blocks and ending with the object's role.
+
+An object in a hierarchy of nested blocks MUST be uniquely identified by its role path which MUST be persisted across device reboots.
 
 ## Ports and signal paths
 

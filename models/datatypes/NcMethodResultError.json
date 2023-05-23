@@ -4,7 +4,7 @@
   "type": 2,
   "fields": [
     {
-      "description": "Optional error message",
+      "description": "Error message",
       "name": "errorMessage",
       "typeName": "NcString",
       "isNullable": false,
