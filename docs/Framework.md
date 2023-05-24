@@ -57,10 +57,8 @@ Where the functionality of a device uses control classes and datatypes listed in
     - [NcParameterConstraintsString](#ncparameterconstraintsstring)
     - [NcRegex](#ncregex)
     - [NcPropertyConstraints](#ncpropertyconstraints)
-    - [NcPropertyConstraintsFixed](#ncpropertyconstraintsfixed)
     - [NcPropertyConstraintsNumber](#ncpropertyconstraintsnumber)
     - [NcPropertyConstraintsString](#ncpropertyconstraintsstring)
-    - [NcPropertyConstraintsEnum](#ncpropertyconstraintsenum)
     - [NcBlockMemberDescriptor](#ncblockmemberdescriptor)
     - [NcUri](#ncuri)
     - [NcManufacturer](#ncmanufacturer)
@@ -727,15 +725,6 @@ interface NcPropertyConstraints {
 };
 ```
 
-### NcPropertyConstraintsFixed
-
-```typescript
-// Fixed property constraints class
-interface NcPropertyConstraintsFixed: NcPropertyConstraints {
-    attribute any?    value; // Signals a fixed value for this property
-};
-```
-
 ### NcPropertyConstraintsNumber
 
 ```typescript
@@ -754,15 +743,6 @@ interface NcPropertyConstraintsNumber: NcPropertyConstraints {
 interface NcPropertyConstraintsString: NcPropertyConstraints {
     attribute NcUint32?    maxCharacters; // Maximum characters allowed
     attribute NcRegex?    pattern; // Regex pattern
-};
-```
-
-### NcPropertyConstraintsEnum
-
-```typescript
-// Enum property constraints class
-interface NcPropertyConstraintsEnum: NcPropertyConstraints {
-    attribute sequence<NcEnumItemDescriptor>    possibleValues; // Allowed values
 };
 ```
 
