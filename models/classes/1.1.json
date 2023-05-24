@@ -8,122 +8,10 @@
   "fixedRole": null,
   "properties": [
     {
-      "description": "TRUE if block is the root block",
-      "id": {
-        "level": 2,
-        "index": 1
-      },
-      "name": "isRoot",
-      "typeName": "NcBoolean",
-      "isReadOnly": true,
-      "isPersistent": true,
-      "isNullable": false,
-      "isSequence": false,
-      "isDeprecated": false
-    },
-    {
-      "description": "Global ID of blockSpec that defines this block",
-      "id": {
-        "level": 2,
-        "index": 2
-      },
-      "name": "specId",
-      "typeName": "NcString",
-      "isReadOnly": true,
-      "isPersistent": true,
-      "isNullable": true,
-      "isSequence": false,
-      "isDeprecated": false
-    },
-    {
-      "description": "Version code of blockSpec that defines this block",
-      "id": {
-        "level": 2,
-        "index": 3
-      },
-      "name": "specVersion",
-      "typeName": "NcVersionCode",
-      "isReadOnly": true,
-      "isPersistent": true,
-      "isNullable": true,
-      "isSequence": false,
-      "isDeprecated": false
-    },
-    {
-      "description": "Description of blockSpec that defines this block",
-      "id": {
-        "level": 2,
-        "index": 4
-      },
-      "name": "specDescription",
-      "typeName": "NcString",
-      "isReadOnly": true,
-      "isPersistent": true,
-      "isNullable": true,
-      "isSequence": false,
-      "isDeprecated": false
-    },
-    {
-      "description": "Global ID of parent of blockSpec that defines this block",
-      "id": {
-        "level": 2,
-        "index": 5
-      },
-      "name": "parentSpecId",
-      "typeName": "NcString",
-      "isReadOnly": true,
-      "isPersistent": true,
-      "isNullable": true,
-      "isSequence": false,
-      "isDeprecated": false
-    },
-    {
-      "description": "Version code of parent of blockSpec that defines this block",
-      "id": {
-        "level": 2,
-        "index": 6
-      },
-      "name": "parentSpecVersion",
-      "typeName": "NcVersionCode",
-      "isReadOnly": true,
-      "isPersistent": true,
-      "isNullable": true,
-      "isSequence": false,
-      "isDeprecated": false
-    },
-    {
-      "description": "TRUE if dynamic block",
-      "id": {
-        "level": 2,
-        "index": 7
-      },
-      "name": "isDynamic",
-      "typeName": "NcBoolean",
-      "isReadOnly": true,
-      "isPersistent": true,
-      "isNullable": false,
-      "isSequence": false,
-      "isDeprecated": false
-    },
-    {
-      "description": "TRUE if block contents modified since last reset",
-      "id": {
-        "level": 2,
-        "index": 8
-      },
-      "name": "isModified",
-      "typeName": "NcBoolean",
-      "isReadOnly": true,
-      "isPersistent": false,
-      "isNullable": false,
-      "isSequence": false,
-      "isDeprecated": false
-    },
-    {
       "description": "TRUE if block is functional",
       "id": {
         "level": 2,
-        "index": 9
+        "index": 1
       },
       "name": "enabled",
       "typeName": "NcBoolean",
@@ -131,13 +19,14 @@
       "isPersistent": true,
       "isNullable": false,
       "isSequence": false,
-      "isDeprecated": false
+      "isDeprecated": false,
+      "isConstant": false
     },
     {
       "description": "Descriptors of this block's members",
       "id": {
         "level": 2,
-        "index": 10
+        "index": 2
       },
       "name": "members",
       "typeName": "NcBlockMemberDescriptor",
@@ -145,35 +34,8 @@
       "isPersistent": true,
       "isNullable": false,
       "isSequence": true,
-      "isDeprecated": false
-    },
-    {
-      "description": "Block's ports",
-      "id": {
-        "level": 2,
-        "index": 11
-      },
-      "name": "ports",
-      "typeName": "NcPort",
-      "isReadOnly": true,
-      "isPersistent": true,
-      "isNullable": true,
-      "isSequence": true,
-      "isDeprecated": false
-    },
-    {
-      "description": "Block's signal paths",
-      "id": {
-        "level": 2,
-        "index": 12
-      },
-      "name": "signalPaths",
-      "typeName": "NcSignalPath",
-      "isReadOnly": true,
-      "isPersistent": true,
-      "isNullable": true,
-      "isSequence": true,
-      "isDeprecated": false
+      "isDeprecated": false,
+      "isConstant": false
     }
   ],
   "methods": [

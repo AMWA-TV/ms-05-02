@@ -11,9 +11,6 @@ Where the functionality of a device uses control classes and datatypes listed in
     - [NcBlock](#ncblock)
     - [Workers](#workers)
       - [NcWorker](#ncworker)
-      - [NcSignalWorker](#ncsignalworker)
-      - [NcActuator](#ncactuator)
-      - [NcSensor](#ncsensor)
     - [Managers](#managers)
       - [NcManager](#ncmanager)
       - [NcDeviceManager](#ncdevicemanager)
@@ -32,10 +29,6 @@ Where the functionality of a device uses control classes and datatypes listed in
     - [NcMethodId](#ncmethodid)
     - [NcEventId](#nceventid)
     - [NcId](#ncid)
-    - [NcIoDirection](#nciodirection)
-    - [NcPortReference](#ncportreference)
-    - [NcPort](#ncport)
-    - [NcSignalPath](#ncsignalpath)
     - [NcTouchpoint](#nctouchpoint)
     - [NcTouchpointResource](#nctouchpointresource)
     - [NcTouchpointNmos](#nctouchpointnmos)
@@ -69,7 +62,6 @@ Where the functionality of a device uses control classes and datatypes listed in
     - [NcPropertyConstraintsString](#ncpropertyconstraintsstring)
     - [NcPropertyConstraintsEnum](#ncpropertyconstraintsenum)
     - [NcBlockMemberDescriptor](#ncblockmemberdescriptor)
-    - [NcBlockDescriptor](#ncblockdescriptor)
     - [NcUri](#ncuri)
     - [NcManufacturer](#ncmanufacturer)
     - [NcProduct](#ncproduct)
@@ -189,18 +181,8 @@ Further explanations are provided in a dedicated [Blocks](Blocks.md) section.
 ```typescript
 // NcBlock class descriptor
 [control-class("1.1")] interface NcBlock: NcObject {
-    [element("2p1")]    readonly    attribute    NcBoolean    isRoot;    // TRUE if block is the root block
-    [element("2p2")]    readonly    attribute    NcString?    specId;    // Global ID of blockSpec that defines this block
-    [element("2p3")]    readonly    attribute    NcVersionCode?    specVersion;    // Version code of blockSpec that defines this block
-    [element("2p4")]    readonly    attribute    NcString?    specDescription;    // Description of blockSpec that defines this block
-    [element("2p5")]    readonly    attribute    NcString?    parentSpecId;    // Global ID of parent of blockSpec that defines this block
-    [element("2p6")]    readonly    attribute    NcVersionCode?    parentSpecVersion;    // Version code of parent of blockSpec that defines this block
-    [element("2p7")]    readonly    attribute    NcBoolean    isDynamic;    // TRUE if dynamic block
-    [element("2p8")]    readonly    attribute    NcBoolean    isModified;    // TRUE if block contents modified since last reset
-    [element("2p9")]    readonly    attribute    NcBoolean    enabled;    // TRUE if block is functional
-    [element("2p10")]    readonly    attribute    sequence<NcBlockMemberDescriptor>    members;    // Descriptors of this block's members
-    [element("2p11")]    readonly    attribute    sequence<NcPort>?    ports;    // Block's ports
-    [element("2p12")]    readonly    attribute    sequence<NcSignalPath>?    signalPaths;    // Block's signal paths
+    [element("2p1")]    readonly    attribute    NcBoolean    enabled;    // TRUE if block is functional
+    [element("2p2")]    readonly    attribute    sequence<NcBlockMemberDescriptor>    members;    // Descriptors of this block's members
 
     // Gets descriptors of members of the block
     [element("2m1")]    NcMethodResultBlockMemberDescriptors GetMemberDescriptors(
@@ -241,38 +223,6 @@ NcWorker is the base worker control class for any worker control class in the co
 // NcWorker class descriptor
 [control-class("1.2")] interface NcWorker: NcObject {
     [element("2p1")]                attribute    NcBoolean    enabled;    // TRUE iff worker is enabled
-};
-```
-
-#### NcSignalWorker
-
-NcSignalWorker is the base signal worker control class for any worker control class in the control model which manipulates signals. Vendor specific signal workers MUST be directly or indirectly derived from this control class.
-
-```typescript
-// NcSignalWorker class descriptor
-[control-class("1.2.1")] interface NcSignalWorker: NcWorker {
-    [element("3p1")]                attribute    sequence<NcPort>    ports;    // The worker's signal ports
-    [element("3p2")]    readonly    attribute    NcTimeInterval?    latency;    // Processing latency of this object (null if not defined)
-};
-```
-
-#### NcActuator
-
-NcActuator is the base actuator worker control class for any actuator control class in the control model. Vendor specific actuators SHOULD be directly or indirectly derived from this control class.
-
-```typescript
-// NcActuator class descriptor
-[control-class("1.2.1.1")] interface NcActuator: NcSignalWorker {
-};
-```
-
-#### NcSensor
-
-NcSensor is the base sensor worker control class for any sensor control class in the control model. Vendor specific sensors SHOULD be directly or indirectly derived from this control class.
-
-```typescript
-// NcSensor class descriptor
-[control-class("1.2.1.2")] interface NcSensor: NcSignalWorker {
 };
 ```
 
@@ -465,51 +415,6 @@ interface NcEventId: NcElementId {
 
 ```typescript
 typedef NcUint32    NcId; // Identity handler
-```
-
-### NcIoDirection
-
-```typescript
-// Input and/or output direction
-enum NcIoDirection {
-    "Undefined",        // 0 Not defined
-    "Input",        // 1 Input direction
-    "Output",        // 2 Output direction
-    "Bidirectional"        // 3 Bidirectional
-};
-```
-
-### NcPortReference
-
-```typescript
-// Device-unique port identifier
-interface NcPortReference {
-    attribute NcRolePath    owner; // Role path of owning object
-    attribute NcString    role; // Unique role of this port within the owning object
-};
-```
-
-### NcPort
-
-```typescript
-// Port class
-interface NcPort {
-    attribute NcString    role; // Unique within owning object
-    attribute NcIoDirection    direction; // Input (sink) or output (source) port
-    attribute NcRolePath?    clockPath; // Role path of this port's sample clock or null if none
-};
-```
-
-### NcSignalPath
-
-```typescript
-// Signal path descriptor
-interface NcSignalPath {
-    attribute NcString    role; // Unique identifier of this signal path in this block
-    attribute NcString?    label; // Optional label
-    attribute NcPortReference    source; // Source reference
-    attribute NcPortReference    sink; // Sink reference
-};
 ```
 
 ### NcTouchpoint
@@ -817,7 +722,6 @@ typedef NcString    NcRegex; // Regex pattern
 ```typescript
 // Property constraints class
 interface NcPropertyConstraints {
-    attribute NcRolePath?    path; // Relative path to member (null means current member)
     attribute NcPropertyId    propertyId; // The id of the property being constrained
     attribute any?    defaultValue; // Optional default value
 };
@@ -865,7 +769,7 @@ interface NcPropertyConstraintsEnum: NcPropertyConstraints {
 ### NcBlockMemberDescriptor
 
 ```typescript
-// Descriptor which is specific to a block member which is not a block
+// Descriptor which is specific to a block member
 interface NcBlockMemberDescriptor: NcDescriptor {
     attribute NcString    role; // Role of member in its containing block
     attribute NcOid    oid; // OID of member
@@ -873,18 +777,6 @@ interface NcBlockMemberDescriptor: NcDescriptor {
     attribute NcClassId    classId; // Class ID
     attribute NcString?    userLabel; // User label
     attribute NcOid    owner; // Containing block's OID
-    attribute sequence<NcPropertyConstraints>?    constraints; // Constraints on this member or, for a block, its members
-};
-```
-
-The `constraints` attribute on this descriptor represents the optional constraints which could be applied to the block or its members through the implementation of a blockspec.
-
-### NcBlockDescriptor
-
-```typescript
-// Descriptor which is specific to a block
-interface NcBlockDescriptor: NcBlockMemberDescriptor {
-    attribute NcString?    blockSpecId; // The id of the blockspec this block implements
 };
 ```
 
