@@ -114,8 +114,8 @@ Nullable types are signaled using the `?` marker at the end of the type name.
 
 ### NcObject
 
-NcObject is the base abstract control class for any control class in the control model. Any other control class MUST be derived directly or indirectly from this class.  
-Further explanations are provided in a dedicated [NcObject](NcObject.md) section.
+NcObject is the base abstract control class for any control class in the control model.  
+Further explanations and normative references are provided in a dedicated [NcObject](NcObject.md) section.
 
 ```typescript
 // NcObject class descriptor
@@ -211,11 +211,11 @@ Further explanations are provided in a dedicated [Blocks](Blocks.md) section.
 
 ### Workers
 
-Further explanations are provided in a dedicated [Workers](Workers.md) section.
+Further explanations and normative references are provided in a dedicated [Workers](Workers.md) section.
 
 #### NcWorker
 
-NcWorker is the base worker control class for any worker control class in the control model. Vendor specific workers MUST be directly or indirectly derived from this control class.
+NcWorker is the base worker control class for any worker control class in the control model.
 
 ```typescript
 // NcWorker class descriptor
@@ -244,7 +244,7 @@ NcDeviceManager is the device manager control class which contains device inform
 
 ```typescript
 // NcDeviceManager class descriptor
-[control-class("1.3.1")] interface NcDeviceManager: NcManager {
+[control-class("1.3.1", "DeviceManager")] interface NcDeviceManager: NcManager {
     [element("3p1")]    readonly    attribute    NcVersionCode    ncVersion;    // Version of MS-05-02 that this device uses
     [element("3p2")]    readonly    attribute    NcManufacturer    manufacturer;    // Manufacturer descriptor
     [element("3p3")]    readonly    attribute    NcProduct    product;    // Product descriptor
@@ -264,7 +264,7 @@ NcClassManager is the class manager control class.
 
 ```typescript
 // NcClassManager class descriptor
-[control-class("1.3.2")] interface NcClassManager: NcManager {
+[control-class("1.3.2", "ClassManager")] interface NcClassManager: NcManager {
     [element("3p1")]    readonly    attribute    sequence<NcClassDescriptor>    controlClasses;    // Descriptions of all control classes in the device (descriptors do not contain inherited elements)
     [element("3p2")]    readonly    attribute    sequence<NcDatatypeDescriptor>    datatypes;    // Descriptions of all data types in the device (descriptors do not contain inherited elements)
 
