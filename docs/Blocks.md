@@ -12,12 +12,6 @@ A object's role path is a sequence of role values starting with the root block's
 
 An object in a hierarchy of nested blocks MUST be uniquely identified by its role path which MUST be persisted across device reboots.
 
-## Ports and signal paths
-
-Blocks MAY also model how nested member classes are interconnected using [ports](Framework.md#ncport) and [signal paths](Framework.md#ncsignalpath).
-
-More information on ports and signal paths can be found in [MS-05-01 Signal paths](https://specs.amwa.tv/ms-05-01/branches/v1.0-dev/docs/Device_Model.html#signal-paths).
-
 ## Tree discovery
 
 Blocks enable device model discovery by offering the descriptors of their contained members in the `members` property which holds a collection of type [NcBlockMemberDescriptor](Framework.md#ncblockmemberdescriptor).

@@ -1,5 +1,5 @@
 {
-    "description": "Descriptor which is specific to a block member which is not a block",
+    "description": "Descriptor which is specific to a block member",
     "name": "NcBlockMemberDescriptor",
     "type": 2,
     "fields": [
@@ -44,13 +44,6 @@
             "typeName": "NcOid",
             "isNullable": false,
             "isSequence": false
-        },
-        {
-            "description": "Constraints on this member or, for a block, its members",
-            "name": "constraints",
-            "typeName": "NcPropertyConstraints",
-            "isNullable": true,
-            "isSequence": true
         }
     ],
     "parentType": "NcDescriptor"
