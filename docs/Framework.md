@@ -115,7 +115,7 @@ Nullable types are signaled using the `?` marker at the end of the type name.
 ### NcObject
 
 NcObject is the abstract base class for all classes in the control model.  
-Further explanations and normative references are provided in a dedicated [NcObject](NcObject.md) section.
+Further explanations and normative references are provided in the [NcObject](NcObject.md) section.
 
 ```typescript
 // NcObject class descriptor
