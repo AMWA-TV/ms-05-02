@@ -12,14 +12,14 @@ A object's role path is a sequence of role values starting with the root block's
 
 An object in a hierarchy of nested blocks MUST be uniquely identified by its role path which MUST be persisted across device reboots.
 
-## Tree discovery
+## Device model discovery
 
-Blocks enable device model discovery by offering the descriptors of their contained members in the `members` property which holds a collection of type [NcBlockMemberDescriptor](Framework.md#ncblockmemberdescriptor).
+[Blocks](Framework.md#ncblock) enable device model discovery by offering the descriptors of their contained members in the `members` property which holds a collection of type [NcBlockMemberDescriptor](Framework.md#ncblockmemberdescriptor).
 
 ## Search methods
 
-All blocks also offer some search methods for convenience:
+[Blocks](Framework.md#ncblock) are searchable by calling any of the following methods:
 
-* FindMembersByPath (`[element("2m2")]`) - retrieve descriptors for members filtered using a relative role path sequence of roles. The relative path to search for MUST not include the role of the block targeted by oid
-* FindMembersByRole (`[element("2m3")]`) - retrieve descriptors for members filtered by the role property
-* FindMembersByClassId (`[element("2m4")]`) - retrieve descriptors for members filtered by a given class id
+* FindMembersByPath - retrieve descriptors for members filtered using a relative role path sequence of roles. The relative path to search for MUST not include the role of the block targeted by oid
+* FindMembersByRole - retrieve descriptors for members filtered by the role property
+* FindMembersByClassId - retrieve descriptors for members filtered by a given class id
