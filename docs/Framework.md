@@ -211,7 +211,7 @@ Further explanations are provided in a dedicated [Blocks](Blocks.md) section.
 
 ### Workers
 
-Further explanations and normative references are provided in a dedicated [Workers](Workers.md) section.
+Further explanations and normative references are provided in the [Workers](Workers.md) section.
 
 #### NcWorker
 
