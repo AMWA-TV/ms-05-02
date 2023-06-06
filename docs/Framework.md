@@ -215,7 +215,7 @@ Further explanations and normative references are provided in the [Workers](Work
 
 #### NcWorker
 
-NcWorker is the base worker control class for any worker control class in the control model.
+NcWorker is the base class for any worker control class in the control model.
 
 ```typescript
 // NcWorker class descriptor
