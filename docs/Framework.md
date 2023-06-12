@@ -230,7 +230,7 @@ Further explanations are provided in a dedicated [Managers](Managers.md) section
 
 #### NcManager
 
-NcManager is the base abstract manager control class for any manager control class in the control model. Manager control classes are singleton classes. Vendor-specific managers MUST be directly or indirectly derived from this control class.
+NcManager is the base abstract manager control class for any manager control class in the control model. Manager control classes are singleton classes. Non-standard managers created to expose vendor specific functionality MUST be directly or indirectly derived from this control class.
 
 ```typescript
 // NcManager class descriptor
@@ -324,9 +324,9 @@ A definition index is an ordinal that starts at 1 for every inheritance level of
 
 The class id for all standard control classes defined by the framework MUST not contain authority keys.
 
-Vendor-specific control classes MUST contain at least one authority key.
+Non-standard control classes MUST contain at least one authority key.
 
-An authority key is inserted in the class ID sequence immediately after the definition index of the class from which a vendor-specific class inherits, i.e. at the point where the derived class or class subtree connects into the class structure.
+An authority key is inserted in the class ID sequence immediately after the definition index of the class from which a non-standard class inherits, i.e. at the point where the derived class or class subtree connects into the class structure.
 
 For organizations which own a unique CID or OUI the authority key MUST be the organization identifier as an integer which MUST be negated.
 
