@@ -108,7 +108,7 @@ Readonly properties are signaled using the `readonly` token.
 
 Nullable types are signaled using the `?` marker at the end of the type name.
 
-### 1 NcObject
+### NcObject
 
 NcObject is the abstract base class for all classes in the control model.  
 Further explanations and normative references are provided in the [NcObject](NcObject.md) section.
@@ -165,7 +165,7 @@ Further explanations and normative references are provided in the [NcObject](NcO
 };
 ```
 
-### 1.1 NcBlock
+### NcBlock
 
 NcBlock is a control class which groups and organises other control classes as its members.  
 Members are identified by oid and role. An object in a hierarchy of nested blocks can be identified by its role path.  
@@ -205,7 +205,7 @@ Further explanations are provided in a dedicated [Blocks](Blocks.md) section.
 };
 ```
 
-### 1.2 NcWorker
+### NcWorker
 
 Further explanations and normative references are provided in the [Workers](Workers.md) section.
 
@@ -218,7 +218,7 @@ NcWorker is the base class for any worker control class in the control model.
 };
 ```
 
-### 1.3 NcManager
+### NcManager
 Further explanations are provided in a dedicated [Managers](Managers.md) section.
 
 NcManager is the base abstract manager control class for any manager control class in the control model. Manager control classes are singleton classes. Non-standard managers created to model vendor specific functionality MUST be directly or indirectly derived from this control class.
@@ -229,7 +229,7 @@ NcManager is the base abstract manager control class for any manager control cla
 };
 ```
 
-#### 1.3.1 NcDeviceManager
+#### NcDeviceManager
 
 NcDeviceManager is the device manager control class which contains device information and status.
 
@@ -249,7 +249,7 @@ NcDeviceManager is the device manager control class which contains device inform
 };
 ```
 
-#### 1.3.2 NcClassManager
+#### NcClassManager
 
 NcClassManager is the class manager control class.
 
