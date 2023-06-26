@@ -5,13 +5,12 @@ Where the functionality of a device uses control classes and datatypes listed in
 
 <!-- TOC -->
 [Control classes](#control-classes)
-- [NcObject](#ncobject)
-  - [NcBlock](#ncblock)
-  - [NcManager](#ncmanager)
-    - [NcClassManager](#ncclassmanager)
-    - [NcDeviceManager](#ncdevicemanager)
-  - [NcWorker](#ncworker)
-
+- [1 NcObject](#ncobject)
+  - [1.1 NcBlock](#ncblock)
+  - [1.2 NcWorker](#ncworker)
+  - [1.3 NcManager](#ncmanager)
+    - [1.3.1 NcDeviceManager](#ncdevicemanager)
+    - [1.3.2 NcClassManager](#ncclassmanager)
     
 [Datatypes](#datatypes)
 - [Primitives](#primitives)
@@ -109,7 +108,7 @@ Readonly properties are signaled using the `readonly` token.
 
 Nullable types are signaled using the `?` marker at the end of the type name.
 
-### NcObject
+### 1 NcObject
 
 NcObject is the abstract base class for all classes in the control model.  
 Further explanations and normative references are provided in the [NcObject](NcObject.md) section.
@@ -166,7 +165,7 @@ Further explanations and normative references are provided in the [NcObject](NcO
 };
 ```
 
-### NcBlock
+### 1.1 NcBlock
 
 NcBlock is a control class which groups and organises other control classes as its members.  
 Members are identified by oid and role. An object in a hierarchy of nested blocks can be identified by its role path.  
@@ -206,7 +205,20 @@ Further explanations are provided in a dedicated [Blocks](Blocks.md) section.
 };
 ```
 
-### NcManager
+### 1.2 NcWorker
+
+Further explanations and normative references are provided in the [Workers](Workers.md) section.
+
+NcWorker is the base class for any worker control class in the control model.
+
+```typescript
+// NcWorker class descriptor
+[control-class("1.2")] interface NcWorker: NcObject {
+    [element("2p1")]                attribute    NcBoolean    enabled;    // TRUE iff worker is enabled
+};
+```
+
+### 1.3 NcManager
 Further explanations are provided in a dedicated [Managers](Managers.md) section.
 
 NcManager is the base abstract manager control class for any manager control class in the control model. Manager control classes are singleton classes. Non-standard managers created to model vendor specific functionality MUST be directly or indirectly derived from this control class.
@@ -217,7 +229,27 @@ NcManager is the base abstract manager control class for any manager control cla
 };
 ```
 
-#### NcClassManager
+#### 1.3.1 NcDeviceManager
+
+NcDeviceManager is the device manager control class which contains device information and status.
+
+```typescript
+// NcDeviceManager class descriptor
+[control-class("1.3.1", "DeviceManager")] interface NcDeviceManager: NcManager {
+    [element("3p1")]    readonly    attribute    NcVersionCode    ncVersion;    // Version of MS-05-02 that this device uses
+    [element("3p2")]    readonly    attribute    NcManufacturer    manufacturer;    // Manufacturer descriptor
+    [element("3p3")]    readonly    attribute    NcProduct    product;    // Product descriptor
+    [element("3p4")]    readonly    attribute    NcString    serialNumber;    // Serial number
+    [element("3p5")]                attribute    NcString?    userInventoryCode;    // Asset tracking identifier (user specified)
+    [element("3p6")]                attribute    NcString?    deviceName;    // Name of this device in the application. Instance name, not product name.
+    [element("3p7")]                attribute    NcString?    deviceRole;    // Role of this device in the application.
+    [element("3p8")]    readonly    attribute    NcDeviceOperationalState    operationalState;    // Device operational state
+    [element("3p9")]    readonly    attribute    NcResetCause    resetCause;    // Reason for most recent reset
+    [element("3p10")]    readonly    attribute    NcString?    message;    // Arbitrary message from dev to controller
+};
+```
+
+#### 1.3.2 NcClassManager
 
 NcClassManager is the class manager control class.
 
@@ -238,39 +270,6 @@ NcClassManager is the class manager control class.
         NcName name,    // name of datatype
         NcBoolean includeInherited    // If set the descriptor would contain all inherited elements
     );
-};
-```
-
-#### NcDeviceManager
-
-NcDeviceManager is the device manager control class which contains device information and status.
-
-```typescript
-// NcDeviceManager class descriptor
-[control-class("1.3.1", "DeviceManager")] interface NcDeviceManager: NcManager {
-    [element("3p1")]    readonly    attribute    NcVersionCode    ncVersion;    // Version of MS-05-02 that this device uses
-    [element("3p2")]    readonly    attribute    NcManufacturer    manufacturer;    // Manufacturer descriptor
-    [element("3p3")]    readonly    attribute    NcProduct    product;    // Product descriptor
-    [element("3p4")]    readonly    attribute    NcString    serialNumber;    // Serial number
-    [element("3p5")]                attribute    NcString?    userInventoryCode;    // Asset tracking identifier (user specified)
-    [element("3p6")]                attribute    NcString?    deviceName;    // Name of this device in the application. Instance name, not product name.
-    [element("3p7")]                attribute    NcString?    deviceRole;    // Role of this device in the application.
-    [element("3p8")]    readonly    attribute    NcDeviceOperationalState    operationalState;    // Device operational state
-    [element("3p9")]    readonly    attribute    NcResetCause    resetCause;    // Reason for most recent reset
-    [element("3p10")]    readonly    attribute    NcString?    message;    // Arbitrary message from dev to controller
-};
-```
-
-### NcWorker
-
-Further explanations and normative references are provided in the [Workers](Workers.md) section.
-
-NcWorker is the base class for any worker control class in the control model.
-
-```typescript
-// NcWorker class descriptor
-[control-class("1.2")] interface NcWorker: NcObject {
-    [element("2p1")]                attribute    NcBoolean    enabled;    // TRUE iff worker is enabled
 };
 ```
 
@@ -864,6 +863,8 @@ interface NcTouchpointNmosChannelMapping: NcTouchpoint {
 };
 ```
 
+The `contextNamespace` attribute is inherited from NcTouchpoint and can only be `x-nmos/channelmapping`
+
 ### NcTouchpointResource
 
 ```typescript
@@ -872,8 +873,6 @@ interface NcTouchpointResource {
     attribute NcString    resourceType; // The type of the resource
 };
 ```
-
-The `contextNamespace` attribute is inherited from NcTouchpoint and can only be `x-nmos/channelmapping`
 
 #### NcTouchpointResourceNmos
 
@@ -896,7 +895,6 @@ interface NcTouchpointResourceNmosChannelMapping: NcTouchpointResourceNmos {
 ```
 
 The `resourceType` attribute is inherited from NcTouchpointResource and can only be: `input, output`.
-
 
 ### NcUri
 
