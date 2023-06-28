@@ -4,77 +4,73 @@ The framework contains core classes and datatypes.
 Where the functionality of a device uses control classes and datatypes listed in this specification it MUST comply with the model definitions published.
 
 <!-- TOC -->
-
-- [Framework](#framework)
-  - [Control classes](#control-classes)
-    - [NcObject](#ncobject)
-    - [NcBlock](#ncblock)
-    - [Workers](#workers)
-      - [NcWorker](#ncworker)
-    - [Managers](#managers)
-      - [NcManager](#ncmanager)
-      - [NcDeviceManager](#ncdevicemanager)
-      - [NcClassManager](#ncclassmanager)
-  - [Datatypes](#datatypes)
-    - [Primitives](#primitives)
-    - [NcOrganizationId](#ncorganizationid)
-    - [NcClassId](#ncclassid)
-    - [NcVersionCode](#ncversioncode)
-    - [NcName](#ncname)
-    - [NcUuid](#ncuuid)
-    - [NcOid](#ncoid)
-    - [NcRolePath](#ncrolepath)
-    - [NcElementId](#ncelementid)
-    - [NcPropertyId](#ncpropertyid)
-    - [NcMethodId](#ncmethodid)
-    - [NcEventId](#nceventid)
-    - [NcId](#ncid)
-    - [NcTouchpoint](#nctouchpoint)
-    - [NcTouchpointResource](#nctouchpointresource)
-    - [NcTouchpointNmos](#nctouchpointnmos)
-    - [NcTouchpointNmosChannelMapping](#nctouchpointnmoschannelmapping)
-    - [NcTouchpointResourceNmos](#nctouchpointresourcenmos)
-    - [NcTouchpointResourceNmosChannelMapping](#nctouchpointresourcenmoschannelmapping)
-    - [NcPropertyChangedEventData](#ncpropertychangedeventdata)
-    - [NcPropertyChangeType](#ncpropertychangetype)
-    - [NcTimeInterval](#nctimeinterval)
-    - [NcDatatypeType](#ncdatatypetype)
-    - [NcDescriptor](#ncdescriptor)
-    - [NcDatatypeDescriptor](#ncdatatypedescriptor)
-    - [NcDatatypeDescriptorPrimitive](#ncdatatypedescriptorprimitive)
-    - [NcDatatypeDescriptorTypeDef](#ncdatatypedescriptortypedef)
-    - [NcDatatypeDescriptorStruct](#ncdatatypedescriptorstruct)
+[Control classes](#control-classes)
+- [1 NcObject](#ncobject)
+  - [1.1 NcBlock](#ncblock)
+  - [1.2 NcWorker](#ncworker)
+  - [1.3 NcManager](#ncmanager)
+    - [1.3.1 NcDeviceManager](#ncdevicemanager)
+    - [1.3.2 NcClassManager](#ncclassmanager)
+    
+[Datatypes](#datatypes)
+- [Primitives](#primitives)
+- [NcClassId](#ncclassid)
+- [NcDatatypeType](#ncdatatypetype)
+- [NcDescriptor](#ncdescriptor)
+  - [NcBlockMemberDescriptor](#ncblockmemberdescriptor)
+  - [NcClassDescriptor](#ncclassdescriptor)
+  - [NcDatatypeDescriptor](#ncdatatypedescriptor)
     - [NcDatatypeDescriptorEnum](#ncdatatypedescriptorenum)
-    - [NcPropertyDescriptor](#ncpropertydescriptor)
-    - [NcFieldDescriptor](#ncfielddescriptor)
-    - [NcEnumItemDescriptor](#ncenumitemdescriptor)
-    - [NcParameterDescriptor](#ncparameterdescriptor)
-    - [NcMethodDescriptor](#ncmethoddescriptor)
-    - [NcEventDescriptor](#nceventdescriptor)
-    - [NcClassDescriptor](#ncclassdescriptor)
-    - [NcParameterConstraints](#ncparameterconstraints)
-    - [NcParameterConstraintsNumber](#ncparameterconstraintsnumber)
-    - [NcParameterConstraintsString](#ncparameterconstraintsstring)
-    - [NcRegex](#ncregex)
-    - [NcPropertyConstraints](#ncpropertyconstraints)
-    - [NcPropertyConstraintsNumber](#ncpropertyconstraintsnumber)
-    - [NcPropertyConstraintsString](#ncpropertyconstraintsstring)
-    - [NcBlockMemberDescriptor](#ncblockmemberdescriptor)
-    - [NcUri](#ncuri)
-    - [NcManufacturer](#ncmanufacturer)
-    - [NcProduct](#ncproduct)
-    - [NcResetCause](#ncresetcause)
-    - [NcDeviceGenericState](#ncdevicegenericstate)
-    - [NcDeviceOperationalState](#ncdeviceoperationalstate)
-    - [NcMethodStatus](#ncmethodstatus)
-    - [NcMethodResult](#ncmethodresult)
-    - [NcMethodResultError](#ncmethodresulterror)
-    - [NcMethodResultPropertyValue](#ncmethodresultpropertyvalue)
-    - [NcMethodResultBlockMemberDescriptors](#ncmethodresultblockmemberdescriptors)
-    - [NcMethodResultClassDescriptor](#ncmethodresultclassdescriptor)
-    - [NcMethodResultDatatypeDescriptor](#ncmethodresultdatatypedescriptor)
-    - [NcMethodResultId](#ncmethodresultid)
-
+    - [NcDatatypeDescriptorPrimitive](#ncdatatypedescriptorprimitive)
+    - [NcDatatypeDescriptorStruct](#ncdatatypedescriptorstruct)
+    - [NcDatatypeDescriptorTypeDef](#ncdatatypedescriptortypedef)
+  - [NcEnumItemDescriptor](#ncenumitemdescriptor)
+  - [NcEventDescriptor](#nceventdescriptor)
+  - [NcFieldDescriptor](#ncfielddescriptor)
+  - [NcMethodDescriptor](#ncmethoddescriptor)
+  - [NcParameterDescriptor](#ncparameterdescriptor)
+  - [NcPropertyDescriptor](#ncpropertydescriptor)
+- [NcDeviceGenericState](#ncdevicegenericstate)
+- [NcDeviceOperationalState](#ncdeviceoperationalstate)
+- [NcElementId](#ncelementid)
+  - [NcEventId](#nceventid)
+  - [NcMethodId](#ncmethodid)
+  - [NcPropertyId](#ncpropertyid)
+- [NcId](#ncid)
+- [NcManufacturer](#ncmanufacturer)
+- [NcMethodResult](#ncmethodresult)
+  - [NcMethodResultBlockMemberDescriptors](#ncmethodresultblockmemberdescriptors)
+  - [NcMethodResultClassDescriptor](#ncmethodresultclassdescriptor)
+  - [NcMethodResultDatatypeDescriptor](#ncmethodresultdatatypedescriptor)
+  - [NcMethodResultError](#ncmethodresulterror)
+  - [NcMethodResultId](#ncmethodresultid)
+  - [NcMethodResultPropertyValue](#ncmethodresultpropertyvalue)
+- [NcMethodStatus](#ncmethodstatus)
+- [NcName](#ncname)
+- [NcOid](#ncoid)
+- [NcOrganizationId](#ncorganizationid)
+- [NcParameterConstraints](#ncparameterconstraints)
+  - [NcParameterConstraintsNumber](#ncparameterconstraintsnumber)
+  - [NcParameterConstraintsString](#ncparameterconstraintsstring)
+- [NcProduct](#ncproduct)
+- [NcPropertyChangedEventData](#ncpropertychangedeventdata)
+- [NcPropertyChangeType](#ncpropertychangetype)
+- [NcPropertyConstraints](#ncpropertyconstraints)
+  - [NcPropertyConstraintsNumber](#ncpropertyconstraintsnumber)
+  - [NcPropertyConstraintsString](#ncpropertyconstraintsstring)
+- [NcRegex](#ncregex)
+- [NcResetCause](#ncresetcause)
+- [NcRolePath](#ncrolepath)
+- [NcTimeInterval](#nctimeinterval)
+- [NcTouchpoint](#nctouchpoint)
+  - [NcTouchpointNmos](#nctouchpointnmos)
+  - [NcTouchpointNmosChannelMapping](#nctouchpointnmoschannelmapping)
+- [NcTouchpointResource](#nctouchpointresource)
+  - [NcTouchpointResourceNmos](#nctouchpointresourcenmos)
+  - [NcTouchpointResourceNmosChannelMapping](#nctouchpointresourcenmoschannelmapping)
+- [NcUri](#ncuri)
+- [NcUuid](#ncuuid)
+- [NcVersionCode](#ncversioncode)
 <!-- /TOC -->
 
 ## Control classes
@@ -209,11 +205,9 @@ Further explanations are provided in a dedicated [Blocks](Blocks.md) section.
 };
 ```
 
-### Workers
+### NcWorker
 
 Further explanations and normative references are provided in the [Workers](Workers.md) section.
-
-#### NcWorker
 
 NcWorker is the base class for any worker control class in the control model.
 
@@ -224,11 +218,9 @@ NcWorker is the base class for any worker control class in the control model.
 };
 ```
 
-### Managers
+### NcManager
 
 Further explanations are provided in a dedicated [Managers](Managers.md) section.
-
-#### NcManager
 
 NcManager is the base abstract manager control class for any manager control class in the control model. Manager control classes are singleton classes. Non-standard managers created to model vendor specific functionality MUST be directly or indirectly derived from this control class.
 
@@ -303,17 +295,6 @@ The `[primitive]` extended attribute identifies primitive datatypes.
     [primitive] typedef bytestring          NcString; // UTF-8
 ```
 
-### NcOrganizationId
-
-Unique 24-bit organization ID:
-
-- IEEE public Company ID (public CID) or
-- IEEE Organizational Unique Identifier (OUI).
-
-```typescript
-typedef NcInt32    NcOrganizationId; // Unique 24-bit organization id
-```
-
 ### NcClassId
 
 NcClassId is a sequence of NcInt32 class ID fields.
@@ -342,173 +323,6 @@ Further information and examples provided in [MS-05-01: Appendix A](https://spec
 typedef sequence<NcInt32>    NcClassId; // Sequence of class ID fields.
 ```
 
-### NcVersionCode
-
-```typescript
-typedef NcString    NcVersionCode; // Version code in semantic versioning format
-```
-
-### NcName
-
-```typescript
-typedef NcString    NcName; // Programmatically significant name, alphanumerics + underscore, no spaces
-```
-
-### NcUuid
-
-```typescript
-typedef NcString    NcUuid; // UUID
-```
-
-### NcOid
-
-```typescript
-typedef NcUint32    NcOid; // Object id
-```
-
-### NcRolePath
-
-Ordered list of roles ending with the role of object in question.  
-The object in question may be a block or another object.
-
-```typescript
-typedef sequence<NcString>    NcRolePath; // Role path
-```
-
-### NcElementId
-
-```typescript
-// Class element id which contains the level and index
-interface NcElementId {
-    attribute NcUint16    level; // Level of the element
-    attribute NcUint16    index; // Index of the element
-};
-```
-
-### NcPropertyId
-
-```typescript
-// Property id which contains the level and index
-interface NcPropertyId: NcElementId {
-};
-```
-
-### NcMethodId
-
-```typescript
-// Method id which contains the level and index
-interface NcMethodId: NcElementId {
-};
-```
-
-### NcEventId
-
-```typescript
-// Event id which contains the level and index
-interface NcEventId: NcElementId {
-};
-```
-
-### NcId
-
-```typescript
-typedef NcUint32    NcId; // Identity handler
-```
-
-### NcTouchpoint
-
-This model is used by the [NcObject](NcObject.md#touchpoints) class for identity mapping to other contexts.
-
-```typescript
-// Base touchpoint class
-interface NcTouchpoint {
-    attribute NcString    contextNamespace; // Context namespace
-};
-```
-
-### NcTouchpointResource
-
-```typescript
-// Touchpoint resource class
-interface NcTouchpointResource {
-    attribute NcString    resourceType; // The type of the resource
-};
-```
-
-### NcTouchpointNmos
-
-```typescript
-// Touchpoint class for NMOS resources
-interface NcTouchpointNmos: NcTouchpoint {
-    attribute NcTouchpointResourceNmos    resource; // Context NMOS resource
-};
-```
-
-The `contextNamespace` attribute is inherited from NcTouchpoint and can only be `x-nmos`.
-
-### NcTouchpointNmosChannelMapping
-
-```typescript
-// Touchpoint class for NMOS IS-08 resources
-interface NcTouchpointNmosChannelMapping: NcTouchpoint {
-    attribute NcTouchpointResourceNmosChannelMapping    resource; // Context Channel Mapping resource
-};
-```
-
-The `contextNamespace` attribute is inherited from NcTouchpoint and can only be `x-nmos/channelmapping`
-
-### NcTouchpointResourceNmos
-
-```typescript
-// Touchpoint resource class for NMOS resources
-interface NcTouchpointResourceNmos: NcTouchpointResource {
-    attribute NcUuid    id; // NMOS resource UUID
-};
-```
-
-The `resourceType` attribute is inherited from NcTouchpointResource and can only be: `node, device, source, flow, sender, receiver`.
-
-### NcTouchpointResourceNmosChannelMapping
-
-```typescript
-// Touchpoint resource class for NMOS resources
-interface NcTouchpointResourceNmosChannelMapping: NcTouchpointResourceNmos {
-    attribute NcString    ioId; // IS-08 Audio Channel Mapping input or output id
-};
-```
-
-The `resourceType` attribute is inherited from NcTouchpointResource and can only be: `input, output`.
-
-### NcPropertyChangedEventData
-
-```typescript
-// Payload of property-changed event
-interface NcPropertyChangedEventData {
-    attribute NcPropertyId    propertyId; // The id of the property that changed
-    attribute NcPropertyChangeType    changeType; // Information regarding the change type
-    attribute any?    value; // Property-type specific value
-    attribute NcId?    sequenceItemIndex; // Index of sequence item if the property is a sequence
-};
-```
-
-### NcPropertyChangeType
-
-```typescript
-// Type of property change
-enum NcPropertyChangeType {
-    "ValueChanged",        // 0 Current value changed
-    "SequenceItemAdded",        // 1 Sequence item added
-    "SequenceItemChanged",        // 2 Sequence item changed
-    "SequenceItemRemoved"        // 3 Sequence item removed
-};
-```
-
-### NcTimeInterval
-
-```typescript
-typedef NcInt64    NcTimeInterval; // Time interval described in nanoseconds
-```
-
 ### NcDatatypeType
 
 ```typescript
@@ -530,7 +344,35 @@ interface NcDescriptor {
 };
 ```
 
-### NcDatatypeDescriptor
+#### NcBlockMemberDescriptor
+
+```typescript
+// Descriptor which is specific to a block member
+interface NcBlockMemberDescriptor: NcDescriptor {
+    attribute NcString    role; // Role of member in its containing block
+    attribute NcOid    oid; // OID of member
+    attribute NcBoolean    constantOid; // TRUE iff member's OID is hardwired into device
+    attribute NcClassId    classId; // Class ID
+    attribute NcString?    userLabel; // User label
+    attribute NcOid    owner; // Containing block's OID
+};
+```
+
+#### NcClassDescriptor
+
+```typescript
+// Descriptor of a class
+interface NcClassDescriptor: NcDescriptor {
+    attribute NcClassId    identity; // Identity of the class
+    attribute NcName    name; // Name of the class
+    attribute NcString?    fixedRole; // Role if the class has fixed role (manager classes)
+    attribute sequence<NcPropertyDescriptor>    properties; // Property descriptors
+    attribute sequence<NcMethodDescriptor>    methods; // Method descriptors
+    attribute sequence<NcEventDescriptor>    events; // Event descriptors
+};
+```
+
+#### NcDatatypeDescriptor
 
 ```typescript
 // Base datatype descriptor
@@ -541,7 +383,18 @@ interface NcDatatypeDescriptor: NcDescriptor {
 };
 ```
 
-### NcDatatypeDescriptorPrimitive
+##### NcDatatypeDescriptorEnum
+
+```typescript
+// Enum datatype descriptor
+interface NcDatatypeDescriptorEnum: NcDatatypeDescriptor {
+    attribute sequence<NcEnumItemDescriptor>    items; // One item descriptor per enum option
+};
+```
+
+The `type` attribute will be `Enum`.
+
+##### NcDatatypeDescriptorPrimitive
 
 ```typescript
 // Primitive datatype descriptor
@@ -551,19 +404,7 @@ interface NcDatatypeDescriptorPrimitive: NcDatatypeDescriptor {
 
 The `type` attribute will be `Primitive`.
 
-### NcDatatypeDescriptorTypeDef
-
-```typescript
-// Type def datatype descriptor
-interface NcDatatypeDescriptorTypeDef: NcDatatypeDescriptor {
-    attribute NcName    parentType; // Original typedef datatype name
-    attribute NcBoolean    isSequence; // TRUE iff type is a typedef sequence of another type
-};
-```
-
-The `type` attribute will be `Typedef`.
-
-### NcDatatypeDescriptorStruct
+##### NcDatatypeDescriptorStruct
 
 ```typescript
 // Struct datatype descriptor
@@ -575,18 +416,80 @@ interface NcDatatypeDescriptorStruct: NcDatatypeDescriptor {
 
 The `type` attribute will be `Struct`.
 
-### NcDatatypeDescriptorEnum
+##### NcDatatypeDescriptorTypeDef
 
 ```typescript
-// Enum datatype descriptor
-interface NcDatatypeDescriptorEnum: NcDatatypeDescriptor {
-    attribute sequence<NcEnumItemDescriptor>    items; // One item descriptor per enum option
+// Type def datatype descriptor
+interface NcDatatypeDescriptorTypeDef: NcDatatypeDescriptor {
+    attribute NcName    parentType; // Original typedef datatype name
+    attribute NcBoolean    isSequence; // TRUE iff type is a typedef sequence of another type
 };
 ```
 
-The `type` attribute will be `Enum`.
+The `type` attribute will be `Typedef`.
 
-### NcPropertyDescriptor
+#### NcEnumItemDescriptor
+
+```typescript
+// Descriptor of an enum item
+interface NcEnumItemDescriptor: NcDescriptor {
+    attribute NcName    name; // Name of option
+    attribute NcUint16    value; // Enum item numerical value
+};
+```
+
+#### NcEventDescriptor
+
+```typescript
+// Descriptor of a class event
+interface NcEventDescriptor: NcDescriptor {
+    attribute NcEventId    id; // Event id with level and index
+    attribute NcName    name; // Name of event
+    attribute NcName    eventDatatype; // Name of event data's datatype
+    attribute NcBoolean    isDeprecated; // TRUE iff property is marked as deprecated
+};
+```
+
+#### NcFieldDescriptor
+
+```typescript
+// Descriptor of a field of a struct
+interface NcFieldDescriptor: NcDescriptor {
+    attribute NcName    name; // Name of field
+    attribute NcName?    typeName; // Name of field's datatype. Can only ever be null if the type is any
+    attribute NcBoolean    isNullable; // TRUE iff field is nullable
+    attribute NcBoolean    isSequence; // TRUE iff field is a sequence
+    attribute NcParameterConstraints?    constraints; // Optional constraints on top of the underlying data type
+};
+```
+
+#### NcMethodDescriptor
+
+```typescript
+// Descriptor of a class method
+interface NcMethodDescriptor: NcDescriptor {
+    attribute NcMethodId    id; // Method id with level and index
+    attribute NcName    name; // Name of method
+    attribute NcName    resultDatatype; // Name of method result's datatype
+    attribute sequence<NcParameterDescriptor>    parameters; // Parameter descriptors if any
+    attribute NcBoolean    isDeprecated; // TRUE iff property is marked as deprecated
+};
+```
+
+#### NcParameterDescriptor
+
+```typescript
+// Descriptor of a method parameter
+interface NcParameterDescriptor: NcDescriptor {
+    attribute NcName    name; // Name of parameter
+    attribute NcName?    typeName; // Name of parameter's datatype. Can only ever be null if the type is any
+    attribute NcBoolean    isNullable; // TRUE iff property is nullable
+    attribute NcBoolean    isSequence; // TRUE iff property is a sequence
+    attribute NcParameterConstraints?    constraints; // Optional constraints on top of the underlying data type
+};
+```
+
+#### NcPropertyDescriptor
 
 ```typescript
 // Descriptor of a class property
@@ -601,207 +504,6 @@ interface NcPropertyDescriptor: NcDescriptor {
     attribute NcBoolean    isDeprecated; // TRUE iff property is marked as deprecated
     attribute NcBoolean    isConstant; // TRUE iff property is readonly and constant (its value is never expected to change)
     attribute NcParameterConstraints?    constraints; // Optional constraints on top of the underlying data type
-};
-```
-
-### NcFieldDescriptor
-
-```typescript
-// Descriptor of a field of a struct
-interface NcFieldDescriptor: NcDescriptor {
-    attribute NcName    name; // Name of field
-    attribute NcName?    typeName; // Name of field's datatype. Can only ever be null if the type is any
-    attribute NcBoolean    isNullable; // TRUE iff field is nullable
-    attribute NcBoolean    isSequence; // TRUE iff field is a sequence
-    attribute NcParameterConstraints?    constraints; // Optional constraints on top of the underlying data type
-};
-```
-
-### NcEnumItemDescriptor
-
-```typescript
-// Descriptor of an enum item
-interface NcEnumItemDescriptor: NcDescriptor {
-    attribute NcName    name; // Name of option
-    attribute NcUint16    value; // Enum item numerical value
-};
-```
-
-### NcParameterDescriptor
-
-```typescript
-// Descriptor of a method parameter
-interface NcParameterDescriptor: NcDescriptor {
-    attribute NcName    name; // Name of parameter
-    attribute NcName?    typeName; // Name of parameter's datatype. Can only ever be null if the type is any
-    attribute NcBoolean    isNullable; // TRUE iff property is nullable
-    attribute NcBoolean    isSequence; // TRUE iff property is a sequence
-    attribute NcParameterConstraints?    constraints; // Optional constraints on top of the underlying data type
-};
-```
-
-### NcMethodDescriptor
-
-```typescript
-// Descriptor of a class method
-interface NcMethodDescriptor: NcDescriptor {
-    attribute NcMethodId    id; // Method id with level and index
-    attribute NcName    name; // Name of method
-    attribute NcName    resultDatatype; // Name of method result's datatype
-    attribute sequence<NcParameterDescriptor>    parameters; // Parameter descriptors if any
-    attribute NcBoolean    isDeprecated; // TRUE iff property is marked as deprecated
-};
-```
-
-### NcEventDescriptor
-
-```typescript
-// Descriptor of a class event
-interface NcEventDescriptor: NcDescriptor {
-    attribute NcEventId    id; // Event id with level and index
-    attribute NcName    name; // Name of event
-    attribute NcName    eventDatatype; // Name of event data's datatype
-    attribute NcBoolean    isDeprecated; // TRUE iff property is marked as deprecated
-};
-```
-
-### NcClassDescriptor
-
-```typescript
-// Descriptor of a class
-interface NcClassDescriptor: NcDescriptor {
-    attribute NcClassId    identity; // Identity of the class
-    attribute NcName    name; // Name of the class
-    attribute NcString?    fixedRole; // Role if the class has fixed role (manager classes)
-    attribute sequence<NcPropertyDescriptor>    properties; // Property descriptors
-    attribute sequence<NcMethodDescriptor>    methods; // Method descriptors
-    attribute sequence<NcEventDescriptor>    events; // Event descriptors
-};
-```
-
-### NcParameterConstraints
-
-```typescript
-// Abstract parameter constraints class
-interface NcParameterConstraints {
-    attribute any?    defaultValue; // Default value
-};
-```
-
-### NcParameterConstraintsNumber
-
-```typescript
-// Number parameter constraints class
-interface NcParameterConstraintsNumber: NcParameterConstraints {
-    attribute any?    maximum; // Optional maximum
-    attribute any?    minimum; // Optional minimum
-    attribute any?    step; // Optional step
-};
-```
-
-### NcParameterConstraintsString
-
-```typescript
-// String parameter constraints class
-interface NcParameterConstraintsString: NcParameterConstraints {
-    attribute NcUint32?    maxCharacters; // Maximum characters allowed
-    attribute NcRegex?    pattern; // Regex pattern
-};
-```
-
-### NcRegex
-
-```typescript
-typedef NcString    NcRegex; // Regex pattern
-```
-
-### NcPropertyConstraints
-
-```typescript
-// Property constraints class
-interface NcPropertyConstraints {
-    attribute NcPropertyId    propertyId; // The id of the property being constrained
-    attribute any?    defaultValue; // Optional default value
-};
-```
-
-### NcPropertyConstraintsNumber
-
-```typescript
-// Number property constraints class
-interface NcPropertyConstraintsNumber: NcPropertyConstraints {
-    attribute any?    maximum; // Optional maximum
-    attribute any?    minimum; // Optional minimum
-    attribute any?    step; // Optional step
-};
-```
-
-### NcPropertyConstraintsString
-
-```typescript
-// String property constraints class
-interface NcPropertyConstraintsString: NcPropertyConstraints {
-    attribute NcUint32?    maxCharacters; // Maximum characters allowed
-    attribute NcRegex?    pattern; // Regex pattern
-};
-```
-
-### NcBlockMemberDescriptor
-
-```typescript
-// Descriptor which is specific to a block member
-interface NcBlockMemberDescriptor: NcDescriptor {
-    attribute NcString    role; // Role of member in its containing block
-    attribute NcOid    oid; // OID of member
-    attribute NcBoolean    constantOid; // TRUE iff member's OID is hardwired into device
-    attribute NcClassId    classId; // Class ID
-    attribute NcString?    userLabel; // User label
-    attribute NcOid    owner; // Containing block's OID
-};
-```
-
-### NcUri
-
-```typescript
-typedef NcString    NcUri; // Uniform resource identifier
-```
-
-### NcManufacturer
-
-```typescript
-// Manufacturer descriptor
-interface NcManufacturer {
-    attribute NcString    name; // Manufacturer's name
-    attribute NcOrganizationId?    organizationId; // IEEE OUI or CID of manufacturer
-    attribute NcUri?    website; // URL of the manufacturer's website
-};
-```
-
-### NcProduct
-
-```typescript
-// Product descriptor
-interface NcProduct {
-    attribute NcString    name; // Product name
-    attribute NcString    key; // Manufacturer's unique key to product - model number, SKU, etc
-    attribute NcString    revisionLevel; // Manufacturer's product revision level code
-    attribute NcString?    brandName; // Brand name under which product is sold
-    attribute NcUuid?    uuid; // Unique UUID of product (not product instance)
-    attribute NcString?    description; // Text description of product
-};
-```
-
-### NcResetCause
-
-```typescript
-// Reset cause enum
-enum NcResetCause {
-    "Unknown",        // 0 Unknown
-    "PowerOn",        // 1 Power on
-    "InternalError",        // 2 Internal error
-    "Upgrade",        // 3 Upgrade
-    "ControllerRequest",        // 4 Controller request
-    "ManualReset"        // 5 Manual request from the front panel
 };
 ```
 
@@ -826,6 +528,125 @@ enum NcDeviceGenericState {
 interface NcDeviceOperationalState {
     attribute NcDeviceGenericState    generic; // Generic operational state
     attribute NcString?    deviceSpecificDetails; // Specific device details
+};
+```
+
+### NcElementId
+
+```typescript
+// Class element id which contains the level and index
+interface NcElementId {
+    attribute NcUint16    level; // Level of the element
+    attribute NcUint16    index; // Index of the element
+};
+```
+
+#### NcEventId
+
+```typescript
+// Event id which contains the level and index
+interface NcEventId: NcElementId {
+};
+```
+
+#### NcMethodId
+
+```typescript
+// Method id which contains the level and index
+interface NcMethodId: NcElementId {
+};
+```
+
+#### NcPropertyId
+
+```typescript
+// Property id which contains the level and index
+interface NcPropertyId: NcElementId {
+};
+```
+
+### NcId
+
+```typescript
+typedef NcUint32    NcId; // Identity handler
+```
+
+### NcManufacturer
+
+```typescript
+// Manufacturer descriptor
+interface NcManufacturer {
+    attribute NcString    name; // Manufacturer's name
+    attribute NcOrganizationId?    organizationId; // IEEE OUI or CID of manufacturer
+    attribute NcUri?    website; // URL of the manufacturer's website
+};
+```
+
+### NcMethodResult
+
+All methods MUST return a datatype which inherits from NcMethodResult.  
+When a method call encounters an error the return MUST be [NcMethodResultError](#ncmethodresulterror) or a derived datatype.
+
+```typescript
+// Base result of the invoked method
+interface NcMethodResult {
+    attribute NcMethodStatus    status; // Status for the invoked method
+};
+```
+
+#### NcMethodResultBlockMemberDescriptors
+
+```typescript
+// Method result containing block member descriptors as the value
+interface NcMethodResultBlockMemberDescriptors: NcMethodResult {
+    attribute sequence<NcBlockMemberDescriptor>    value; // Block member descriptors method result value
+};
+```
+
+#### NcMethodResultClassDescriptor
+
+```typescript
+// Method result containing a class descriptor as the value
+interface NcMethodResultClassDescriptor: NcMethodResult {
+    attribute NcClassDescriptor    value; // Class descriptor method result value
+};
+```
+
+#### NcMethodResultDatatypeDescriptor
+
+```typescript
+// Method result containing a datatype descriptor as the value
+interface NcMethodResultDatatypeDescriptor: NcMethodResult {
+    attribute NcDatatypeDescriptor    value; // Datatype descriptor method result value
+};
+```
+
+#### NcMethodResultError
+
+```typescript
+// Error result - to be used when the method call encounters an error
+interface NcMethodResultError: NcMethodResult {
+    attribute NcString    errorMessage; // Error message
+};
+```
+
+#### NcMethodResultId
+
+```typescript
+// Id method result
+interface NcMethodResultId: NcMethodResult {
+    attribute NcId    value; // Id result value
+};
+```
+
+#### NcMethodResultPropertyValue
+
+NcMethodResultPropertyValue can hold any value type depending on the underlying property type.
+
+```typescript
+// Result when invoking the getter method associated with a property
+interface NcMethodResultPropertyValue: NcMethodResult {
+    attribute any?    value; // Getter method value for the associated property
 };
 ```
 
@@ -855,70 +676,241 @@ enum NcMethodStatus {
 };
 ```
 
-### NcMethodResult
-
-All methods MUST return a datatype which inherits from NcMethodResult.  
-When a method call encounters an error the return MUST be [NcMethodResultError](#ncmethodresulterror) or a derived datatype.
+### NcName
 
 ```typescript
-// Base result of the invoked method
-interface NcMethodResult {
-    attribute NcMethodStatus    status; // Status for the invoked method
+typedef NcString    NcName; // Programmatically significant name, alphanumerics + underscore, no spaces
+```
+
+### NcOid
+
+```typescript
+typedef NcUint32    NcOid; // Object id
+```
+
+### NcOrganizationId
+
+Unique 24-bit organization ID:
+
+- IEEE public Company ID (public CID) or
+- IEEE Organizational Unique Identifier (OUI).
+
+```typescript
+typedef NcInt32    NcOrganizationId; // Unique 24-bit organization id
+```
+
+### NcParameterConstraints
+
+```typescript
+// Abstract parameter constraints class
+interface NcParameterConstraints {
+    attribute any?    defaultValue; // Default value
 };
 ```
 
-### NcMethodResultError
+#### NcParameterConstraintsNumber
 
 ```typescript
-// Error result - to be used when the method call encounters an error
-interface NcMethodResultError: NcMethodResult {
-    attribute NcString    errorMessage; // Error message
+// Number parameter constraints class
+interface NcParameterConstraintsNumber: NcParameterConstraints {
+    attribute any?    maximum; // Optional maximum
+    attribute any?    minimum; // Optional minimum
+    attribute any?    step; // Optional step
 };
 ```
 
-### NcMethodResultPropertyValue
-
-NcMethodResultPropertyValue can hold any value type depending on the underlying property type.
+#### NcParameterConstraintsString
 
 ```typescript
-// Result when invoking the getter method associated with a property
-interface NcMethodResultPropertyValue: NcMethodResult {
-    attribute any?    value; // Getter method value for the associated property
+// String parameter constraints class
+interface NcParameterConstraintsString: NcParameterConstraints {
+    attribute NcUint32?    maxCharacters; // Maximum characters allowed
+    attribute NcRegex?    pattern; // Regex pattern
 };
 ```
 
-### NcMethodResultBlockMemberDescriptors
+### NcProduct
 
 ```typescript
-// Method result containing block member descriptors as the value
-interface NcMethodResultBlockMemberDescriptors: NcMethodResult {
-    attribute sequence<NcBlockMemberDescriptor>    value; // Block member descriptors method result value
+// Product descriptor
+interface NcProduct {
+    attribute NcString    name; // Product name
+    attribute NcString    key; // Manufacturer's unique key to product - model number, SKU, etc
+    attribute NcString    revisionLevel; // Manufacturer's product revision level code
+    attribute NcString?    brandName; // Brand name under which product is sold
+    attribute NcUuid?    uuid; // Unique UUID of product (not product instance)
+    attribute NcString?    description; // Text description of product
 };
 ```
 
-### NcMethodResultClassDescriptor
+### NcPropertyChangedEventData
 
 ```typescript
-// Method result containing a class descriptor as the value
-interface NcMethodResultClassDescriptor: NcMethodResult {
-    attribute NcClassDescriptor    value; // Class descriptor method result value
+// Payload of property-changed event
+interface NcPropertyChangedEventData {
+    attribute NcPropertyId    propertyId; // The id of the property that changed
+    attribute NcPropertyChangeType    changeType; // Information regarding the change type
+    attribute any?    value; // Property-type specific value
+    attribute NcId?    sequenceItemIndex; // Index of sequence item if the property is a sequence
 };
 ```
 
-### NcMethodResultDatatypeDescriptor
+### NcPropertyChangeType
 
 ```typescript
-// Method result containing a datatype descriptor as the value
-interface NcMethodResultDatatypeDescriptor: NcMethodResult {
-    attribute NcDatatypeDescriptor    value; // Datatype descriptor method result value
+// Type of property change
+enum NcPropertyChangeType {
+    "ValueChanged",        // 0 Current value changed
+    "SequenceItemAdded",        // 1 Sequence item added
+    "SequenceItemChanged",        // 2 Sequence item changed
+    "SequenceItemRemoved"        // 3 Sequence item removed
 };
 ```
 
-### NcMethodResultId
+### NcPropertyConstraints
 
 ```typescript
-// Id method result
-interface NcMethodResultId: NcMethodResult {
-    attribute NcId    value; // Id result value
+// Property constraints class
+interface NcPropertyConstraints {
+    attribute NcPropertyId    propertyId; // The id of the property being constrained
+    attribute any?    defaultValue; // Optional default value
 };
+```
+
+#### NcPropertyConstraintsNumber
+
+```typescript
+// Number property constraints class
+interface NcPropertyConstraintsNumber: NcPropertyConstraints {
+    attribute any?    maximum; // Optional maximum
+    attribute any?    minimum; // Optional minimum
+    attribute any?    step; // Optional step
+};
+```
+
+#### NcPropertyConstraintsString
+
+```typescript
+// String property constraints class
+interface NcPropertyConstraintsString: NcPropertyConstraints {
+    attribute NcUint32?    maxCharacters; // Maximum characters allowed
+    attribute NcRegex?    pattern; // Regex pattern
+};
+```
+
+### NcRegex
+
+```typescript
+typedef NcString    NcRegex; // Regex pattern
+```
+
+### NcResetCause
+
+```typescript
+// Reset cause enum
+enum NcResetCause {
+    "Unknown",        // 0 Unknown
+    "PowerOn",        // 1 Power on
+    "InternalError",        // 2 Internal error
+    "Upgrade",        // 3 Upgrade
+    "ControllerRequest",        // 4 Controller request
+    "ManualReset"        // 5 Manual request from the front panel
+};
+```
+
+### NcRolePath
+
+Ordered list of roles ending with the role of object in question.  
+The object in question may be a block or another object.
+
+```typescript
+typedef sequence<NcString>    NcRolePath; // Role path
+```
+
+### NcTimeInterval
+
+```typescript
+typedef NcInt64    NcTimeInterval; // Time interval described in nanoseconds
+```
+
+### NcTouchpoint
+
+This model is used by the [NcObject](NcObject.md#touchpoints) class for identity mapping to other contexts.
+
+```typescript
+// Base touchpoint class
+interface NcTouchpoint {
+    attribute NcString    contextNamespace; // Context namespace
+};
+```
+
+#### NcTouchpointNmos
+
+```typescript
+// Touchpoint class for NMOS resources
+interface NcTouchpointNmos: NcTouchpoint {
+    attribute NcTouchpointResourceNmos    resource; // Context NMOS resource
+};
+```
+
+The `contextNamespace` attribute is inherited from NcTouchpoint and can only be `x-nmos`.
+
+#### NcTouchpointNmosChannelMapping
+
+```typescript
+// Touchpoint class for NMOS IS-08 resources
+interface NcTouchpointNmosChannelMapping: NcTouchpoint {
+    attribute NcTouchpointResourceNmosChannelMapping    resource; // Context Channel Mapping resource
+};
+```
+
+The `contextNamespace` attribute is inherited from NcTouchpoint and can only be `x-nmos/channelmapping`
+
+### NcTouchpointResource
+
+```typescript
+// Touchpoint resource class
+interface NcTouchpointResource {
+    attribute NcString    resourceType; // The type of the resource
+};
+```
+
+#### NcTouchpointResourceNmos
+
+```typescript
+// Touchpoint resource class for NMOS resources
+interface NcTouchpointResourceNmos: NcTouchpointResource {
+    attribute NcUuid    id; // NMOS resource UUID
+};
+```
+
+The `resourceType` attribute is inherited from NcTouchpointResource and can only be: `node, device, source, flow, sender, receiver`.
+
+#### NcTouchpointResourceNmosChannelMapping
+
+```typescript
+// Touchpoint resource class for NMOS resources
+interface NcTouchpointResourceNmosChannelMapping: NcTouchpointResourceNmos {
+    attribute NcString    ioId; // IS-08 Audio Channel Mapping input or output id
+};
+```
+
+The `resourceType` attribute is inherited from NcTouchpointResource and can only be: `input, output`.
+
+### NcUri
+
+```typescript
+typedef NcString    NcUri; // Uniform resource identifier
+```
+
+### NcUuid
+
+```typescript
+typedef NcString    NcUuid; // UUID
+```
+
+### NcVersionCode
+
+```typescript
+typedef NcString    NcVersionCode; // Version code in semantic versioning format
 ```
