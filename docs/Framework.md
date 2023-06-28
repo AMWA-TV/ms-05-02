@@ -662,14 +662,14 @@ enum NcMethodStatus {
     "Ok",        // 200 Method call was successful
     "PropertyDeprecated",        // 298 Method call was successful but targeted property is deprecated
     "MethodDeprecated",        // 299 Method call was successful but method is deprecated
-    "BadCommandFormat",        // 400 Badly-formed command
+    "BadCommandFormat",        // 400 Badly-formed command (e.g. the incoming command has invalid message encoding and cannot be parsed by the underlying protocol)
     "Unauthorized",        // 401 Client is not authorized
     "BadOid",        // 404 Command addresses a nonexistent object
     "Readonly",        // 405 Attempt to change read-only state
-    "InvalidRequest",        // 406 Method call is invalid in current operating context
+    "InvalidRequest",        // 406 Method call is invalid in current operating context (e.g. attempting to invoke a method when the object is disabled)
     "Conflict",        // 409 There is a conflict with the current state of the device
     "BufferOverflow",        // 413 Something was too big
-    "ParameterError",        // 417 Method parameter does not meet expectations
+    "ParameterError",        // 417 Method parameter does not meet expectations (e.g. attempting to invoke a method with an invalid type for one of its parameters)
     "Locked",        // 423 Addressed object is locked
     "DeviceError",        // 500 Internal device error
     "MethodNotImplemented",        // 501 Addressed method is not implemented by the addressed object
