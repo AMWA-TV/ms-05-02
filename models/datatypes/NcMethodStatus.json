@@ -93,5 +93,6 @@
       "name": "ProtocolVersionError",
       "value": 505
     }
-  ]
+  ],
+  "constraints": null
 }

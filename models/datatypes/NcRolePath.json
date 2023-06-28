@@ -3,5 +3,6 @@
     "name": "NcRolePath",
     "type": 1,
     "parentType": "NcString",
-    "isSequence": true
+    "isSequence": true,
+    "constraints": null
 }

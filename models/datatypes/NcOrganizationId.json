@@ -3,5 +3,6 @@
     "name": "NcOrganizationId",
     "type": 1,
     "parentType": "NcInt32",
-    "isSequence": false
+    "isSequence": false,
+    "constraints": null
 }

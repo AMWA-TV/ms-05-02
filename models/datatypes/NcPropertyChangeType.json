@@ -23,5 +23,6 @@
       "name": "SequenceItemRemoved",
       "value": 3
     }
-  ]
+  ],
+  "constraints": null
 }

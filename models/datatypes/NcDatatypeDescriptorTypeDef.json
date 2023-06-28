@@ -18,5 +18,6 @@
       "isSequence": false
     }
   ],
-  "parentType": "NcDatatypeDescriptor"
+  "parentType": "NcDatatypeDescriptor",
+  "constraints": null
 }

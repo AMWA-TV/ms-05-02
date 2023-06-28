@@ -32,5 +32,6 @@
             "isSequence": false
         }
     ],
-    "parentType": null
+    "parentType": null,
+    "constraints": null
 }

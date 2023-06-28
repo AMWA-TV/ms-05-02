@@ -25,5 +25,6 @@
       "isSequence": false
     }
   ],
-  "parentType": "NcParameterConstraints"
+  "parentType": "NcParameterConstraints",
+  "constraints": null
 }

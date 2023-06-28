@@ -74,5 +74,6 @@
       "isSequence": false
     }
   ],
-  "parentType": "NcDescriptor"
+  "parentType": "NcDescriptor",
+  "constraints": null
 }
