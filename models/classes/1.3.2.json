@@ -21,7 +21,7 @@
       "isNullable": false,
       "isSequence": true,
       "isDeprecated": false,
-      "isConstant": false
+      "isConstant": null
     },
     {
       "description": "Descriptions of all data types in the device (descriptors do not contain inherited elements)",
@@ -36,7 +36,7 @@
       "isNullable": false,
       "isSequence": true,
       "isDeprecated": false,
-      "isConstant": false
+      "isConstant": null
     }
   ],
   "methods": [

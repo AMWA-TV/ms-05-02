@@ -502,7 +502,7 @@ interface NcPropertyDescriptor: NcDescriptor {
     attribute NcBoolean    isNullable; // TRUE iff property is nullable
     attribute NcBoolean    isSequence; // TRUE iff property is a sequence
     attribute NcBoolean    isDeprecated; // TRUE iff property is marked as deprecated
-    attribute NcBoolean    isConstant; // TRUE iff property is readonly and constant (its value is never expected to change)
+    attribute NcBoolean?    isConstant; // Optional flag which indicates if the property is readonly and constant (the device has no means to change the value)
     attribute NcParameterConstraints?    constraints; // Optional constraints on top of the underlying data type
 };
 ```

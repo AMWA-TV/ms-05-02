@@ -60,10 +60,10 @@
       "isSequence": false
     },
     {
-      "description": "TRUE iff property is readonly and constant (its value is never expected to change)",
+      "description": "Optional flag which indicates if the property is readonly and constant (the device has no means to change the value)",
       "name": "isConstant",
       "typeName": "NcBoolean",
-      "isNullable": false,
+      "isNullable": true,
       "isSequence": false
     },
     {

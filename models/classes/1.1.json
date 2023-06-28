@@ -20,7 +20,7 @@
       "isNullable": false,
       "isSequence": false,
       "isDeprecated": false,
-      "isConstant": false
+      "isConstant": null
     },
     {
       "description": "Descriptors of this block's members",
@@ -35,7 +35,7 @@
       "isNullable": false,
       "isSequence": true,
       "isDeprecated": false,
-      "isConstant": false
+      "isConstant": null
     }
   ],
   "methods": [

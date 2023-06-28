@@ -18,7 +18,8 @@
       "isPersistent": true,
       "isNullable": false,
       "isSequence": false,
-      "isDeprecated": false
+      "isDeprecated": false,
+      "isConstant": null
     },
     {
       "description": "Object identifier",
@@ -32,7 +33,8 @@
       "isPersistent": true,
       "isNullable": false,
       "isSequence": false,
-      "isDeprecated": false
+      "isDeprecated": false,
+      "isConstant": null
     },
     {
       "description": "TRUE iff OID is hardwired into device",
@@ -46,7 +48,8 @@
       "isPersistent": true,
       "isNullable": false,
       "isSequence": false,
-      "isDeprecated": false
+      "isDeprecated": false,
+      "isConstant": null
     },
     {
       "description": "OID of containing block. Can only ever be null for the root block",
@@ -60,7 +63,8 @@
       "isPersistent": true,
       "isNullable": true,
       "isSequence": false,
-      "isDeprecated": false
+      "isDeprecated": false,
+      "isConstant": null
     },
     {
       "description": "Role of object in the containing block",
@@ -74,7 +78,8 @@
       "isPersistent": true,
       "isNullable": false,
       "isSequence": false,
-      "isDeprecated": false
+      "isDeprecated": false,
+      "isConstant": null
     },
     {
       "description": "Scribble strip",
@@ -88,7 +93,8 @@
       "isPersistent": true,
       "isNullable": true,
       "isSequence": false,
-      "isDeprecated": false
+      "isDeprecated": false,
+      "isConstant": null
     },
     {
       "description": "Touchpoints to other contexts",
@@ -102,7 +108,8 @@
       "isPersistent": true,
       "isNullable": true,
       "isSequence": true,
-      "isDeprecated": false
+      "isDeprecated": false,
+      "isConstant": null
     },
     {
       "description": "Runtime property constraints",
@@ -116,7 +123,8 @@
       "isPersistent": true,
       "isNullable": true,
       "isSequence": true,
-      "isDeprecated": false
+      "isDeprecated": false,
+      "isConstant": null
     }
   ],
   "methods": [
