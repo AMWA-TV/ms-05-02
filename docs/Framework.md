@@ -80,12 +80,12 @@ Control class models are documented using WebIDL interfaces.
 Every control class definition is prefixed by the `[control-class(...)]` extended attribute.
 
 ```typescript
-    control-class(classID, staticRole)
+    control-class(classId, staticRole)
 ```
 
 where:
 
-- `classID` is the class ID expressed as a string of the form `i(1).i(2).i(N)`
+- `classId` is the class ID expressed as a string of the form `i(1).i(2).i(N)`
 - `staticRole` is the static role all instances of this class must use. This is applicable only to singleton classes like managers and is omitted for other control classes
 
 Every property, method, or event declaration of every control class is prefixed by the `[element(.,..)]` attribute.
@@ -100,7 +100,11 @@ where **elementId** is a delimited string of the form `nTm`, where
 - `T` is the elementId type key (p, m or e).
 - `m` is the ordinal of the definition within the class
 
-Every property, method or event MUST be uniquely identified in a control class using element ids.
+Every property, method or event MUST be uniquely identified in a control class using element ids. The `level` inside an **elementId** MUST match the inheritance level of the class which defines that element. Inheritance levels can be calculated by taking the [classId](Framework.md#ncclassid) of a class and counting the indexes after removing all authority keys.
+
+| ![Non standard model](images/non-standard-model.png) |
+|:--:|
+| _**Inheritance levels**_ |
 
 The `[event]` extended attribute is added to identify events within class definitions.
 

@@ -12,6 +12,6 @@ When using multiple levels of constraints implementations MUST fully override th
 
 Below is a constraints diagram presenting a property called `myProperty` of type `MyCustomType` inside a `MyCustomClass` class.
 
-| ![Constraints](images/Constraints.png) |
+| ![Constraints](images/constraints.png) |
 |:--:|
 | _**Constraints levels**_ |
