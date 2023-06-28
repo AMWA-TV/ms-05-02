@@ -219,6 +219,7 @@ NcWorker is the base class for any worker control class in the control model.
 ```
 
 ### NcManager
+
 Further explanations are provided in a dedicated [Managers](Managers.md) section.
 
 NcManager is the base abstract manager control class for any manager control class in the control model. Manager control classes are singleton classes. Non-standard managers created to model vendor specific functionality MUST be directly or indirectly derived from this control class.
