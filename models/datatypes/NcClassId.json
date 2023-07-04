@@ -3,5 +3,6 @@
     "name": "NcClassId",
     "type": 1,
     "parentType": "NcInt32",
-    "isSequence": true
+    "isSequence": true,
+    "constraints": null
 }

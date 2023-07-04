@@ -3,5 +3,6 @@
     "name": "NcEventId",
     "type": 2,
     "fields": [],
-    "parentType": "NcElementId"
+    "parentType": "NcElementId",
+    "constraints": null
 }

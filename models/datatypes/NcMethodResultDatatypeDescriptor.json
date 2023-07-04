@@ -11,5 +11,6 @@
       "isSequence": false
     }
   ],
-  "parentType": "NcMethodResult"
+  "parentType": "NcMethodResult",
+  "constraints": null
 }

@@ -80,12 +80,12 @@ Control class models are documented using WebIDL interfaces.
 Every control class definition is prefixed by the `[control-class(...)]` extended attribute.
 
 ```typescript
-    control-class(classID, staticRole)
+    control-class(classId, staticRole)
 ```
 
 where:
 
-- `classID` is the class ID expressed as a string of the form `i(1).i(2).i(N)`
+- `classId` is the class ID expressed as a string of the form `i(1).i(2).i(N)`
 - `staticRole` is the static role all instances of this class must use. This is applicable only to singleton classes like managers and is omitted for other control classes
 
 Every property, method, or event declaration of every control class is prefixed by the `[element(.,..)]` attribute.
@@ -100,7 +100,11 @@ where **elementId** is a delimited string of the form `nTm`, where
 - `T` is the elementId type key (p, m or e).
 - `m` is the ordinal of the definition within the class
 
-Every property, method or event MUST be uniquely identified in a control class using element ids.
+Every property, method or event MUST be uniquely identified in a control class using element ids. The `level` inside an [element id](Framework.md#ncelementid) MUST match the inheritance level of the class which defines that element. Inheritance levels can be calculated by taking the [classId](Framework.md#ncclassid) of a class and counting the indexes after removing all authority keys.
+
+| ![Non standard model](images/non-standard-model.png) |
+|:--:|
+| _**Inheritance levels**_ |
 
 The `[event]` extended attribute is added to identify events within class definitions.
 
@@ -502,7 +506,7 @@ interface NcPropertyDescriptor: NcDescriptor {
     attribute NcBoolean    isNullable; // TRUE iff property is nullable
     attribute NcBoolean    isSequence; // TRUE iff property is a sequence
     attribute NcBoolean    isDeprecated; // TRUE iff property is marked as deprecated
-    attribute NcBoolean    isConstant; // TRUE iff property is readonly and constant (its value is never expected to change)
+    attribute NcBoolean?    isConstant; // Optional flag which indicates if the property is readonly and constant (the device has no means to change the value)
     attribute NcParameterConstraints?    constraints; // Optional constraints on top of the underlying data type
 };
 ```
@@ -658,14 +662,14 @@ enum NcMethodStatus {
     "Ok",        // 200 Method call was successful
     "PropertyDeprecated",        // 298 Method call was successful but targeted property is deprecated
     "MethodDeprecated",        // 299 Method call was successful but method is deprecated
-    "BadCommandFormat",        // 400 Badly-formed command
+    "BadCommandFormat",        // 400 Badly-formed command (e.g. the incoming command has invalid message encoding and cannot be parsed by the underlying protocol)
     "Unauthorized",        // 401 Client is not authorized
     "BadOid",        // 404 Command addresses a nonexistent object
     "Readonly",        // 405 Attempt to change read-only state
-    "InvalidRequest",        // 406 Method call is invalid in current operating context
+    "InvalidRequest",        // 406 Method call is invalid in current operating context (e.g. attempting to invoke a method when the object is disabled)
     "Conflict",        // 409 There is a conflict with the current state of the device
     "BufferOverflow",        // 413 Something was too big
-    "ParameterError",        // 417 Method parameter does not meet expectations
+    "ParameterError",        // 417 Method parameter does not meet expectations (e.g. attempting to invoke a method with an invalid type for one of its parameters)
     "Locked",        // 423 Addressed object is locked
     "DeviceError",        // 500 Internal device error
     "MethodNotImplemented",        // 501 Addressed method is not implemented by the addressed object

@@ -11,5 +11,6 @@
             "isSequence": false
         }
     ],
-    "parentType": "NcTouchpointResource"
+    "parentType": "NcTouchpointResource",
+    "constraints": null
 }

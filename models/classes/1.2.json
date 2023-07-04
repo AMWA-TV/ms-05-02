@@ -20,7 +20,7 @@
       "isNullable": false,
       "isSequence": false,
       "isDeprecated": false,
-      "isConstant": false
+      "isConstant": null
     }
   ],
   "methods": [],

@@ -21,7 +21,7 @@
       "isNullable": false,
       "isSequence": false,
       "isDeprecated": false,
-      "isConstant": false
+      "isConstant": null
     },
     {
       "description": "Manufacturer descriptor",
@@ -36,7 +36,7 @@
       "isNullable": false,
       "isSequence": false,
       "isDeprecated": false,
-      "isConstant": true
+      "isConstant": null
     },
     {
       "description": "Product descriptor",
@@ -51,7 +51,7 @@
       "isNullable": false,
       "isSequence": false,
       "isDeprecated": false,
-      "isConstant": true
+      "isConstant": null
     },
     {
       "description": "Serial number",
@@ -66,7 +66,7 @@
       "isNullable": false,
       "isSequence": false,
       "isDeprecated": false,
-      "isConstant": false
+      "isConstant": null
     },
     {
       "description": "Asset tracking identifier (user specified)",
@@ -81,7 +81,7 @@
       "isNullable": true,
       "isSequence": false,
       "isDeprecated": false,
-      "isConstant": false
+      "isConstant": null
     },
     {
       "description": "Name of this device in the application. Instance name, not product name.",
@@ -96,7 +96,7 @@
       "isNullable": true,
       "isSequence": false,
       "isDeprecated": false,
-      "isConstant": false
+      "isConstant": null
     },
     {
       "description": "Role of this device in the application.",
@@ -111,7 +111,7 @@
       "isNullable": true,
       "isSequence": false,
       "isDeprecated": false,
-      "isConstant": false
+      "isConstant": null
     },
     {
       "description": "Device operational state",
@@ -126,7 +126,7 @@
       "isNullable": false,
       "isSequence": false,
       "isDeprecated": false,
-      "isConstant": false
+      "isConstant": null
     },
     {
       "description": "Reason for most recent reset",
@@ -141,7 +141,7 @@
       "isNullable": false,
       "isSequence": false,
       "isDeprecated": false,
-      "isConstant": false
+      "isConstant": null
     },
     {
       "description": "Arbitrary message from dev to controller",
@@ -156,7 +156,7 @@
       "isNullable": true,
       "isSequence": false,
       "isDeprecated": false,
-      "isConstant": false
+      "isConstant": null
     }
   ],
   "methods": [],

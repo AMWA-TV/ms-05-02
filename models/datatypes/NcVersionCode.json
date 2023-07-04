@@ -3,5 +3,6 @@
     "name": "NcVersionCode",
     "type": 1,
     "parentType": "NcString",
-    "isSequence": false
+    "isSequence": false,
+    "constraints": null
 }
