@@ -92,11 +92,6 @@
       "description": "Method call did not finish within the allotted time",
       "name": "Timeout",
       "value": 504
-    },
-    {
-      "description": "Incompatible protocol version",
-      "name": "ProtocolVersionError",
-      "value": 505
     }
   ],
   "constraints": null
