@@ -283,6 +283,25 @@
         }
       ],
       "isDeprecated": false
+    },
+    {
+      "description": "Get sequence length",
+      "id": {
+        "level": 1,
+        "index": 7
+      },
+      "name": "GetSequenceLength",
+      "resultDatatype": "NcMethodResultLength",
+      "parameters": [
+        {
+          "description": "Property id",
+          "name": "id",
+          "typeName": "NcPropertyId",
+          "isNullable": false,
+          "isSequence": false
+        }
+      ],
+      "isDeprecated": false
     }
   ],
   "events": [

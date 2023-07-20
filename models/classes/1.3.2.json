@@ -51,7 +51,7 @@
       "parameters": [
         {
           "description": "class ID",
-          "name": "identity",
+          "name": "classId",
           "typeName": "NcClassId",
           "isNullable": false,
           "isSequence": false

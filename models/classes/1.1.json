@@ -128,7 +128,7 @@
       "parameters": [
         {
           "description": "Class id to search for",
-          "name": "id",
+          "name": "classId",
           "typeName": "NcClassId",
           "isNullable": false,
           "isSequence": false
