@@ -1,6 +1,6 @@
 {
   "description": "NcObject class descriptor",
-  "identity": [
+  "classId": [
     1
   ],
   "name": "NcObject",
