@@ -596,7 +596,7 @@ interface NcManufacturer {
 
 All methods MUST return a datatype which inherits from NcMethodResult.  
 When a method call encounters an error the return MUST be [NcMethodResultError](#ncmethodresulterror) or a derived datatype.  
-When errors are encountered for these scenarios: PropertyDeprecated, MethodDeprecated, IndexOutOfBounds, MethodNotImplemented, PropertyNotImplemented, BadOid, Readonly devices MUST use the exact status code from [NcMethodStatus](#ncmethodstatus).
+Devices MUST use the exact status code from [NcMethodStatus](#ncmethodstatus) when errors are encountered for the following scenarios: PropertyDeprecated, MethodDeprecated, IndexOutOfBounds, MethodNotImplemented, PropertyNotImplemented, BadOid, Readonly.
 
 ```typescript
 // Base result of the invoked method
