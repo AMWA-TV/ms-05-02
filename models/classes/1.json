@@ -1,6 +1,6 @@
 {
   "description": "NcObject class descriptor",
-  "identity": [
+  "classId": [
     1
   ],
   "name": "NcObject",
@@ -278,6 +278,25 @@
           "description": "Index of item in the sequence",
           "name": "index",
           "typeName": "NcId",
+          "isNullable": false,
+          "isSequence": false
+        }
+      ],
+      "isDeprecated": false
+    },
+    {
+      "description": "Get sequence length",
+      "id": {
+        "level": 1,
+        "index": 7
+      },
+      "name": "GetSequenceLength",
+      "resultDatatype": "NcMethodResultLength",
+      "parameters": [
+        {
+          "description": "Property id",
+          "name": "id",
+          "typeName": "NcPropertyId",
           "isNullable": false,
           "isSequence": false
         }

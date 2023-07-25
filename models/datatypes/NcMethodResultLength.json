@@ -1,0 +1,16 @@
+{
+  "description": "Length method result",
+  "name": "NcMethodResultLength",
+  "type": 2,
+  "fields": [
+    {
+      "description": "Length result value",
+      "name": "value",
+      "typeName": "NcUint32",
+      "isNullable": false,
+      "isSequence": false
+    }
+  ],
+  "parentType": "NcMethodResult",
+  "constraints": null
+}

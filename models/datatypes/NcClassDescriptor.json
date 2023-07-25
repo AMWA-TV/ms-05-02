@@ -5,7 +5,7 @@
   "fields": [
     {
       "description": "Identity of the class",
-      "name": "identity",
+      "name": "classId",
       "typeName": "NcClassId",
       "isNullable": false,
       "isSequence": false

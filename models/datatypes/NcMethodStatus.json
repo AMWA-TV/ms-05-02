@@ -54,6 +54,11 @@
       "value": 413
     },
     {
+      "description": "Index is outside the available range",
+      "name": "IndexOutOfBounds",
+      "value": 414
+    },
+    {
       "description": "Method parameter does not meet expectations (e.g. attempting to invoke a method with an invalid type for one of its parameters)",
       "name": "ParameterError",
       "value": 417
@@ -87,11 +92,6 @@
       "description": "Method call did not finish within the allotted time",
       "name": "Timeout",
       "value": 504
-    },
-    {
-      "description": "Incompatible protocol version",
-      "name": "ProtocolVersionError",
-      "value": 505
     }
   ],
   "constraints": null

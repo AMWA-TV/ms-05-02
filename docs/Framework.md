@@ -44,6 +44,7 @@ Where the functionality of a device uses control classes and datatypes listed in
   - [NcMethodResultDatatypeDescriptor](#ncmethodresultdatatypedescriptor)
   - [NcMethodResultError](#ncmethodresulterror)
   - [NcMethodResultId](#ncmethodresultid)
+  - [NcMethodResultLength](#ncmethodresultlength)
   - [NcMethodResultPropertyValue](#ncmethodresultpropertyvalue)
 - [NcMethodStatus](#ncmethodstatus)
 - [NcName](#ncname)
@@ -165,6 +166,11 @@ Further explanations and normative references are provided in the [NcObject](NcO
         NcId index    // Index of item in the sequence
     );
 
+    // Get sequence length
+    [element("1m7")]    NcMethodResultLength GetSequenceLength(
+        NcPropertyId id    // Property id
+    );
+
     [element("1e1")]    [event]    void    PropertyChanged(NcPropertyChangedEventData PropertyChanged);    // Property changed event
 };
 ```
@@ -202,7 +208,7 @@ Further explanations are provided in a dedicated [Blocks](Blocks.md) section.
 
     // Finds members with given class id
     [element("2m4")]    NcMethodResultBlockMemberDescriptors FindMembersByClassId(
-        NcClassId id,    // Class id to search for
+        NcClassId classId,    // Class id to search for
         NcBoolean includeDerived,    // If TRUE it will also include derived class descriptors
         NcBoolean recurse    // TRUE to search nested blocks
     );
@@ -266,7 +272,7 @@ NcClassManager is the class manager control class.
 
     // Get a single class descriptor
     [element("3m1")]    NcMethodResultClassDescriptor GetControlClass(
-        NcClassId identity,    // class ID
+        NcClassId classId,    // class ID
         NcBoolean includeInherited    // If set the descriptor would contain all inherited elements
     );
 
@@ -367,7 +373,7 @@ interface NcBlockMemberDescriptor: NcDescriptor {
 ```typescript
 // Descriptor of a class
 interface NcClassDescriptor: NcDescriptor {
-    attribute NcClassId    identity; // Identity of the class
+    attribute NcClassId    classId; // Identity of the class
     attribute NcName    name; // Name of the class
     attribute NcString?    fixedRole; // Role if the class has fixed role (manager classes)
     attribute sequence<NcPropertyDescriptor>    properties; // Property descriptors
@@ -589,7 +595,8 @@ interface NcManufacturer {
 ### NcMethodResult
 
 All methods MUST return a datatype which inherits from NcMethodResult.  
-When a method call encounters an error the return MUST be [NcMethodResultError](#ncmethodresulterror) or a derived datatype.
+When a method call encounters an error the return MUST be [NcMethodResultError](#ncmethodresulterror) or a derived datatype.  
+Devices MUST use the exact status code from [NcMethodStatus](#ncmethodstatus) when errors are encountered for the following scenarios: PropertyDeprecated, MethodDeprecated, IndexOutOfBounds, MethodNotImplemented, PropertyNotImplemented, BadOid, Readonly.
 
 ```typescript
 // Base result of the invoked method
@@ -643,6 +650,15 @@ interface NcMethodResultId: NcMethodResult {
 };
 ```
 
+#### NcMethodResultLength
+
+```typescript
+// Length method result
+interface NcMethodResultLength: NcMethodResult {
+    attribute NcUint32    value; // Length result value
+};
+```
+
 #### NcMethodResultPropertyValue
 
 NcMethodResultPropertyValue can hold any value type depending on the underlying property type.
@@ -669,14 +685,14 @@ enum NcMethodStatus {
     "InvalidRequest",        // 406 Method call is invalid in current operating context (e.g. attempting to invoke a method when the object is disabled)
     "Conflict",        // 409 There is a conflict with the current state of the device
     "BufferOverflow",        // 413 Something was too big
+    "IndexOutOfBounds",        // 414 Index is outside the available range
     "ParameterError",        // 417 Method parameter does not meet expectations (e.g. attempting to invoke a method with an invalid type for one of its parameters)
     "Locked",        // 423 Addressed object is locked
     "DeviceError",        // 500 Internal device error
     "MethodNotImplemented",        // 501 Addressed method is not implemented by the addressed object
     "PropertyNotImplemented",        // 502 Addressed property is not implemented by the addressed object
     "NotReady",        // 503 The device is not ready to handle any commands
-    "Timeout",        // 504 Method call did not finish within the allotted time
-    "ProtocolVersionError"        // 505 Incompatible protocol version
+    "Timeout"        // 504 Method call did not finish within the allotted time
 };
 ```
 
@@ -914,6 +930,8 @@ typedef NcString    NcUuid; // UUID
 ```
 
 ### NcVersionCode
+
+Version code in semantic versioning format described as "vMajor.Minor.Patch" for example "v1.0.0".
 
 ```typescript
 typedef NcString    NcVersionCode; // Version code in semantic versioning format
