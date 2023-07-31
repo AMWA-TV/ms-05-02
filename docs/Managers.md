@@ -3,6 +3,10 @@
 Managers are singleton (MUST only be instantiated once) classes which collate information that pertains to the entire device. Each manager class applies to a specific functional context.  
 All managers MUST inherit from [NcManager](Framework.md#ncmanager).
 
+Implementations which derive any standard manager classes with the exception of [NcManager](Framework.md#ncmanager) MUST only instantiate the derived class and MUST not instantiate the base standard manager class. Furthermore, the derived classes MUST use the same fixed roles as the base standard manager class.
+
+Implementations which create non-standard manager classes for functional contexts not covered by the framework MUST derive from [NcManager](Framework.md#ncmanager) and MUST only instantiate each manager once per functional context.
+
 All managers MUST always exist as members in the root block and have a fixed role.
 
 The roles for the managers defined by the framework are defined using the `control-class extension` as a third argument.
