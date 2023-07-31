@@ -8,7 +8,8 @@
       "name": "status",
       "typeName": "NcMethodStatus",
       "isNullable": false,
-      "isSequence": false
+      "isSequence": false,
+      "constraints": null
     }
   ],
   "parentType": null,

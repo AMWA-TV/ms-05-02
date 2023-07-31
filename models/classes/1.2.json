@@ -18,7 +18,8 @@
       "isReadOnly": false,
       "isNullable": false,
       "isSequence": false,
-      "isDeprecated": false
+      "isDeprecated": false,
+      "constraints": null
     }
   ],
   "methods": [],

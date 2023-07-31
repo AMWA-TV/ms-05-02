@@ -8,21 +8,24 @@
       "name": "maximum",
       "typeName": null,
       "isNullable": true,
-      "isSequence": false
+      "isSequence": false,
+      "constraints": null
     },
     {
       "description": "Optional minimum",
       "name": "minimum",
       "typeName": null,
       "isNullable": true,
-      "isSequence": false
+      "isSequence": false,
+      "constraints": null
     },
     {
       "description": "Optional step",
       "name": "step",
       "typeName": null,
       "isNullable": true,
-      "isSequence": false
+      "isSequence": false,
+      "constraints": null
     }
   ],
   "parentType": "NcPropertyConstraints",

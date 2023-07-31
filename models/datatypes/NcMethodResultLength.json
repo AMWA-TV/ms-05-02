@@ -8,7 +8,8 @@
       "name": "value",
       "typeName": "NcUint32",
       "isNullable": false,
-      "isSequence": false
+      "isSequence": false,
+      "constraints": null
     }
   ],
   "parentType": "NcMethodResult",

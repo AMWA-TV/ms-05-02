@@ -8,14 +8,16 @@
       "name": "name",
       "typeName": "NcName",
       "isNullable": false,
-      "isSequence": false
+      "isSequence": false,
+      "constraints": null
     },
     {
       "description": "Enum item numerical value",
       "name": "value",
       "typeName": "NcUint16",
       "isNullable": false,
-      "isSequence": false
+      "isSequence": false,
+      "constraints": null
     }
   ],
   "parentType": "NcDescriptor",

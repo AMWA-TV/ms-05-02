@@ -8,14 +8,16 @@
       "name": "generic",
       "typeName": "NcDeviceGenericState",
       "isNullable": false,
-      "isSequence": false
+      "isSequence": false,
+      "constraints": null
     },
     {
       "description": "Specific device details",
       "name": "deviceSpecificDetails",
       "typeName": "NcString",
       "isNullable": true,
-      "isSequence": false
+      "isSequence": false,
+      "constraints": null
     }
   ],
   "parentType": null,

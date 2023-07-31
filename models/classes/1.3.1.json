@@ -19,7 +19,8 @@
       "isReadOnly": true,
       "isNullable": false,
       "isSequence": false,
-      "isDeprecated": false
+      "isDeprecated": false,
+      "constraints": null
     },
     {
       "description": "Manufacturer descriptor",
@@ -32,7 +33,8 @@
       "isReadOnly": true,
       "isNullable": false,
       "isSequence": false,
-      "isDeprecated": false
+      "isDeprecated": false,
+      "constraints": null
     },
     {
       "description": "Product descriptor",
@@ -45,7 +47,8 @@
       "isReadOnly": true,
       "isNullable": false,
       "isSequence": false,
-      "isDeprecated": false
+      "isDeprecated": false,
+      "constraints": null
     },
     {
       "description": "Serial number",
@@ -58,7 +61,8 @@
       "isReadOnly": true,
       "isNullable": false,
       "isSequence": false,
-      "isDeprecated": false
+      "isDeprecated": false,
+      "constraints": null
     },
     {
       "description": "Asset tracking identifier (user specified)",
@@ -71,7 +75,8 @@
       "isReadOnly": false,
       "isNullable": true,
       "isSequence": false,
-      "isDeprecated": false
+      "isDeprecated": false,
+      "constraints": null
     },
     {
       "description": "Name of this device in the application. Instance name, not product name.",
@@ -84,7 +89,8 @@
       "isReadOnly": false,
       "isNullable": true,
       "isSequence": false,
-      "isDeprecated": false
+      "isDeprecated": false,
+      "constraints": null
     },
     {
       "description": "Role of this device in the application.",
@@ -97,7 +103,8 @@
       "isReadOnly": false,
       "isNullable": true,
       "isSequence": false,
-      "isDeprecated": false
+      "isDeprecated": false,
+      "constraints": null
     },
     {
       "description": "Device operational state",
@@ -110,7 +117,8 @@
       "isReadOnly": true,
       "isNullable": false,
       "isSequence": false,
-      "isDeprecated": false
+      "isDeprecated": false,
+      "constraints": null
     },
     {
       "description": "Reason for most recent reset",
@@ -123,7 +131,8 @@
       "isReadOnly": true,
       "isNullable": false,
       "isSequence": false,
-      "isDeprecated": false
+      "isDeprecated": false,
+      "constraints": null
     },
     {
       "description": "Arbitrary message from dev to controller",
@@ -136,7 +145,8 @@
       "isReadOnly": true,
       "isNullable": true,
       "isSequence": false,
-      "isDeprecated": false
+      "isDeprecated": false,
+      "constraints": null
     }
   ],
   "methods": [],

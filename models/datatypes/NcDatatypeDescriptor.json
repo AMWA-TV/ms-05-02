@@ -8,21 +8,24 @@
             "name": "name",
             "typeName": "NcName",
             "isNullable": false,
-            "isSequence": false
+            "isSequence": false,
+            "constraints": null
         },
         {
             "description": "Type: Primitive, Typedef, Struct, Enum",
             "name": "type",
             "typeName": "NcDatatypeType",
             "isNullable": false,
-            "isSequence": false
+            "isSequence": false,
+            "constraints": null
         },
         {
             "description": "Optional constraints on top of the underlying data type",
             "name": "constraints",
             "typeName": "NcParameterConstraints",
             "isNullable": true,
-            "isSequence": false
+            "isSequence": false,
+            "constraints": null
         }
     ],
     "parentType": "NcDescriptor",

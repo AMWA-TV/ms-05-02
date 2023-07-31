@@ -8,14 +8,16 @@
             "name": "level",
             "typeName": "NcUint16",
             "isNullable": false,
-            "isSequence": false
+            "isSequence": false,
+            "constraints": null
         },
         {
             "description": "Index of the element",
             "name": "index",
             "typeName": "NcUint16",
             "isNullable": false,
-            "isSequence": false
+            "isSequence": false,
+            "constraints": null
         }
     ],
     "parentType": null,

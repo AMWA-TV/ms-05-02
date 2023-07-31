@@ -8,14 +8,16 @@
       "name": "parentType",
       "typeName": "NcName",
       "isNullable": false,
-      "isSequence": false
+      "isSequence": false,
+      "constraints": null
     },
     {
       "description": "TRUE iff type is a typedef sequence of another type",
       "name": "isSequence",
       "typeName": "NcBoolean",
       "isNullable": false,
-      "isSequence": false
+      "isSequence": false,
+      "constraints": null
     }
   ],
   "parentType": "NcDatatypeDescriptor",

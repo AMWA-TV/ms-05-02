@@ -8,7 +8,8 @@
             "name": "resourceType",
             "typeName": "NcString",
             "isNullable": false,
-            "isSequence": false
+            "isSequence": false,
+            "constraints": null
         }
     ],
     "parentType": null,

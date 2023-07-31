@@ -8,7 +8,8 @@
       "name": "value",
       "typeName": "NcClassDescriptor",
       "isNullable": false,
-      "isSequence": false
+      "isSequence": false,
+      "constraints": null
     }
   ],
   "parentType": "NcMethodResult",
