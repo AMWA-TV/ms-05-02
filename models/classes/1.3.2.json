@@ -17,11 +17,9 @@
       "name": "controlClasses",
       "typeName": "NcClassDescriptor",
       "isReadOnly": true,
-      "isPersistent": true,
       "isNullable": false,
       "isSequence": true,
-      "isDeprecated": false,
-      "isConstant": null
+      "isDeprecated": false
     },
     {
       "description": "Descriptions of all data types in the device (descriptors do not contain inherited elements)",
@@ -32,11 +30,9 @@
       "name": "datatypes",
       "typeName": "NcDatatypeDescriptor",
       "isReadOnly": true,
-      "isPersistent": true,
       "isNullable": false,
       "isSequence": true,
-      "isDeprecated": false,
-      "isConstant": null
+      "isDeprecated": false
     }
   ],
   "methods": [

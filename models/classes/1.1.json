@@ -16,11 +16,9 @@
       "name": "enabled",
       "typeName": "NcBoolean",
       "isReadOnly": true,
-      "isPersistent": true,
       "isNullable": false,
       "isSequence": false,
-      "isDeprecated": false,
-      "isConstant": null
+      "isDeprecated": false
     },
     {
       "description": "Descriptors of this block's members",
@@ -31,11 +29,9 @@
       "name": "members",
       "typeName": "NcBlockMemberDescriptor",
       "isReadOnly": true,
-      "isPersistent": true,
       "isNullable": false,
       "isSequence": true,
-      "isDeprecated": false,
-      "isConstant": null
+      "isDeprecated": false
     }
   ],
   "methods": [

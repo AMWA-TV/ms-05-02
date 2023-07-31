@@ -17,11 +17,9 @@
       "name": "ncVersion",
       "typeName": "NcVersionCode",
       "isReadOnly": true,
-      "isPersistent": true,
       "isNullable": false,
       "isSequence": false,
-      "isDeprecated": false,
-      "isConstant": null
+      "isDeprecated": false
     },
     {
       "description": "Manufacturer descriptor",
@@ -32,11 +30,9 @@
       "name": "manufacturer",
       "typeName": "NcManufacturer",
       "isReadOnly": true,
-      "isPersistent": true,
       "isNullable": false,
       "isSequence": false,
-      "isDeprecated": false,
-      "isConstant": null
+      "isDeprecated": false
     },
     {
       "description": "Product descriptor",
@@ -47,11 +43,9 @@
       "name": "product",
       "typeName": "NcProduct",
       "isReadOnly": true,
-      "isPersistent": true,
       "isNullable": false,
       "isSequence": false,
-      "isDeprecated": false,
-      "isConstant": null
+      "isDeprecated": false
     },
     {
       "description": "Serial number",
@@ -62,11 +56,9 @@
       "name": "serialNumber",
       "typeName": "NcString",
       "isReadOnly": true,
-      "isPersistent": true,
       "isNullable": false,
       "isSequence": false,
-      "isDeprecated": false,
-      "isConstant": null
+      "isDeprecated": false
     },
     {
       "description": "Asset tracking identifier (user specified)",
@@ -77,11 +69,9 @@
       "name": "userInventoryCode",
       "typeName": "NcString",
       "isReadOnly": false,
-      "isPersistent": true,
       "isNullable": true,
       "isSequence": false,
-      "isDeprecated": false,
-      "isConstant": null
+      "isDeprecated": false
     },
     {
       "description": "Name of this device in the application. Instance name, not product name.",
@@ -92,11 +82,9 @@
       "name": "deviceName",
       "typeName": "NcString",
       "isReadOnly": false,
-      "isPersistent": true,
       "isNullable": true,
       "isSequence": false,
-      "isDeprecated": false,
-      "isConstant": null
+      "isDeprecated": false
     },
     {
       "description": "Role of this device in the application.",
@@ -107,11 +95,9 @@
       "name": "deviceRole",
       "typeName": "NcString",
       "isReadOnly": false,
-      "isPersistent": true,
       "isNullable": true,
       "isSequence": false,
-      "isDeprecated": false,
-      "isConstant": null
+      "isDeprecated": false
     },
     {
       "description": "Device operational state",
@@ -122,11 +108,9 @@
       "name": "operationalState",
       "typeName": "NcDeviceOperationalState",
       "isReadOnly": true,
-      "isPersistent": true,
       "isNullable": false,
       "isSequence": false,
-      "isDeprecated": false,
-      "isConstant": null
+      "isDeprecated": false
     },
     {
       "description": "Reason for most recent reset",
@@ -137,11 +121,9 @@
       "name": "resetCause",
       "typeName": "NcResetCause",
       "isReadOnly": true,
-      "isPersistent": true,
       "isNullable": false,
       "isSequence": false,
-      "isDeprecated": false,
-      "isConstant": null
+      "isDeprecated": false
     },
     {
       "description": "Arbitrary message from dev to controller",
@@ -152,11 +134,9 @@
       "name": "message",
       "typeName": "NcString",
       "isReadOnly": true,
-      "isPersistent": true,
       "isNullable": true,
       "isSequence": false,
-      "isDeprecated": false,
-      "isConstant": null
+      "isDeprecated": false
     }
   ],
   "methods": [],
