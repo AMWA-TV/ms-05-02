@@ -31,7 +31,7 @@ Lack of the `readonly` token does not guarantee the property can be changed usin
 
 ## PropertyChanged event
 
-NcObject offers a PropertyChanged event `[element("1e1")]` which MUST trigger anytime a property on the object is changed.
+NcObject defines a PropertyChanged event `[element("1e1")]` which MUST trigger anytime a property on the object is changed.
 The event data is of type [NcPropertyChangedEventData](Framework.md#ncpropertychangedeventdata).
 
 Events can only be consumed as notifications when subscribed to. Subscriptions and their implementation are protocol-specific. For more details refer to [IS-12 NMOS Control Protocol](https://specs.amwa.tv/is-12/branches/v1.0-dev/docs/Protocol_messaging.html).
