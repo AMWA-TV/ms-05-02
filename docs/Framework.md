@@ -286,9 +286,17 @@ NcClassManager is the class manager control class.
 
 ## Datatypes
 
-Control class models are documented using WebIDL interfaces.
+Datatype models are documented using WebIDL fragments.
 
 The `[primitive]` extended attribute identifies primitive datatypes.
+
+The `typedef` attribute identifies typedef datatypes if they do not also have the `[primitive]` extended attribute.
+
+Struct datatypes are documented using WebIDL interfaces.
+
+The `enum` attribute identifies enum datatypes.
+
+[NcDatatypeType](#ncdatatypetype) contains all the possible types of datatype.
 
 ### Primitives
 
@@ -653,7 +661,7 @@ interface NcMethodResultId: NcMethodResult {
 ```typescript
 // Length method result
 interface NcMethodResultLength: NcMethodResult {
-    attribute NcUint32    value; // Length result value
+    attribute NcUint32?    value; // Length result value. Can be null if the underlying sequence is null
 };
 ```
 

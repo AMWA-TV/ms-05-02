@@ -4,10 +4,10 @@
   "type": 2,
   "fields": [
     {
-      "description": "Length result value",
+      "description": "Length result value. Can be null if the underlying sequence is null",
       "name": "value",
       "typeName": "NcUint32",
-      "isNullable": false,
+      "isNullable": true,
       "isSequence": false,
       "constraints": null
     }
