@@ -8,21 +8,24 @@
             "name": "name",
             "typeName": "NcString",
             "isNullable": false,
-            "isSequence": false
+            "isSequence": false,
+            "constraints": null
         },
         {
             "description": "IEEE OUI or CID of manufacturer",
             "name": "organizationId",
             "typeName": "NcOrganizationId",
             "isNullable": true,
-            "isSequence": false
+            "isSequence": false,
+            "constraints": null
         },
         {
             "description": "URL of the manufacturer's website",
             "name": "website",
             "typeName": "NcUri",
             "isNullable": true,
-            "isSequence": false
+            "isSequence": false,
+            "constraints": null
         }
     ],
     "parentType": null,

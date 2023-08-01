@@ -17,11 +17,10 @@
       "name": "controlClasses",
       "typeName": "NcClassDescriptor",
       "isReadOnly": true,
-      "isPersistent": true,
       "isNullable": false,
       "isSequence": true,
       "isDeprecated": false,
-      "isConstant": null
+      "constraints": null
     },
     {
       "description": "Descriptions of all data types in the device (descriptors do not contain inherited elements)",
@@ -32,11 +31,10 @@
       "name": "datatypes",
       "typeName": "NcDatatypeDescriptor",
       "isReadOnly": true,
-      "isPersistent": true,
       "isNullable": false,
       "isSequence": true,
       "isDeprecated": false,
-      "isConstant": null
+      "constraints": null
     }
   ],
   "methods": [
@@ -54,14 +52,16 @@
           "name": "classId",
           "typeName": "NcClassId",
           "isNullable": false,
-          "isSequence": false
+          "isSequence": false,
+          "constraints": null
         },
         {
           "description": "If set the descriptor would contain all inherited elements",
           "name": "includeInherited",
           "typeName": "NcBoolean",
           "isNullable": false,
-          "isSequence": false
+          "isSequence": false,
+          "constraints": null
         }
       ],
       "isDeprecated": false
@@ -80,14 +80,16 @@
           "name": "name",
           "typeName": "NcName",
           "isNullable": false,
-          "isSequence": false
+          "isSequence": false,
+          "constraints": null
         },
         {
           "description": "If set the descriptor would contain all inherited elements",
           "name": "includeInherited",
           "typeName": "NcBoolean",
           "isNullable": false,
-          "isSequence": false
+          "isSequence": false,
+          "constraints": null
         }
       ],
       "isDeprecated": false

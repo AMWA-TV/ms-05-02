@@ -8,28 +8,32 @@
       "name": "id",
       "typeName": "NcEventId",
       "isNullable": false,
-      "isSequence": false
+      "isSequence": false,
+      "constraints": null
     },
     {
       "description": "Name of event",
       "name": "name",
       "typeName": "NcName",
       "isNullable": false,
-      "isSequence": false
+      "isSequence": false,
+      "constraints": null
     },
     {
       "description": "Name of event data's datatype",
       "name": "eventDatatype",
       "typeName": "NcName",
       "isNullable": false,
-      "isSequence": false
+      "isSequence": false,
+      "constraints": null
     },
     {
       "description": "TRUE iff property is marked as deprecated",
       "name": "isDeprecated",
       "typeName": "NcBoolean",
       "isNullable": false,
-      "isSequence": false
+      "isSequence": false,
+      "constraints": null
     }
   ],
   "parentType": "NcDescriptor",

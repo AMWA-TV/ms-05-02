@@ -8,7 +8,8 @@
       "name": "value",
       "typeName": "NcBlockMemberDescriptor",
       "isNullable": false,
-      "isSequence": true
+      "isSequence": true,
+      "constraints": null
     }
   ],
   "parentType": "NcMethodResult",

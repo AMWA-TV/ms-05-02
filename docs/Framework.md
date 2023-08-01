@@ -508,11 +508,9 @@ interface NcPropertyDescriptor: NcDescriptor {
     attribute NcName    name; // Name of property
     attribute NcName?    typeName; // Name of property's datatype. Can only ever be null if the type is any
     attribute NcBoolean    isReadOnly; // TRUE iff property is read-only
-    attribute NcBoolean    isPersistent; // TRUE iff property value survives power-on reset
     attribute NcBoolean    isNullable; // TRUE iff property is nullable
     attribute NcBoolean    isSequence; // TRUE iff property is a sequence
     attribute NcBoolean    isDeprecated; // TRUE iff property is marked as deprecated
-    attribute NcBoolean?    isConstant; // Optional flag which indicates if the property is readonly and constant (the device has no means to change the value)
     attribute NcParameterConstraints?    constraints; // Optional constraints on top of the underlying data type
 };
 ```

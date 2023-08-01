@@ -15,11 +15,10 @@
       "name": "classId",
       "typeName": "NcClassId",
       "isReadOnly": true,
-      "isPersistent": true,
       "isNullable": false,
       "isSequence": false,
       "isDeprecated": false,
-      "isConstant": null
+      "constraints": null
     },
     {
       "description": "Object identifier",
@@ -30,11 +29,10 @@
       "name": "oid",
       "typeName": "NcOid",
       "isReadOnly": true,
-      "isPersistent": true,
       "isNullable": false,
       "isSequence": false,
       "isDeprecated": false,
-      "isConstant": null
+      "constraints": null
     },
     {
       "description": "TRUE iff OID is hardwired into device",
@@ -45,11 +43,10 @@
       "name": "constantOid",
       "typeName": "NcBoolean",
       "isReadOnly": true,
-      "isPersistent": true,
       "isNullable": false,
       "isSequence": false,
       "isDeprecated": false,
-      "isConstant": null
+      "constraints": null
     },
     {
       "description": "OID of containing block. Can only ever be null for the root block",
@@ -60,11 +57,10 @@
       "name": "owner",
       "typeName": "NcOid",
       "isReadOnly": true,
-      "isPersistent": true,
       "isNullable": true,
       "isSequence": false,
       "isDeprecated": false,
-      "isConstant": null
+      "constraints": null
     },
     {
       "description": "Role of object in the containing block",
@@ -75,11 +71,10 @@
       "name": "role",
       "typeName": "NcString",
       "isReadOnly": true,
-      "isPersistent": true,
       "isNullable": false,
       "isSequence": false,
       "isDeprecated": false,
-      "isConstant": null
+      "constraints": null
     },
     {
       "description": "Scribble strip",
@@ -90,11 +85,10 @@
       "name": "userLabel",
       "typeName": "NcString",
       "isReadOnly": false,
-      "isPersistent": true,
       "isNullable": true,
       "isSequence": false,
       "isDeprecated": false,
-      "isConstant": null
+      "constraints": null
     },
     {
       "description": "Touchpoints to other contexts",
@@ -105,11 +99,10 @@
       "name": "touchpoints",
       "typeName": "NcTouchpoint",
       "isReadOnly": true,
-      "isPersistent": true,
       "isNullable": true,
       "isSequence": true,
       "isDeprecated": false,
-      "isConstant": null
+      "constraints": null
     },
     {
       "description": "Runtime property constraints",
@@ -120,11 +113,10 @@
       "name": "runtimePropertyConstraints",
       "typeName": "NcPropertyConstraints",
       "isReadOnly": true,
-      "isPersistent": true,
       "isNullable": true,
       "isSequence": true,
       "isDeprecated": false,
-      "isConstant": null
+      "constraints": null
     }
   ],
   "methods": [
@@ -142,7 +134,8 @@
           "name": "id",
           "typeName": "NcPropertyId",
           "isNullable": false,
-          "isSequence": false
+          "isSequence": false,
+          "constraints": null
         }
       ],
       "isDeprecated": false
@@ -161,14 +154,16 @@
           "name": "id",
           "typeName": "NcPropertyId",
           "isNullable": false,
-          "isSequence": false
+          "isSequence": false,
+          "constraints": null
         },
         {
           "description": "Property value",
           "name": "value",
           "typeName": null,
           "isNullable": true,
-          "isSequence": false
+          "isSequence": false,
+          "constraints": null
         }
       ],
       "isDeprecated": false
@@ -187,14 +182,16 @@
           "name": "id",
           "typeName": "NcPropertyId",
           "isNullable": false,
-          "isSequence": false
+          "isSequence": false,
+          "constraints": null
         },
         {
           "description": "Index of item in the sequence",
           "name": "index",
           "typeName": "NcId",
           "isNullable": false,
-          "isSequence": false
+          "isSequence": false,
+          "constraints": null
         }
       ],
       "isDeprecated": false
@@ -213,21 +210,24 @@
           "name": "id",
           "typeName": "NcPropertyId",
           "isNullable": false,
-          "isSequence": false
+          "isSequence": false,
+          "constraints": null
         },
         {
           "description": "Index of item in the sequence",
           "name": "index",
           "typeName": "NcId",
           "isNullable": false,
-          "isSequence": false
+          "isSequence": false,
+          "constraints": null
         },
         {
           "description": "Value",
           "name": "value",
           "typeName": null,
           "isNullable": true,
-          "isSequence": false
+          "isSequence": false,
+          "constraints": null
         }
       ],
       "isDeprecated": false
@@ -246,14 +246,16 @@
           "name": "id",
           "typeName": "NcPropertyId",
           "isNullable": false,
-          "isSequence": false
+          "isSequence": false,
+          "constraints": null
         },
         {
           "description": "Value",
           "name": "value",
           "typeName": null,
           "isNullable": true,
-          "isSequence": false
+          "isSequence": false,
+          "constraints": null
         }
       ],
       "isDeprecated": false
@@ -272,14 +274,16 @@
           "name": "id",
           "typeName": "NcPropertyId",
           "isNullable": false,
-          "isSequence": false
+          "isSequence": false,
+          "constraints": null
         },
         {
           "description": "Index of item in the sequence",
           "name": "index",
           "typeName": "NcId",
           "isNullable": false,
-          "isSequence": false
+          "isSequence": false,
+          "constraints": null
         }
       ],
       "isDeprecated": false
@@ -298,7 +302,8 @@
           "name": "id",
           "typeName": "NcPropertyId",
           "isNullable": false,
-          "isSequence": false
+          "isSequence": false,
+          "constraints": null
         }
       ],
       "isDeprecated": false

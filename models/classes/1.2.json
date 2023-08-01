@@ -16,11 +16,10 @@
       "name": "enabled",
       "typeName": "NcBoolean",
       "isReadOnly": false,
-      "isPersistent": true,
       "isNullable": false,
       "isSequence": false,
       "isDeprecated": false,
-      "isConstant": null
+      "constraints": null
     }
   ],
   "methods": [],

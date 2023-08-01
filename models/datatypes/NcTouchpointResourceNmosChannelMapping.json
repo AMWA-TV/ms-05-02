@@ -8,7 +8,8 @@
             "name": "ioId",
             "typeName": "NcString",
             "isNullable": false,
-            "isSequence": false
+            "isSequence": false,
+            "constraints": null
         }
     ],
     "parentType": "NcTouchpointResourceNmos",

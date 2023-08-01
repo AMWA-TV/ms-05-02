@@ -8,70 +8,64 @@
       "name": "id",
       "typeName": "NcPropertyId",
       "isNullable": false,
-      "isSequence": false
+      "isSequence": false,
+      "constraints": null
     },
     {
       "description": "Name of property",
       "name": "name",
       "typeName": "NcName",
       "isNullable": false,
-      "isSequence": false
+      "isSequence": false,
+      "constraints": null
     },
     {
       "description": "Name of property's datatype. Can only ever be null if the type is any",
       "name": "typeName",
       "typeName": "NcName",
       "isNullable": true,
-      "isSequence": false
+      "isSequence": false,
+      "constraints": null
     },
     {
       "description": "TRUE iff property is read-only",
       "name": "isReadOnly",
       "typeName": "NcBoolean",
       "isNullable": false,
-      "isSequence": false
-    },
-    {
-      "description": "TRUE iff property value survives power-on reset",
-      "name": "isPersistent",
-      "typeName": "NcBoolean",
-      "isNullable": false,
-      "isSequence": false
+      "isSequence": false,
+      "constraints": null
     },
     {
       "description": "TRUE iff property is nullable",
       "name": "isNullable",
       "typeName": "NcBoolean",
       "isNullable": false,
-      "isSequence": false
+      "isSequence": false,
+      "constraints": null
     },
     {
       "description": "TRUE iff property is a sequence",
       "name": "isSequence",
       "typeName": "NcBoolean",
       "isNullable": false,
-      "isSequence": false
+      "isSequence": false,
+      "constraints": null
     },
     {
       "description": "TRUE iff property is marked as deprecated",
       "name": "isDeprecated",
       "typeName": "NcBoolean",
       "isNullable": false,
-      "isSequence": false
-    },
-    {
-      "description": "Optional flag which indicates if the property is readonly and constant (the device has no means to change the value)",
-      "name": "isConstant",
-      "typeName": "NcBoolean",
-      "isNullable": true,
-      "isSequence": false
+      "isSequence": false,
+      "constraints": null
     },
     {
       "description": "Optional constraints on top of the underlying data type",
       "name": "constraints",
       "typeName": "NcParameterConstraints",
       "isNullable": true,
-      "isSequence": false
+      "isSequence": false,
+      "constraints": null
     }
   ],
   "parentType": "NcDescriptor",

@@ -8,14 +8,16 @@
       "name": "maxCharacters",
       "typeName": "NcUint32",
       "isNullable": true,
-      "isSequence": false
+      "isSequence": false,
+      "constraints": null
     },
     {
       "description": "Regex pattern",
       "name": "pattern",
       "typeName": "NcRegex",
       "isNullable": true,
-      "isSequence": false
+      "isSequence": false,
+      "constraints": null
     }
   ],
   "parentType": "NcPropertyConstraints",

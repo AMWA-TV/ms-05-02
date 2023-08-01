@@ -16,11 +16,10 @@
       "name": "enabled",
       "typeName": "NcBoolean",
       "isReadOnly": true,
-      "isPersistent": true,
       "isNullable": false,
       "isSequence": false,
       "isDeprecated": false,
-      "isConstant": null
+      "constraints": null
     },
     {
       "description": "Descriptors of this block's members",
@@ -31,11 +30,10 @@
       "name": "members",
       "typeName": "NcBlockMemberDescriptor",
       "isReadOnly": true,
-      "isPersistent": true,
       "isNullable": false,
       "isSequence": true,
       "isDeprecated": false,
-      "isConstant": null
+      "constraints": null
     }
   ],
   "methods": [
@@ -53,7 +51,8 @@
           "name": "recurse",
           "typeName": "NcBoolean",
           "isNullable": false,
-          "isSequence": false
+          "isSequence": false,
+          "constraints": null
         }
       ],
       "isDeprecated": false
@@ -72,7 +71,8 @@
           "name": "path",
           "typeName": "NcRolePath",
           "isNullable": false,
-          "isSequence": false
+          "isSequence": false,
+          "constraints": null
         }
       ],
       "isDeprecated": false
@@ -91,28 +91,32 @@
           "name": "role",
           "typeName": "NcString",
           "isNullable": false,
-          "isSequence": false
+          "isSequence": false,
+          "constraints": null
         },
         {
           "description": "Signals if the comparison should be case sensitive",
           "name": "caseSensitive",
           "typeName": "NcBoolean",
           "isNullable": false,
-          "isSequence": false
+          "isSequence": false,
+          "constraints": null
         },
         {
           "description": "TRUE to only return exact matches",
           "name": "matchWholeString",
           "typeName": "NcBoolean",
           "isNullable": false,
-          "isSequence": false
+          "isSequence": false,
+          "constraints": null
         },
         {
           "description": "TRUE to search nested blocks",
           "name": "recurse",
           "typeName": "NcBoolean",
           "isNullable": false,
-          "isSequence": false
+          "isSequence": false,
+          "constraints": null
         }
       ],
       "isDeprecated": false
@@ -131,21 +135,24 @@
           "name": "classId",
           "typeName": "NcClassId",
           "isNullable": false,
-          "isSequence": false
+          "isSequence": false,
+          "constraints": null
         },
         {
           "description": "If TRUE it will also include derived class descriptors",
           "name": "includeDerived",
           "typeName": "NcBoolean",
           "isNullable": false,
-          "isSequence": false
+          "isSequence": false,
+          "constraints": null
         },
         {
           "description": "TRUE to search nested blocks",
           "name": "recurse",
           "typeName": "NcBoolean",
           "isNullable": false,
-          "isSequence": false
+          "isSequence": false,
+          "constraints": null
         }
       ],
       "isDeprecated": false
