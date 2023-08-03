@@ -97,7 +97,7 @@ Every property, method, or event declaration of every control class is prefixed 
 
 where **elementId** is a delimited string of the form `nTm`, where
 
-- `n` is the definition level of the class in the class tree
+- `n` is the definition level of the class in the device model
 - `T` is the elementId type key (p, m or e).
 - `m` is the ordinal of the definition within the class
 
@@ -311,7 +311,7 @@ NcClassId is a sequence of NcInt32 class ID fields.
 A class ID sequence reflects the ancestry of the class being identified.
 
 A class ID field is either a definition index or an authority key.
-A definition index is an ordinal that starts at 1 for every inheritance level of the control model class tree for example `[ 1, 1, 3, 5]`.
+A definition index is an ordinal that starts at 1 for every inheritance level of the control model for example `[ 1, 1, 3, 5]`.
 
 The class id for all standard control classes defined by the framework MUST not contain authority keys.
 
