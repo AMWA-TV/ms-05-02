@@ -52,7 +52,7 @@ The result is of type [NcMethodResultId](Framework.md#ncmethodresultid) which co
 Removing an item from a collection is done through the `RemoveSequenceItem` method (\[element("1m6")\]) by specifying the property identifier [NcPropertyId](Framework.md#ncpropertyid) and the index as arguments.
 The result is of type [NcMethodResult](Framework.md#ncmethodresult).
 
-Checking the length of a collection is done through the `GetSequenceLength` method (\[element("1m7")\]) by specifying the property identifier [NcPropertyId](Framework.md#ncpropertyid) as an argument.
+Checking the size of a collection is done through the `GetSequenceLength` method (\[element("1m7")\]) by specifying the property identifier [NcPropertyId](Framework.md#ncpropertyid) as an argument.
 The result is of type [NcMethodResultLength](Framework.md#ncmethodresultlength).
 
 ## Touchpoints
