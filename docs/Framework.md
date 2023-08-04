@@ -121,7 +121,7 @@ Further explanations and normative references are provided in the [NcObject](NcO
 ```typescript
 // NcObject class descriptor
 [control-class("1")] interface NcObject {
-    [element("1p1")]    readonly    attribute    NcClassId    classId;    // Static value. All instances of the same class will have the same identity value
+    [element("1p1")]    readonly    attribute    NcClassId    classId;    // Static value. All instances of the same class will have the same class id value
     [element("1p2")]    readonly    attribute    NcOid    oid;    // Object identifier
     [element("1p3")]    readonly    attribute    NcBoolean    constantOid;    // TRUE iff OID is hardwired into device
     [element("1p4")]    readonly    attribute    NcOid?    owner;    // OID of containing block. Can only ever be null for the root block
@@ -307,17 +307,17 @@ The `[primitive]` extended attribute identifies primitive datatypes.
 
 ### NcClassId
 
-NcClassId is a sequence of NcInt32 class ID fields.
-A class ID sequence reflects the ancestry of the class being identified.
+NcClassId is a sequence of NcInt32 class id fields.
+A class id sequence reflects the ancestry of the class being identified.
 
-A class ID field is either a definition index or an authority key.
+A class id field is either a definition index or an authority key.
 A definition index is an ordinal that starts at 1 for every inheritance level of the control model class tree for example `[ 1, 1, 3, 5]`.
 
 The class id for all standard control classes defined by the framework MUST not contain authority keys.
 
 Non-standard control classes MUST contain at least one authority key.
 
-An authority key is inserted in the class ID sequence immediately after the definition index of the class from which a non-standard class inherits, i.e. at the point where the derived class or class subtree connects into the class structure.
+An authority key is inserted in the class id sequence immediately after the definition index of the class from which a non-standard class inherits, i.e. at the point where the derived class or class subtree connects into the class structure.
 
 For organizations which own a unique CID or OUI the authority key MUST be the organization identifier as an integer which MUST be negated.
 
@@ -708,10 +708,10 @@ typedef NcUint32    NcOid; // Object id
 
 ### NcOrganizationId
 
-Unique 24-bit organization ID:
+Unique 24-bit organization id:
 
 - IEEE public Company ID (public CID) or
-- IEEE Organizational Unique Identifier (OUI).
+- IEEE Organizationally Unique Identifier (OUI).
 
 ```typescript
 typedef NcInt32    NcOrganizationId; // Unique 24-bit organization id
