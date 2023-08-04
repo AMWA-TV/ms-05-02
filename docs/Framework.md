@@ -710,8 +710,8 @@ typedef NcUint32    NcOid; // Object id
 
 Unique 24-bit organization id:
 
-- IEEE public Company id (public CID) or
-- IEEE Organizational Unique Identifier (OUI).
+- IEEE public Company ID (public CID) or
+- IEEE Organizationally Unique Identifier (OUI).
 
 ```typescript
 typedef NcInt32    NcOrganizationId; // Unique 24-bit organization id
