@@ -661,7 +661,7 @@ interface NcMethodResultId: NcMethodResult {
 ```typescript
 // Length method result
 interface NcMethodResultLength: NcMethodResult {
-    attribute NcUint32?    value; // Length result value. Can be null if the underlying sequence is null
+    attribute NcUint32?    value; // Sequence length result value. MUST be null if the sequence is null
 };
 ```
 
