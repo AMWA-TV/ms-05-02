@@ -97,7 +97,7 @@ Every property, method, or event declaration of every control class is prefixed 
 
 where **elementId** is a delimited string of the form `nTm`, where
 
-- `n` is the definition level of the class in the device model
+- `n` is the definition level of the class in the control model inheritance tree
 - `T` is the elementId type key (p, m or e).
 - `m` is the ordinal of the definition within the class
 
