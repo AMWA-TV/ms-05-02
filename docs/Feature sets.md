@@ -1,6 +1,6 @@
 # Feature sets
 
-Feature sets are models (classes and datatypes) required for a specific functionality devices expose.
+Feature sets are models (classes and datatypes) required for devices to expose specific functionality.
 
 Feature sets are defined in the [Control feature sets register](https://specs.amwa.tv/nmos-control-feature-sets/).
 

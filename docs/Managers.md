@@ -35,12 +35,12 @@ A minimal device implementation MUST have a class manager in the root block.
 
 The manager has two properties:
 
-* controlClasses (lists all class descriptors in the device using the [NcClassDescriptor](Framework.md#ncclassdescriptor) type - descriptors do not contain inherited elements)
-* datatypes (lists all data type descriptors in the device using the [NcDatatypeDescriptor](Framework.md#ncdatatypedescriptor) type - descriptors do not contain inherited elements)
+* controlClasses (lists all class descriptors in the device using the [NcClassDescriptor](Framework.md#ncclassdescriptor) type - descriptors MUST NOT contain inherited elements)
+* datatypes (lists all data type descriptors in the device using the [NcDatatypeDescriptor](Framework.md#ncdatatypedescriptor) type - descriptors MUST NOT contain inherited elements)
 
-The descriptor for an individual control class can be retrieved using the `GetControlClass` method (`[element("3m1")]`) and passing the classId (type [NcClassId](Framework.md#ncclassid)) and includeInherited (if all inherited elements should be included - type [NcBoolean](Framework.md#primitives)) as arguments. The method has a response of type [NcMethodResultClassDescriptor](Framework.md#ncmethodresultclassdescriptor).
+The descriptor for an individual control class can be retrieved using the `GetControlClass` method (`[element("3m1")]`) and passing the `classId` (type [NcClassId](Framework.md#ncclassid)) and `includeInherited` (if all inherited elements should be included - type [NcBoolean](Framework.md#primitives)) arguments. The method has a response of type [NcMethodResultClassDescriptor](Framework.md#ncmethodresultclassdescriptor).
 
-The descriptor for an individual data type can be retrieved using the `GetDatatype` method (`[element("3m2")]`) and passing the name (type [NcName](Framework.md#ncname)) and includeInherited (if all inherited elements should be included - type [NcBoolean](Framework.md#primitives)) as arguments. The method has a response of type [NcMethodResultDatatypeDescriptor](Framework.md#ncmethodresultdatatypedescriptor).
+The descriptor for an individual data type can be retrieved using the `GetDatatype` method (`[element("3m2")]`) and passing the `name` (type [NcName](Framework.md#ncname)) and `includeInherited` (if all inherited elements should be included - type [NcBoolean](Framework.md#primitives)) arguments. The method has a response of type [NcMethodResultDatatypeDescriptor](Framework.md#ncmethodresultdatatypedescriptor).
 
 Where the device model instantiates a control class, its class descriptor MUST be made available through the properties and methods defined in the class manager. Control class descriptors MUST correctly reflect any properties which have an immutable `readonly` state.
 
