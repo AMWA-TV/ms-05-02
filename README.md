@@ -1,4 +1,4 @@
-# \[Work In Progress\] AMWA MS-05-02: NMOS Control Framework
+# AMWA MS-05-02: NMOS Control Framework
 
 [![Lint Status](https://github.com/AMWA-TV/ms-05-02/workflows/Lint/badge.svg)](https://github.com/AMWA-TV/ms-05-02/actions?query=workflow%3ALint)
 [![Render Status](https://github.com/AMWA-TV/ms-05-02/workflows/Render/badge.svg)](https://github.com/AMWA-TV/ms-05-02/actions?query=workflow%3ARender)

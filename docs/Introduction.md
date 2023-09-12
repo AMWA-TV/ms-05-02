@@ -1,4 +1,4 @@
-# AMWA MS-05-02 NMOS Control Framework \[Work In Progress\]
+# AMWA MS-05-02 NMOS Control Framework
 
 The NMOS Control framework is a collection of class and datatype models and supporting documentation.
 It serves as the foundation for building devices, components and control and monitoring features in a standard and reusable fashion.

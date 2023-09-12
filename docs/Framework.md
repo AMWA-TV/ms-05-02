@@ -335,7 +335,7 @@ e.g.
 or  
      `[ 1, 1, 3, 5, 0, 1, 4, 5 ]`
 
-Further information and examples provided in [MS-05-01: Appendix A](https://specs.amwa.tv/ms-05-01/branches/v1.0-dev/docs/Appendix_A_-_Class_ID_Format.html).
+Further information and examples provided in [MS-05-01: Appendix A](https://specs.amwa.tv/ms-05-01/branches/v1.0.x/docs/Appendix_A_-_Class_ID_Format.html).
 
 ```typescript
 typedef sequence<NcInt32>    NcClassId; // Sequence of class ID fields.

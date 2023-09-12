@@ -25,16 +25,16 @@ NcObject offers two generic methods for retrieving and setting a property on an 
 
 The value of any property of a control class MUST be retrievable using the Get method.
 
-The `readonly` token clearly marks properties which MUST be read only (their values MUST not be changeable by calling the Set method, but instead devices MUST correctly respond with an [NcMethodResultError](https://specs.amwa.tv/ms-05-02/branches/v1.0-dev/docs/Framework.html#ncmethodresulterror) datatype and [Readonly](https://specs.amwa.tv/ms-05-02/branches/v1.0-dev/docs/Framework.html#ncmethodstatus) status when the Set method is invoked).
+The `readonly` token clearly marks properties which MUST be read only (their values MUST not be changeable by calling the Set method, but instead devices MUST correctly respond with an [NcMethodResultError](https://specs.amwa.tv/ms-05-02/branches/v1.0.x/docs/Framework.html#ncmethodresulterror) datatype and [Readonly](https://specs.amwa.tv/ms-05-02/branches/v1.0.x/docs/Framework.html#ncmethodstatus) status when the Set method is invoked).
 
-Lack of the `readonly` token does not guarantee the property can be changed using the Set method due to device internal restrictions or operational context. In such cases the device MUST correctly respond with an [NcMethodResultError](https://specs.amwa.tv/ms-05-02/branches/v1.0-dev/docs/Framework.html#ncmethodresulterror) datatype.
+Lack of the `readonly` token does not guarantee the property can be changed using the Set method due to device internal restrictions or operational context. In such cases the device MUST correctly respond with an [NcMethodResultError](https://specs.amwa.tv/ms-05-02/branches/v1.0.x/docs/Framework.html#ncmethodresulterror) datatype.
 
 ## PropertyChanged event
 
 NcObject defines a PropertyChanged event `[element("1e1")]` which MUST trigger anytime a property on the object is changed.
 The event data is of type [NcPropertyChangedEventData](Framework.md#ncpropertychangedeventdata).
 
-Events can only be consumed as notifications when subscribed to. Subscriptions and their implementation are protocol-specific. For more details refer to [IS-12 NMOS Control Protocol](https://specs.amwa.tv/is-12/branches/v1.0-dev/docs/Protocol_messaging.html).
+Events can only be consumed as notifications when subscribed to. Subscriptions and their implementation are protocol-specific. For more details refer to [IS-12 NMOS Control Protocol](https://specs.amwa.tv/is-12/branches/v1.0.x/docs/Protocol_messaging.html).
 
 ## Working with collections inside an NcObject
 
@@ -66,4 +66,4 @@ For general NMOS contexts (IS-04, IS-05 and IS-07) the [NcTouchpointNmos](Framew
 
 For IS-08 Audio Channel Mapping the [NcTouchpointResourceNmosChannelMapping](Framework.md#nctouchpointresourcenmoschannelmapping) datatype MUST be used which allows linking to a UUID and an input or output id.
 
-Architectural information about the touchpoints concept is available in [MS-05-01 Identification](https://specs.amwa.tv/ms-05-01/branches/v1.0-dev/docs/Identification.html#nca-nmos-identity-mapping).
+Architectural information about the touchpoints concept is available in [MS-05-01 Identification](https://specs.amwa.tv/ms-05-01/branches/v1.0.x/docs/Identification.html#nca-nmos-identity-mapping).
