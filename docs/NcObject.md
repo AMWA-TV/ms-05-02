@@ -6,7 +6,7 @@ The control class model for NcObject is listed in the [Framework](Framework.md#n
 
 The `role` is a structural identifier which MUST be persisted across restarts.
 
-The `role` of an object MUST be unique within its containing block.
+The `role` of an object MUST be unique within its containing block and MUST NOT use the `.` character.
 
 Object ids (`oid` property) MUST uniquely identity objects in the device model.
 
