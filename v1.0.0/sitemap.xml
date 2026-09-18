@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+      <url>
+        <loc>https://specs.amwa.tv/new/ms-05-02/v1.0.0/</loc>
+      </url>
+      <url>
+        <loc>https://specs.amwa.tv/new/ms-05-02/v1.0.0/Introduction/</loc>
+      </url>
+      <url>
+        <loc>https://specs.amwa.tv/new/ms-05-02/v1.0.0/NcObject/</loc>
+      </url>
+      <url>
+        <loc>https://specs.amwa.tv/new/ms-05-02/v1.0.0/Blocks/</loc>
+      </url>
+      <url>
+        <loc>https://specs.amwa.tv/new/ms-05-02/v1.0.0/Managers/</loc>
+      </url>
+      <url>
+        <loc>https://specs.amwa.tv/new/ms-05-02/v1.0.0/Workers/</loc>
+      </url>
+      <url>
+        <loc>https://specs.amwa.tv/new/ms-05-02/v1.0.0/Framework/</loc>
+      </url>
+      <url>
+        <loc>https://specs.amwa.tv/new/ms-05-02/v1.0.0/Constraints/</loc>
+      </url>
+      <url>
+        <loc>https://specs.amwa.tv/new/ms-05-02/v1.0.0/Feature%20sets/</loc>
+      </url>
+</urlset>
