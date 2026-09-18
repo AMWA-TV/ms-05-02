@@ -1,0 +1,3086 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://specs.amwa.tv/new/ms-05-02/v1.0.x/Framework/">
+      
+      
+        <link rel="prev" href="../Workers/">
+      
+      
+        <link rel="next" href="../Constraints/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="zensical-0.0.62">
+    
+    
+      
+        <title>Framework - AMWA MS-05-02: NMOS Control Framework</title>
+      
+    
+    
+      
+        
+      
+      <link rel="stylesheet" href="../assets/stylesheets/modern/main.ce62732f.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,500,500i,700,700i%7CJetBrains+Mono:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="../stylesheets/amwa-branding.css">
+    
+    <script>__md_scope=new URL("..",location),__md_scope.pathname.endsWith("/")||(__md_scope=new URL(__md_scope.pathname+"/",location)),__md_hash=e=>[...e].reduce(((e,t)=>(e<<5)-e+t.charCodeAt(0)),0),__md_get=(e,t=localStorage,_=__md_scope)=>JSON.parse(t.getItem(_.pathname+"."+e)),__md_set=(e,t,_=localStorage,a=__md_scope)=>{try{_.setItem(a.pathname+"."+e,JSON.stringify(t))}catch(e){}},document.documentElement.setAttribute("data-platform",navigator.platform)</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer" aria-label="Navigation"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#framework" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="./.." title="AMWA MS-05-02: NMOS Control Framework" class="md-header__button md-logo" aria-label="AMWA MS-05-02: NMOS Control Framework" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 5v16M20.001 19A2 2 0 0 0 22 17V5a2 2 0 0 0-1.999-2L16 3.002A5 5 0 0 0 12 5a5 5 0 0 0-4-2H4a2 2 0 0 0-2 2v12a2 2 0 0 0 1.999 2H8a5 5 0 0 1 4 2 5 5 0 0 1 4-2z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer" aria-label="Navigation">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-menu" viewBox="0 0 24 24"><path d="M4 5h16M4 12h16M4 19h16"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AMWA MS-05-02: NMOS Control Framework
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Framework
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search" aria-label="Search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-search" viewBox="0 0 24 24"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog" aria-label="Search">
+  <button type="button" class="md-search__button">
+    Search
+  </button>
+</div>
+      
+    
+    <div class="md-header__source">
+      
+        <a href="https://github.com/AMWA-TV/ms-05-02" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.3.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2026 Fonticons, Inc.--><path fill="currentColor" d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    AMWA-TV/ms-05-02
+  </div>
+</a>
+      
+    </div>
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="./.." title="AMWA MS-05-02: NMOS Control Framework" class="md-nav__button md-logo" aria-label="AMWA MS-05-02: NMOS Control Framework" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 5v16M20.001 19A2 2 0 0 0 22 17V5a2 2 0 0 0-1.999-2L16 3.002A5 5 0 0 0 12 5a5 5 0 0 0-4-2H4a2 2 0 0 0-2 2v12a2 2 0 0 0 1.999 2H8a5 5 0 0 1 4 2 5 5 0 0 1 4-2z"/></svg>
+
+    </a>
+    AMWA MS-05-02: NMOS Control Framework
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/AMWA-TV/ms-05-02" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.3.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2026 Fonticons, Inc.--><path fill="currentColor" d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    AMWA-TV/ms-05-02
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="./.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  AMWA MS-05-02: NMOS Control Framework
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  General
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  General
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Introduction
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Models
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  Models
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../NcObject/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  NcObject
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Blocks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Blocks
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Managers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Managers
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Workers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Workers
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Framework
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="././" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Framework
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#control-classes" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Control classes
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Control classes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ncobject" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcObject
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ncblock" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcBlock
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ncworker" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcWorker
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ncmanager" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcManager
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="NcManager">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ncdevicemanager" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcDeviceManager
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ncclassmanager" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcClassManager
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#datatypes" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Datatypes
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Datatypes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#primitives" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Primitives
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ncclassid" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcClassId
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ncdatatypetype" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcDatatypeType
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ncdescriptor" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcDescriptor
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="NcDescriptor">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ncblockmemberdescriptor" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcBlockMemberDescriptor
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ncclassdescriptor" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcClassDescriptor
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ncdatatypedescriptor" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcDatatypeDescriptor
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="NcDatatypeDescriptor">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ncdatatypedescriptorenum" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcDatatypeDescriptorEnum
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ncdatatypedescriptorprimitive" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcDatatypeDescriptorPrimitive
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ncdatatypedescriptorstruct" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcDatatypeDescriptorStruct
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ncdatatypedescriptortypedef" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcDatatypeDescriptorTypeDef
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ncenumitemdescriptor" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcEnumItemDescriptor
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nceventdescriptor" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcEventDescriptor
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ncfielddescriptor" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcFieldDescriptor
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ncmethoddescriptor" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcMethodDescriptor
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ncparameterdescriptor" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcParameterDescriptor
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ncpropertydescriptor" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcPropertyDescriptor
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ncdevicegenericstate" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcDeviceGenericState
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ncdeviceoperationalstate" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcDeviceOperationalState
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ncelementid" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcElementId
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="NcElementId">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nceventid" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcEventId
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ncmethodid" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcMethodId
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ncpropertyid" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcPropertyId
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ncid" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcId
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ncmanufacturer" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcManufacturer
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ncmethodresult" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcMethodResult
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="NcMethodResult">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ncmethodresultblockmemberdescriptors" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcMethodResultBlockMemberDescriptors
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ncmethodresultclassdescriptor" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcMethodResultClassDescriptor
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ncmethodresultdatatypedescriptor" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcMethodResultDatatypeDescriptor
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ncmethodresulterror" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcMethodResultError
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ncmethodresultid" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcMethodResultId
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ncmethodresultlength" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcMethodResultLength
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ncmethodresultpropertyvalue" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcMethodResultPropertyValue
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ncmethodstatus" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcMethodStatus
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ncname" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcName
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ncoid" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcOid
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ncorganizationid" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcOrganizationId
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ncparameterconstraints" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcParameterConstraints
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="NcParameterConstraints">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ncparameterconstraintsnumber" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcParameterConstraintsNumber
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ncparameterconstraintsstring" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcParameterConstraintsString
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ncproduct" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcProduct
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ncpropertychangedeventdata" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcPropertyChangedEventData
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ncpropertychangetype" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcPropertyChangeType
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ncpropertyconstraints" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcPropertyConstraints
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="NcPropertyConstraints">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ncpropertyconstraintsnumber" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcPropertyConstraintsNumber
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ncpropertyconstraintsstring" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcPropertyConstraintsString
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ncregex" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcRegex
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ncresetcause" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcResetCause
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ncrolepath" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcRolePath
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nctimeinterval" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcTimeInterval
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nctouchpoint" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcTouchpoint
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="NcTouchpoint">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nctouchpointnmos" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcTouchpointNmos
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nctouchpointnmoschannelmapping" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcTouchpointNmosChannelMapping
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nctouchpointresource" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcTouchpointResource
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="NcTouchpointResource">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nctouchpointresourcenmos" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcTouchpointResourceNmos
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nctouchpointresourcenmoschannelmapping" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcTouchpointResourceNmosChannelMapping
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ncuri" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcUri
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ncuuid" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcUuid
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ncversioncode" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcVersionCode
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Constraints/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Constraints
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Feature sets
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  Feature sets
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Feature%20sets/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Feature sets
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  
+                    
+                    
+                    
+                      
+                    
+                    
+                      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+                      <div class="md-sidebar-button__wrapper">
+                        <label class="md-sidebar-button" for="__toc"></label>
+                      </div>
+                    
+                  
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#control-classes" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Control classes
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Control classes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ncobject" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcObject
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ncblock" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcBlock
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ncworker" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcWorker
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ncmanager" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcManager
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="NcManager">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ncdevicemanager" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcDeviceManager
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ncclassmanager" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcClassManager
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#datatypes" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Datatypes
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Datatypes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#primitives" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Primitives
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ncclassid" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcClassId
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ncdatatypetype" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcDatatypeType
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ncdescriptor" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcDescriptor
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="NcDescriptor">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ncblockmemberdescriptor" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcBlockMemberDescriptor
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ncclassdescriptor" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcClassDescriptor
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ncdatatypedescriptor" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcDatatypeDescriptor
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="NcDatatypeDescriptor">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ncdatatypedescriptorenum" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcDatatypeDescriptorEnum
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ncdatatypedescriptorprimitive" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcDatatypeDescriptorPrimitive
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ncdatatypedescriptorstruct" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcDatatypeDescriptorStruct
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ncdatatypedescriptortypedef" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcDatatypeDescriptorTypeDef
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ncenumitemdescriptor" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcEnumItemDescriptor
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nceventdescriptor" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcEventDescriptor
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ncfielddescriptor" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcFieldDescriptor
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ncmethoddescriptor" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcMethodDescriptor
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ncparameterdescriptor" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcParameterDescriptor
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ncpropertydescriptor" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcPropertyDescriptor
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ncdevicegenericstate" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcDeviceGenericState
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ncdeviceoperationalstate" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcDeviceOperationalState
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ncelementid" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcElementId
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="NcElementId">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nceventid" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcEventId
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ncmethodid" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcMethodId
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ncpropertyid" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcPropertyId
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ncid" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcId
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ncmanufacturer" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcManufacturer
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ncmethodresult" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcMethodResult
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="NcMethodResult">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ncmethodresultblockmemberdescriptors" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcMethodResultBlockMemberDescriptors
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ncmethodresultclassdescriptor" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcMethodResultClassDescriptor
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ncmethodresultdatatypedescriptor" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcMethodResultDatatypeDescriptor
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ncmethodresulterror" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcMethodResultError
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ncmethodresultid" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcMethodResultId
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ncmethodresultlength" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcMethodResultLength
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ncmethodresultpropertyvalue" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcMethodResultPropertyValue
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ncmethodstatus" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcMethodStatus
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ncname" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcName
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ncoid" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcOid
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ncorganizationid" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcOrganizationId
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ncparameterconstraints" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcParameterConstraints
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="NcParameterConstraints">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ncparameterconstraintsnumber" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcParameterConstraintsNumber
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ncparameterconstraintsstring" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcParameterConstraintsString
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ncproduct" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcProduct
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ncpropertychangedeventdata" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcPropertyChangedEventData
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ncpropertychangetype" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcPropertyChangeType
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ncpropertyconstraints" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcPropertyConstraints
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="NcPropertyConstraints">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ncpropertyconstraintsnumber" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcPropertyConstraintsNumber
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ncpropertyconstraintsstring" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcPropertyConstraintsString
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ncregex" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcRegex
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ncresetcause" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcResetCause
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ncrolepath" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcRolePath
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nctimeinterval" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcTimeInterval
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nctouchpoint" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcTouchpoint
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="NcTouchpoint">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nctouchpointnmos" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcTouchpointNmos
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nctouchpointnmoschannelmapping" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcTouchpointNmosChannelMapping
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nctouchpointresource" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcTouchpointResource
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="NcTouchpointResource">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nctouchpointresourcenmos" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcTouchpointResourceNmos
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nctouchpointresourcenmoschannelmapping" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcTouchpointResourceNmosChannelMapping
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ncuri" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcUri
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ncuuid" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcUuid
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ncversioncode" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        NcVersionCode
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+  
+  
+
+
+<h1 id="framework">Framework</h1>
+<p>The framework contains core classes and datatypes.
+Where the functionality of a device uses control classes and datatypes listed in this specification it MUST comply with the model definitions published.</p>
+<!-- TOC -->
+<p><a href="#control-classes">Control classes</a>
+- <a href="#ncobject">1 NcObject</a>
+  - <a href="#ncblock">1.1 NcBlock</a>
+  - <a href="#ncworker">1.2 NcWorker</a>
+  - <a href="#ncmanager">1.3 NcManager</a>
+    - <a href="#ncdevicemanager">1.3.1 NcDeviceManager</a>
+    - <a href="#ncclassmanager">1.3.2 NcClassManager</a></p>
+<p><a href="#datatypes">Datatypes</a>
+- <a href="#primitives">Primitives</a>
+- <a href="#ncclassid">NcClassId</a>
+- <a href="#ncdatatypetype">NcDatatypeType</a>
+- <a href="#ncdescriptor">NcDescriptor</a>
+  - <a href="#ncblockmemberdescriptor">NcBlockMemberDescriptor</a>
+  - <a href="#ncclassdescriptor">NcClassDescriptor</a>
+  - <a href="#ncdatatypedescriptor">NcDatatypeDescriptor</a>
+    - <a href="#ncdatatypedescriptorenum">NcDatatypeDescriptorEnum</a>
+    - <a href="#ncdatatypedescriptorprimitive">NcDatatypeDescriptorPrimitive</a>
+    - <a href="#ncdatatypedescriptorstruct">NcDatatypeDescriptorStruct</a>
+    - <a href="#ncdatatypedescriptortypedef">NcDatatypeDescriptorTypeDef</a>
+  - <a href="#ncenumitemdescriptor">NcEnumItemDescriptor</a>
+  - <a href="#nceventdescriptor">NcEventDescriptor</a>
+  - <a href="#ncfielddescriptor">NcFieldDescriptor</a>
+  - <a href="#ncmethoddescriptor">NcMethodDescriptor</a>
+  - <a href="#ncparameterdescriptor">NcParameterDescriptor</a>
+  - <a href="#ncpropertydescriptor">NcPropertyDescriptor</a>
+- <a href="#ncdevicegenericstate">NcDeviceGenericState</a>
+- <a href="#ncdeviceoperationalstate">NcDeviceOperationalState</a>
+- <a href="#ncelementid">NcElementId</a>
+  - <a href="#nceventid">NcEventId</a>
+  - <a href="#ncmethodid">NcMethodId</a>
+  - <a href="#ncpropertyid">NcPropertyId</a>
+- <a href="#ncid">NcId</a>
+- <a href="#ncmanufacturer">NcManufacturer</a>
+- <a href="#ncmethodresult">NcMethodResult</a>
+  - <a href="#ncmethodresultblockmemberdescriptors">NcMethodResultBlockMemberDescriptors</a>
+  - <a href="#ncmethodresultclassdescriptor">NcMethodResultClassDescriptor</a>
+  - <a href="#ncmethodresultdatatypedescriptor">NcMethodResultDatatypeDescriptor</a>
+  - <a href="#ncmethodresulterror">NcMethodResultError</a>
+  - <a href="#ncmethodresultid">NcMethodResultId</a>
+  - <a href="#ncmethodresultlength">NcMethodResultLength</a>
+  - <a href="#ncmethodresultpropertyvalue">NcMethodResultPropertyValue</a>
+- <a href="#ncmethodstatus">NcMethodStatus</a>
+- <a href="#ncname">NcName</a>
+- <a href="#ncoid">NcOid</a>
+- <a href="#ncorganizationid">NcOrganizationId</a>
+- <a href="#ncparameterconstraints">NcParameterConstraints</a>
+  - <a href="#ncparameterconstraintsnumber">NcParameterConstraintsNumber</a>
+  - <a href="#ncparameterconstraintsstring">NcParameterConstraintsString</a>
+- <a href="#ncproduct">NcProduct</a>
+- <a href="#ncpropertychangedeventdata">NcPropertyChangedEventData</a>
+- <a href="#ncpropertychangetype">NcPropertyChangeType</a>
+- <a href="#ncpropertyconstraints">NcPropertyConstraints</a>
+  - <a href="#ncpropertyconstraintsnumber">NcPropertyConstraintsNumber</a>
+  - <a href="#ncpropertyconstraintsstring">NcPropertyConstraintsString</a>
+- <a href="#ncregex">NcRegex</a>
+- <a href="#ncresetcause">NcResetCause</a>
+- <a href="#ncrolepath">NcRolePath</a>
+- <a href="#nctimeinterval">NcTimeInterval</a>
+- <a href="#nctouchpoint">NcTouchpoint</a>
+  - <a href="#nctouchpointnmos">NcTouchpointNmos</a>
+  - <a href="#nctouchpointnmoschannelmapping">NcTouchpointNmosChannelMapping</a>
+- <a href="#nctouchpointresource">NcTouchpointResource</a>
+  - <a href="#nctouchpointresourcenmos">NcTouchpointResourceNmos</a>
+  - <a href="#nctouchpointresourcenmoschannelmapping">NcTouchpointResourceNmosChannelMapping</a>
+- <a href="#ncuri">NcUri</a>
+- <a href="#ncuuid">NcUuid</a>
+- <a href="#ncversioncode">NcVersionCode</a></p>
+<!-- /TOC -->
+
+<h2 id="control-classes">Control classes</h2>
+<p>Control class models are documented using WebIDL interfaces.</p>
+<p>Every control class definition is prefixed by the <code>[control-class(...)]</code> extended attribute.</p>
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="nx">control</span><span class="o">-</span><span class="kd">class</span><span class="p">(</span><span class="nx">classId</span><span class="p">,</span><span class="w"> </span><span class="nx">staticRole</span><span class="p">)</span>
+</code></pre></div>
+<p>where:</p>
+<ul>
+<li><code>classId</code> is the class ID expressed as a string of the form <code>i(1).i(2).i(N)</code></li>
+<li><code>staticRole</code> is the static role all instances of this class must use. This is applicable only to singleton classes like managers and is omitted for other control classes</li>
+</ul>
+<p>Every property, method, or event declaration of every control class is prefixed by the <code>[element(.,..)]</code> attribute.</p>
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="p">[</span><span class="nx">element</span><span class="p">(</span><span class="nx">elementId</span><span class="p">)]</span>
+</code></pre></div>
+<p>where <strong>elementId</strong> is a delimited string of the form <code>nTm</code>, where</p>
+<ul>
+<li><code>n</code> is the definition level of the class in the control model inheritance tree</li>
+<li><code>T</code> is the elementId type key (p, m or e).</li>
+<li><code>m</code> is the ordinal of the definition within the class</li>
+</ul>
+<p>Every property, method or event MUST be uniquely identified in a control class using element ids. The <code>level</code> inside an <a href="../Framework/#ncelementid">element id</a> MUST match the inheritance level of the class which defines that element. Inheritance levels can be calculated by taking the <a href="../Framework/#ncclassid">classId</a> of a class and counting the indexes after removing all authority keys.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><img alt="Non standard model" src="../images/non-standard-model.png" /></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><em><strong>Inheritance levels</strong></em></td>
+</tr>
+</tbody>
+</table>
+<p>The <code>[event]</code> extended attribute is added to identify events within class definitions.</p>
+<p>Readonly properties are signaled using the <code>readonly</code> token.</p>
+<p>Nullable types are signaled using the <code>?</code> marker at the end of the type name.</p>
+<h3 id="ncobject">NcObject</h3>
+<p>NcObject is the abstract base class for all classes in the control model.<br />
+Further explanations and normative references are provided in the <a href="../NcObject/">NcObject</a> section.</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// NcObject class descriptor</span>
+<span class="p">[</span><span class="nx">control</span><span class="o">-</span><span class="kd">class</span><span class="p">(</span><span class="s2">"1"</span><span class="p">)]</span><span class="w"> </span><span class="kd">interface</span><span class="w"> </span><span class="nx">NcObject</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="p">[</span><span class="nx">element</span><span class="p">(</span><span class="s2">"1p1"</span><span class="p">)]</span><span class="w">    </span><span class="k">readonly</span><span class="w">    </span><span class="nx">attribute</span><span class="w">    </span><span class="nx">NcClassId</span><span class="w">    </span><span class="nx">classId</span><span class="p">;</span><span class="w">    </span><span class="c1">// Static value. All instances of the same class will have the same class id value</span>
+<span class="w">    </span><span class="p">[</span><span class="nx">element</span><span class="p">(</span><span class="s2">"1p2"</span><span class="p">)]</span><span class="w">    </span><span class="k">readonly</span><span class="w">    </span><span class="nx">attribute</span><span class="w">    </span><span class="nx">NcOid</span><span class="w">    </span><span class="nx">oid</span><span class="p">;</span><span class="w">    </span><span class="c1">// Object identifier</span>
+<span class="w">    </span><span class="p">[</span><span class="nx">element</span><span class="p">(</span><span class="s2">"1p3"</span><span class="p">)]</span><span class="w">    </span><span class="k">readonly</span><span class="w">    </span><span class="nx">attribute</span><span class="w">    </span><span class="nx">NcBoolean</span><span class="w">    </span><span class="nx">constantOid</span><span class="p">;</span><span class="w">    </span><span class="c1">// TRUE iff OID is hardwired into device</span>
+<span class="w">    </span><span class="p">[</span><span class="nx">element</span><span class="p">(</span><span class="s2">"1p4"</span><span class="p">)]</span><span class="w">    </span><span class="k">readonly</span><span class="w">    </span><span class="nx">attribute</span><span class="w">    </span><span class="nx">NcOid</span><span class="o">?</span><span class="w">    </span><span class="nx">owner</span><span class="p">;</span><span class="w">    </span><span class="c1">// OID of containing block. Can only ever be null for the root block</span>
+<span class="w">    </span><span class="p">[</span><span class="nx">element</span><span class="p">(</span><span class="s2">"1p5"</span><span class="p">)]</span><span class="w">    </span><span class="k">readonly</span><span class="w">    </span><span class="nx">attribute</span><span class="w">    </span><span class="nx">NcString</span><span class="w">    </span><span class="nx">role</span><span class="p">;</span><span class="w">    </span><span class="c1">// Role of object in the containing block</span>
+<span class="w">    </span><span class="p">[</span><span class="nx">element</span><span class="p">(</span><span class="s2">"1p6"</span><span class="p">)]</span><span class="w">                </span><span class="nx">attribute</span><span class="w">    </span><span class="nx">NcString</span><span class="o">?</span><span class="w">    </span><span class="nx">userLabel</span><span class="p">;</span><span class="w">    </span><span class="c1">// Scribble strip</span>
+<span class="w">    </span><span class="p">[</span><span class="nx">element</span><span class="p">(</span><span class="s2">"1p7"</span><span class="p">)]</span><span class="w">    </span><span class="k">readonly</span><span class="w">    </span><span class="nx">attribute</span><span class="w">    </span><span class="nx">sequence</span><span class="o">&lt;</span><span class="nx">NcTouchpoint</span><span class="o">&gt;?</span><span class="w">    </span><span class="nx">touchpoints</span><span class="p">;</span><span class="w">    </span><span class="c1">// Touchpoints to other contexts</span>
+<span class="w">    </span><span class="p">[</span><span class="nx">element</span><span class="p">(</span><span class="s2">"1p8"</span><span class="p">)]</span><span class="w">    </span><span class="k">readonly</span><span class="w">    </span><span class="nx">attribute</span><span class="w">    </span><span class="nx">sequence</span><span class="o">&lt;</span><span class="nx">NcPropertyConstraints</span><span class="o">&gt;?</span><span class="w">    </span><span class="nx">runtimePropertyConstraints</span><span class="p">;</span><span class="w">    </span><span class="c1">// Runtime property constraints</span>
+
+<span class="w">    </span><span class="c1">// Get property value</span>
+<span class="w">    </span><span class="p">[</span><span class="nx">element</span><span class="p">(</span><span class="s2">"1m1"</span><span class="p">)]</span><span class="w">    </span><span class="nx">NcMethodResultPropertyValue</span><span class="w"> </span><span class="nx">Get</span><span class="p">(</span>
+<span class="w">        </span><span class="nx">NcPropertyId</span><span class="w"> </span><span class="nx">id</span><span class="w">    </span><span class="c1">// Property id</span>
+<span class="w">    </span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Set property value</span>
+<span class="w">    </span><span class="p">[</span><span class="nx">element</span><span class="p">(</span><span class="s2">"1m2"</span><span class="p">)]</span><span class="w">    </span><span class="nx">NcMethodResult</span><span class="w"> </span><span class="nb">Set</span><span class="p">(</span>
+<span class="w">        </span><span class="nx">NcPropertyId</span><span class="w"> </span><span class="nx">id</span><span class="p">,</span><span class="w">    </span><span class="c1">// Property id</span>
+<span class="w">        </span><span class="nx">any</span><span class="o">?</span><span class="w"> </span><span class="nx">value</span><span class="w">    </span><span class="c1">// Property value</span>
+<span class="w">    </span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Get sequence item</span>
+<span class="w">    </span><span class="p">[</span><span class="nx">element</span><span class="p">(</span><span class="s2">"1m3"</span><span class="p">)]</span><span class="w">    </span><span class="nx">NcMethodResultPropertyValue</span><span class="w"> </span><span class="nx">GetSequenceItem</span><span class="p">(</span>
+<span class="w">        </span><span class="nx">NcPropertyId</span><span class="w"> </span><span class="nx">id</span><span class="p">,</span><span class="w">    </span><span class="c1">// Property id</span>
+<span class="w">        </span><span class="nx">NcId</span><span class="w"> </span><span class="nx">index</span><span class="w">    </span><span class="c1">// Index of item in the sequence</span>
+<span class="w">    </span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Set sequence item value</span>
+<span class="w">    </span><span class="p">[</span><span class="nx">element</span><span class="p">(</span><span class="s2">"1m4"</span><span class="p">)]</span><span class="w">    </span><span class="nx">NcMethodResult</span><span class="w"> </span><span class="nx">SetSequenceItem</span><span class="p">(</span>
+<span class="w">        </span><span class="nx">NcPropertyId</span><span class="w"> </span><span class="nx">id</span><span class="p">,</span><span class="w">    </span><span class="c1">// Property id</span>
+<span class="w">        </span><span class="nx">NcId</span><span class="w"> </span><span class="nx">index</span><span class="p">,</span><span class="w">    </span><span class="c1">// Index of item in the sequence</span>
+<span class="w">        </span><span class="nx">any</span><span class="o">?</span><span class="w"> </span><span class="nx">value</span><span class="w">    </span><span class="c1">// Value</span>
+<span class="w">    </span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Add item to sequence</span>
+<span class="w">    </span><span class="p">[</span><span class="nx">element</span><span class="p">(</span><span class="s2">"1m5"</span><span class="p">)]</span><span class="w">    </span><span class="nx">NcMethodResultId</span><span class="w"> </span><span class="nx">AddSequenceItem</span><span class="p">(</span>
+<span class="w">        </span><span class="nx">NcPropertyId</span><span class="w"> </span><span class="nx">id</span><span class="p">,</span><span class="w">    </span><span class="c1">// Property id</span>
+<span class="w">        </span><span class="nx">any</span><span class="o">?</span><span class="w"> </span><span class="nx">value</span><span class="w">    </span><span class="c1">// Value</span>
+<span class="w">    </span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Delete sequence item</span>
+<span class="w">    </span><span class="p">[</span><span class="nx">element</span><span class="p">(</span><span class="s2">"1m6"</span><span class="p">)]</span><span class="w">    </span><span class="nx">NcMethodResult</span><span class="w"> </span><span class="nx">RemoveSequenceItem</span><span class="p">(</span>
+<span class="w">        </span><span class="nx">NcPropertyId</span><span class="w"> </span><span class="nx">id</span><span class="p">,</span><span class="w">    </span><span class="c1">// Property id</span>
+<span class="w">        </span><span class="nx">NcId</span><span class="w"> </span><span class="nx">index</span><span class="w">    </span><span class="c1">// Index of item in the sequence</span>
+<span class="w">    </span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Get sequence length</span>
+<span class="w">    </span><span class="p">[</span><span class="nx">element</span><span class="p">(</span><span class="s2">"1m7"</span><span class="p">)]</span><span class="w">    </span><span class="nx">NcMethodResultLength</span><span class="w"> </span><span class="nx">GetSequenceLength</span><span class="p">(</span>
+<span class="w">        </span><span class="nx">NcPropertyId</span><span class="w"> </span><span class="nx">id</span><span class="w">    </span><span class="c1">// Property id</span>
+<span class="w">    </span><span class="p">);</span>
+
+<span class="w">    </span><span class="p">[</span><span class="nx">element</span><span class="p">(</span><span class="s2">"1e1"</span><span class="p">)]</span><span class="w">    </span><span class="p">[</span><span class="nx">event</span><span class="p">]</span><span class="w">    </span><span class="ow">void</span><span class="w">    </span><span class="nx">PropertyChanged</span><span class="p">(</span><span class="nx">NcPropertyChangedEventData</span><span class="w"> </span><span class="nx">PropertyChanged</span><span class="p">);</span><span class="w">    </span><span class="c1">// Property changed event</span>
+<span class="p">};</span>
+</code></pre></div>
+<h3 id="ncblock">NcBlock</h3>
+<p>NcBlock is a control class which groups and organises other control classes as its members.<br />
+Members are identified by oid and role. An object in a hierarchy of nested blocks can be identified by its role path.<br />
+A member's role path is a sequence of role values starting with the root block's role and ending with the member's role.<br />
+Further explanations are provided in a dedicated <a href="../Blocks/">Blocks</a> section.</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// NcBlock class descriptor</span>
+<span class="p">[</span><span class="nx">control</span><span class="o">-</span><span class="kd">class</span><span class="p">(</span><span class="s2">"1.1"</span><span class="p">)]</span><span class="w"> </span><span class="kd">interface</span><span class="w"> </span><span class="nx">NcBlock</span><span class="o">:</span><span class="w"> </span><span class="kt">NcObject</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="p">[</span><span class="nx">element</span><span class="p">(</span><span class="s2">"2p1"</span><span class="p">)]</span><span class="w">    </span><span class="k">readonly</span><span class="w">    </span><span class="nx">attribute</span><span class="w">    </span><span class="nx">NcBoolean</span><span class="w">    </span><span class="nx">enabled</span><span class="p">;</span><span class="w">    </span><span class="c1">// TRUE if block is functional</span>
+<span class="w">    </span><span class="p">[</span><span class="nx">element</span><span class="p">(</span><span class="s2">"2p2"</span><span class="p">)]</span><span class="w">    </span><span class="k">readonly</span><span class="w">    </span><span class="nx">attribute</span><span class="w">    </span><span class="nx">sequence</span><span class="o">&lt;</span><span class="nx">NcBlockMemberDescriptor</span><span class="o">&gt;</span><span class="w">    </span><span class="nx">members</span><span class="p">;</span><span class="w">    </span><span class="c1">// Descriptors of this block's members</span>
+
+<span class="w">    </span><span class="c1">// Gets descriptors of members of the block</span>
+<span class="w">    </span><span class="p">[</span><span class="nx">element</span><span class="p">(</span><span class="s2">"2m1"</span><span class="p">)]</span><span class="w">    </span><span class="nx">NcMethodResultBlockMemberDescriptors</span><span class="w"> </span><span class="nx">GetMemberDescriptors</span><span class="p">(</span>
+<span class="w">        </span><span class="nx">NcBoolean</span><span class="w"> </span><span class="nx">recurse</span><span class="w">    </span><span class="c1">// If recurse is set to true, nested members can be retrieved</span>
+<span class="w">    </span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Finds member(s) by path</span>
+<span class="w">    </span><span class="p">[</span><span class="nx">element</span><span class="p">(</span><span class="s2">"2m2"</span><span class="p">)]</span><span class="w">    </span><span class="nx">NcMethodResultBlockMemberDescriptors</span><span class="w"> </span><span class="nx">FindMembersByPath</span><span class="p">(</span>
+<span class="w">        </span><span class="nx">NcRolePath</span><span class="w"> </span><span class="nx">path</span><span class="w">    </span><span class="c1">// Relative path to search for (MUST not include the role of the block targeted by oid)</span>
+<span class="w">    </span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Finds members with given role name or fragment</span>
+<span class="w">    </span><span class="p">[</span><span class="nx">element</span><span class="p">(</span><span class="s2">"2m3"</span><span class="p">)]</span><span class="w">    </span><span class="nx">NcMethodResultBlockMemberDescriptors</span><span class="w"> </span><span class="nx">FindMembersByRole</span><span class="p">(</span>
+<span class="w">        </span><span class="nx">NcString</span><span class="w"> </span><span class="nx">role</span><span class="p">,</span><span class="w">    </span><span class="c1">// Role text to search for</span>
+<span class="w">        </span><span class="nx">NcBoolean</span><span class="w"> </span><span class="nx">caseSensitive</span><span class="p">,</span><span class="w">    </span><span class="c1">// Signals if the comparison should be case sensitive</span>
+<span class="w">        </span><span class="nx">NcBoolean</span><span class="w"> </span><span class="nx">matchWholeString</span><span class="p">,</span><span class="w">    </span><span class="c1">// TRUE to only return exact matches</span>
+<span class="w">        </span><span class="nx">NcBoolean</span><span class="w"> </span><span class="nx">recurse</span><span class="w">    </span><span class="c1">// TRUE to search nested blocks</span>
+<span class="w">    </span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Finds members with given class id</span>
+<span class="w">    </span><span class="p">[</span><span class="nx">element</span><span class="p">(</span><span class="s2">"2m4"</span><span class="p">)]</span><span class="w">    </span><span class="nx">NcMethodResultBlockMemberDescriptors</span><span class="w"> </span><span class="nx">FindMembersByClassId</span><span class="p">(</span>
+<span class="w">        </span><span class="nx">NcClassId</span><span class="w"> </span><span class="nx">classId</span><span class="p">,</span><span class="w">    </span><span class="c1">// Class id to search for</span>
+<span class="w">        </span><span class="nx">NcBoolean</span><span class="w"> </span><span class="nx">includeDerived</span><span class="p">,</span><span class="w">    </span><span class="c1">// If TRUE it will also include derived class descriptors</span>
+<span class="w">        </span><span class="nx">NcBoolean</span><span class="w"> </span><span class="nx">recurse</span><span class="w">    </span><span class="c1">// TRUE to search nested blocks</span>
+<span class="w">    </span><span class="p">);</span>
+<span class="p">};</span>
+</code></pre></div>
+<h3 id="ncworker">NcWorker</h3>
+<p>Further explanations and normative references are provided in the <a href="../Workers/">Workers</a> section.</p>
+<p>NcWorker is the base class for any worker control class in the control model.</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// NcWorker class descriptor</span>
+<span class="p">[</span><span class="nx">control</span><span class="o">-</span><span class="kd">class</span><span class="p">(</span><span class="s2">"1.2"</span><span class="p">)]</span><span class="w"> </span><span class="kd">interface</span><span class="w"> </span><span class="nx">NcWorker</span><span class="o">:</span><span class="w"> </span><span class="kt">NcObject</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="p">[</span><span class="nx">element</span><span class="p">(</span><span class="s2">"2p1"</span><span class="p">)]</span><span class="w">                </span><span class="nx">attribute</span><span class="w">    </span><span class="nx">NcBoolean</span><span class="w">    </span><span class="nx">enabled</span><span class="p">;</span><span class="w">    </span><span class="c1">// TRUE iff worker is enabled</span>
+<span class="p">};</span>
+</code></pre></div>
+<h3 id="ncmanager">NcManager</h3>
+<p>Further explanations are provided in a dedicated <a href="../Managers/">Managers</a> section.</p>
+<p>NcManager is the base abstract manager control class for any manager control class in the control model. Manager control classes are singleton classes. Non-standard managers created to model vendor specific functionality MUST be directly or indirectly derived from this control class.</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// NcManager class descriptor</span>
+<span class="p">[</span><span class="nx">control</span><span class="o">-</span><span class="kd">class</span><span class="p">(</span><span class="s2">"1.3"</span><span class="p">)]</span><span class="w"> </span><span class="kd">interface</span><span class="w"> </span><span class="nx">NcManager</span><span class="o">:</span><span class="w"> </span><span class="kt">NcObject</span><span class="w"> </span><span class="p">{</span>
+<span class="p">};</span>
+</code></pre></div>
+<h4 id="ncdevicemanager">NcDeviceManager</h4>
+<p>NcDeviceManager is the device manager control class which contains device information and status.</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// NcDeviceManager class descriptor</span>
+<span class="p">[</span><span class="nx">control</span><span class="o">-</span><span class="kd">class</span><span class="p">(</span><span class="s2">"1.3.1"</span><span class="p">,</span><span class="w"> </span><span class="s2">"DeviceManager"</span><span class="p">)]</span><span class="w"> </span><span class="kd">interface</span><span class="w"> </span><span class="nx">NcDeviceManager</span><span class="o">:</span><span class="w"> </span><span class="kt">NcManager</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="p">[</span><span class="nx">element</span><span class="p">(</span><span class="s2">"3p1"</span><span class="p">)]</span><span class="w">    </span><span class="k">readonly</span><span class="w">    </span><span class="nx">attribute</span><span class="w">    </span><span class="nx">NcVersionCode</span><span class="w">    </span><span class="nx">ncVersion</span><span class="p">;</span><span class="w">    </span><span class="c1">// Version of MS-05-02 that this device uses</span>
+<span class="w">    </span><span class="p">[</span><span class="nx">element</span><span class="p">(</span><span class="s2">"3p2"</span><span class="p">)]</span><span class="w">    </span><span class="k">readonly</span><span class="w">    </span><span class="nx">attribute</span><span class="w">    </span><span class="nx">NcManufacturer</span><span class="w">    </span><span class="nx">manufacturer</span><span class="p">;</span><span class="w">    </span><span class="c1">// Manufacturer descriptor</span>
+<span class="w">    </span><span class="p">[</span><span class="nx">element</span><span class="p">(</span><span class="s2">"3p3"</span><span class="p">)]</span><span class="w">    </span><span class="k">readonly</span><span class="w">    </span><span class="nx">attribute</span><span class="w">    </span><span class="nx">NcProduct</span><span class="w">    </span><span class="nx">product</span><span class="p">;</span><span class="w">    </span><span class="c1">// Product descriptor</span>
+<span class="w">    </span><span class="p">[</span><span class="nx">element</span><span class="p">(</span><span class="s2">"3p4"</span><span class="p">)]</span><span class="w">    </span><span class="k">readonly</span><span class="w">    </span><span class="nx">attribute</span><span class="w">    </span><span class="nx">NcString</span><span class="w">    </span><span class="nx">serialNumber</span><span class="p">;</span><span class="w">    </span><span class="c1">// Serial number</span>
+<span class="w">    </span><span class="p">[</span><span class="nx">element</span><span class="p">(</span><span class="s2">"3p5"</span><span class="p">)]</span><span class="w">                </span><span class="nx">attribute</span><span class="w">    </span><span class="nx">NcString</span><span class="o">?</span><span class="w">    </span><span class="nx">userInventoryCode</span><span class="p">;</span><span class="w">    </span><span class="c1">// Asset tracking identifier (user specified)</span>
+<span class="w">    </span><span class="p">[</span><span class="nx">element</span><span class="p">(</span><span class="s2">"3p6"</span><span class="p">)]</span><span class="w">                </span><span class="nx">attribute</span><span class="w">    </span><span class="nx">NcString</span><span class="o">?</span><span class="w">    </span><span class="nx">deviceName</span><span class="p">;</span><span class="w">    </span><span class="c1">// Name of this device in the application. Instance name, not product name.</span>
+<span class="w">    </span><span class="p">[</span><span class="nx">element</span><span class="p">(</span><span class="s2">"3p7"</span><span class="p">)]</span><span class="w">                </span><span class="nx">attribute</span><span class="w">    </span><span class="nx">NcString</span><span class="o">?</span><span class="w">    </span><span class="nx">deviceRole</span><span class="p">;</span><span class="w">    </span><span class="c1">// Role of this device in the application.</span>
+<span class="w">    </span><span class="p">[</span><span class="nx">element</span><span class="p">(</span><span class="s2">"3p8"</span><span class="p">)]</span><span class="w">    </span><span class="k">readonly</span><span class="w">    </span><span class="nx">attribute</span><span class="w">    </span><span class="nx">NcDeviceOperationalState</span><span class="w">    </span><span class="nx">operationalState</span><span class="p">;</span><span class="w">    </span><span class="c1">// Device operational state</span>
+<span class="w">    </span><span class="p">[</span><span class="nx">element</span><span class="p">(</span><span class="s2">"3p9"</span><span class="p">)]</span><span class="w">    </span><span class="k">readonly</span><span class="w">    </span><span class="nx">attribute</span><span class="w">    </span><span class="nx">NcResetCause</span><span class="w">    </span><span class="nx">resetCause</span><span class="p">;</span><span class="w">    </span><span class="c1">// Reason for most recent reset</span>
+<span class="w">    </span><span class="p">[</span><span class="nx">element</span><span class="p">(</span><span class="s2">"3p10"</span><span class="p">)]</span><span class="w">    </span><span class="k">readonly</span><span class="w">    </span><span class="nx">attribute</span><span class="w">    </span><span class="nx">NcString</span><span class="o">?</span><span class="w">    </span><span class="nx">message</span><span class="p">;</span><span class="w">    </span><span class="c1">// Arbitrary message from dev to controller</span>
+<span class="p">};</span>
+</code></pre></div>
+<h4 id="ncclassmanager">NcClassManager</h4>
+<p>NcClassManager is the class manager control class.</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// NcClassManager class descriptor</span>
+<span class="p">[</span><span class="nx">control</span><span class="o">-</span><span class="kd">class</span><span class="p">(</span><span class="s2">"1.3.2"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ClassManager"</span><span class="p">)]</span><span class="w"> </span><span class="kd">interface</span><span class="w"> </span><span class="nx">NcClassManager</span><span class="o">:</span><span class="w"> </span><span class="kt">NcManager</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="p">[</span><span class="nx">element</span><span class="p">(</span><span class="s2">"3p1"</span><span class="p">)]</span><span class="w">    </span><span class="k">readonly</span><span class="w">    </span><span class="nx">attribute</span><span class="w">    </span><span class="nx">sequence</span><span class="o">&lt;</span><span class="nx">NcClassDescriptor</span><span class="o">&gt;</span><span class="w">    </span><span class="nx">controlClasses</span><span class="p">;</span><span class="w">    </span><span class="c1">// Descriptions of all control classes in the device (descriptors do not contain inherited elements)</span>
+<span class="w">    </span><span class="p">[</span><span class="nx">element</span><span class="p">(</span><span class="s2">"3p2"</span><span class="p">)]</span><span class="w">    </span><span class="k">readonly</span><span class="w">    </span><span class="nx">attribute</span><span class="w">    </span><span class="nx">sequence</span><span class="o">&lt;</span><span class="nx">NcDatatypeDescriptor</span><span class="o">&gt;</span><span class="w">    </span><span class="nx">datatypes</span><span class="p">;</span><span class="w">    </span><span class="c1">// Descriptions of all data types in the device (descriptors do not contain inherited elements)</span>
+
+<span class="w">    </span><span class="c1">// Get a single class descriptor</span>
+<span class="w">    </span><span class="p">[</span><span class="nx">element</span><span class="p">(</span><span class="s2">"3m1"</span><span class="p">)]</span><span class="w">    </span><span class="nx">NcMethodResultClassDescriptor</span><span class="w"> </span><span class="nx">GetControlClass</span><span class="p">(</span>
+<span class="w">        </span><span class="nx">NcClassId</span><span class="w"> </span><span class="nx">classId</span><span class="p">,</span><span class="w">    </span><span class="c1">// class ID</span>
+<span class="w">        </span><span class="nx">NcBoolean</span><span class="w"> </span><span class="nx">includeInherited</span><span class="w">    </span><span class="c1">// If set the descriptor would contain all inherited elements</span>
+<span class="w">    </span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Get a single datatype descriptor</span>
+<span class="w">    </span><span class="p">[</span><span class="nx">element</span><span class="p">(</span><span class="s2">"3m2"</span><span class="p">)]</span><span class="w">    </span><span class="nx">NcMethodResultDatatypeDescriptor</span><span class="w"> </span><span class="nx">GetDatatype</span><span class="p">(</span>
+<span class="w">        </span><span class="nx">NcName</span><span class="w"> </span><span class="nx">name</span><span class="p">,</span><span class="w">    </span><span class="c1">// name of datatype</span>
+<span class="w">        </span><span class="nx">NcBoolean</span><span class="w"> </span><span class="nx">includeInherited</span><span class="w">    </span><span class="c1">// If set the descriptor would contain all inherited elements</span>
+<span class="w">    </span><span class="p">);</span>
+<span class="p">};</span>
+</code></pre></div>
+<h2 id="datatypes">Datatypes</h2>
+<p>Datatype models are documented using WebIDL fragments.</p>
+<p>The <code>[primitive]</code> extended attribute identifies primitive datatypes.</p>
+<p>The <code>typedef</code> attribute identifies typedef datatypes if they do not also have the <code>[primitive]</code> extended attribute.</p>
+<p>Struct datatypes are documented using WebIDL interfaces.</p>
+<p>The <code>enum</code> attribute identifies enum datatypes.</p>
+<p><a href="#ncdatatypetype">NcDatatypeType</a> contains all the possible types of datatype.</p>
+<h3 id="primitives">Primitives</h3>
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="p">[</span><span class="nx">primitive</span><span class="p">]</span><span class="w"> </span><span class="nx">typedef</span><span class="w"> </span><span class="kt">boolean</span><span class="w">             </span><span class="nx">NcBoolean</span><span class="p">;</span>
+<span class="w">    </span><span class="p">[</span><span class="nx">primitive</span><span class="p">]</span><span class="w"> </span><span class="nx">typedef</span><span class="w"> </span><span class="kr">short</span><span class="w">               </span><span class="nx">NcInt16</span><span class="p">;</span>
+<span class="w">    </span><span class="p">[</span><span class="nx">primitive</span><span class="p">]</span><span class="w"> </span><span class="nx">typedef</span><span class="w"> </span><span class="kr">long</span><span class="w">                </span><span class="nx">NcInt32</span><span class="p">;</span>
+<span class="w">    </span><span class="p">[</span><span class="nx">primitive</span><span class="p">]</span><span class="w"> </span><span class="nx">typedef</span><span class="w"> </span><span class="nx">longlong</span><span class="w">            </span><span class="nx">NcInt64</span><span class="p">;</span>
+<span class="w">    </span><span class="p">[</span><span class="nx">primitive</span><span class="p">]</span><span class="w"> </span><span class="nx">typedef</span><span class="w"> </span><span class="nx">unsignedshort</span><span class="w">       </span><span class="nx">NcUint16</span><span class="p">;</span>
+<span class="w">    </span><span class="p">[</span><span class="nx">primitive</span><span class="p">]</span><span class="w"> </span><span class="nx">typedef</span><span class="w"> </span><span class="nx">unsignedlong</span><span class="w">        </span><span class="nx">NcUint32</span><span class="p">;</span>
+<span class="w">    </span><span class="p">[</span><span class="nx">primitive</span><span class="p">]</span><span class="w"> </span><span class="nx">typedef</span><span class="w"> </span><span class="nx">unsignedlonglong</span><span class="w">    </span><span class="nx">NcUint64</span><span class="p">;</span>
+<span class="w">    </span><span class="p">[</span><span class="nx">primitive</span><span class="p">]</span><span class="w"> </span><span class="nx">typedef</span><span class="w"> </span><span class="nx">unrestrictedfloat</span><span class="w">   </span><span class="nx">NcFloat32</span><span class="p">;</span>
+<span class="w">    </span><span class="p">[</span><span class="nx">primitive</span><span class="p">]</span><span class="w"> </span><span class="nx">typedef</span><span class="w"> </span><span class="nx">unrestricteddouble</span><span class="w">  </span><span class="nx">NcFloat64</span><span class="p">;</span>
+<span class="w">    </span><span class="p">[</span><span class="nx">primitive</span><span class="p">]</span><span class="w"> </span><span class="nx">typedef</span><span class="w"> </span><span class="nx">bytestring</span><span class="w">          </span><span class="nx">NcString</span><span class="p">;</span><span class="w"> </span><span class="c1">// UTF-8</span>
+</code></pre></div>
+<h3 id="ncclassid">NcClassId</h3>
+<p>NcClassId is a sequence of NcInt32 class id fields.
+A class id sequence reflects the ancestry of the class being identified.</p>
+<p>A class id field is either a definition index or an authority key.
+A definition index is an ordinal that starts at 1 for every inheritance level of the control model class tree for example <code>[ 1, 1, 3, 5]</code>.</p>
+<p>The class id for all standard control classes defined by the framework MUST not contain authority keys.</p>
+<p>Non-standard control classes MUST contain at least one authority key.</p>
+<p>An authority key is inserted in the class id sequence immediately after the definition index of the class from which a non-standard class inherits, i.e. at the point where the derived class or class subtree connects into the class structure.</p>
+<p>For organizations which own a unique CID or OUI the authority key MUST be the organization identifier as an integer which MUST be negated.</p>
+<p>For organizations which do not own a unique CID or OUI the authority key MUST be 0.
+e.g.<br />
+<code>[ 1, 1, 3, 5, -132131, 1, 4, 5 ]</code><br />
+or<br />
+<code>[ 1, 1, 3, 5, 0, 1, 4, 5 ]</code></p>
+<p>Further information and examples provided in <a href="https://specs.amwa.tv/ms-05-01/branches/v1.0.x/docs/Appendix_A_-_Class_ID_Format.html">MS-05-01: Appendix A</a>.</p>
+<div class="highlight"><pre><span></span><code><span class="nx">typedef</span><span class="w"> </span><span class="nx">sequence</span><span class="o">&lt;</span><span class="nx">NcInt32</span><span class="o">&gt;</span><span class="w">    </span><span class="nx">NcClassId</span><span class="p">;</span><span class="w"> </span><span class="c1">// Sequence of class ID fields.</span>
+</code></pre></div>
+<h3 id="ncdatatypetype">NcDatatypeType</h3>
+<div class="highlight"><pre><span></span><code><span class="c1">// Datatype type</span>
+<span class="kd">enum</span><span class="w"> </span><span class="nx">NcDatatypeType</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="s2">"Primitive"</span><span class="p">,</span><span class="w">        </span><span class="c1">// 0 Primitive datatype</span>
+<span class="w">    </span><span class="s2">"Typedef"</span><span class="p">,</span><span class="w">        </span><span class="c1">// 1 Simple alias of another datatype</span>
+<span class="w">    </span><span class="s2">"Struct"</span><span class="p">,</span><span class="w">        </span><span class="c1">// 2 Data structure</span>
+<span class="w">    </span><span class="s2">"Enum"</span><span class="w">        </span><span class="c1">// 3 Enum datatype</span>
+<span class="p">};</span>
+</code></pre></div>
+<h3 id="ncdescriptor">NcDescriptor</h3>
+<div class="highlight"><pre><span></span><code><span class="c1">// Base descriptor</span>
+<span class="kd">interface</span><span class="w"> </span><span class="nx">NcDescriptor</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">attribute</span><span class="w"> </span><span class="nx">NcString</span><span class="o">?</span><span class="w">    </span><span class="nx">description</span><span class="p">;</span><span class="w"> </span><span class="c1">// Optional user facing description</span>
+<span class="p">};</span>
+</code></pre></div>
+<h4 id="ncblockmemberdescriptor">NcBlockMemberDescriptor</h4>
+<div class="highlight"><pre><span></span><code><span class="c1">// Descriptor which is specific to a block member</span>
+<span class="kd">interface</span><span class="w"> </span><span class="nx">NcBlockMemberDescriptor</span><span class="o">:</span><span class="w"> </span><span class="kt">NcDescriptor</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">attribute</span><span class="w"> </span><span class="nx">NcString</span><span class="w">    </span><span class="nx">role</span><span class="p">;</span><span class="w"> </span><span class="c1">// Role of member in its containing block</span>
+<span class="w">    </span><span class="nx">attribute</span><span class="w"> </span><span class="nx">NcOid</span><span class="w">    </span><span class="nx">oid</span><span class="p">;</span><span class="w"> </span><span class="c1">// OID of member</span>
+<span class="w">    </span><span class="nx">attribute</span><span class="w"> </span><span class="nx">NcBoolean</span><span class="w">    </span><span class="nx">constantOid</span><span class="p">;</span><span class="w"> </span><span class="c1">// TRUE iff member's OID is hardwired into device</span>
+<span class="w">    </span><span class="nx">attribute</span><span class="w"> </span><span class="nx">NcClassId</span><span class="w">    </span><span class="nx">classId</span><span class="p">;</span><span class="w"> </span><span class="c1">// Class ID</span>
+<span class="w">    </span><span class="nx">attribute</span><span class="w"> </span><span class="nx">NcString</span><span class="o">?</span><span class="w">    </span><span class="nx">userLabel</span><span class="p">;</span><span class="w"> </span><span class="c1">// User label</span>
+<span class="w">    </span><span class="nx">attribute</span><span class="w"> </span><span class="nx">NcOid</span><span class="w">    </span><span class="nx">owner</span><span class="p">;</span><span class="w"> </span><span class="c1">// Containing block's OID</span>
+<span class="p">};</span>
+</code></pre></div>
+<h4 id="ncclassdescriptor">NcClassDescriptor</h4>
+<div class="highlight"><pre><span></span><code><span class="c1">// Descriptor of a class</span>
+<span class="kd">interface</span><span class="w"> </span><span class="nx">NcClassDescriptor</span><span class="o">:</span><span class="w"> </span><span class="kt">NcDescriptor</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">attribute</span><span class="w"> </span><span class="nx">NcClassId</span><span class="w">    </span><span class="nx">classId</span><span class="p">;</span><span class="w"> </span><span class="c1">// Identity of the class</span>
+<span class="w">    </span><span class="nx">attribute</span><span class="w"> </span><span class="nx">NcName</span><span class="w">    </span><span class="nx">name</span><span class="p">;</span><span class="w"> </span><span class="c1">// Name of the class</span>
+<span class="w">    </span><span class="nx">attribute</span><span class="w"> </span><span class="nx">NcString</span><span class="o">?</span><span class="w">    </span><span class="nx">fixedRole</span><span class="p">;</span><span class="w"> </span><span class="c1">// Role if the class has fixed role (manager classes)</span>
+<span class="w">    </span><span class="nx">attribute</span><span class="w"> </span><span class="nx">sequence</span><span class="o">&lt;</span><span class="nx">NcPropertyDescriptor</span><span class="o">&gt;</span><span class="w">    </span><span class="nx">properties</span><span class="p">;</span><span class="w"> </span><span class="c1">// Property descriptors</span>
+<span class="w">    </span><span class="nx">attribute</span><span class="w"> </span><span class="nx">sequence</span><span class="o">&lt;</span><span class="nx">NcMethodDescriptor</span><span class="o">&gt;</span><span class="w">    </span><span class="nx">methods</span><span class="p">;</span><span class="w"> </span><span class="c1">// Method descriptors</span>
+<span class="w">    </span><span class="nx">attribute</span><span class="w"> </span><span class="nx">sequence</span><span class="o">&lt;</span><span class="nx">NcEventDescriptor</span><span class="o">&gt;</span><span class="w">    </span><span class="nx">events</span><span class="p">;</span><span class="w"> </span><span class="c1">// Event descriptors</span>
+<span class="p">};</span>
+</code></pre></div>
+<h4 id="ncdatatypedescriptor">NcDatatypeDescriptor</h4>
+<div class="highlight"><pre><span></span><code><span class="c1">// Base datatype descriptor</span>
+<span class="kd">interface</span><span class="w"> </span><span class="nx">NcDatatypeDescriptor</span><span class="o">:</span><span class="w"> </span><span class="kt">NcDescriptor</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">attribute</span><span class="w"> </span><span class="nx">NcName</span><span class="w">    </span><span class="nx">name</span><span class="p">;</span><span class="w"> </span><span class="c1">// Datatype name</span>
+<span class="w">    </span><span class="nx">attribute</span><span class="w"> </span><span class="nx">NcDatatypeType</span><span class="w">    </span><span class="kr">type</span><span class="p">;</span><span class="w"> </span><span class="c1">// Type: Primitive, Typedef, Struct, Enum</span>
+<span class="w">    </span><span class="nx">attribute</span><span class="w"> </span><span class="nx">NcParameterConstraints</span><span class="o">?</span><span class="w">    </span><span class="nx">constraints</span><span class="p">;</span><span class="w"> </span><span class="c1">// Optional constraints on top of the underlying data type</span>
+<span class="p">};</span>
+</code></pre></div>
+<h5 id="ncdatatypedescriptorenum">NcDatatypeDescriptorEnum</h5>
+<div class="highlight"><pre><span></span><code><span class="c1">// Enum datatype descriptor</span>
+<span class="kd">interface</span><span class="w"> </span><span class="nx">NcDatatypeDescriptorEnum</span><span class="o">:</span><span class="w"> </span><span class="kt">NcDatatypeDescriptor</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">attribute</span><span class="w"> </span><span class="nx">sequence</span><span class="o">&lt;</span><span class="nx">NcEnumItemDescriptor</span><span class="o">&gt;</span><span class="w">    </span><span class="nx">items</span><span class="p">;</span><span class="w"> </span><span class="c1">// One item descriptor per enum option</span>
+<span class="p">};</span>
+</code></pre></div>
+<p>The <code>type</code> attribute will be <code>Enum</code>.</p>
+<h5 id="ncdatatypedescriptorprimitive">NcDatatypeDescriptorPrimitive</h5>
+<div class="highlight"><pre><span></span><code><span class="c1">// Primitive datatype descriptor</span>
+<span class="kd">interface</span><span class="w"> </span><span class="nx">NcDatatypeDescriptorPrimitive</span><span class="o">:</span><span class="w"> </span><span class="kt">NcDatatypeDescriptor</span><span class="w"> </span><span class="p">{</span>
+<span class="p">};</span>
+</code></pre></div>
+<p>The <code>type</code> attribute will be <code>Primitive</code>.</p>
+<h5 id="ncdatatypedescriptorstruct">NcDatatypeDescriptorStruct</h5>
+<div class="highlight"><pre><span></span><code><span class="c1">// Struct datatype descriptor</span>
+<span class="kd">interface</span><span class="w"> </span><span class="nx">NcDatatypeDescriptorStruct</span><span class="o">:</span><span class="w"> </span><span class="kt">NcDatatypeDescriptor</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">attribute</span><span class="w"> </span><span class="nx">sequence</span><span class="o">&lt;</span><span class="nx">NcFieldDescriptor</span><span class="o">&gt;</span><span class="w">    </span><span class="nx">fields</span><span class="p">;</span><span class="w"> </span><span class="c1">// One item descriptor per field of the struct</span>
+<span class="w">    </span><span class="nx">attribute</span><span class="w"> </span><span class="nx">NcName</span><span class="o">?</span><span class="w">    </span><span class="nx">parentType</span><span class="p">;</span><span class="w"> </span><span class="c1">// Name of the parent type if any or null if it has no parent</span>
+<span class="p">};</span>
+</code></pre></div>
+<p>The <code>type</code> attribute will be <code>Struct</code>.</p>
+<h5 id="ncdatatypedescriptortypedef">NcDatatypeDescriptorTypeDef</h5>
+<div class="highlight"><pre><span></span><code><span class="c1">// Type def datatype descriptor</span>
+<span class="kd">interface</span><span class="w"> </span><span class="nx">NcDatatypeDescriptorTypeDef</span><span class="o">:</span><span class="w"> </span><span class="kt">NcDatatypeDescriptor</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">attribute</span><span class="w"> </span><span class="nx">NcName</span><span class="w">    </span><span class="nx">parentType</span><span class="p">;</span><span class="w"> </span><span class="c1">// Original typedef datatype name</span>
+<span class="w">    </span><span class="nx">attribute</span><span class="w"> </span><span class="nx">NcBoolean</span><span class="w">    </span><span class="nx">isSequence</span><span class="p">;</span><span class="w"> </span><span class="c1">// TRUE iff type is a typedef sequence of another type</span>
+<span class="p">};</span>
+</code></pre></div>
+<p>The <code>type</code> attribute will be <code>Typedef</code>.</p>
+<h4 id="ncenumitemdescriptor">NcEnumItemDescriptor</h4>
+<div class="highlight"><pre><span></span><code><span class="c1">// Descriptor of an enum item</span>
+<span class="kd">interface</span><span class="w"> </span><span class="nx">NcEnumItemDescriptor</span><span class="o">:</span><span class="w"> </span><span class="kt">NcDescriptor</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">attribute</span><span class="w"> </span><span class="nx">NcName</span><span class="w">    </span><span class="nx">name</span><span class="p">;</span><span class="w"> </span><span class="c1">// Name of option</span>
+<span class="w">    </span><span class="nx">attribute</span><span class="w"> </span><span class="nx">NcUint16</span><span class="w">    </span><span class="nx">value</span><span class="p">;</span><span class="w"> </span><span class="c1">// Enum item numerical value</span>
+<span class="p">};</span>
+</code></pre></div>
+<h4 id="nceventdescriptor">NcEventDescriptor</h4>
+<div class="highlight"><pre><span></span><code><span class="c1">// Descriptor of a class event</span>
+<span class="kd">interface</span><span class="w"> </span><span class="nx">NcEventDescriptor</span><span class="o">:</span><span class="w"> </span><span class="kt">NcDescriptor</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">attribute</span><span class="w"> </span><span class="nx">NcEventId</span><span class="w">    </span><span class="nx">id</span><span class="p">;</span><span class="w"> </span><span class="c1">// Event id with level and index</span>
+<span class="w">    </span><span class="nx">attribute</span><span class="w"> </span><span class="nx">NcName</span><span class="w">    </span><span class="nx">name</span><span class="p">;</span><span class="w"> </span><span class="c1">// Name of event</span>
+<span class="w">    </span><span class="nx">attribute</span><span class="w"> </span><span class="nx">NcName</span><span class="w">    </span><span class="nx">eventDatatype</span><span class="p">;</span><span class="w"> </span><span class="c1">// Name of event data's datatype</span>
+<span class="w">    </span><span class="nx">attribute</span><span class="w"> </span><span class="nx">NcBoolean</span><span class="w">    </span><span class="nx">isDeprecated</span><span class="p">;</span><span class="w"> </span><span class="c1">// TRUE iff property is marked as deprecated</span>
+<span class="p">};</span>
+</code></pre></div>
+<h4 id="ncfielddescriptor">NcFieldDescriptor</h4>
+<div class="highlight"><pre><span></span><code><span class="c1">// Descriptor of a field of a struct</span>
+<span class="kd">interface</span><span class="w"> </span><span class="nx">NcFieldDescriptor</span><span class="o">:</span><span class="w"> </span><span class="kt">NcDescriptor</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">attribute</span><span class="w"> </span><span class="nx">NcName</span><span class="w">    </span><span class="nx">name</span><span class="p">;</span><span class="w"> </span><span class="c1">// Name of field</span>
+<span class="w">    </span><span class="nx">attribute</span><span class="w"> </span><span class="nx">NcName</span><span class="o">?</span><span class="w">    </span><span class="nx">typeName</span><span class="p">;</span><span class="w"> </span><span class="c1">// Name of field's datatype. Can only ever be null if the type is any</span>
+<span class="w">    </span><span class="nx">attribute</span><span class="w"> </span><span class="nx">NcBoolean</span><span class="w">    </span><span class="nx">isNullable</span><span class="p">;</span><span class="w"> </span><span class="c1">// TRUE iff field is nullable</span>
+<span class="w">    </span><span class="nx">attribute</span><span class="w"> </span><span class="nx">NcBoolean</span><span class="w">    </span><span class="nx">isSequence</span><span class="p">;</span><span class="w"> </span><span class="c1">// TRUE iff field is a sequence</span>
+<span class="w">    </span><span class="nx">attribute</span><span class="w"> </span><span class="nx">NcParameterConstraints</span><span class="o">?</span><span class="w">    </span><span class="nx">constraints</span><span class="p">;</span><span class="w"> </span><span class="c1">// Optional constraints on top of the underlying data type</span>
+<span class="p">};</span>
+</code></pre></div>
+<h4 id="ncmethoddescriptor">NcMethodDescriptor</h4>
+<div class="highlight"><pre><span></span><code><span class="c1">// Descriptor of a class method</span>
+<span class="kd">interface</span><span class="w"> </span><span class="nx">NcMethodDescriptor</span><span class="o">:</span><span class="w"> </span><span class="kt">NcDescriptor</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">attribute</span><span class="w"> </span><span class="nx">NcMethodId</span><span class="w">    </span><span class="nx">id</span><span class="p">;</span><span class="w"> </span><span class="c1">// Method id with level and index</span>
+<span class="w">    </span><span class="nx">attribute</span><span class="w"> </span><span class="nx">NcName</span><span class="w">    </span><span class="nx">name</span><span class="p">;</span><span class="w"> </span><span class="c1">// Name of method</span>
+<span class="w">    </span><span class="nx">attribute</span><span class="w"> </span><span class="nx">NcName</span><span class="w">    </span><span class="nx">resultDatatype</span><span class="p">;</span><span class="w"> </span><span class="c1">// Name of method result's datatype</span>
+<span class="w">    </span><span class="nx">attribute</span><span class="w"> </span><span class="nx">sequence</span><span class="o">&lt;</span><span class="nx">NcParameterDescriptor</span><span class="o">&gt;</span><span class="w">    </span><span class="nx">parameters</span><span class="p">;</span><span class="w"> </span><span class="c1">// Parameter descriptors if any</span>
+<span class="w">    </span><span class="nx">attribute</span><span class="w"> </span><span class="nx">NcBoolean</span><span class="w">    </span><span class="nx">isDeprecated</span><span class="p">;</span><span class="w"> </span><span class="c1">// TRUE iff property is marked as deprecated</span>
+<span class="p">};</span>
+</code></pre></div>
+<h4 id="ncparameterdescriptor">NcParameterDescriptor</h4>
+<div class="highlight"><pre><span></span><code><span class="c1">// Descriptor of a method parameter</span>
+<span class="kd">interface</span><span class="w"> </span><span class="nx">NcParameterDescriptor</span><span class="o">:</span><span class="w"> </span><span class="kt">NcDescriptor</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">attribute</span><span class="w"> </span><span class="nx">NcName</span><span class="w">    </span><span class="nx">name</span><span class="p">;</span><span class="w"> </span><span class="c1">// Name of parameter</span>
+<span class="w">    </span><span class="nx">attribute</span><span class="w"> </span><span class="nx">NcName</span><span class="o">?</span><span class="w">    </span><span class="nx">typeName</span><span class="p">;</span><span class="w"> </span><span class="c1">// Name of parameter's datatype. Can only ever be null if the type is any</span>
+<span class="w">    </span><span class="nx">attribute</span><span class="w"> </span><span class="nx">NcBoolean</span><span class="w">    </span><span class="nx">isNullable</span><span class="p">;</span><span class="w"> </span><span class="c1">// TRUE iff property is nullable</span>
+<span class="w">    </span><span class="nx">attribute</span><span class="w"> </span><span class="nx">NcBoolean</span><span class="w">    </span><span class="nx">isSequence</span><span class="p">;</span><span class="w"> </span><span class="c1">// TRUE iff property is a sequence</span>
+<span class="w">    </span><span class="nx">attribute</span><span class="w"> </span><span class="nx">NcParameterConstraints</span><span class="o">?</span><span class="w">    </span><span class="nx">constraints</span><span class="p">;</span><span class="w"> </span><span class="c1">// Optional constraints on top of the underlying data type</span>
+<span class="p">};</span>
+</code></pre></div>
+<h4 id="ncpropertydescriptor">NcPropertyDescriptor</h4>
+<div class="highlight"><pre><span></span><code><span class="c1">// Descriptor of a class property</span>
+<span class="kd">interface</span><span class="w"> </span><span class="nx">NcPropertyDescriptor</span><span class="o">:</span><span class="w"> </span><span class="kt">NcDescriptor</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">attribute</span><span class="w"> </span><span class="nx">NcPropertyId</span><span class="w">    </span><span class="nx">id</span><span class="p">;</span><span class="w"> </span><span class="c1">// Property id with level and index</span>
+<span class="w">    </span><span class="nx">attribute</span><span class="w"> </span><span class="nx">NcName</span><span class="w">    </span><span class="nx">name</span><span class="p">;</span><span class="w"> </span><span class="c1">// Name of property</span>
+<span class="w">    </span><span class="nx">attribute</span><span class="w"> </span><span class="nx">NcName</span><span class="o">?</span><span class="w">    </span><span class="nx">typeName</span><span class="p">;</span><span class="w"> </span><span class="c1">// Name of property's datatype. Can only ever be null if the type is any</span>
+<span class="w">    </span><span class="nx">attribute</span><span class="w"> </span><span class="nx">NcBoolean</span><span class="w">    </span><span class="nx">isReadOnly</span><span class="p">;</span><span class="w"> </span><span class="c1">// TRUE iff property is read-only</span>
+<span class="w">    </span><span class="nx">attribute</span><span class="w"> </span><span class="nx">NcBoolean</span><span class="w">    </span><span class="nx">isNullable</span><span class="p">;</span><span class="w"> </span><span class="c1">// TRUE iff property is nullable</span>
+<span class="w">    </span><span class="nx">attribute</span><span class="w"> </span><span class="nx">NcBoolean</span><span class="w">    </span><span class="nx">isSequence</span><span class="p">;</span><span class="w"> </span><span class="c1">// TRUE iff property is a sequence</span>
+<span class="w">    </span><span class="nx">attribute</span><span class="w"> </span><span class="nx">NcBoolean</span><span class="w">    </span><span class="nx">isDeprecated</span><span class="p">;</span><span class="w"> </span><span class="c1">// TRUE iff property is marked as deprecated</span>
+<span class="w">    </span><span class="nx">attribute</span><span class="w"> </span><span class="nx">NcParameterConstraints</span><span class="o">?</span><span class="w">    </span><span class="nx">constraints</span><span class="p">;</span><span class="w"> </span><span class="c1">// Optional constraints on top of the underlying data type</span>
+<span class="p">};</span>
+</code></pre></div>
+<h3 id="ncdevicegenericstate">NcDeviceGenericState</h3>
+<div class="highlight"><pre><span></span><code><span class="c1">// Device generic operational state</span>
+<span class="kd">enum</span><span class="w"> </span><span class="nx">NcDeviceGenericState</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="s2">"Unknown"</span><span class="p">,</span><span class="w">        </span><span class="c1">// 0 Unknown</span>
+<span class="w">    </span><span class="s2">"NormalOperation"</span><span class="p">,</span><span class="w">        </span><span class="c1">// 1 Normal operation</span>
+<span class="w">    </span><span class="s2">"Initializing"</span><span class="p">,</span><span class="w">        </span><span class="c1">// 2 Device is initializing</span>
+<span class="w">    </span><span class="s2">"Updating"</span><span class="p">,</span><span class="w">        </span><span class="c1">// 3 Device is performing a software or firmware update</span>
+<span class="w">    </span><span class="s2">"LicensingError"</span><span class="p">,</span><span class="w">        </span><span class="c1">// 4 Device is experiencing a licensing error</span>
+<span class="w">    </span><span class="s2">"InternalError"</span><span class="w">        </span><span class="c1">// 5 Device is experiencing an internal error</span>
+<span class="p">};</span>
+</code></pre></div>
+<h3 id="ncdeviceoperationalstate">NcDeviceOperationalState</h3>
+<div class="highlight"><pre><span></span><code><span class="c1">// Device operational state</span>
+<span class="kd">interface</span><span class="w"> </span><span class="nx">NcDeviceOperationalState</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">attribute</span><span class="w"> </span><span class="nx">NcDeviceGenericState</span><span class="w">    </span><span class="nx">generic</span><span class="p">;</span><span class="w"> </span><span class="c1">// Generic operational state</span>
+<span class="w">    </span><span class="nx">attribute</span><span class="w"> </span><span class="nx">NcString</span><span class="o">?</span><span class="w">    </span><span class="nx">deviceSpecificDetails</span><span class="p">;</span><span class="w"> </span><span class="c1">// Specific device details</span>
+<span class="p">};</span>
+</code></pre></div>
+<h3 id="ncelementid">NcElementId</h3>
+<div class="highlight"><pre><span></span><code><span class="c1">// Class element id which contains the level and index</span>
+<span class="kd">interface</span><span class="w"> </span><span class="nx">NcElementId</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">attribute</span><span class="w"> </span><span class="nx">NcUint16</span><span class="w">    </span><span class="nx">level</span><span class="p">;</span><span class="w"> </span><span class="c1">// Level of the element</span>
+<span class="w">    </span><span class="nx">attribute</span><span class="w"> </span><span class="nx">NcUint16</span><span class="w">    </span><span class="nx">index</span><span class="p">;</span><span class="w"> </span><span class="c1">// Index of the element</span>
+<span class="p">};</span>
+</code></pre></div>
+<h4 id="nceventid">NcEventId</h4>
+<div class="highlight"><pre><span></span><code><span class="c1">// Event id which contains the level and index</span>
+<span class="kd">interface</span><span class="w"> </span><span class="nx">NcEventId</span><span class="o">:</span><span class="w"> </span><span class="kt">NcElementId</span><span class="w"> </span><span class="p">{</span>
+<span class="p">};</span>
+</code></pre></div>
+<h4 id="ncmethodid">NcMethodId</h4>
+<div class="highlight"><pre><span></span><code><span class="c1">// Method id which contains the level and index</span>
+<span class="kd">interface</span><span class="w"> </span><span class="nx">NcMethodId</span><span class="o">:</span><span class="w"> </span><span class="kt">NcElementId</span><span class="w"> </span><span class="p">{</span>
+<span class="p">};</span>
+</code></pre></div>
+<h4 id="ncpropertyid">NcPropertyId</h4>
+<div class="highlight"><pre><span></span><code><span class="c1">// Property id which contains the level and index</span>
+<span class="kd">interface</span><span class="w"> </span><span class="nx">NcPropertyId</span><span class="o">:</span><span class="w"> </span><span class="kt">NcElementId</span><span class="w"> </span><span class="p">{</span>
+<span class="p">};</span>
+</code></pre></div>
+<h3 id="ncid">NcId</h3>
+<div class="highlight"><pre><span></span><code><span class="nx">typedef</span><span class="w"> </span><span class="nx">NcUint32</span><span class="w">    </span><span class="nx">NcId</span><span class="p">;</span><span class="w"> </span><span class="c1">// Identity handler</span>
+</code></pre></div>
+<h3 id="ncmanufacturer">NcManufacturer</h3>
+<div class="highlight"><pre><span></span><code><span class="c1">// Manufacturer descriptor</span>
+<span class="kd">interface</span><span class="w"> </span><span class="nx">NcManufacturer</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">attribute</span><span class="w"> </span><span class="nx">NcString</span><span class="w">    </span><span class="nx">name</span><span class="p">;</span><span class="w"> </span><span class="c1">// Manufacturer's name</span>
+<span class="w">    </span><span class="nx">attribute</span><span class="w"> </span><span class="nx">NcOrganizationId</span><span class="o">?</span><span class="w">    </span><span class="nx">organizationId</span><span class="p">;</span><span class="w"> </span><span class="c1">// IEEE OUI or CID of manufacturer</span>
+<span class="w">    </span><span class="nx">attribute</span><span class="w"> </span><span class="nx">NcUri</span><span class="o">?</span><span class="w">    </span><span class="nx">website</span><span class="p">;</span><span class="w"> </span><span class="c1">// URL of the manufacturer's website</span>
+<span class="p">};</span>
+</code></pre></div>
+<h3 id="ncmethodresult">NcMethodResult</h3>
+<p>All methods MUST return a datatype which inherits from NcMethodResult.<br />
+When a method call encounters an error the return MUST be <a href="#ncmethodresulterror">NcMethodResultError</a> or a derived datatype.<br />
+Devices MUST use the exact status code from <a href="#ncmethodstatus">NcMethodStatus</a> when errors are encountered for the following scenarios: PropertyDeprecated, MethodDeprecated, IndexOutOfBounds, MethodNotImplemented, PropertyNotImplemented, BadOid, Readonly.</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// Base result of the invoked method</span>
+<span class="kd">interface</span><span class="w"> </span><span class="nx">NcMethodResult</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">attribute</span><span class="w"> </span><span class="nx">NcMethodStatus</span><span class="w">    </span><span class="nx">status</span><span class="p">;</span><span class="w"> </span><span class="c1">// Status for the invoked method</span>
+<span class="p">};</span>
+</code></pre></div>
+<h4 id="ncmethodresultblockmemberdescriptors">NcMethodResultBlockMemberDescriptors</h4>
+<div class="highlight"><pre><span></span><code><span class="c1">// Method result containing block member descriptors as the value</span>
+<span class="kd">interface</span><span class="w"> </span><span class="nx">NcMethodResultBlockMemberDescriptors</span><span class="o">:</span><span class="w"> </span><span class="kt">NcMethodResult</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">attribute</span><span class="w"> </span><span class="nx">sequence</span><span class="o">&lt;</span><span class="nx">NcBlockMemberDescriptor</span><span class="o">&gt;</span><span class="w">    </span><span class="nx">value</span><span class="p">;</span><span class="w"> </span><span class="c1">// Block member descriptors method result value</span>
+<span class="p">};</span>
+</code></pre></div>
+<h4 id="ncmethodresultclassdescriptor">NcMethodResultClassDescriptor</h4>
+<div class="highlight"><pre><span></span><code><span class="c1">// Method result containing a class descriptor as the value</span>
+<span class="kd">interface</span><span class="w"> </span><span class="nx">NcMethodResultClassDescriptor</span><span class="o">:</span><span class="w"> </span><span class="kt">NcMethodResult</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">attribute</span><span class="w"> </span><span class="nx">NcClassDescriptor</span><span class="w">    </span><span class="nx">value</span><span class="p">;</span><span class="w"> </span><span class="c1">// Class descriptor method result value</span>
+<span class="p">};</span>
+</code></pre></div>
+<h4 id="ncmethodresultdatatypedescriptor">NcMethodResultDatatypeDescriptor</h4>
+<div class="highlight"><pre><span></span><code><span class="c1">// Method result containing a datatype descriptor as the value</span>
+<span class="kd">interface</span><span class="w"> </span><span class="nx">NcMethodResultDatatypeDescriptor</span><span class="o">:</span><span class="w"> </span><span class="kt">NcMethodResult</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">attribute</span><span class="w"> </span><span class="nx">NcDatatypeDescriptor</span><span class="w">    </span><span class="nx">value</span><span class="p">;</span><span class="w"> </span><span class="c1">// Datatype descriptor method result value</span>
+<span class="p">};</span>
+</code></pre></div>
+<h4 id="ncmethodresulterror">NcMethodResultError</h4>
+<div class="highlight"><pre><span></span><code><span class="c1">// Error result - to be used when the method call encounters an error</span>
+<span class="kd">interface</span><span class="w"> </span><span class="nx">NcMethodResultError</span><span class="o">:</span><span class="w"> </span><span class="kt">NcMethodResult</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">attribute</span><span class="w"> </span><span class="nx">NcString</span><span class="w">    </span><span class="nx">errorMessage</span><span class="p">;</span><span class="w"> </span><span class="c1">// Error message</span>
+<span class="p">};</span>
+</code></pre></div>
+<h4 id="ncmethodresultid">NcMethodResultId</h4>
+<div class="highlight"><pre><span></span><code><span class="c1">// Id method result</span>
+<span class="kd">interface</span><span class="w"> </span><span class="nx">NcMethodResultId</span><span class="o">:</span><span class="w"> </span><span class="kt">NcMethodResult</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">attribute</span><span class="w"> </span><span class="nx">NcId</span><span class="w">    </span><span class="nx">value</span><span class="p">;</span><span class="w"> </span><span class="c1">// Id result value</span>
+<span class="p">};</span>
+</code></pre></div>
+<h4 id="ncmethodresultlength">NcMethodResultLength</h4>
+<div class="highlight"><pre><span></span><code><span class="c1">// Length method result</span>
+<span class="kd">interface</span><span class="w"> </span><span class="nx">NcMethodResultLength</span><span class="o">:</span><span class="w"> </span><span class="kt">NcMethodResult</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">attribute</span><span class="w"> </span><span class="nx">NcUint32</span><span class="o">?</span><span class="w">    </span><span class="nx">value</span><span class="p">;</span><span class="w"> </span><span class="c1">// Sequence length result value. MUST be null if the sequence is null</span>
+<span class="p">};</span>
+</code></pre></div>
+<h4 id="ncmethodresultpropertyvalue">NcMethodResultPropertyValue</h4>
+<p>NcMethodResultPropertyValue can hold any value type depending on the underlying property type.</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// Result when invoking the getter method associated with a property</span>
+<span class="kd">interface</span><span class="w"> </span><span class="nx">NcMethodResultPropertyValue</span><span class="o">:</span><span class="w"> </span><span class="kt">NcMethodResult</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">attribute</span><span class="w"> </span><span class="nx">any</span><span class="o">?</span><span class="w">    </span><span class="nx">value</span><span class="p">;</span><span class="w"> </span><span class="c1">// Getter method value for the associated property</span>
+<span class="p">};</span>
+</code></pre></div>
+<h3 id="ncmethodstatus">NcMethodStatus</h3>
+<div class="highlight"><pre><span></span><code><span class="c1">// Method invokation status</span>
+<span class="kd">enum</span><span class="w"> </span><span class="nx">NcMethodStatus</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="s2">"Ok"</span><span class="p">,</span><span class="w">        </span><span class="c1">// 200 Method call was successful</span>
+<span class="w">    </span><span class="s2">"PropertyDeprecated"</span><span class="p">,</span><span class="w">        </span><span class="c1">// 298 Method call was successful but targeted property is deprecated</span>
+<span class="w">    </span><span class="s2">"MethodDeprecated"</span><span class="p">,</span><span class="w">        </span><span class="c1">// 299 Method call was successful but method is deprecated</span>
+<span class="w">    </span><span class="s2">"BadCommandFormat"</span><span class="p">,</span><span class="w">        </span><span class="c1">// 400 Badly-formed command (e.g. the incoming command has invalid message encoding and cannot be parsed by the underlying protocol)</span>
+<span class="w">    </span><span class="s2">"Unauthorized"</span><span class="p">,</span><span class="w">        </span><span class="c1">// 401 Client is not authorized</span>
+<span class="w">    </span><span class="s2">"BadOid"</span><span class="p">,</span><span class="w">        </span><span class="c1">// 404 Command addresses a nonexistent object</span>
+<span class="w">    </span><span class="s2">"Readonly"</span><span class="p">,</span><span class="w">        </span><span class="c1">// 405 Attempt to change read-only state</span>
+<span class="w">    </span><span class="s2">"InvalidRequest"</span><span class="p">,</span><span class="w">        </span><span class="c1">// 406 Method call is invalid in current operating context (e.g. attempting to invoke a method when the object is disabled)</span>
+<span class="w">    </span><span class="s2">"Conflict"</span><span class="p">,</span><span class="w">        </span><span class="c1">// 409 There is a conflict with the current state of the device</span>
+<span class="w">    </span><span class="s2">"BufferOverflow"</span><span class="p">,</span><span class="w">        </span><span class="c1">// 413 Something was too big</span>
+<span class="w">    </span><span class="s2">"IndexOutOfBounds"</span><span class="p">,</span><span class="w">        </span><span class="c1">// 414 Index is outside the available range</span>
+<span class="w">    </span><span class="s2">"ParameterError"</span><span class="p">,</span><span class="w">        </span><span class="c1">// 417 Method parameter does not meet expectations (e.g. attempting to invoke a method with an invalid type for one of its parameters)</span>
+<span class="w">    </span><span class="s2">"Locked"</span><span class="p">,</span><span class="w">        </span><span class="c1">// 423 Addressed object is locked</span>
+<span class="w">    </span><span class="s2">"DeviceError"</span><span class="p">,</span><span class="w">        </span><span class="c1">// 500 Internal device error</span>
+<span class="w">    </span><span class="s2">"MethodNotImplemented"</span><span class="p">,</span><span class="w">        </span><span class="c1">// 501 Addressed method is not implemented by the addressed object</span>
+<span class="w">    </span><span class="s2">"PropertyNotImplemented"</span><span class="p">,</span><span class="w">        </span><span class="c1">// 502 Addressed property is not implemented by the addressed object</span>
+<span class="w">    </span><span class="s2">"NotReady"</span><span class="p">,</span><span class="w">        </span><span class="c1">// 503 The device is not ready to handle any commands</span>
+<span class="w">    </span><span class="s2">"Timeout"</span><span class="w">        </span><span class="c1">// 504 Method call did not finish within the allotted time</span>
+<span class="p">};</span>
+</code></pre></div>
+<h3 id="ncname">NcName</h3>
+<div class="highlight"><pre><span></span><code><span class="nx">typedef</span><span class="w"> </span><span class="nx">NcString</span><span class="w">    </span><span class="nx">NcName</span><span class="p">;</span><span class="w"> </span><span class="c1">// Programmatically significant name, alphanumerics + underscore, no spaces</span>
+</code></pre></div>
+<h3 id="ncoid">NcOid</h3>
+<div class="highlight"><pre><span></span><code><span class="nx">typedef</span><span class="w"> </span><span class="nx">NcUint32</span><span class="w">    </span><span class="nx">NcOid</span><span class="p">;</span><span class="w"> </span><span class="c1">// Object id</span>
+</code></pre></div>
+<h3 id="ncorganizationid">NcOrganizationId</h3>
+<p>Unique 24-bit organization id:</p>
+<ul>
+<li>IEEE public Company ID (public CID) or</li>
+<li>IEEE Organizationally Unique Identifier (OUI).</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="nx">typedef</span><span class="w"> </span><span class="nx">NcInt32</span><span class="w">    </span><span class="nx">NcOrganizationId</span><span class="p">;</span><span class="w"> </span><span class="c1">// Unique 24-bit organization id</span>
+</code></pre></div>
+<h3 id="ncparameterconstraints">NcParameterConstraints</h3>
+<div class="highlight"><pre><span></span><code><span class="c1">// Abstract parameter constraints class</span>
+<span class="kd">interface</span><span class="w"> </span><span class="nx">NcParameterConstraints</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">attribute</span><span class="w"> </span><span class="nx">any</span><span class="o">?</span><span class="w">    </span><span class="nx">defaultValue</span><span class="p">;</span><span class="w"> </span><span class="c1">// Default value</span>
+<span class="p">};</span>
+</code></pre></div>
+<h4 id="ncparameterconstraintsnumber">NcParameterConstraintsNumber</h4>
+<div class="highlight"><pre><span></span><code><span class="c1">// Number parameter constraints class</span>
+<span class="kd">interface</span><span class="w"> </span><span class="nx">NcParameterConstraintsNumber</span><span class="o">:</span><span class="w"> </span><span class="kt">NcParameterConstraints</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">attribute</span><span class="w"> </span><span class="nx">any</span><span class="o">?</span><span class="w">    </span><span class="nx">maximum</span><span class="p">;</span><span class="w"> </span><span class="c1">// Optional maximum</span>
+<span class="w">    </span><span class="nx">attribute</span><span class="w"> </span><span class="nx">any</span><span class="o">?</span><span class="w">    </span><span class="nx">minimum</span><span class="p">;</span><span class="w"> </span><span class="c1">// Optional minimum</span>
+<span class="w">    </span><span class="nx">attribute</span><span class="w"> </span><span class="nx">any</span><span class="o">?</span><span class="w">    </span><span class="nx">step</span><span class="p">;</span><span class="w"> </span><span class="c1">// Optional step</span>
+<span class="p">};</span>
+</code></pre></div>
+<h4 id="ncparameterconstraintsstring">NcParameterConstraintsString</h4>
+<div class="highlight"><pre><span></span><code><span class="c1">// String parameter constraints class</span>
+<span class="kd">interface</span><span class="w"> </span><span class="nx">NcParameterConstraintsString</span><span class="o">:</span><span class="w"> </span><span class="kt">NcParameterConstraints</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">attribute</span><span class="w"> </span><span class="nx">NcUint32</span><span class="o">?</span><span class="w">    </span><span class="nx">maxCharacters</span><span class="p">;</span><span class="w"> </span><span class="c1">// Maximum characters allowed</span>
+<span class="w">    </span><span class="nx">attribute</span><span class="w"> </span><span class="nx">NcRegex</span><span class="o">?</span><span class="w">    </span><span class="nx">pattern</span><span class="p">;</span><span class="w"> </span><span class="c1">// Regex pattern</span>
+<span class="p">};</span>
+</code></pre></div>
+<h3 id="ncproduct">NcProduct</h3>
+<div class="highlight"><pre><span></span><code><span class="c1">// Product descriptor</span>
+<span class="kd">interface</span><span class="w"> </span><span class="nx">NcProduct</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">attribute</span><span class="w"> </span><span class="nx">NcString</span><span class="w">    </span><span class="nx">name</span><span class="p">;</span><span class="w"> </span><span class="c1">// Product name</span>
+<span class="w">    </span><span class="nx">attribute</span><span class="w"> </span><span class="nx">NcString</span><span class="w">    </span><span class="nx">key</span><span class="p">;</span><span class="w"> </span><span class="c1">// Manufacturer's unique key to product - model number, SKU, etc</span>
+<span class="w">    </span><span class="nx">attribute</span><span class="w"> </span><span class="nx">NcString</span><span class="w">    </span><span class="nx">revisionLevel</span><span class="p">;</span><span class="w"> </span><span class="c1">// Manufacturer's product revision level code</span>
+<span class="w">    </span><span class="nx">attribute</span><span class="w"> </span><span class="nx">NcString</span><span class="o">?</span><span class="w">    </span><span class="nx">brandName</span><span class="p">;</span><span class="w"> </span><span class="c1">// Brand name under which product is sold</span>
+<span class="w">    </span><span class="nx">attribute</span><span class="w"> </span><span class="nx">NcUuid</span><span class="o">?</span><span class="w">    </span><span class="nx">uuid</span><span class="p">;</span><span class="w"> </span><span class="c1">// Unique UUID of product (not product instance)</span>
+<span class="w">    </span><span class="nx">attribute</span><span class="w"> </span><span class="nx">NcString</span><span class="o">?</span><span class="w">    </span><span class="nx">description</span><span class="p">;</span><span class="w"> </span><span class="c1">// Text description of product</span>
+<span class="p">};</span>
+</code></pre></div>
+<h3 id="ncpropertychangedeventdata">NcPropertyChangedEventData</h3>
+<div class="highlight"><pre><span></span><code><span class="c1">// Payload of property-changed event</span>
+<span class="kd">interface</span><span class="w"> </span><span class="nx">NcPropertyChangedEventData</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">attribute</span><span class="w"> </span><span class="nx">NcPropertyId</span><span class="w">    </span><span class="nx">propertyId</span><span class="p">;</span><span class="w"> </span><span class="c1">// The id of the property that changed</span>
+<span class="w">    </span><span class="nx">attribute</span><span class="w"> </span><span class="nx">NcPropertyChangeType</span><span class="w">    </span><span class="nx">changeType</span><span class="p">;</span><span class="w"> </span><span class="c1">// Information regarding the change type</span>
+<span class="w">    </span><span class="nx">attribute</span><span class="w"> </span><span class="nx">any</span><span class="o">?</span><span class="w">    </span><span class="nx">value</span><span class="p">;</span><span class="w"> </span><span class="c1">// Property-type specific value</span>
+<span class="w">    </span><span class="nx">attribute</span><span class="w"> </span><span class="nx">NcId</span><span class="o">?</span><span class="w">    </span><span class="nx">sequenceItemIndex</span><span class="p">;</span><span class="w"> </span><span class="c1">// Index of sequence item if the property is a sequence</span>
+<span class="p">};</span>
+</code></pre></div>
+<h3 id="ncpropertychangetype">NcPropertyChangeType</h3>
+<div class="highlight"><pre><span></span><code><span class="c1">// Type of property change</span>
+<span class="kd">enum</span><span class="w"> </span><span class="nx">NcPropertyChangeType</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="s2">"ValueChanged"</span><span class="p">,</span><span class="w">        </span><span class="c1">// 0 Current value changed</span>
+<span class="w">    </span><span class="s2">"SequenceItemAdded"</span><span class="p">,</span><span class="w">        </span><span class="c1">// 1 Sequence item added</span>
+<span class="w">    </span><span class="s2">"SequenceItemChanged"</span><span class="p">,</span><span class="w">        </span><span class="c1">// 2 Sequence item changed</span>
+<span class="w">    </span><span class="s2">"SequenceItemRemoved"</span><span class="w">        </span><span class="c1">// 3 Sequence item removed</span>
+<span class="p">};</span>
+</code></pre></div>
+<h3 id="ncpropertyconstraints">NcPropertyConstraints</h3>
+<div class="highlight"><pre><span></span><code><span class="c1">// Property constraints class</span>
+<span class="kd">interface</span><span class="w"> </span><span class="nx">NcPropertyConstraints</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">attribute</span><span class="w"> </span><span class="nx">NcPropertyId</span><span class="w">    </span><span class="nx">propertyId</span><span class="p">;</span><span class="w"> </span><span class="c1">// The id of the property being constrained</span>
+<span class="w">    </span><span class="nx">attribute</span><span class="w"> </span><span class="nx">any</span><span class="o">?</span><span class="w">    </span><span class="nx">defaultValue</span><span class="p">;</span><span class="w"> </span><span class="c1">// Optional default value</span>
+<span class="p">};</span>
+</code></pre></div>
+<h4 id="ncpropertyconstraintsnumber">NcPropertyConstraintsNumber</h4>
+<div class="highlight"><pre><span></span><code><span class="c1">// Number property constraints class</span>
+<span class="kd">interface</span><span class="w"> </span><span class="nx">NcPropertyConstraintsNumber</span><span class="o">:</span><span class="w"> </span><span class="kt">NcPropertyConstraints</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">attribute</span><span class="w"> </span><span class="nx">any</span><span class="o">?</span><span class="w">    </span><span class="nx">maximum</span><span class="p">;</span><span class="w"> </span><span class="c1">// Optional maximum</span>
+<span class="w">    </span><span class="nx">attribute</span><span class="w"> </span><span class="nx">any</span><span class="o">?</span><span class="w">    </span><span class="nx">minimum</span><span class="p">;</span><span class="w"> </span><span class="c1">// Optional minimum</span>
+<span class="w">    </span><span class="nx">attribute</span><span class="w"> </span><span class="nx">any</span><span class="o">?</span><span class="w">    </span><span class="nx">step</span><span class="p">;</span><span class="w"> </span><span class="c1">// Optional step</span>
+<span class="p">};</span>
+</code></pre></div>
+<h4 id="ncpropertyconstraintsstring">NcPropertyConstraintsString</h4>
+<div class="highlight"><pre><span></span><code><span class="c1">// String property constraints class</span>
+<span class="kd">interface</span><span class="w"> </span><span class="nx">NcPropertyConstraintsString</span><span class="o">:</span><span class="w"> </span><span class="kt">NcPropertyConstraints</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">attribute</span><span class="w"> </span><span class="nx">NcUint32</span><span class="o">?</span><span class="w">    </span><span class="nx">maxCharacters</span><span class="p">;</span><span class="w"> </span><span class="c1">// Maximum characters allowed</span>
+<span class="w">    </span><span class="nx">attribute</span><span class="w"> </span><span class="nx">NcRegex</span><span class="o">?</span><span class="w">    </span><span class="nx">pattern</span><span class="p">;</span><span class="w"> </span><span class="c1">// Regex pattern</span>
+<span class="p">};</span>
+</code></pre></div>
+<h3 id="ncregex">NcRegex</h3>
+<div class="highlight"><pre><span></span><code><span class="nx">typedef</span><span class="w"> </span><span class="nx">NcString</span><span class="w">    </span><span class="nx">NcRegex</span><span class="p">;</span><span class="w"> </span><span class="c1">// Regex pattern</span>
+</code></pre></div>
+<h3 id="ncresetcause">NcResetCause</h3>
+<div class="highlight"><pre><span></span><code><span class="c1">// Reset cause enum</span>
+<span class="kd">enum</span><span class="w"> </span><span class="nx">NcResetCause</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="s2">"Unknown"</span><span class="p">,</span><span class="w">        </span><span class="c1">// 0 Unknown</span>
+<span class="w">    </span><span class="s2">"PowerOn"</span><span class="p">,</span><span class="w">        </span><span class="c1">// 1 Power on</span>
+<span class="w">    </span><span class="s2">"InternalError"</span><span class="p">,</span><span class="w">        </span><span class="c1">// 2 Internal error</span>
+<span class="w">    </span><span class="s2">"Upgrade"</span><span class="p">,</span><span class="w">        </span><span class="c1">// 3 Upgrade</span>
+<span class="w">    </span><span class="s2">"ControllerRequest"</span><span class="p">,</span><span class="w">        </span><span class="c1">// 4 Controller request</span>
+<span class="w">    </span><span class="s2">"ManualReset"</span><span class="w">        </span><span class="c1">// 5 Manual request from the front panel</span>
+<span class="p">};</span>
+</code></pre></div>
+<h3 id="ncrolepath">NcRolePath</h3>
+<p>Ordered list of roles ending with the role of object in question.<br />
+The object in question may be a block or another object.</p>
+<div class="highlight"><pre><span></span><code><span class="nx">typedef</span><span class="w"> </span><span class="nx">sequence</span><span class="o">&lt;</span><span class="nx">NcString</span><span class="o">&gt;</span><span class="w">    </span><span class="nx">NcRolePath</span><span class="p">;</span><span class="w"> </span><span class="c1">// Role path</span>
+</code></pre></div>
+<h3 id="nctimeinterval">NcTimeInterval</h3>
+<div class="highlight"><pre><span></span><code><span class="nx">typedef</span><span class="w"> </span><span class="nx">NcInt64</span><span class="w">    </span><span class="nx">NcTimeInterval</span><span class="p">;</span><span class="w"> </span><span class="c1">// Time interval described in nanoseconds</span>
+</code></pre></div>
+<h3 id="nctouchpoint">NcTouchpoint</h3>
+<p>This model is used by the <a href="../NcObject/#touchpoints">NcObject</a> class for identity mapping to other contexts.</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// Base touchpoint class</span>
+<span class="kd">interface</span><span class="w"> </span><span class="nx">NcTouchpoint</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">attribute</span><span class="w"> </span><span class="nx">NcString</span><span class="w">    </span><span class="nx">contextNamespace</span><span class="p">;</span><span class="w"> </span><span class="c1">// Context namespace</span>
+<span class="p">};</span>
+</code></pre></div>
+<h4 id="nctouchpointnmos">NcTouchpointNmos</h4>
+<div class="highlight"><pre><span></span><code><span class="c1">// Touchpoint class for NMOS resources</span>
+<span class="kd">interface</span><span class="w"> </span><span class="nx">NcTouchpointNmos</span><span class="o">:</span><span class="w"> </span><span class="kt">NcTouchpoint</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">attribute</span><span class="w"> </span><span class="nx">NcTouchpointResourceNmos</span><span class="w">    </span><span class="nx">resource</span><span class="p">;</span><span class="w"> </span><span class="c1">// Context NMOS resource</span>
+<span class="p">};</span>
+</code></pre></div>
+<p>The <code>contextNamespace</code> attribute is inherited from NcTouchpoint and can only be <code>x-nmos</code>.</p>
+<h4 id="nctouchpointnmoschannelmapping">NcTouchpointNmosChannelMapping</h4>
+<div class="highlight"><pre><span></span><code><span class="c1">// Touchpoint class for NMOS IS-08 resources</span>
+<span class="kd">interface</span><span class="w"> </span><span class="nx">NcTouchpointNmosChannelMapping</span><span class="o">:</span><span class="w"> </span><span class="kt">NcTouchpoint</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">attribute</span><span class="w"> </span><span class="nx">NcTouchpointResourceNmosChannelMapping</span><span class="w">    </span><span class="nx">resource</span><span class="p">;</span><span class="w"> </span><span class="c1">// Context Channel Mapping resource</span>
+<span class="p">};</span>
+</code></pre></div>
+<p>The <code>contextNamespace</code> attribute is inherited from NcTouchpoint and can only be <code>x-nmos/channelmapping</code></p>
+<h3 id="nctouchpointresource">NcTouchpointResource</h3>
+<div class="highlight"><pre><span></span><code><span class="c1">// Touchpoint resource class</span>
+<span class="kd">interface</span><span class="w"> </span><span class="nx">NcTouchpointResource</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">attribute</span><span class="w"> </span><span class="nx">NcString</span><span class="w">    </span><span class="nx">resourceType</span><span class="p">;</span><span class="w"> </span><span class="c1">// The type of the resource</span>
+<span class="p">};</span>
+</code></pre></div>
+<h4 id="nctouchpointresourcenmos">NcTouchpointResourceNmos</h4>
+<div class="highlight"><pre><span></span><code><span class="c1">// Touchpoint resource class for NMOS resources</span>
+<span class="kd">interface</span><span class="w"> </span><span class="nx">NcTouchpointResourceNmos</span><span class="o">:</span><span class="w"> </span><span class="kt">NcTouchpointResource</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">attribute</span><span class="w"> </span><span class="nx">NcUuid</span><span class="w">    </span><span class="nx">id</span><span class="p">;</span><span class="w"> </span><span class="c1">// NMOS resource UUID</span>
+<span class="p">};</span>
+</code></pre></div>
+<p>The <code>resourceType</code> attribute is inherited from NcTouchpointResource and can only be: <code>node, device, source, flow, sender, receiver</code>.</p>
+<h4 id="nctouchpointresourcenmoschannelmapping">NcTouchpointResourceNmosChannelMapping</h4>
+<div class="highlight"><pre><span></span><code><span class="c1">// Touchpoint resource class for NMOS resources</span>
+<span class="kd">interface</span><span class="w"> </span><span class="nx">NcTouchpointResourceNmosChannelMapping</span><span class="o">:</span><span class="w"> </span><span class="kt">NcTouchpointResourceNmos</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">attribute</span><span class="w"> </span><span class="nx">NcString</span><span class="w">    </span><span class="nx">ioId</span><span class="p">;</span><span class="w"> </span><span class="c1">// IS-08 Audio Channel Mapping input or output id</span>
+<span class="p">};</span>
+</code></pre></div>
+<p>The <code>resourceType</code> attribute is inherited from NcTouchpointResource and can only be: <code>input, output</code>.</p>
+<h3 id="ncuri">NcUri</h3>
+<div class="highlight"><pre><span></span><code><span class="nx">typedef</span><span class="w"> </span><span class="nx">NcString</span><span class="w">    </span><span class="nx">NcUri</span><span class="p">;</span><span class="w"> </span><span class="c1">// Uniform resource identifier</span>
+</code></pre></div>
+<h3 id="ncuuid">NcUuid</h3>
+<div class="highlight"><pre><span></span><code><span class="nx">typedef</span><span class="w"> </span><span class="nx">NcString</span><span class="w">    </span><span class="nx">NcUuid</span><span class="p">;</span><span class="w"> </span><span class="c1">// UUID</span>
+</code></pre></div>
+<h3 id="ncversioncode">NcVersionCode</h3>
+<p>Version code in semantic versioning format described as "vMajor.Minor.Patch" for example "v1.0.0".</p>
+<div class="highlight"><pre><span></span><code><span class="nx">typedef</span><span class="w"> </span><span class="nx">NcString</span><span class="w">    </span><span class="nx">NcVersionCode</span><span class="p">;</span><span class="w"> </span><span class="c1">// Version code in semantic versioning format</span>
+</code></pre></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://zensical.org/" target="_blank" rel="noopener">
+      Zensical
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      
+      
+        
+        
+      <script id="__config" type="application/json">{"annotate":null,"base":"..","features":[],"redirect":null,"search":"../assets/javascripts/workers/search.7d14d953.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":{"provider":"mike"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.8dcc8e9c.min.js"></script>
+      
+        <script src="../javascripts/json-viewer.js"></script>
+      
+        <script src="../javascripts/amwa-branding.js"></script>
+      
+    
+  </body>
+</html>

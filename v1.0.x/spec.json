@@ -1,0 +1,23 @@
+{
+  "amwa_id": "MS-05-02",
+  "url": "https://specs.amwa.tv/ms-05-02",
+  "name": "NMOS Control Framework",
+  "status": "AMWA Specification",
+  "repo_name": "ms-05-02",
+  "alt_repo_name": "nmos-control-framework",
+  "repo_url": "https://github.com/AMWA-TV/ms-05-02",
+  "releases": "v1.0.0",
+  "default_branch": "v1.0.x",
+  "show_in_index": true,
+  "intro": {
+    "what_does_it_do": [
+      "Describes the specification for using NMOS Control models"
+    ],
+    "why_does_it_matter": [
+      "Sets out the rules and framework for building control models in NMOS devices."
+    ],
+    "how_does_it_work": [
+      "Model definitions and supporting documentation describe the way control models can be created."
+    ]
+  }
+}
